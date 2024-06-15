@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: agent
-        image: "kaytu.gh.io/kaytu-agent:{{ .Values.agent.version }}"
+        image: "ghcr.io/kaytu-io/kaytu-agent:{{ .Values.kaytu.agent.version }}"
         imagePullPolicy: Always
         ports:
           - containerPort: 8001
