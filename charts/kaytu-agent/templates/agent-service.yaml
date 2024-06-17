@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kaytu-agent
+  labels:
+    app: kaytu-agent
+spec:
+  ports:
+    - port: {{ .Values.kaytu.agent.grpc_port }}
+      name: agent
+  clusterIP: None
+  selector:
+    app: kaytu-agent

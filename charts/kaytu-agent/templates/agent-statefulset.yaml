@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kaytu-agent
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: kaytu-agent
+spec:
+  serviceName: kaytu-agent
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kaytu-agent
+  template:
+    metadata:
+      labels:
+        app: kaytu-agent
+    spec:
+      containers:
+      - name: agent
+        image: "{{ .Values.kaytu.agent.image.name }}:{{ .Values.kaytu.agent.image.tag }}"
+        imagePullPolicy: Always
+        ports:
+          - containerPort: {{ .Values.kaytu.agent.grpc_port }}
+        env:
+          - name: WORKING_DIRECTORY
+            value: "/data/kaytu-agent"
+          - name: GRPC_PORT
+            value: "{{ .Values.kaytu.agent.grpc_port }}"
+        volumeMounts:
+          - name: kaytu-agent-data
+            mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: kaytu-agent-data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+{{- if .Values.kaytu.agent.storage.class }}
+        storageClassName: {{ .Values.kaytu.agent.storage.class }}
+{{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.kaytu.agent.storage.size }}
+
