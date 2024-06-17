@@ -1,3 +1,8 @@
+{{ $tag := .Chart.AppVersion }}
+{{ if .Values.kaytu.agent.image.tag }}
+{{ $tag = .Values.kaytu.agent.image.tag }}
+{{ end }}
+
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -18,7 +23,7 @@ spec:
     spec:
       containers:
       - name: agent
-        image: "{{ .Values.kaytu.agent.image.name }}:{{ .Values.kaytu.agent.image.tag }}"
+        image: "{{ .Values.kaytu.agent.image.name }}:{{ $tag }}"
         imagePullPolicy: Always
         ports:
           - containerPort: {{ .Values.kaytu.agent.grpc_port }}

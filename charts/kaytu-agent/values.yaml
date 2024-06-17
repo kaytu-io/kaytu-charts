@@ -3,7 +3,7 @@ kaytu:
     grpc_port: 8001
     image:
       name: "ghcr.io/kaytu-io/kaytu-agent"
-      tag: "sha256-28640d1355f18b74d97b4d59b1250d04b6bc7c1c4ff49e5fd739dd4352367167"
+      tag: ""
     storage:
       class: ""
       size: 1Gi
