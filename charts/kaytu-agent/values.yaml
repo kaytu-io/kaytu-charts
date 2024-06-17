@@ -7,3 +7,16 @@ kaytu:
     storage:
       class: ""
       size: 1Gi
+  kaytu:
+    observabilityDays: 14
+    prometheus:
+      address: "http://prometheus-operated.monitoring.svc.cluster.local:9090"
+      auth:
+        # for basic auth
+        username: ""
+        password: ""
+        # for oauth2
+        clientId: ""
+        clientSecret: ""
+        tokenUrl: ""
+        scopesStr: ""

@@ -21,6 +21,7 @@ spec:
       labels:
         app: kaytu-agent
     spec:
+      serviceAccountName: kaytu-agent
       containers:
       - name: agent
         image: "{{ .Values.kaytu.agent.image.name }}:{{ $tag }}"
@@ -32,6 +33,23 @@ spec:
             value: "/data/kaytu-agent"
           - name: GRPC_PORT
             value: "{{ .Values.kaytu.agent.grpc_port }}"
+          - name: KAYTU_CONFIG__OBSERVABILITY_DAYS
+            value: "{{ .Values.kaytu.kaytu.observabilityDays }}"
+          - name: KAYTU_CONFIG__PROMETHEUS__ADDRESS
+            value: "{{ .Values.kaytu.kaytu.prometheus.address }}"
+          - name: KAYTU_CONFIG__PROMETHEUS__USERNAME
+            value: "{{ .Values.kaytu.kaytu.prometheus.auth.username }}"
+          - name: KAYTU_CONFIG__PROMETHEUS__PASSWORD
+            value: "{{ .Values.kaytu.kaytu.prometheus.auth.password }}"
+          - name: KAYTU_CONFIG__PROMETHEUS__CLIENT_ID
+            value: "{{ .Values.kaytu.kaytu.prometheus.auth.clientId }}"
+          - name: KAYTU_CONFIG__PROMETHEUS__CLIENT_SECRET
+            value: "{{ .Values.kaytu.kaytu.prometheus.auth.clientSecret }}"
+          - name: KAYTU_CONFIG__PROMETHEUS__TOKEN_URL
+            value: "{{ .Values.kaytu.kaytu.prometheus.auth.tokenUrl }}"
+          - name: KAYTU_CONFIG__PROMETHEUS__SCOPES
+            value: "{{ .Values.kaytu.kaytu.prometheus.auth.scopesStr }}"
+
         volumeMounts:
           - name: kaytu-agent-data
             mountPath: /data
