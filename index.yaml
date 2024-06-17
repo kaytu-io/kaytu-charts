@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   kaytu-agent:
   - apiVersion: v1
+    appVersion: v0.1.0
+    created: "2024-06-17T12:52:20.918913634Z"
+    description: Helm chart to install Kaytu Agent.
+    digest: 2fba30a2c97127f31680f760b6b186a25f229d29528289367817a33350f7b4e4
+    name: kaytu-agent
+    type: application
+    urls:
+    - https://github.com/kaytu-io/kaytu-charts/releases/download/kaytu-agent-0.1.0/kaytu-agent-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v1
     appVersion: v0.0.5
     created: "2024-06-17T11:27:04.730354667Z"
     description: Helm chart to install Kaytu Agent.
@@ -41,4 +51,4 @@ entries:
     urls:
     - https://github.com/kaytu-io/kaytu-charts/releases/download/kaytu-agent-0.0.1/kaytu-agent-0.0.1.tgz
     version: 0.0.1
-generated: "2024-06-17T11:27:04.730377079Z"
+generated: "2024-06-17T12:52:20.918941637Z"
