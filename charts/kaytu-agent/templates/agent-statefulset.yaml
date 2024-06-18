@@ -55,6 +55,11 @@ spec:
           - name: KAYTU_CONFIG__PROMETHEUS__SCOPES
             value: "{{ .Values.kaytu.kaytu.prometheus.auth.scopesStr }}"
 
+        resources:
+          requests:
+            cpu: 100m
+            memory: 1Gi
+
         volumeMounts:
           - name: kaytu-agent-data
             mountPath: /data
