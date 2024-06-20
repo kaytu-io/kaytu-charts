@@ -12,7 +12,7 @@ Refer to the [kaytu-charts](https://github.com/kaytu-io/kaytu-charts) README for
 | `kaytu.agent.storage.class`                                                    | string | `""`                                                             | The storage class to use for the agent.                                                                                                                                                                                                                |
 | `kaytu.agent.storage.size`                                                     | string | `"1Gi"`                                                          | The size of the storage to use for the agent.                                                                                                                                                                                                          |
 | `kaytu.kaytu.observabilityDays`                                                | uint32 | `14`                                                             | The number of days to fetch observability data in a single cycle.                                                                                                                                                                                      |
-| `kaytu.kaytu.authToken` <span style="color:red">\<*REQUIRED*></span>           | string | `"XXX"`                                                          | The auth token to use for the agent.                                                                                                                                                                                                                   |
+| `kaytu.kaytu.authToken`  <span style="color:red">\<*REQUIRED*></span>          | string | `"XXX"`                                                          | The auth token to use for the agent.                                                                                                                                                                                                                   |
 | `kaytu.kaytu.prometheus.address` <span style="color:red">\<*IMPORTANT*></span> | string | `"http://prometheus-operated.monitoring.svc.cluster.local:9090"` | The address of the Prometheus compatible endpoint to fetch observability data from. if you are using a VictoriaMetrics cluster (not single server) the endpoint will look like `http://vmselect.monitoring.svc.cluster.local:8428/select/0/prometheus` |
 | `kaytu.kaytu.prometheus.auth.username`                                         | string | `""`                                                             | The username to use for basic auth when fetching observability data. Conflicts with oauth2 fields below, default is empty for no auth                                                                                                                  |
 | `kaytu.kaytu.prometheus.auth.password`                                         | string | `""`                                                             | The password to use for basic auth when fetching observability data. Conflicts with oauth2 fields below, default is empty for no auth                                                                                                                  |
@@ -20,6 +20,21 @@ Refer to the [kaytu-charts](https://github.com/kaytu-io/kaytu-charts) README for
 | `kaytu.kaytu.prometheus.auth.clientSecret`                                     | string | `""`                                                             | The client secret to use for oauth2 when fetching observability data. Conflicts with basic auth fields above, default is empty for no auth                                                                                                             |
 | `kaytu.kaytu.prometheus.auth.tokenUrl`                                         | string | `""`                                                             | The token url to use for oauth2 when fetching observability data. Conflicts with basic auth fields above, default is empty for no auth                                                                                                                 |
 | `kaytu.kaytu.prometheus.auth.scopes`                                           | string | `""`                                                             | The comma seperated scopes to use for oauth2 when fetching observability data. Conflicts with basic auth fields above, default is empty for no auth                                                                                                    |
+
+#### Getting the auth token
+1. Download and install the [katyu-cli](https://github.com/kaytu-io/kaytu).
+2. Login to the kaytu service, run
+    ```shell
+    kaytu login
+    ```
+   and follow the instructions.
+3. Run the following command to generate an auth token
+    ```shell
+    kaytu apikey generate <key-name>
+    ```
+    where `<key-name>` is the name of the key you want to generate such as `kaytu-agent`.
+    Be sure to store the generated key as it will not be shown again.
+4. Copy the generated key and use it as the `kaytu.kaytu.authToken` value.
 
 ### Installing the Chart
 1. Get the values file for the chart:
