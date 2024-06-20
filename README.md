@@ -12,10 +12,7 @@ If you had already added this repo earlier, run `helm repo update` to retrieve
 the latest versions of the packages.  You can then run `helm search repo
 kaytu-io` to see the charts.
 
-To install the kaytu-agent chart:
+## Charts
 
-    helm install my-kaytu-agent kaytu-io/kaytu-agent
+[**kaytu-agent**](https://github.com/kaytu-io/kaytu-charts/blob/main/charts/kaytu-agent/): Kubernetes agent to gather and run optimizations suggestions regularly and asynchronously.
 
-To uninstall the chart:
-
-    helm delete my-kaytu-agent
