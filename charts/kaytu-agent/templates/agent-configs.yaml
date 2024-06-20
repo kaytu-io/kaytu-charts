@@ -5,4 +5,4 @@ metadata:
   namespace: {{ .Release.Namespace }}
 type: Opaque
 data:
-  authToken: {{ .Values.kaytu.kaytu.authToken | b64enc }}
+  apiKey: {{ .Values.kaytu.kaytu.apiKey | b64enc }}

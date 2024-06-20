@@ -35,11 +35,11 @@ spec:
             value: "{{ .Values.kaytu.agent.grpc_port }}"
           - name: KAYTU_CONFIG__OBSERVABILITY_DAYS
             value: "{{ .Values.kaytu.kaytu.observabilityDays }}"
-          - name: KAYTU_CONFIG__AUTH_TOKEN
+          - name: KAYTU_CONFIG__API_KEY
             valueFrom:
               secretKeyRef:
                 name: kaytu-agent
-                key: authToken
+                key: apiKey
           - name: KAYTU_CONFIG__PROMETHEUS__ADDRESS
             value: "{{ .Values.kaytu.kaytu.prometheus.address }}"
           - name: KAYTU_CONFIG__PROMETHEUS__USERNAME

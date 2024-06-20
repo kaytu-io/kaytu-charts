@@ -9,7 +9,7 @@ kaytu:
       size: 1Gi
   kaytu:
     observabilityDays: 14
-    authToken: "XXX"
+    apiKey: "XXX"
     prometheus:
       address: "http://prometheus-operated.monitoring.svc.cluster.local:9090"
       auth:
