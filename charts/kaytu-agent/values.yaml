@@ -4,6 +4,7 @@ kaytu:
     image:
       name: "ghcr.io/kaytu-io/kaytu-agent"
       tag: ""
+      pullSecret: ""
     storage:
       class: ""
       size: 1Gi

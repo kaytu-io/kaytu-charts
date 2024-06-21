@@ -22,6 +22,10 @@ spec:
         app: kaytu-agent
     spec:
       serviceAccountName: kaytu-agent
+{{ if .Values.kaytu.agent.image.pullSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.kaytu.agent.image.pullSecret }}
+{{ end }}
       containers:
       - name: agent
         image: "{{ .Values.kaytu.agent.image.name }}:{{ $tag }}"
