@@ -10,6 +10,7 @@ kaytu:
       size: 1Gi
     tolerations: {}
     nodeSelector: {}
+    affinity: {}
   kaytu:
     observabilityDays: 14
     apiKey: "XXX"
