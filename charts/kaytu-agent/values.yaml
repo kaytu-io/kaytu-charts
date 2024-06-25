@@ -8,6 +8,8 @@ kaytu:
     storage:
       class: ""
       size: 1Gi
+#    tolerations:
+#    nodeSelector:
   kaytu:
     observabilityDays: 14
     apiKey: "XXX"

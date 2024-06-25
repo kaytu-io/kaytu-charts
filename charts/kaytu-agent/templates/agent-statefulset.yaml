@@ -26,6 +26,12 @@ spec:
       imagePullSecrets:
         - name: {{ .Values.kaytu.agent.image.pullSecret }}
 {{ end }}
+{{ if .Values.kaytu.agent.tolerations }}
+      tolerations: {{ .Values.kaytu.agent.tolerations }}
+{{ end }}
+{{ if .Values.kaytu.agent.nodeSelector }}
+      nodeSelector: {{ .Values.kaytu.agent.nodeSelector }}
+{{ end }}
       containers:
       - name: agent
         image: "{{ .Values.kaytu.agent.image.name }}:{{ $tag }}"
