@@ -27,10 +27,10 @@ spec:
         - name: {{ .Values.kaytu.agent.image.pullSecret }}
 {{ end }}
 {{ if .Values.kaytu.agent.tolerations }}
-      tolerations: {{ .Values.kaytu.agent.tolerations }}
+      tolerations: {{ .Values.kaytu.agent.tolerations | toYaml | nindent 6 }}
 {{ end }}
 {{ if .Values.kaytu.agent.nodeSelector }}
-      nodeSelector: {{ .Values.kaytu.agent.nodeSelector }}
+      nodeSelector: {{ .Values.kaytu.agent.nodeSelector | toYaml | nindent 6 }}
 {{ end }}
       containers:
       - name: agent
