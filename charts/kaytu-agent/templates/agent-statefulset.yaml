@@ -76,6 +76,12 @@ spec:
         volumeMounts:
           - name: kaytu-agent-data
             mountPath: /data
+          - name: kaytu-agent-config
+            mountPath: /config
+      volumes:
+        - name: kaytu-agent-config
+          configMap:
+            name: kaytu-agent-configs
   volumeClaimTemplates:
     - metadata:
         name: kaytu-agent-data

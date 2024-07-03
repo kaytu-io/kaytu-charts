@@ -25,3 +25,12 @@ kaytu:
         clientSecret: ""
         tokenUrl: ""
         scopesStr: ""
+    # preferences for the optimize command e.g:
+    # preferences:
+    #   - service: "Kubernetes"
+    #     key: "CPURequestBreathingRoom"
+    #     value: "10"
+    #   - service: "Kubernetes"
+    #     key: "MinCpuRequest"
+    #     value: "0.1"
+    preferences: []

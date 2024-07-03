@@ -6,3 +6,21 @@ metadata:
 type: Opaque
 data:
   apiKey: {{ .Values.kaytu.kaytu.apiKey | b64enc }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kaytu-agent-configs
+  namespace: {{ .Release.Namespace }}
+data:
+    "preferences.yaml": |
+      {{if .Values.kaytu.kaytu.preferences }}
+      preferences:
+        {{- range .Values.kaytu.kaytu.preferences }}
+        - service: "{{ .service }}"
+          key: "{{ .key }}"
+          value: "{{ .value }}"
+        {{- end }}
+      {{ else }}
+      preferences: []
+      {{ end }}
