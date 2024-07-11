@@ -56,13 +56,13 @@ spec:
           - name: GRPC_PORT
             value: "{{ .Values.kaytu.agent.grpc_port }}"
           - name: OPTIMIZATION_CHECK_INTERVAL_SECONDS
-            value: {{ .Values.kaytu.agent.optimizationCheckIntervalSeconds }}
+            value: "{{ .Values.kaytu.agent.optimizationCheckIntervalSeconds }}"
           - name: OPTIMIZATION_JOB_SCHEDULE_INTERVAL_SECONDS
-            value: {{ .Values.kaytu.agent.optimizationJobScheduleIntervalSeconds }}
+            value: "{{ .Values.kaytu.agent.optimizationJobScheduleIntervalSeconds }}"
           - name: OPTIMIZATION_JOB_RUN_TIMEOUT_SECONDS
-            value: {{ .Values.kaytu.agent.optimizationJobRunTimeoutSeconds }}
+            value: "{{ .Values.kaytu.agent.optimizationJobRunTimeoutSeconds }}"
           - name: OPTIMIZATION_JOB_QUEUE_TIMEOUT_SECONDS
-            value: {{ .Values.kaytu.agent.optimizationJobQueueTimeoutSeconds }}
+            value: "{{ .Values.kaytu.agent.optimizationJobQueueTimeoutSeconds }}"
           - name: KAYTU_CONFIG__OBSERVABILITY_DAYS
             value: "{{ .Values.kaytu.kaytu.observabilityDays }}"
           - name: KAYTU_CONFIG__API_KEY
