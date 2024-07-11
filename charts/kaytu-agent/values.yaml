@@ -1,6 +1,15 @@
 kaytu:
+  tolerations: {}
+  nodeSelector: {}
+  affinity: {}
+  storageClass: ""
+  imagePullSecret: ""
   agent:
     grpc_port: 8001
+    optimizationCheckIntervalSeconds: 60
+    optimizationJobScheduleIntervalSeconds: 86400
+    optimizationJobRunTimeoutSeconds: 7200
+    optimizationJobQueueTimeoutSeconds: 86400
     image:
       name: "ghcr.io/kaytu-io/kaytu-agent"
       tag: ""

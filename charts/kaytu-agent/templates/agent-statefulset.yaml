@@ -25,15 +25,24 @@ spec:
 {{ if .Values.kaytu.agent.image.pullSecret }}
       imagePullSecrets:
         - name: {{ .Values.kaytu.agent.image.pullSecret }}
+{{- else if .Values.kaytu.imagePullSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.kaytu.imagePullSecret }}
 {{ end }}
 {{ if .Values.kaytu.agent.tolerations }}
       tolerations: {{ .Values.kaytu.agent.tolerations | toYaml | nindent 8 }}
+{{- else if .Values.kaytu.tolerations }}
+      tolerations: {{ .Values.kaytu.tolerations | toYaml | nindent 8
 {{ end }}
 {{ if .Values.kaytu.agent.nodeSelector }}
       nodeSelector: {{ .Values.kaytu.agent.nodeSelector | toYaml | nindent 8 }}
+{{- else if .Values.kaytu.nodeSelector }}
+      nodeSelector: {{ .Values.kaytu.nodeSelector | toYaml | nindent 8 }}
 {{ end }}
 {{ if .Values.kaytu.agent.affinity }}
       affinity: {{ .Values.kaytu.agent.affinity | toYaml | nindent 8 }}
+{{- else if .Values.kaytu.affinity }}
+      affinity: {{ .Values.kaytu.affinity | toYaml | nindent 8 }}
 {{ end }}
       containers:
       - name: agent
@@ -46,6 +55,14 @@ spec:
             value: "/data/kaytu-agent"
           - name: GRPC_PORT
             value: "{{ .Values.kaytu.agent.grpc_port }}"
+          - name: OPTIMIZATION_CHECK_INTERVAL_SECONDS
+            value: {{ .Values.kaytu.agent.optimizationCheckIntervalSeconds }}
+          - name: OPTIMIZATION_JOB_SCHEDULE_INTERVAL_SECONDS
+            value: {{ .Values.kaytu.agent.optimizationJobScheduleIntervalSeconds }}
+          - name: OPTIMIZATION_JOB_RUN_TIMEOUT_SECONDS
+            value: {{ .Values.kaytu.agent.optimizationJobRunTimeoutSeconds }}
+          - name: OPTIMIZATION_JOB_QUEUE_TIMEOUT_SECONDS
+            value: {{ .Values.kaytu.agent.optimizationJobQueueTimeoutSeconds }}
           - name: KAYTU_CONFIG__OBSERVABILITY_DAYS
             value: "{{ .Values.kaytu.kaytu.observabilityDays }}"
           - name: KAYTU_CONFIG__API_KEY
@@ -89,6 +106,8 @@ spec:
         accessModes: [ "ReadWriteOnce" ]
 {{- if .Values.kaytu.agent.storage.class }}
         storageClassName: {{ .Values.kaytu.agent.storage.class }}
+{{ else if .Values.kaytu.storageClass }}
+        storageClassName: {{ .Values.kaytu.storageClass }}
 {{- end }}
         resources:
           requests:
