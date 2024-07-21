@@ -1,0 +1,13 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: http-proxy-grpc-external
+  namespace: {{ .Release.Namespace }}
+spec:
+  virtualhost:
+    fqdn: {{ .Values.kaytu.domain.grpc_external }}
+    tls:
+      secretName: {{ .Values.kaytu.domain.grpc_external }}
+  includes:
+    - name: grpc-proxy-route
+      namespace: {{ .Release.Namespace }}

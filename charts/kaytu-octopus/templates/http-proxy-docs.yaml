@@ -1,0 +1,53 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: http-proxy-docs-{{ .Values.kaytu.domain.docs }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  virtualhost:
+    fqdn: {{ .Values.kaytu.domain.docs }}
+    tls:
+      secretName: web-tls
+#    authorization:
+#      extensionRef:
+#        apiVersion: projectcontour.io/v1alpha1
+#        name: auth
+#        namespace: {{ $.Release.Namespace }}
+#      responseTimeout: 60s
+    corsPolicy:
+      allowCredentials: true
+      allowOrigin:
+        - "*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      allowHeaders:
+        - authorization
+        - cache-control
+        - content-type
+        - data
+        - sentry-trace
+        - baggage
+        - x-kaytu-demo
+      exposeHeaders:
+        - Content-Length
+        - Content-Range
+      maxAge: "10m" # preflight requests can be cached for 10 minutes.
+  routes:
+    - conditions:
+        - prefix: /
+      timeoutPolicy:
+        response: 60s
+      services:
+        - name: docs-svc
+          port: 80
+      authPolicy:
+        disabled: true
+      # pathRewritePolicy:
+      #   replacePrefix:
+      #     - prefix: /docs
+      #       replacement: /
+---

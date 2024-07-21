@@ -1,0 +1,13 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: http-proxy-grafana
+  namespace: {{ .Release.Namespace }}
+spec:
+  virtualhost:
+    fqdn: {{ .Values.kaytu.domain.grafana }}
+    tls:
+      secretName: web-tls
+  includes:
+    - name: http-proxy-grafana
+      namespace: prom-system

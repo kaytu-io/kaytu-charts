@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: compliance-service
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: compliance-service
+spec:
+  minReadySeconds: 10
+  replicas: {{ .Values.kaytu.replicaCount }}
+  selector:
+    matchLabels:
+      app: compliance-service
+  template:
+    metadata:
+      labels:
+        app: compliance-service
+    spec:
+      serviceAccountName: compliance
+      containers:
+      - name: compliance-service
+        image: {{ .Values.kaytu.compliance.service.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.compliance.service.image.tag.dev .Values.kaytu.compliance.service.image.tag }}
+        command: ["/compliance-service"]
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 3Gi
+          requests:
+            cpu: 100m
+            memory: 500Mi
+        env:
+{{- include "elastic.envs" . | indent 8 }}
+        - name: CURRENT_NAMESPACE
+          value: "{{ .Release.Namespace }}"
+        - name: POSTGRESQL_HOST
+          value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
+
+        - name: MIGRATOR_JOB_QUEUE_NAME
+          value: "migrator-jobs-queue"
+
+        - name: POSTGRESQL_PORT
+          value: "5432"
+        - name: POSTGRESQL_USERNAME
+          value: "compliance_service"
+        - name: POSTGRESQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: complianceServiceUserPassword
+        - name: POSTGRESQL_DB
+          value: "compliance"
+        - name: POSTGRESQL_SSLMODE
+          value: {{ .Values.postgres.sslMode }}
+        - name: HTTP_ADDRESS
+          value: "0.0.0.0:7251"
+        - name: SCHEDULER_BASEURL
+          value: "http://describe-scheduler.{{ .Release.Namespace }}.svc.cluster.local:5251"
+        - name: ONBOARD_BASEURL
+          value: "http://onboard-service.{{ .Release.Namespace }}.svc.cluster.local:6251"
+        - name: INVENTORY_BASEURL
+          value: "http://inventory-service.{{ .Release.Namespace }}.svc.cluster.local:7251"
+        - name: METADATA_BASEURL
+          value: "http://metadata-service.{{ .Release.Namespace }}.svc.cluster.local:6251"
+        - name: S3_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: insight-worker-data-secret
+              key: s3AccessKey
+        - name: S3_ACCESS_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: insight-worker-data-secret
+              key: s3SecretKey
+        - name: S3_REGION
+          value: "us-east-1"
+        - name: S3_BUCKET
+          value: "insight-validation"
+        - name: SUPERSET_BASEURL
+          value: "http://{{ .Release.Namespace }}-superset.{{ .Release.Namespace }}.svc.cluster.local:8088"
+        - name: SUPERSET_USERNAME
+          value: "admin"
+        - name: SUPERSET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: superset-postgres-secret
+              key: dashboard-admin-password
+        - name: SUPERSET_GUESTUSERNAME
+          value: "dashboard-user"
+        - name: SUPERSET_GUESTFIRSTNAME
+          value: "Kaytu"
+        - name: SUPERSET_GUESTLASTNAME
+          value: "User"
+        - name: JAEGER_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: JAEGER_SERVICE_NAME
+          value: "compliance-service"
+        - name: JAEGER_SAMPLE_RATE
+          value: "0.0005"

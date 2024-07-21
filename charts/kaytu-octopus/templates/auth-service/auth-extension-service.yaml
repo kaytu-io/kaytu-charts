@@ -1,0 +1,12 @@
+apiVersion: projectcontour.io/v1alpha1
+kind: ExtensionService
+metadata:
+  name: auth
+  namespace: {{ .Release.Namespace }}
+spec:
+  services:
+    - name: auth-service
+      port: 50051
+  validation:
+    caSecret: root-ca-tls
+    subjectName: auth-service

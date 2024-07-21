@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docs
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: docs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docs
+  template:
+    metadata:
+      labels:
+        app: docs
+    spec:
+
+      containers:
+      - name: docs
+        image: "{{ .Values.kaytu.docker.registry }}/kaytu-docs:{{- dig .Values.kaytu.envType .Values.kaytu.docker.tags.docs.dev .Values.kaytu.docker.tags.docs }}"
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80

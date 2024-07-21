@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cost-estimator-service
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: cost-estimator-service
+    monitoring: kaytu
+spec:
+  selector:
+    app: cost-estimator-service
+  ports:
+    - name: http
+      port: 3351
+      targetPort: 3351
+  clusterIP: "None"

@@ -1,0 +1,9 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: kaytu-master
+  namespace: {{.Release.Namespace}}
+spec:
+  encryptedData:
+    accessKey: {{ .Values.kaytu.master.accessKey }}
+    secretKey: {{ .Values.kaytu.master.secretKey }}
