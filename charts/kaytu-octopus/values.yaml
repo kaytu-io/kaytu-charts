@@ -24,13 +24,13 @@ kaytu:
         dev: v0.405.17-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-auth-service-prod:tag"}
       workspace:
-        dev: v0.405.19-dev # {"$imagepolicy": "flux-system:kaytu-workspace-service:tag"}
+        dev: v0.405.20-dev # {"$imagepolicy": "flux-system:kaytu-workspace-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-workspace-service-prod:tag"}
       subscription:
         dev: v0.405.16-dev # {"$imagepolicy": "flux-system:kaytu-subscription-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-subscription-service-prod:tag"}
       frontendv2:
-        dev: v0.39.1-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
+        dev: v0.39.4-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
         prod: v0.37.6-prod # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service-prod:tag"}
       website:
         dev: v0.8.24-prod # {"$imagepolicy": "flux-system:kaytu-website-v2-prod:tag"}
@@ -50,6 +50,9 @@ kaytu:
       pennywise:
         dev: v0.4.19-dev # {"$imagepolicy": "flux-system:pennywise-server:tag"}
         prod: v0.3.17-prod # {"$imagepolicy": "flux-system:pennywise-server-prod:tag"}
+      wastage:
+        dev: v0.405.21-dev # {"$imagepolicy": "flux-system:kaytu-wastage:tag"}
+        prod: v0.357.4-prod # {"$imagepolicy": "flux-system:kaytu-wastage-prod:tag"}
   auth0:
     domain: kaytu.us.auth0.com
     clientId: xxx
@@ -73,6 +76,12 @@ kaytu:
   master:
     accessKey: xxx
     secretKey: xxx
+    policyARN: "xxx"
+    accountID: "xxx"
+    oidcProvider: "oidc.eks.us-east-2.amazonaws.com/id/xxx"
+    masterRoleARN: "arn:aws:iam::xxx:role/KaytuOpenSearchAdmin"
+    securityGroupID: "sg-xxx"
+    subnetID: "subnet-xxx"
   vault:
     provider: azure-keyvault
     aws:
@@ -104,7 +113,7 @@ aws:
   firehose:
     region: us-east-2
     usageMetersStreamName: "xxx"
-cloudflare:
+tls:
   sealedTlsCrt: XXX
   sealedTlsKey: XXX
 azure:

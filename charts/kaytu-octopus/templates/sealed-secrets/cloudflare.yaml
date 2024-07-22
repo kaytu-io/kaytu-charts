@@ -5,6 +5,6 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   encryptedData:
-    tls.crt: {{ .Values.cloudflare.sealedTlsCrt }}
-    tls.key: {{ .Values.cloudflare.sealedTlsKey }}
+    tls.crt: {{ .Values.tls.sealedTlsCrt }}
+    tls.key: {{ .Values.tls.sealedTlsKey }}
 

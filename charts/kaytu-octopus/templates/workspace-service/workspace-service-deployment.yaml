@@ -46,7 +46,7 @@ spec:
             - name: WORKSPACE_POSTGRES__HOST
               value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
             - name: WORKSPACE_POSTGRES__PORT
-              value: "5432"
+            value: "5432"
             - name: WORKSPACE_POSTGRES__DB
               value: "workspace"
             - name: WORKSPACE_POSTGRES__USERNAME
@@ -88,13 +88,13 @@ spec:
               value: "{{ .Values.flux.namespace }}"
             - name: WORKSPACE_S3_REGION
               value: "us-east-1"
-            - name: WORKSPACE_S3_ACCESS_KEY
-              value: "xxx"
-            - name: WORKSPACE_S3_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: insights-s3
-                  key: secretKey
+            #            - name: WORKSPACE_S3_ACCESS_KEY
+            #              value: "{{ .Values.kaytu.insights.s3.accessKey }}"
+            #            - name: WORKSPACE_S3_SECRET_KEY
+            #              valueFrom:
+            #                secretKeyRef:
+            #                  name: insights-s3
+            #                  key: secretKey
 
             - name: WORKSPACE_VAULT__PROVIDER
               value: {{ .Values.kaytu.vault.provider }}
@@ -118,7 +118,7 @@ spec:
               value: {{ .Values.kaytu.vault.keyID }}
 
             - name: WORKSPACE_AWS_MASTER_POLICY_ARN
-              value: "arn:aws:iam::xxx:policy/xxx"
+              value: "{{ .Values.kaytu.master.policyARN }}"
             - name: WORKSPACE_AWS_MASTER_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
@@ -132,14 +132,14 @@ spec:
             - name: WORKSPACE_OPEN_SEARCH_REGION
               value: "us-east-2"
             - name: WORKSPACE_AWS_ACCOUNT_ID
-              value: "xxx"
+              value: "{{ .Values.kaytu.master.accountID }}"
             - name: WORKSPACE_OIDC_PROVIDER
-              value: "xxx"
+              value: "{{ .Values.kaytu.master.oidcProvider }}"
             - name: WORKSPACE_MASTER_ROLE_ARN
-              value: "arn:aws:iam::xxx:role/xxx"
+              value: "{{ .Values.kaytu.master.masterRoleARN }}"
             - name: WORKSPACE_SECURITY_GROUP_ID
-              value: "xxx"
+              value: "{{ .Values.kaytu.master.securityGroupID }}"
             - name: WORKSPACE_SUBNET_ID
-              value: "xxx"
+              value: "{{ .Values.kaytu.master.subnetID }}"
             - name: WORKSPACE_DO_RESERVE
               value: "false"
