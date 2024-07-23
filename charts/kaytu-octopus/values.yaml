@@ -1,0 +1,126 @@
+kaytu:
+  envType: dev
+  domain:
+    app: app.domain
+    appv2: newapp.domain
+    grafana: grafana.domain
+    grpc: grpc.domain
+    grpc_external: grpc-external.domain
+    swagger: swagger.domain
+    sentry: sentry.domain
+    demo: demo.domain
+    area51:
+      - area51.domain
+    website:
+      - website.domain
+    docs: docs.domain
+    blog: blog.domain
+    api: api.domain
+    pennywise: pennywise.domain
+  docker:
+    registry: akscorekaytuacr.azurecr.io
+    tags:
+      auth:
+        dev: v0.405.17-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
+        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-auth-service-prod:tag"}
+      workspace:
+        dev: v0.405.20-dev # {"$imagepolicy": "flux-system:kaytu-workspace-service:tag"}
+        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-workspace-service-prod:tag"}
+      subscription:
+        dev: v0.405.16-dev # {"$imagepolicy": "flux-system:kaytu-subscription-service:tag"}
+        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-subscription-service-prod:tag"}
+      frontendv2:
+        dev: v0.39.4-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
+        prod: v0.37.6-prod # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service-prod:tag"}
+      website:
+        dev: v0.8.24-prod # {"$imagepolicy": "flux-system:kaytu-website-v2-prod:tag"}
+        prod: v0.8.24-prod # {"$imagepolicy": "flux-system:kaytu-website-v2-prod:tag"}
+      area51:
+        dev: v0.8.23-dev # {"$imagepolicy": "flux-system:kaytu-website-v2:tag"}
+        prod: v0.8.23-dev # {"$imagepolicy": "flux-system:kaytu-website-v2:tag"}
+      swagger:
+        dev: v0.405.16-dev # {"$imagepolicy": "flux-system:kaytu-swagger-service:tag"}
+        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-swagger-service-prod:tag"}
+      redoc:
+        dev: v0.405.16-dev # {"$imagepolicy": "flux-system:kaytu-redoc-service:tag"}
+        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-redoc-service-prod:tag"}
+      docs:
+        dev: v0.6.30-dev # {"$imagepolicy": "flux-system:kaytu-docs:tag"}
+        prod: v0.6.27-prod # {"$imagepolicy": "flux-system:kaytu-docs-prod:tag"}
+      pennywise:
+        dev: v0.4.19-dev # {"$imagepolicy": "flux-system:pennywise-server:tag"}
+        prod: v0.3.17-prod # {"$imagepolicy": "flux-system:pennywise-server-prod:tag"}
+      wastage:
+        dev: v0.405.21-dev # {"$imagepolicy": "flux-system:kaytu-wastage:tag"}
+        prod: v0.357.4-prod # {"$imagepolicy": "flux-system:kaytu-wastage-prod:tag"}
+  auth0:
+    domain: kaytu.us.auth0.com
+    clientId: xxx
+    nativeClientId: xxx
+    nativePennywiseClientId: xxx
+    manageClientId: xxx
+    manageSealedClientSecret: XXX
+    audience: https://app.kaytu.io
+    connection: 'Username-Password-Authentication'
+    connectionID: 'xxx'
+  apikey:
+    private: XXX
+  sendGrid:
+    sender: 'noreply@notify.kaytu.io'
+    senderName: Kaytu
+    sealedApiKey: XXX
+  workspace:
+    kaytuChartLocation: "./kaytu"
+  frontend:
+    muiLicense: xxx
+  master:
+    accessKey: xxx
+    secretKey: xxx
+    policyARN: "xxx"
+    accountID: "xxx"
+    oidcProvider: "oidc.eks.us-east-2.amazonaws.com/id/xxx"
+    masterRoleARN: "arn:aws:iam::xxx:role/KaytuOpenSearchAdmin"
+    securityGroupID: "sg-xxx"
+    subnetID: "subnet-xxx"
+  vault:
+    provider: azure-keyvault
+    aws:
+      region: us-east-2
+      roleArn: "arn:aws:iam::xxx:role/xxx"
+      accessKey: ""
+      secretKey: ""
+    azure:
+      baseUrl: "https://xxx.vault.azure.net"
+      tenantId: "xxx"
+      clientId: "xxx"
+      clientSecret: "xxx"
+    keyID: "workspace-creds"
+postgres:
+  name: postgres-cluster
+  replicaCount: 1
+  image:
+    tag: 14
+    repo: postgres
+  sslMode: disable
+redis:
+  replicaCount: 1
+  name: redis
+flux:
+  namespace: flux-system
+aws:
+  iam:
+    subscriptionServiceRoleArn: "arn:aws:iam::xxx:role/xxx"
+  firehose:
+    region: us-east-2
+    usageMetersStreamName: "xxx"
+tls:
+  sealedTlsCrt: XXX
+  sealedTlsKey: XXX
+azure:
+  aks:
+    premiumStorageClassName: "managed-csi-premium"
+  eventhubConnection: "xxx"
+  serviceBusConnection: "xxx"
+github:
+  token: "xxx"
+lambda: "https://xxx.execute-api.us-east-2.amazonaws.com/dev/describer"

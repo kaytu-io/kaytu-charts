@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  externalName: auth-service.{{ .Values.kaytu.octopus.namespace }}.svc.cluster.local
+  ports:
+    - name: http
+      port: 8251
+      protocol: TCP
+      targetPort: 8251
+  type: ExternalName
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: {{ .Release.Namespace }}
+spec:
+  externalName: frontend.{{ .Values.kaytu.octopus.namespace }}.svc.cluster.local
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  type: ExternalName
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: workspace-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  externalName: workspace-service.{{ .Values.kaytu.octopus.namespace }}.svc.cluster.local
+  ports:
+    - name: http
+      port: 8351
+      protocol: TCP
+      targetPort: 8351
+  type: ExternalName

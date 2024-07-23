@@ -1,0 +1,198 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{.Values.opensearch.name}}-certs
+  namespace: {{ .Release.Namespace }}
+spec:
+  secretName: {{.Values.opensearch.name}}-certs
+  duration: 9000h # ~1year
+  renewBefore: 360h # 15d
+  isCA: false
+  privateKey:
+    size: 2048
+    algorithm: RSA
+    encoding: PKCS8
+  dnsNames:
+    - {{ .Values.opensearch.name }}
+    - {{ .Values.opensearch.name }}-nodes-0
+    - {{ .Values.opensearch.name }}-nodes-1
+    - {{ .Values.opensearch.name }}-nodes-2 # if you have more nodes, add them here
+    - {{ .Values.opensearch.name }}-bootstrap-0
+  usages:
+    - signing
+    - key encipherment
+    - server auth
+    - client auth
+  commonName: Opensearch_Node
+  issuerRef:
+    name: namespace-issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{.Values.opensearch.name}}-dashboards-certs
+  namespace: {{ .Release.Namespace }}
+spec:
+  secretName: {{.Values.opensearch.name}}-dashboards-certs
+  duration: 9000h # ~1year
+  renewBefore: 360h # 15d
+  isCA: false
+  privateKey:
+    size: 2048
+    algorithm: RSA
+    encoding: PKCS8
+  dnsNames:
+    - {{ .Values.opensearch.name }}-dashboards
+  usages:
+    - signing
+    - key encipherment
+    - server auth
+    - client auth
+  issuerRef:
+    name: namespace-issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{.Values.opensearch.name}}-admin-certs
+  namespace: {{ .Release.Namespace }}
+spec:
+  secretName: {{.Values.opensearch.name}}-admin-certs
+  duration: 9000h # ~1year
+  renewBefore: 360h # 15d
+  isCA: false
+  privateKey:
+    size: 2048
+    algorithm: RSA
+    encoding: PKCS8
+  commonName: OpenSearch_Admin
+  usages:
+    - signing
+    - key encipherment
+    - server auth
+    - client auth
+  issuerRef:
+    name: namespace-issuer
+---
+apiVersion: opensearch.opster.io/v1
+kind: OpenSearchCluster
+metadata:
+  name: {{ .Values.opensearch.name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  general:
+    serviceName: {{ .Values.opensearch.name }}
+    version: 2.11.1
+    setVMMaxMapCount: true
+    pluginsList: ["repository-s3"]
+    additionalConfig:
+      http.compression: "true"
+    keystore:
+      - secret:
+          name: {{ .Values.opensearch.name }}-s3-access
+        keyMappings:
+          s3AccessKey: s3.client.default.access_key
+          s3SecretKey: s3.client.default.secret_key
+  security:
+    tls:
+      http:
+        generate: false
+        secret:
+          name: {{.Values.opensearch.name}}-certs
+      transport:
+        generate: false
+        perNode: false
+        nodesDn: ["CN=Opensearch_Node", ]
+        adminDn: ["CN=OpenSearch_Admin", ]
+        secret:
+          name: {{.Values.opensearch.name}}-certs
+    config:
+      adminSecret:
+        name: {{.Values.opensearch.name}}-admin-certs
+      securityConfigSecret:
+        name: opensearch-securityconfig-secret
+      adminCredentialsSecret:
+        name: opensearch-admin-credentials-secret
+  dashboards:
+    enable: true
+    version: 2.11.1
+    opensearchCredentialsSecret:
+      name: opensearch-admin-credentials-secret
+    tls:
+      enable: true
+      generate: false
+      secret:
+        name: {{ .Values.opensearch.name }}-dashboards-certs
+    replicas: 1
+    resources:
+      requests:
+        memory: "500Mi"
+        cpu: "200m"
+      limits:
+        memory: "500Mi"
+        cpu: "200m"
+  confMgmt:
+    smartScaler: true
+  nodePools:
+    - component: nodes
+      replicas: 3
+      diskSize: "50Gi"
+      nodeSelector: {}
+      persistence:
+        pvc:
+          storageClass: {{ .Values.azure.aks.premiumStorageClassName }}
+          accessModes:
+            - ReadWriteOnce
+      env:
+        - name: AWS_REGION
+          value: "us-east-2"
+  {{- if eq (.Values.kaytu.workspace.size | toString) "xs" }}
+      jvm: -XX:-HeapDumpOnOutOfMemoryError -Xmx3072M -Xms3072M
+      resources:
+        requests:
+          memory: "4Gi"
+          cpu: "500m"
+        limits:
+          memory: "4Gi"
+          cpu: "2000m"
+    {{- else if eq (.Values.kaytu.workspace.size | toString) "sm" }}
+      jvm: -XX:-HeapDumpOnOutOfMemoryError -Xmx3072M -Xms3072M
+      resources:
+        requests:
+          memory: "4Gi"
+          cpu: "500m"
+        limits:
+          memory: "4Gi"
+          cpu: "2000m"
+    {{- else if eq (.Values.kaytu.workspace.size | toString) "md" }}
+      jvm: -XX:-HeapDumpOnOutOfMemoryError -Xmx5120M -Xms5120M
+      resources:
+        requests:
+          memory: "6Gi"
+          cpu: "500m"
+        limits:
+          memory: "6Gi"
+          cpu: "2000m"
+    {{- else if eq (.Values.kaytu.workspace.size | toString) "lg" }}
+      jvm: -XX:-HeapDumpOnOutOfMemoryError -Xmx6144M -Xms6144M
+      resources:
+        requests:
+          memory: "16Gi"
+          cpu: "2000m"
+        limits:
+          memory: "16Gi"
+          cpu: "4000m"
+    {{- end }}
+      roles:
+        - "cluster_manager"
+        - "data"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Values.opensearch.name }}-s3-access
+  namespace: {{ .Release.Namespace }}
+type: Opaque
+data:
+  s3AccessKey: {{ .Values.opensearch.s3.accessKey }}
+  s3SecretKey: {{ .Values.opensearch.s3.secretKey }}

@@ -1,0 +1,8 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: sendgrid
+  namespace: {{.Release.Namespace}}
+spec:
+  encryptedData:
+    apiKey: {{.Values.kaytu.sendGrid.sealedApiKey}}

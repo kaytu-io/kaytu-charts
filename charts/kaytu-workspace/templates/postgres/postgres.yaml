@@ -1,0 +1,179 @@
+{{- if eq (.Values.kaytu.replicaCount | toString) "0" }}
+{{- else }}
+apiVersion: kubegres.reactive-tech.io/v1
+kind: Kubegres
+metadata:
+  name: {{ .Values.postgres.name }}
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    "checksum/postgres-config": {{ include (print $.Template.BasePath "/postgres/postgres-config.yaml") . | sha256sum }}
+    "karpenter.sh/do-not-disrupt": "true"
+spec:
+  replicas: {{ .Values.postgres.replicaCount }}
+  image: "{{ .Values.postgres.image.repo }}:{{ .Values.postgres.image.tag }}"
+  database:
+     size: 10Gi
+     storageClassName: {{.Values.azure.aks.premiumStorageClassName}}
+  customConfig: postgres-config
+{{- if eq (.Values.kaytu.workspace.size | toString) "xs" }}
+  resources:
+    limits:
+      memory: 1Gi
+      cpu: 1000m
+    requests:
+      memory: 500Mi
+      cpu: 200m
+{{- else if eq (.Values.kaytu.workspace.size | toString) "sm" }}
+  resources:
+    limits:
+      memory: 2Gi
+      cpu: 1000m
+    requests:
+      memory: 1Gi
+      cpu: 500m
+{{- else if eq (.Values.kaytu.workspace.size | toString) "md" }}
+  resources:
+    limits:
+      memory: "3Gi"
+      cpu: "3"
+    requests:
+      memory: "1.5Gi"
+      cpu: "1"
+{{- else if eq (.Values.kaytu.workspace.size | toString) "lg" }}
+  resources:
+    limits:
+      memory: "4Gi"
+      cpu: "1"
+    requests:
+      memory: "2Gi"
+      cpu: 200m
+{{- end }}
+  env:
+     - name: POSTGRES_PASSWORD
+       valueFrom:
+        secretKeyRef:
+            name: postgres-secret
+            key: superUserPassword
+     - name: POSTGRES_REPLICATION_PASSWORD
+       valueFrom:
+        secretKeyRef:
+            name: postgres-secret
+            key: replicationUserPassword
+     - name : POSTGRES_DESCRIBE_DB_PASSWORD
+       valueFrom:
+        secretKeyRef:
+          name: postgres-secret
+          key: describeSchedulerUserPassword
+     - name : POSTGRES_ONBOARD_DB_PASSWORD
+       valueFrom:
+        secretKeyRef:
+          name: postgres-secret
+          key: onboardServiceUserPassword
+     - name : POSTGRES_POLICY_DB_PASSWORD
+       valueFrom:
+        secretKeyRef:
+          name: postgres-secret
+          key: policyServiceUserPassword
+     - name: POSTGRES_INVENTORY_DB_PASSWORD
+       valueFrom:
+         secretKeyRef:
+           name: postgres-secret
+           key: inventoryServiceUserPassword
+     - name: POSTGRES_ASSISTANT_DB_PASSWORD
+       valueFrom:
+         secretKeyRef:
+           name: postgres-secret
+           key: assistantServiceUserPassword
+     - name: POSTGRES_COMPLIANCE_DB_PASSWORD
+       valueFrom:
+         secretKeyRef:
+           name: postgres-secret
+           key: complianceServiceUserPassword
+     - name: POSTGRES_AUTH_DB_PASSWORD
+       valueFrom:
+         secretKeyRef:
+           name: postgres-secret
+           key: authServiceUserPassword
+     - name: POSTGRES_METADATA_DB_PASSWORD
+       valueFrom:
+         secretKeyRef:
+           name: postgres-secret
+           key: metadataServiceUserPassword
+     - name: POSTGRES_REPORTER_DB_PASSWORD
+       valueFrom:
+         secretKeyRef:
+           name: postgres-secret
+           key: reporterServiceUserPassword
+     - name: POSTGRES_MIGRATOR_DB_PASSWORD
+       valueFrom:
+         secretKeyRef:
+           name: postgres-secret
+           key: migratorServiceUserPassword
+     - name: POSTGRES_EXPORTER_PASSWORD
+       valueFrom:
+         secretKeyRef:
+           name: postgres-secret
+           key: postgresExporterUserPassword
+     - name: POSTGRES_STEAMPIPE_USER_PASSWORD
+       valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: steampipeUserPassword
+     - name: POSTGRES_ALERTING_DB_PASSWORD
+       valueFrom:
+         secretKeyRef:
+           name: postgres-secret
+           key: alertingServiceUserPassword
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: postgres-exporter
+  namespace: {{ .Release.Namespace }}
+spec:
+  targetNamespace: {{ .Release.Namespace }}
+  interval: 1m
+  chart:
+    spec:
+      chart: prometheus-postgres-exporter
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+      version: 5.3.0
+  values:
+    replicaCount: 1
+    service:
+      labels:
+        monitoring: kaytu
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    config:
+      service:
+        labels:
+          monitoring: kaytu
+      datasource:
+        host: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
+        port: "5432"
+        database: postgres
+        sslmode: disable
+        user: postgres_exporter
+        passwordSecret:
+          name: postgres-secret
+          key: postgresExporterUserPassword
+      logLevel: info
+      disableCollectorDatabase: false
+      disableCollectorBgwriter: false
+      disableDefaultMetrics: false
+      disableSettingsMetrics: false
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+{{- end }}

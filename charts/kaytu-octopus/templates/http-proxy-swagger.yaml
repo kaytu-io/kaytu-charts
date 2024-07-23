@@ -1,0 +1,16 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: http-proxy-swagger
+  namespace: {{ .Release.Namespace }}
+spec:
+  virtualhost:
+    fqdn: {{ .Values.kaytu.domain.swagger }}
+    tls:
+      secretName: web-tls
+  routes:
+    - conditions:
+        - prefix: /
+      services:
+        - name: swagger-ui
+          port: 7255

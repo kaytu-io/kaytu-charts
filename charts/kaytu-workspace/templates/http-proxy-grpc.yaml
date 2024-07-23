@@ -1,0 +1,19 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: grpc-proxy-route
+  namespace: {{ .Release.Namespace }}
+spec:
+  routes:
+    - services:
+        - name: es-sink-service
+          port: 5252
+          protocol: h2c
+      conditions:
+        - prefix: /kaytu.es_sink.v1.EsSinkService
+    - services:
+        - name: describe-scheduler
+          port: 5252
+          protocol: h2c
+      conditions:
+        - prefix: /kaytu.describe.v1.DescribeService

@@ -1,0 +1,125 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: auth-service
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: auth-service-secret
+  namespace: {{ .Release.Namespace }}
+
+  annotations:
+    kubernetes.io/service-account.name: auth-service
+type: kubernetes.io/service-account-token
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: auth-service
+spec:
+  minReadySeconds: 10
+  replicas: 2
+  selector:
+    matchLabels:
+      app: auth-service
+  template:
+    metadata:
+      labels:
+        app: auth-service
+    spec:
+      serviceAccountName: auth-service
+      containers:
+        - name: auth-service
+          image: "{{ .Values.kaytu.docker.registry }}/auth-service:{{- dig .Values.kaytu.envType .Values.kaytu.docker.tags.auth.dev .Values.kaytu.docker.tags.auth }}"
+          command: [ "/auth-service" ]
+          imagePullPolicy: Always
+          env:
+            - name: KAYTU_HOST
+              value: {{ .Values.kaytu.domain.appv2 }}
+            - name: METADATA_BASE_URL
+              value: "http://metadata-service.%s.svc.cluster.local:6251"
+            - name: POSTGRESQL_HOST
+              value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
+            - name: POSTGRESQL_PORT
+              value: "5432"
+            - name: POSTGRESQL_DB
+              value: "auth"
+            - name: POSTGRESQL_USERNAME
+              value: "auth_service"
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: authServiceUserPassword
+            - name: POSTGRESQL_SSLMODE
+              value: {{ .Values.postgres.sslMode }}
+            - name: HTTP_ADDRESS
+              value: "0.0.0.0:8251"
+            - name: GRPC_ADDRESS
+              value: "0.0.0.0:50051"
+            - name: INVITE_LINK_TEMPLATE
+              value: "https://{{ .Values.kaytu.domain.appv2 }}/invitation?id=%s"
+            - name: AUTH0_DOMAIN
+              value: "https://{{ .Values.kaytu.auth0.domain }}/"
+            - name: AUTH0_CLIENT_ID
+              value: {{ .Values.kaytu.auth0.clientId }}
+            - name: AUTH0_CLIENT_ID_NATIVE
+              value: {{ .Values.kaytu.auth0.nativeClientId }}
+            - name: AUTH0_CLIENT_ID_PENNYWISE_NATIVE
+              value: {{ .Values.kaytu.auth0.nativePennywiseClientId }}
+            - name: AUTH0_MANAGE_DOMAIN
+              value: "https://{{ .Values.kaytu.auth0.domain }}"
+            - name: KAYTU_PUBLIC_KEY
+              # openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048
+              # openssl rsa -pubout -in private_key.pem -out public_key.pem
+              value: "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUF4dkpDNVB4Qnc5bWovTzZFZE1YLwo0ZVBMMXBxZVY0a3pibWMxNUs4QW1IT0poR2JEYmkzY2hLQ2RVbnRZQjUxT3lyNWxodFI2aVF0VWlXMTV5M05NCnpWR3VUdlhadmV2bm40MWp4eGs4cURPQWZTY1EzNHY2UDhRaHFCTUhDdW1BRlo0U3FINVphdzh1Zi8vMHFsaFEKQ3FPVzJSK0hxU1J2TStkMjArZExDRVFmZ3lhSUJEaUFWeWw5Y0VpcUx0TGtKZFRpTW1yZm9TTHF6cmRPSmpGdQpPa3lUdHFpdGJlUklCaG5GN3F6RG10OWw0Q25oNzcyWWJIeDd2SEpTekdmMTVNWW8wVEJpdStGSHVCbGd1T0VZCnFHaFYvWnM1R3VHRlpmbmtqSDN2dEF1K2ZYMHpwVG5XVkpROExBSExyN0JTa0NkZ0ZIcldpUnNQMjNnSmhOK2UKR1FJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg=="
+            - name: KAYTU_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: clientSecret
+                  name: kaytu-private
+            - name: AUTH0_MANAGE_CLIENT_ID
+              value: {{ .Values.kaytu.auth0.manageClientId }}
+            - name: AUTH0_MANAGE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: clientSecret
+                  name: auth0-manage-oauth
+            - name: AUTH0_CONNECTION
+              value: {{ .Values.kaytu.auth0.connection }}
+            - name: AUTH0_CONNECTION_ID
+              value: {{ .Values.kaytu.auth0.connectionID }}
+            - name: AUTH0_INVITE_TTL
+              value: "21600"
+            - name: EMAIL_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: apiKey
+                  name: sendgrid
+            - name: EMAIL_SENDER
+              value: {{ .Values.kaytu.sendGrid.sender }}
+            - name: EMAIL_SENDER_NAME
+              value: {{ .Values.kaytu.sendGrid.senderName }}
+            - name: GRPC_TLS_CERT_PATH
+              value: /etc/certs/tls.crt
+            - name: GRPC_TLS_KEY_PATH
+              value: /etc/certs/tls.key
+            - name: GRPC_TLS_CA_PATH
+              value: /etc/certs/ca.crt
+            - name: WORKSPACE_BASE_URL
+              value: "http://workspace-service.{{ .Release.Namespace }}.svc.cluster.local:8351"
+          volumeMounts:
+            - mountPath: /etc/certs
+              name: tls-certs
+              readOnly: true
+      volumes:
+        - name: tls-certs
+          secret:
+            secretName: auth-service-tls
+            optional: false
