@@ -70,7 +70,7 @@ spec:
             - name: METADATA_BASEURL
               value: "http://metadata-service.{{ .Release.Namespace }}.svc.cluster.local:6251"
             - name: GITHUB_TOKEN
-              value: ""
+              value: "{{ .Values.github.token }}"
             - name: PROMETHEUS_PUSH_ADDRESS
               value: "prom-system-prometheus-pushgateway.prom-system.svc.cluster.local:9091"
             - name: IS_MANUAL

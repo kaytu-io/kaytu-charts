@@ -177,11 +177,11 @@ spec:
       jvm: -XX:-HeapDumpOnOutOfMemoryError -Xmx6144M -Xms6144M
       resources:
         requests:
-          memory: "8Gi"
-          cpu: "500m"
-        limits:
-          memory: "8Gi"
+          memory: "16Gi"
           cpu: "2000m"
+        limits:
+          memory: "16Gi"
+          cpu: "4000m"
     {{- end }}
       roles:
         - "cluster_manager"
@@ -194,5 +194,5 @@ metadata:
   namespace: {{ .Release.Namespace }}
 type: Opaque
 data:
-  s3AccessKey: xxx
-  s3SecretKey: xxx
+  s3AccessKey: {{ .Values.opensearch.s3.accessKey }}
+  s3SecretKey: {{ .Values.opensearch.s3.secretKey }}

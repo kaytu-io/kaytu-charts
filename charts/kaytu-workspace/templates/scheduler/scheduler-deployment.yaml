@@ -73,9 +73,9 @@ spec:
         - name: COMPLIANCE_INTERVAL_HOURS
           value: "24"
         - name: EVENT_HUB_CONNECTION_STRING
-          value: ""
+          value: "{{ .Values.azure.eventhubConnection }}"
         - name: SERVICE_BUS_CONNECTION_STRING
-          value: ""
+          value: "{{ .Values.azure.serviceBusConnection }}"
         - name: SERVERLESS_PROVIDER
           value: "azure-functions"
         - name: COMPLIANCEINTERVALHOURS
@@ -106,7 +106,7 @@ spec:
           value: "auth-service.{{ .Values.kaytu.octopus.namespace }}.svc.cluster.local:50051"
 {{- include "elastic.envs" . | indent 8 }}
         - name: LAMBDA_FUNCS_BASE_URL
-          value: "xxx"
+          value: "{{ .Values.lambda }}"
         - name: DESCRIBE_DELIVER_ENDPOINT
           value: "{{ .Values.kaytu.domain.grpc_external }}:443"
         - name: DESCRIBE_DELIVER_ENDPOINT_EXTERNAL

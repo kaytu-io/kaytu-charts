@@ -84,7 +84,7 @@ spec:
           'supports_credentials': True,
           'allow_headers': ['*'],
           'resources':['*'],
-          'origins': ['http://localhost:3000']
+          'origins': ['http://localhost:3000', 'https://app.kaytu.io', 'https://app.kaytu.dev', 'https://ss.kaytu.io']
         }
         DASHBOARD_NATIVE_FILTERS = True
         DASHBOARD_NATIVE_FILTERS_SET = True

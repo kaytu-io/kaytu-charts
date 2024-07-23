@@ -119,3 +119,8 @@ tls:
 azure:
   aks:
     premiumStorageClassName: "managed-csi-premium"
+  eventhubConnection: "xxx"
+  serviceBusConnection: "xxx"
+github:
+  token: "xxx"
+lambda: "https://xxx.execute-api.us-east-2.amazonaws.com/dev/describer"
