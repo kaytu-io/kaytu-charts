@@ -62,20 +62,6 @@ spec:
           value: "http://inventory-service.{{ .Release.Namespace }}.svc.cluster.local:7251"
         - name: METADATA_BASEURL
           value: "http://metadata-service.{{ .Release.Namespace }}.svc.cluster.local:6251"
-        - name: S3_ACCESS_KEY
-          valueFrom:
-            secretKeyRef:
-              name: insight-worker-data-secret
-              key: s3AccessKey
-        - name: S3_ACCESS_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: insight-worker-data-secret
-              key: s3SecretKey
-        - name: S3_REGION
-          value: "us-east-1"
-        - name: S3_BUCKET
-          value: "insight-validation"
         - name: SUPERSET_BASEURL
           value: "http://{{ .Release.Namespace }}-superset.{{ .Release.Namespace }}.svc.cluster.local:8088"
         - name: SUPERSET_USERNAME

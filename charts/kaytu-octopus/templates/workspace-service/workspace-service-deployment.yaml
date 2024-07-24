@@ -46,7 +46,7 @@ spec:
             - name: WORKSPACE_POSTGRES__HOST
               value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
             - name: WORKSPACE_POSTGRES__PORT
-            value: "5432"
+              value: "5432"
             - name: WORKSPACE_POSTGRES__DB
               value: "workspace"
             - name: WORKSPACE_POSTGRES__USERNAME
@@ -86,16 +86,6 @@ spec:
               value: "{{ .Release.Namespace }}"
             - name: WORKSPACE_FLUX_SYSTEM_NAMESPACE
               value: "{{ .Values.flux.namespace }}"
-            - name: WORKSPACE_S3_REGION
-              value: "us-east-1"
-            #            - name: WORKSPACE_S3_ACCESS_KEY
-            #              value: "{{ .Values.kaytu.insights.s3.accessKey }}"
-            #            - name: WORKSPACE_S3_SECRET_KEY
-            #              valueFrom:
-            #                secretKeyRef:
-            #                  name: insights-s3
-            #                  key: secretKey
-
             - name: WORKSPACE_VAULT__PROVIDER
               value: {{ .Values.kaytu.vault.provider }}
             - name: WORKSPACE_VAULT__AWS__REGION
