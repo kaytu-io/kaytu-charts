@@ -74,8 +74,8 @@ kaytu:
   frontend:
     muiLicense: xxx
   master:
-    accessKey: xxx
-    secretKey: xxx
+    accessKey: eHh4Cg== # echo "xxx" | base64
+    secretKey: eHh4Cg== # echo "xxx" | base64
     policyARN: "xxx"
     accountID: "xxx"
     oidcProvider: "oidc.eks.us-east-2.amazonaws.com/id/xxx"
