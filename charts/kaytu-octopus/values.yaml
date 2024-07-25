@@ -64,11 +64,8 @@ kaytu:
     connection: 'Username-Password-Authentication'
     connectionID: 'xxx'
   apikey:
+    public: XXX
     private: XXX
-  sendGrid:
-    sender: 'noreply@notify.kaytu.io'
-    senderName: Kaytu
-    sealedApiKey: XXX
   workspace:
     kaytuChartLocation: "./kaytu"
   frontend:

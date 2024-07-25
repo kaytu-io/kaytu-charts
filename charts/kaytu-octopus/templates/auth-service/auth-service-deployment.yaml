@@ -78,34 +78,15 @@ spec:
             - name: KAYTU_PUBLIC_KEY
               # openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048
               # openssl rsa -pubout -in private_key.pem -out public_key.pem
-              value: "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUF4dkpDNVB4Qnc5bWovTzZFZE1YLwo0ZVBMMXBxZVY0a3pibWMxNUs4QW1IT0poR2JEYmkzY2hLQ2RVbnRZQjUxT3lyNWxodFI2aVF0VWlXMTV5M05NCnpWR3VUdlhadmV2bm40MWp4eGs4cURPQWZTY1EzNHY2UDhRaHFCTUhDdW1BRlo0U3FINVphdzh1Zi8vMHFsaFEKQ3FPVzJSK0hxU1J2TStkMjArZExDRVFmZ3lhSUJEaUFWeWw5Y0VpcUx0TGtKZFRpTW1yZm9TTHF6cmRPSmpGdQpPa3lUdHFpdGJlUklCaG5GN3F6RG10OWw0Q25oNzcyWWJIeDd2SEpTekdmMTVNWW8wVEJpdStGSHVCbGd1T0VZCnFHaFYvWnM1R3VHRlpmbmtqSDN2dEF1K2ZYMHpwVG5XVkpROExBSExyN0JTa0NkZ0ZIcldpUnNQMjNnSmhOK2UKR1FJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg=="
+              valueFrom:
+                secretKeyRef:
+                  key: public
+                  name: kaytu-private
             - name: KAYTU_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
-                  key: clientSecret
+                  key: private
                   name: kaytu-private
-            - name: AUTH0_MANAGE_CLIENT_ID
-              value: {{ .Values.kaytu.auth0.manageClientId }}
-            - name: AUTH0_MANAGE_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  key: clientSecret
-                  name: auth0-manage-oauth
-            - name: AUTH0_CONNECTION
-              value: {{ .Values.kaytu.auth0.connection }}
-            - name: AUTH0_CONNECTION_ID
-              value: {{ .Values.kaytu.auth0.connectionID }}
-            - name: AUTH0_INVITE_TTL
-              value: "21600"
-            - name: EMAIL_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: apiKey
-                  name: sendgrid
-            - name: EMAIL_SENDER
-              value: {{ .Values.kaytu.sendGrid.sender }}
-            - name: EMAIL_SENDER_NAME
-              value: {{ .Values.kaytu.sendGrid.senderName }}
             - name: GRPC_TLS_CERT_PATH
               value: /etc/certs/tls.crt
             - name: GRPC_TLS_KEY_PATH

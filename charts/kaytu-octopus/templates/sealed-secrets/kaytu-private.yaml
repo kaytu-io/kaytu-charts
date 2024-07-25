@@ -5,4 +5,5 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   encryptedData:
-    clientSecret: {{ .Values.kaytu.apikey.private }}
+    public: {{ .Values.kaytu.apikey.public }}
+    private: {{ .Values.kaytu.apikey.private }}
