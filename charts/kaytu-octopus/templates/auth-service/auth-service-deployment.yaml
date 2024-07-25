@@ -65,16 +65,8 @@ spec:
               value: "0.0.0.0:50051"
             - name: INVITE_LINK_TEMPLATE
               value: "https://{{ .Values.kaytu.domain.appv2 }}/invitation?id=%s"
-            - name: AUTH0_DOMAIN
-              value: "https://{{ .Values.kaytu.auth0.domain }}/"
-            - name: AUTH0_CLIENT_ID
-              value: {{ .Values.kaytu.auth0.clientId }}
-            - name: AUTH0_CLIENT_ID_NATIVE
-              value: {{ .Values.kaytu.auth0.nativeClientId }}
-            - name: AUTH0_CLIENT_ID_PENNYWISE_NATIVE
-              value: {{ .Values.kaytu.auth0.nativePennywiseClientId }}
-            - name: AUTH0_MANAGE_DOMAIN
-              value: "https://{{ .Values.kaytu.auth0.domain }}"
+            - name: AUTH0_INVITE_TTL
+              value: "21600"
             - name: KAYTU_PUBLIC_KEY
               # openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048
               # openssl rsa -pubout -in private_key.pem -out public_key.pem
