@@ -7,11 +7,11 @@ metadata:
     'checksum/postgres-config': {{include (print $.Template.BasePath "/postgres/postgres-config.yaml") . | sha256sum}}
     "karpenter.sh/do-not-disrupt": "true"
 spec:
-  replicas: {{.Values.postgres.replicaCount}}
+  replicas: {{ .Values.postgres.replicaCount }}
   image: '{{ .Values.postgres.image.repo }}:{{ .Values.postgres.image.tag }}'
   database:
     size: 10Gi
-    storageClassName: {{.Values.azure.aks.premiumStorageClassName}}
+    storageClassName: {{ .Values.storage.className }}
   customConfig: postgres-config
   resources:
     limits:
