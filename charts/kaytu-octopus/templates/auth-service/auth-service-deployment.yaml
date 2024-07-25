@@ -70,7 +70,7 @@ spec:
             - name: AUTH0_MANAGE_DOMAIN
               value: "https://kaytu.us.auth0.com"
             - name: AUTH0_DOMAIN
-              value: "https://kaytu.us.auth0.com"
+              value: "https://kaytu.us.auth0.com/"
             - name: KAYTU_PUBLIC_KEY
               # openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048
               # openssl rsa -pubout -in private_key.pem -out public_key.pem
