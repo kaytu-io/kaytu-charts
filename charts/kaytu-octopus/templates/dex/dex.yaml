@@ -1,0 +1,64 @@
+{{- $storageSecretPassword := (lookup "v1" "Secret" .Release.Namespace "postgres-secret").data.dexStorageUserPassword | b64dec | quote }}
+{{- $privateClientSecret := (randAlpha 16) | b64enc | quote }}
+
+{{- $secret := (lookup "v1" "Secret" .Release.Namespace "dex-secret") }}
+{{- if $secret }}
+{{- $privateClientSecret = index $secret.data "privateClientSecret" | default $privateClientSecret }}
+{{- end -}}
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dex-secret
+  namespace: {{ .Release.Namespace }}
+data:
+  privateClientSecret: {{ $privateClientSecret }}
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: dex
+  namespace: flux-system
+spec:
+  targetNamespace: {{ .Release.Namespace }}
+  interval: 1m
+  chart:
+    spec:
+      chart: dex
+      sourceRef:
+        kind: HelmRepository
+        name: dex
+        namespace: flux-system
+      version: 0.18.0
+  values:
+    config:
+      issuer: http://localhost:5556/dex
+      staticClients:
+        - id: public-client
+          name: 'Public Client'
+          redirectURIs:
+            - ''
+          public: true
+        - id: private-client
+          name: 'Private Client'
+          redirectURIs:
+            - ''
+          secret: {{ $privateClientSecret}}
+      staticPasswords:
+        - email: "admin@example.com"
+          hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
+          username: "admin"
+          userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
+      enablePasswordDB: true
+      storage:
+        type: postgres
+        config:
+          host: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
+          port: 5432
+          database: dex
+          user: dex_service
+          password: {{ $storageSecretPassword }}
+          ssl:
+            mode: "disable"
+      oauth2:
+        passwordConnector: local

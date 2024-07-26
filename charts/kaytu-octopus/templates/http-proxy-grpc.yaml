@@ -8,6 +8,12 @@ spec:
     fqdn: {{ .Values.kaytu.domain.grpc_external }}
     tls:
       secretName: {{ .Values.kaytu.domain.grpc_external }}
+    authorization:
+      extensionRef:
+        apiVersion: projectcontour.io/v1alpha1
+        name: auth
+        namespace: {{ .Release.Namespace }}
+      responseTimeout: 60s
   includes:
     - name: grpc-proxy-route
       namespace: {{ .Release.Namespace }}
