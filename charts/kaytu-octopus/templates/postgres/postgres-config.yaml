@@ -26,6 +26,9 @@ data:
     subscriptionDatabaseName="subscription"
     subscriptionUserName="subscription_service"
 
+    dexDatabaseName="dex"
+    dexUserName="dex_service"
+
     echo "$dt - Running: psql -v ON_ERROR_STOP=1 --username $POSTGRES_USER --dbname $POSTGRES_DB ...";
 
     psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
@@ -66,6 +69,12 @@ data:
     \c "$pennywiseDatabaseName"
     CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
 
+    CREATE DATABASE $dexDatabaseName;
+    CREATE USER $dexUserName WITH PASSWORD '$POSTGRES_DEX_DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE "$dexDatabaseName" to $dexUserName;
+
+    \c "$dexDatabaseName"
+    CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
     
     EOSQL
 
