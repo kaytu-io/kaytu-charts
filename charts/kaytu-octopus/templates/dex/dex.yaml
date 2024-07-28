@@ -59,7 +59,7 @@ spec:
           port: 5432
           database: dex
           user: dex_service
-          password: {{ $storageSecretPassword }}
+          password: {{ $storageSecretPassword | b64dec }}
           ssl:
             mode: "disable"
       oauth2:
