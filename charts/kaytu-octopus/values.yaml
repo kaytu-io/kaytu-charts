@@ -93,6 +93,9 @@ kaytu:
       clientId: "xxx"
       clientSecret: "xxx"
     keyID: "workspace-creds"
+  dex:
+    publicClientId: public-client
+    privateClientId: private-client
 postgres:
   name: postgres-cluster
   replicaCount: 1
