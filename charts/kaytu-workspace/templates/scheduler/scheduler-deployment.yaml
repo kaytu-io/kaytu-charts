@@ -77,7 +77,7 @@ spec:
         - name: SERVICE_BUS_CONNECTION_STRING
           value: "{{ .Values.azure.serviceBusConnection }}"
         - name: SERVERLESS_PROVIDER
-          value: "azure-functions"
+          value: "local"
         - name: COMPLIANCEINTERVALHOURS
           value: "48"
         - name: COMPLIANCE_TIMEOUT_HOURS
@@ -107,8 +107,10 @@ spec:
 {{- include "elastic.envs" . | indent 8 }}
         - name: LAMBDA_FUNCS_BASE_URL
           value: "{{ .Values.lambda }}"
-        - name: DESCRIBE_DELIVER_ENDPOINT
-          value: "{{ .Values.kaytu.domain.grpc_external }}:443"
+        - name: DESCRIBE_JOB_ENDPOINT_LOCAL
+          value: "describe-scheduler.{{ .Release.Namespace }}.svc.cluster.local:5252"
+        - name: DESCRIBE_DELIVER_ENDPOINT_LOCAL
+          value: "es-sink-service.{{ .Release.Namespace }}.svc.cluster.local:5252"
         - name: DESCRIBE_DELIVER_ENDPOINT_EXTERNAL
           value: "{{ .Values.kaytu.domain.grpc_external }}:443"
 
@@ -133,6 +135,8 @@ spec:
           value: {{ .Values.vault.azure.tenantId }}
         - name: VAULT_AZURE_CLIENT_SECRET
           value: {{ .Values.vault.azure.clientSecret }}
+        - name: VAULT_HASHICORP_ADDRESS
+          value: "http://vault-internal.vault-system.svc.cluster.local:8200"
         - name: VAULT_KEY_ID
           value: {{ .Values.vault.keyID }}
 
