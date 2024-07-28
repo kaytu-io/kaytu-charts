@@ -19,7 +19,7 @@ data:
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: dex
+  name: {{ .Values.kaytu.dex.serviceName }}
   namespace: flux-system
 spec:
   targetNamespace: {{ .Release.Namespace }}
@@ -34,19 +34,17 @@ spec:
       version: 0.18.0
   values:
     config:
-      web:
-        allowedOrigins: [ '*' ]
-      issuer: "http://{{ .Release.Namespace }}-dex.{{ .Release.Namespace }}.svc.cluster.local:5556/dex"
+      issuer: "http://{{ .Release.Namespace }}-{{ .Values.kaytu.dex.serviceName }}.{{ .Release.Namespace }}.svc.cluster.local:5556/dex"
       staticClients:
         - id: {{ .Values.kaytu.dex.publicClientId}}
           name: 'Public Client'
           redirectURIs:
-            - 'http://localhost:5556/callback'
+            - 'http://localhost:3000/callback'
           public: true
         - id: {{ .Values.kaytu.dex.privateClientId}}
           name: 'Private Client'
           redirectURIs:
-            - 'http://localhost:5556/callback'
+            - 'http://localhost:3000/callback'
           secret: {{ $privateClientSecret}}
       staticPasswords:
         - email: "admin@example.com"
@@ -54,6 +52,16 @@ spec:
           username: "admin"
           userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
       enablePasswordDB: true
+      connectors:
+        - type: github
+          id: github
+          name: GitHub
+          config:
+            clientID: {{ .Values.kaytu.dex.connectors.github.clientID }}
+            clientSecret: {{ .Values.kaytu.dex.connectors.github.clientSecret }}
+            redirectURI: http://kaytu-octopus-dex.kaytu-octopus.svc.cluster.local:5556/dex/callback
+            loadAllGroups: false
+            useLoginAsID: false
       storage:
         type: postgres
         config:
