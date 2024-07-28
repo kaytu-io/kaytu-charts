@@ -72,6 +72,8 @@ spec:
           value: {{ .Values.vault.azure.tenantId }}
         - name: INTEGRATION_VAULT__AZURE__CLIENT_SECRET
           value: {{ .Values.vault.azure.clientSecret }}
+        - name: INTEGRATION_VAULT__HASHICORP__ADDRESS
+          value: "http://vault-internal.vault-system.svc.cluster.local:8200"
         - name: INTEGRATION_VAULT__KEY_ID
           value: {{ .Values.vault.keyID }}
 
