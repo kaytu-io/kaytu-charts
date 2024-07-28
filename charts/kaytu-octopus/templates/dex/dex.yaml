@@ -34,6 +34,8 @@ spec:
       version: 0.18.0
   values:
     config:
+      web:
+        allowedOrigins: [ '*' ]
       issuer: "http://{{ .Release.Namespace }}-dex.{{ .Release.Namespace }}.svc.cluster.local:5556/dex"
       staticClients:
         - id: {{ .Values.kaytu.dex.publicClientId}}
