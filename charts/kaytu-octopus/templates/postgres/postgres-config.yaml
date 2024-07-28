@@ -70,7 +70,7 @@ data:
     CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
 
     CREATE DATABASE $dexDatabaseName;
-    CREATE USER $dexUserName WITH PASSWORD '$POSTGRES_DEX_DB_PASSWORD';
+    CREATE USER $dexUserName WITH PASSWORD '$DEX_DB_PASSWORD';
     GRANT ALL PRIVILEGES ON DATABASE "$dexDatabaseName" to $dexUserName;
 
     \c "$dexDatabaseName"
