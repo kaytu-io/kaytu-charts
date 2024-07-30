@@ -81,7 +81,7 @@ kaytu:
     private: XXX
   workspace:
     chart:
-      version: 0.1.8
+      version: 0.1.9
     kaytuChartLocation: "./kaytu"
   frontend:
     muiLicense: xxx
@@ -134,7 +134,7 @@ azure:
   eventhubConnection: ""
   serviceBusConnection: ""
 github:
-  token: "xxx"
+  token: ""
 lambda: "https://xxx.execute-api.us-east-2.amazonaws.com/dev/describer"
 storage:
   className: ""
