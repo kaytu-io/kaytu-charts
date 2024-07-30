@@ -172,8 +172,8 @@ opensearch:
   name: opensearch-cluster
   opensearchAdminPassword: xxx
   s3:
-    accessKey: xxx
-    secretKey: xxx
+    accessKey: eHh4
+    secretKey: eHh4
 jaeger:
   name: jaeger-cluster
 redis:
