@@ -140,7 +140,7 @@ spec:
       nodeSelector: {}
       persistence:
         pvc:
-          storageClass: {{ .Values.azure.aks.premiumStorageClassName }}
+          storageClass: {{ .Values.storage.className }}
           accessModes:
             - ReadWriteOnce
       env:

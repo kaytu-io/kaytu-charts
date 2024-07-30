@@ -13,7 +13,7 @@ spec:
   image: "{{ .Values.postgres.image.repo }}:{{ .Values.postgres.image.tag }}"
   database:
      size: 10Gi
-     storageClassName: {{.Values.azure.aks.premiumStorageClassName}}
+     storageClassName: {{.Values.storage.className}}
   customConfig: postgres-config
 {{- if eq (.Values.kaytu.workspace.size | toString) "xs" }}
   resources:

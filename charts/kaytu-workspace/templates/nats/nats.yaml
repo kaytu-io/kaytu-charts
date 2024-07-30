@@ -41,7 +41,7 @@ spec:
           storageDirectory: /data
           pvc:
             enabled: true
-            storageClassName: {{ .Values.azure.aks.premiumStorageClassName }}
+            storageClassName: {{ .Values.storage.className }}
             size: 25Gi
 
     container:

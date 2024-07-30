@@ -226,3 +226,5 @@ vault-helm: {}
 github:
   token: "xxx"
 lambda: "https://xxx.execute-api.us-east-2.amazonaws.com/dev/describer"
+storage:
+  className: ""
