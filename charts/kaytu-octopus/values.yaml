@@ -77,6 +77,8 @@ kaytu:
     public: XXX
     private: XXX
   workspace:
+    chart:
+      version: 0.1.4
     kaytuChartLocation: "./kaytu"
   frontend:
     muiLicense: xxx

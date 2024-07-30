@@ -136,3 +136,5 @@ spec:
               value: "{{ .Values.kaytu.master.subnetID }}"
             - name: WORKSPACE_DO_RESERVE
               value: "false"
+            - name: WORKSPACE_KAYTU_WORKSPACE_VERSION
+              value: "{{ .Values.kaytu.workspace.chart.version }}"
