@@ -220,8 +220,8 @@ aws:
 azure:
   aks:
     premiumStorageClassName: "managed-csi-premium"
-  eventhubConnection: "xxx"
-  serviceBusConnection: "xxx"
+  eventhubConnection: ""
+  serviceBusConnection: ""
 vault-helm: {}
 github:
   token: "xxx"
