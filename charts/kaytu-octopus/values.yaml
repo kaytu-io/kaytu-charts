@@ -26,7 +26,7 @@ kaytu:
         dev: v0.408.0-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-auth-service-prod:tag"}
       workspace:
-        dev: v0.408.32-dev # {"$imagepolicy": "flux-system:kaytu-workspace-service:tag"}
+        dev: v0.408.35-dev # {"$imagepolicy": "flux-system:kaytu-workspace-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-workspace-service-prod:tag"}
       subscription:
         dev: v0.408.0-dev # {"$imagepolicy": "flux-system:kaytu-subscription-service:tag"}
