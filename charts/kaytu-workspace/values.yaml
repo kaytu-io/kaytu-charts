@@ -170,7 +170,7 @@ elasticsearch:
   replicaCount: 2
 opensearch:
   name: opensearch-cluster
-  opensearchAdminPassword: xxx
+  opensearchAdminPassword: +.]>u|S>e@sQ1
   s3:
     accessKey: eHh4
     secretKey: eHh4
