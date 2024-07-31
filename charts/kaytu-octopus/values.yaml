@@ -81,7 +81,7 @@ kaytu:
     private: XXX
   workspace:
     chart:
-      version: 0.1.11
+      version: 0.1.12
     kaytuChartLocation: "./kaytu"
   frontend:
     muiLicense: xxx

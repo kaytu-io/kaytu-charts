@@ -210,7 +210,7 @@ vault:
     tenantId: ""
     clientId: ""
     clientSecret: ""
-  keyID: "arn:aws:kms:us-east-2:xxx:alias/xxx"
+  keyID: "workspace-key"
 flux:
   namespace: flux-system
 aws:
