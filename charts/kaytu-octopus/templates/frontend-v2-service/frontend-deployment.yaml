@@ -68,4 +68,4 @@ data:
   REACT_APP_DOMAIN: "https://{{ .Values.kaytu.auth0.domain }}"
   REACT_APP_CLIENT_ID: {{ .Values.kaytu.auth0.clientId }}
   REACT_APP_BASE_URL: "https://{{ .Values.kaytu.domain.api }}"
-  REACT_APP_AUTH_BASE_URL: "https://{{ .Values.kaytu.auth.baseUrl }}"
+  REACT_APP_AUTH_BASE_URL: "{{ .Values.kaytu.auth.baseUrl }}"
