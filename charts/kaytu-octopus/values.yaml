@@ -80,6 +80,7 @@ kaytu:
   apikey:
     public: XXX
     private: XXX
+    enabled: false
   workspace:
     chart:
       version: 0.1.13
