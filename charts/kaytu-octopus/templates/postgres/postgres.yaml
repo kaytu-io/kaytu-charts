@@ -56,6 +56,11 @@ spec:
         secretKeyRef:
           name: postgres-secret
           key: pennywiseUserPassword
+    - name: POSTGRES_INFORMATION_DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: postgres-secret
+          key: informationUserPassword
     - name: DEX_DB_PASSWORD
       valueFrom:
         secretKeyRef:

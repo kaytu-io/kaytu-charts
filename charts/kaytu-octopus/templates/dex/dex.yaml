@@ -62,6 +62,17 @@ spec:
             redirectURI: '{{ .Values.kaytu.appv2.baseUrl }}/callback'
             loadAllGroups: false
             useLoginAsID: false
+      expiry:
+        deviceRequests: "5m"
+        signingKeys: "6h"
+        idTokens: "24h"
+        refreshTokens:
+          reuseInterval: "3s"
+          validIfNotUsedFor: "2160h" # 90 days
+          absoluteLifetime: "3960h" # 165 days
+      logger:
+        level: "debug"
+        format: "text" # can also be "json"
       storage:
         type: postgres
         config:

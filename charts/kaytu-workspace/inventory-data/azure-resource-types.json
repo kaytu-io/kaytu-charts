@@ -1689,7 +1689,7 @@
     "Model": "KubernetesCluster"
   },
   {
-    "ResourceName": "Microsoft.HybridContainerService/locations/orchestrators",
+    "ResourceName": "Microsoft.ContainerService/serviceVersions",
     "ResourceLabel": "Kubernetes Service Version",
     "Tags": {
       "category": [
@@ -1697,7 +1697,7 @@
       ]
     },
     "ServiceName": "ContainerService",
-    "ListDescriber": "DescribeBySubscription(describer.KubernetesService)",
+    "ListDescriber": "DescribeBySubscription(describer.KubernetesServiceVersion)",
     "GetDescriber": "",
     "TerraformName": null,
     "TerraformServiceName": "containers",
@@ -3304,6 +3304,29 @@
     "Model": "APIManagement"
   },
   {
+    "ResourceName": "Microsoft.ApiManagement/backend",
+    "ResourceLabel": "API management backend",
+    "Tags": {
+      "category": [
+        "PaaS"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/Azure-Design/master/SVG_Azure_All/API%20Management%20Service.svg"
+      ]
+    },
+    "ServiceName": "ApiManagement",
+    "ListDescriber": "DescribeBySubscription(describer.APIManagementBackend)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_api_management_backend"
+    ],
+    "TerraformServiceName": "apimanagement",
+    "Discovery": "COMPLETE",
+    "IgnoreSummarize": false,
+    "SteampipeTable": "azure_api_management_backend",
+    "Model": "APIManagementBackend"
+  },
+  {
     "ResourceName": "Microsoft.Compute/disksreadops",
     "ResourceLabel": "",
     "Tags": null,
@@ -4711,5 +4734,89 @@
     "IgnoreSummarize": true,
     "SteampipeTable": "azure_application_insight",
     "Model": "ApplicationInsightsComponent"
+  },
+  {
+    "ResourceName": "Microsoft.Lighthouse/definition",
+    "ResourceLabel": "LightHouse Definitions",
+    "Tags": {
+      "category": [
+      ],
+      "logo_uri": [
+      ]
+    },
+    "ServiceName": "Lighthouse",
+    "ListDescriber": "DescribeBySubscription(describer.LighthouseDefinition)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_lighthouse_definition"
+    ],
+    "TerraformServiceName": "lighthouse",
+    "Discovery": "COMPLETE",
+    "IgnoreSummarize": true,
+    "SteampipeTable": "azure_lighthouse_definition",
+    "Model": "LighthouseDefinition"
+  },
+  {
+    "ResourceName": "Microsoft.Lighthouse/assignment",
+    "ResourceLabel": "LightHouse Assignments",
+    "Tags": {
+      "category": [
+      ],
+      "logo_uri": [
+      ]
+    },
+    "ServiceName": "Lighthouse",
+    "ListDescriber": "DescribeBySubscription(describer.LighthouseAssignments)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_lighthouse_assignment"
+    ],
+    "TerraformServiceName": "lighthouse",
+    "Discovery": "COMPLETE",
+    "IgnoreSummarize": true,
+    "SteampipeTable": "azure_lighthouse_assignment",
+    "Model": "LighthouseAssignment"
+  },
+  {
+    "ResourceName": "Microsoft.Maintenance/maintenanceConfigurations",
+    "ResourceLabel": "Maintenance Configurations",
+    "Tags": {
+      "category": [
+      ],
+      "logo_uri": [
+      ]
+    },
+    "ServiceName": "Maintenance",
+    "ListDescriber": "DescribeBySubscription(describer.MaintenanceConfiguration)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_maintenance_configuration"
+    ],
+    "TerraformServiceName": "maintenance",
+    "Discovery": "COMPLETE",
+    "IgnoreSummarize": true,
+    "SteampipeTable": "azure_maintenance_configuration",
+    "Model": "MaintenanceConfiguration"
+  },
+  {
+    "ResourceName": "Microsoft.Monitor/logProfiles",
+    "ResourceLabel": "Monitor Log Profiles",
+    "Tags": {
+      "category": [
+      ],
+      "logo_uri": [
+      ]
+    },
+    "ServiceName": "Monitor",
+    "ListDescriber": "DescribeBySubscription(describer.MonitorLogProfiles)",
+    "GetDescriber": "",
+    "TerraformName": [
+      "azurerm_monitor_log_profile"
+    ],
+    "TerraformServiceName": "monitor",
+    "Discovery": "COMPLETE",
+    "IgnoreSummarize": true,
+    "SteampipeTable": "azure_monitor_log_profile",
+    "Model": "MonitorLogProfile"
   }
 ]

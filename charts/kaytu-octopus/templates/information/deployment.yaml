@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: information-service
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: information-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: information-service
+  template:
+    metadata:
+      labels:
+        app: information-service
+        azure.workload.identity/use: "true"
+    spec:
+      serviceAccountName: information-service
+      containers:
+        - name: information-service
+          image: "{{ .Values.kaytu.docker.privateRegistry }}/information-service:{{- dig .Values.kaytu.envType .Values.kaytu.docker.tags.information.dev .Values.kaytu.docker.tags.information }}"
+          command: ["/information-service"]
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: 4Gi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          env:
+            - name: INFORMATION_HTTP__ADDRESS
+              value: 0.0.0.0:8000
+            - name: INFORMATION_POSTGRES__HOST
+              value: "{{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local"
+            - name: INFORMATION_POSTGRES__PORT
+              value: "5432"
+            - name: INFORMATION_POSTGRES__DB
+              value: "information"
+            - name: INFORMATION_POSTGRES__USERNAME
+              value: "information_service"
+            - name: INFORMATION_POSTGRES__PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: informationUserPassword
+            - name: INFORMATION_POSTGRES_SSL_MODE
+              value: "disable"

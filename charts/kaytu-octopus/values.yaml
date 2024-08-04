@@ -56,9 +56,6 @@ kaytu:
       pennywise:
         dev: v0.4.19-dev # {"$imagepolicy": "flux-system:pennywise-server:tag"}
         prod: v0.3.17-prod # {"$imagepolicy": "flux-system:pennywise-server-prod:tag"}
-      wastage:
-        dev: v0.408.0-dev # {"$imagepolicy": "flux-system:kaytu-wastage:tag"}
-        prod: v0.357.4-prod # {"$imagepolicy": "flux-system:kaytu-wastage-prod:tag"}
       information:
         dev: v0.408.0-dev # {"$imagepolicy": "flux-system:kaytu-information:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-information-prod:tag"}
@@ -85,7 +82,7 @@ kaytu:
     private: XXX
   workspace:
     chart:
-      version: 0.1.12
+      version: 0.1.13
     kaytuChartLocation: "./kaytu"
   frontend:
     muiLicense: xxx

@@ -26,6 +26,9 @@ data:
     subscriptionDatabaseName="subscription"
     subscriptionUserName="subscription_service"
 
+    informationDatabaseName="information"
+    informationUserName="information_service"
+
     dexDatabaseName="dex"
     dexUserName="dex_service"
 
@@ -67,6 +70,13 @@ data:
     GRANT ALL PRIVILEGES ON DATABASE "$pennywiseDatabaseName" to $pennywiseUserName;
       
     \c "$pennywiseDatabaseName"
+    CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+    CREATE DATABASE $informationDatabaseName;
+    CREATE USER $informationUserName WITH PASSWORD '$POSTGRES_INFORMATION_DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE "$informationDatabaseName" to $informationUserName;
+
+    \c "$informationDatabaseName"
     CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
 
     CREATE DATABASE $dexDatabaseName;
