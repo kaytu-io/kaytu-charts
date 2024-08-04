@@ -34,7 +34,7 @@ spec:
       version: 0.18.0
   values:
     config:
-      issuer: "http://{{ .Release.Namespace }}-{{ .Values.kaytu.dex.serviceName }}.{{ .Release.Namespace }}.svc.cluster.local:5556/dex"
+      issuer: "{{ .Values.kaytu.auth.baseUrl }}/dex"
       staticClients:
         - id: {{ .Values.kaytu.dex.publicClientId}}
           name: 'Public Client'
@@ -59,7 +59,7 @@ spec:
           config:
             clientID: {{ .Values.kaytu.dex.connectors.github.clientID }}
             clientSecret: {{ .Values.kaytu.dex.connectors.github.clientSecret }}
-            redirectURI: '{{ .Values.kaytu.appv2.baseUrl }}/callback'
+            redirectURI: '{{ .Values.kaytu.auth.baseUrl }}/dex/callback'
             loadAllGroups: false
             useLoginAsID: false
       expiry:
