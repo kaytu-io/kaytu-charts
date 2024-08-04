@@ -1,6 +1,8 @@
 kaytu:
   auth:
-    baseUrl: "https://auth.kaytu.dev"
+    baseUrl: "https://auth.domain"
+  appv2:
+    baseUrl: "https://newapp.domain"
   envType: dev
   domain:
     auth: auth.domain

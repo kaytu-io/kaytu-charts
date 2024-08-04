@@ -39,12 +39,12 @@ spec:
         - id: {{ .Values.kaytu.dex.publicClientId}}
           name: 'Public Client'
           redirectURIs:
-            - 'http://localhost:3000/callback'
+            - '{{ .Values.kaytu.appv2.baseUrl }}/callback'
           public: true
         - id: {{ .Values.kaytu.dex.privateClientId}}
           name: 'Private Client'
           redirectURIs:
-            - 'http://localhost:3000/callback'
+            - '{{ .Values.kaytu.appv2.baseUrl }}/callback'
           secret: {{ $privateClientSecret}}
       staticPasswords:
         - email: "admin@example.com"
@@ -59,7 +59,7 @@ spec:
           config:
             clientID: {{ .Values.kaytu.dex.connectors.github.clientID }}
             clientSecret: {{ .Values.kaytu.dex.connectors.github.clientSecret }}
-            redirectURI: http://kaytu-octopus-dex.kaytu-octopus.svc.cluster.local:5556/dex/callback
+            redirectURI: '{{ .Values.kaytu.appv2.baseUrl }}/callback'
             loadAllGroups: false
             useLoginAsID: false
       storage:
