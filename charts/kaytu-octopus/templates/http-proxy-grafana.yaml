@@ -6,10 +6,8 @@ metadata:
 spec:
   virtualhost:
     fqdn: {{ .Values.kaytu.domain.grafana }}
-{{- if eq .Values.kaytu.ssl.enabled true }}
     tls:
       secretName: web-tls
-{{- end }}
   includes:
     - name: http-proxy-grafana
       namespace: prom-system

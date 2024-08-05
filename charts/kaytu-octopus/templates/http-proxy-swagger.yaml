@@ -6,10 +6,8 @@ metadata:
 spec:
   virtualhost:
     fqdn: {{ .Values.kaytu.domain.swagger }}
-{{- if eq .Values.kaytu.ssl.enabled true }}
     tls:
       secretName: web-tls
-{{- end }}
   routes:
     - conditions:
         - prefix: /

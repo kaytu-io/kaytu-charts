@@ -6,10 +6,8 @@ metadata:
 spec:
   virtualhost:
     fqdn: {{ .Values.kaytu.domain.pennywise }}
-{{- if eq .Values.kaytu.ssl.enabled true }}
     tls:
       secretName: web-tls
-{{- end }}
     authorization:
       extensionRef:
         apiVersion: projectcontour.io/v1alpha1

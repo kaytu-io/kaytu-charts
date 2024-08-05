@@ -1,4 +1,3 @@
-{{- if eq .Values.kaytu.ssl.enabled true }}
 apiVersion: projectcontour.io/v1
 kind: TLSCertificateDelegation
 metadata:
@@ -9,4 +8,3 @@ spec:
     - secretName: web-tls
       targetNamespaces:
         - "*"
-{{- end }}
