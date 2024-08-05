@@ -2,9 +2,9 @@ kaytu:
   ssl:
     enabled: false
   auth:
-    baseUrl: "https://auth.domain"
+    baseUrl: "http://localhost:8080"
   appv2:
-    baseUrl: "https://newapp.domain"
+    baseUrl: "http://localhost:8080"
   envType: dev
   domain:
     auth: auth.domain

@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   virtualhost:
-    fqdn: {{ .Values.kaytu.domain.api }}
+    fqdn: ""
 {{- if .Values.kaytu.ssl.enabled }}
     tls:
       secretName: web-tls
@@ -43,7 +43,7 @@ spec:
       namespace: {{ .Release.Namespace }}
   routes:
     - conditions:
-        - prefix: /kaytu/auth
+        - prefix: /api/kaytu/auth
       timeoutPolicy:
         response: 60s
       services:
@@ -51,10 +51,10 @@ spec:
           port: 8251
       pathRewritePolicy:
         replacePrefix:
-          - prefix: /kaytu/auth
+          - prefix: /api/kaytu/auth
             replacement: /
     - conditions:
-        - prefix: /kaytu/workspace
+        - prefix: /api/kaytu/workspace
       timeoutPolicy:
         response: 60s
       services:
@@ -62,10 +62,10 @@ spec:
           port: 8351
       pathRewritePolicy:
         replacePrefix:
-          - prefix: /kaytu/workspace
+          - prefix: /api/kaytu/workspace
             replacement: /
     - conditions:
-        - prefix: /kaytu/subscription
+        - prefix: /api/kaytu/subscription
       timeoutPolicy:
         response: 60s
       services:
@@ -73,7 +73,36 @@ spec:
           port: 8000
       pathRewritePolicy:
         replacePrefix:
-          - prefix: /kaytu/subscription
+          - prefix: /api/kaytu/subscription
             replacement: /
+      authPolicy:
+        disabled: true
+    - conditions:
+        - prefix: /dex
+      timeoutPolicy:
+        response: 60s
+      services:
+        - name: {{ .Release.Namespace }}-dex
+          port: 5556
+      authPolicy:
+        disabled: true
+    - conditions:
+        - prefix: /docs/api/1.0
+      services:
+        - name: redoc
+          port: 8080
+      authPolicy:
+        disabled: true
+      pathRewritePolicy:
+        replacePrefix:
+          - prefix: /docs/api/1.0
+            replacement: /
+    - conditions:
+        - prefix: /
+      timeoutPolicy:
+        response: 60s
+      services:
+        - name: frontend-v2-svc
+          port: 7298
       authPolicy:
         disabled: true
