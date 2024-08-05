@@ -17,17 +17,6 @@ spec:
           - prefix: /{{ .Values.kaytu.workspace.name }}/integration
             replacement: /
     - conditions:
-        - prefix: /assistant
-      timeoutPolicy:
-        response: 60s
-      services:
-        - name: assistant-service
-          port: 8000
-      pathRewritePolicy:
-        replacePrefix:
-          - prefix: /{{ .Values.kaytu.workspace.name }}/assistant
-            replacement: /
-    - conditions:
         - prefix: /onboard
       timeoutPolicy:
         response: 60s
