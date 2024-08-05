@@ -72,8 +72,8 @@ kaytu:
         clientID: xxx
         clientSecret: xxx
   apikey:
-    public: XXX
-    private: XXX
+    public: ""
+    private: ""
     enabled: false
   workspace:
     chart:

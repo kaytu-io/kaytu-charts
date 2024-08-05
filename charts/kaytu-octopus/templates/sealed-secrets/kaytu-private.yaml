@@ -1,3 +1,14 @@
+{{- if eq .Values.kaytu.apikey.public "" }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kaytu-private
+  namespace: {{ .Release.Namespace }}
+type: Opaque
+data:
+  public: eHh4
+  private: eHh4
+{{- else }}
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
@@ -7,3 +18,4 @@ spec:
   encryptedData:
     public: {{ .Values.kaytu.apikey.public }}
     private: {{ .Values.kaytu.apikey.private }}
+{{- end }}
