@@ -32,7 +32,7 @@ kaytu:
       image:
         repo: akscorekaytuacr.azurecr.io/insight-worker
         tag:
-          dev: v0.408.69-dev # {"$imagepolicy": "flux-system:kaytu-insight-worker:tag"}
+          dev: v0.409.2-dev # {"$imagepolicy": "flux-system:kaytu-insight-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-insight-worker-prod:tag"}
   reporter:
     image:
@@ -52,21 +52,21 @@ kaytu:
       image:
         repo: akscorekaytuacr.azurecr.io/migrator
         tag:
-          dev: v0.408.61-dev # {"$imagepolicy": "flux-system:kaytu-migrator-worker:tag"}
+          dev: v0.410.1-dev # {"$imagepolicy": "flux-system:kaytu-migrator-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-migrator-worker-prod:tag"}
   analytics:
     worker:
       image:
         repo: akscorekaytuacr.azurecr.io/analytics-worker
         tag:
-          dev: v0.408.69-dev # {"$imagepolicy": "flux-system:kaytu-analytics-worker:tag"}
+          dev: v0.409.2-dev # {"$imagepolicy": "flux-system:kaytu-analytics-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-analytics-worker-prod:tag"}
   describe:
     scheduler:
       image:
         repo: akscorekaytuacr.azurecr.io/describe-scheduler
         tag:
-          dev: v0.408.61-dev # {"$imagepolicy": "flux-system:kaytu-describe-scheduler:tag"}
+          dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-describe-scheduler:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-describe-scheduler-prod:tag"}
     worker:
       aws:
@@ -86,21 +86,21 @@ kaytu:
       image:
         repo: akscorekaytuacr.azurecr.io/onboard-service
         tag:
-          dev: v0.408.61-dev # {"$imagepolicy": "flux-system:kaytu-onboard-service:tag"}
+          dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-onboard-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-onboard-service-prod:tag"}
   integration:
     service:
       image:
         repo: akscorekaytuacr.azurecr.io/integration
         tag:
-          dev: v0.408.61-dev # {"$imagepolicy": "flux-system:kaytu-integration-service:tag"}
+          dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-integration-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-integration-service-prod:tag"}
   assistant:
     service:
       image:
         repo: akscorekaytuacr.azurecr.io/assistant
         tag:
-          dev: v0.408.61-dev # {"$imagepolicy": "flux-system:kaytu-assistant-service:tag"}
+          dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-assistant-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-assistant-service-prod:tag"}
   metadata:
     service:
@@ -114,14 +114,14 @@ kaytu:
       image:
         repo: akscorekaytuacr.azurecr.io/inventory-service
         tag:
-          dev: v0.408.61-dev # {"$imagepolicy": "flux-system:kaytu-inventory-service:tag"}
+          dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-inventory-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-inventory-service-prod:tag"}
   compliance:
     service:
       image:
         repo: akscorekaytuacr.azurecr.io/compliance-service
         tag:
-          dev: v0.408.0-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
+          dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-service-prod:tag"}
     summarizer:
       image:
@@ -134,14 +134,14 @@ kaytu:
       image:
         repo: akscorekaytuacr.azurecr.io/compliance-report-worker
         tag:
-          dev: v0.408.69-dev # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker:tag"}
+          dev: v0.409.2-dev # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker-prod:tag"}
   steampipe:
     service:
       image:
         repo: akscorekaytuacr.azurecr.io/steampipe-service
         tag:
-          dev: v0.408.69-dev # {"$imagepolicy": "flux-system:kaytu-steampipe-service:tag"}
+          dev: v0.409.2-dev # {"$imagepolicy": "flux-system:kaytu-steampipe-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-steampipe-service-prod:tag"}
   alerting:
     service:
