@@ -6,7 +6,7 @@ metadata:
 spec:
   virtualhost:
     fqdn: ""
-{{- if .Values.kaytu.ssl.enabled }}
+{{- if eq .Values.kaytu.ssl.enabled true }}
     tls:
       secretName: web-tls
 {{- end }}

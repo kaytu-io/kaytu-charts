@@ -1,4 +1,4 @@
-{{- if .Values.kaytu.ssl.enabled }}
+{{- if eq .Values.kaytu.ssl.enabled true }}
 apiVersion: projectcontour.io/v1
 kind: TLSCertificateDelegation
 metadata:
