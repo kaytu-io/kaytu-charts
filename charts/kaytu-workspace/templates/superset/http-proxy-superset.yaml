@@ -3,12 +3,5 @@ kind: HTTPProxy
 metadata:
   name: http-proxy-route-ss
   namespace: {{ .Release.Namespace }}
-#spec:
-#  routes:
-#    - conditions:
-#        - prefix: /
-#      timeoutPolicy:
-#        response: 120s
-#      services:
-#        - name: {{ .Release.Namespace }}-superset
-#          port: 8088
+spec:
+  routes: []
