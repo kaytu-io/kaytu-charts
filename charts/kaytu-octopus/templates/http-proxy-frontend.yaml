@@ -6,8 +6,10 @@ metadata:
 spec:
   virtualhost:
     fqdn: {{ .Values.kaytu.domain.appv2 }}
+{{- if .Values.kaytu.ssl.enabled }}
     tls:
       secretName: web-tls
+{{- end }}
     authorization:
       extensionRef:
         apiVersion: projectcontour.io/v1alpha1

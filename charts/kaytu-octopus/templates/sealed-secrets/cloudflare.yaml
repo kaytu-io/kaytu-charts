@@ -1,3 +1,4 @@
+{{- if .Values.kaytu.ssl.enabled }}
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
@@ -7,4 +8,4 @@ spec:
   encryptedData:
     tls.crt: {{ .Values.tls.sealedTlsCrt }}
     tls.key: {{ .Values.tls.sealedTlsKey }}
-
+{{- end }}

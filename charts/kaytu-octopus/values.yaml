@@ -1,4 +1,6 @@
 kaytu:
+  ssl:
+    enabled: false
   auth:
     baseUrl: "https://auth.domain"
   appv2:
