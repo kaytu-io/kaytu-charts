@@ -72,7 +72,7 @@ spec:
             - name: AUTH0_DOMAIN
               value: "https://kaytu.us.auth0.com/"
             - name: DEX_AUTH_DOMAIN
-              value: "{{ .Values.kaytu.auth.baseUrl }}/dex"
+              value: "http://{{ .Release.Namespace }}-{{ .Values.kaytu.dex.serviceName }}.{{ .Release.Namespace }}.svc.cluster.local:5556/dex"
             - name: DEX_AUTH_PUBLIC_CLIENT_ID
               value: {{ .Values.kaytu.dex.publicClientId }}
             - name: KAYTU_KEY_ENABLED
