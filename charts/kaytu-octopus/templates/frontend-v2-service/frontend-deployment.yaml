@@ -57,7 +57,7 @@ data:
     REACT_APP_DOMAIN="https://{{ .Values.kaytu.auth0.domain }}"
     REACT_APP_CLIENT_ID={{ .Values.kaytu.auth0.clientId }}
     REACT_APP_BASE_URL="https://{{ .Values.kaytu.domain.main }}/api"
-    REACT_APP_AUTH_BASE_URL="{{ .Values.kaytu.appv2.baseUrl }}"
+    REACT_APP_AUTH_BASE_URL="https://{{ .Values.kaytu.domain.main }}"
   NODE_ENV: production
   REACT_APP_NODE_ENV: prod
   REACT_APP_MUI_LICENSE: {{ .Values.kaytu.frontend.muiLicense }}
@@ -68,4 +68,4 @@ data:
   REACT_APP_DOMAIN: "https://{{ .Values.kaytu.auth0.domain }}"
   REACT_APP_CLIENT_ID: {{ .Values.kaytu.auth0.clientId }}
   REACT_APP_BASE_URL: "https://{{ .Values.kaytu.domain.main }}/api"
-  REACT_APP_AUTH_BASE_URL: "{{ .Values.kaytu.appv2.baseUrl }}"
+  REACT_APP_AUTH_BASE_URL: "https://{{ .Values.kaytu.domain.main }}"

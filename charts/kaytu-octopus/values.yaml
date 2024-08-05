@@ -1,8 +1,6 @@
 kaytu:
   ssl:
     enabled: false
-  appv2:
-    baseUrl: "http://localhost:8080"
   envType: dev
   domain:
     main: kaytu.app.domain
