@@ -1,28 +1,20 @@
 kaytu:
   ssl:
     enabled: false
-  auth:
-    baseUrl: "http://localhost:8080"
   appv2:
     baseUrl: "http://localhost:8080"
   envType: dev
   domain:
-    auth: auth.domain
-    app: app.domain
-    appv2: newapp.domain
+    main: kaytu.app.domain
     grafana: grafana.domain
     grpc: grpc.domain
     grpc_external: grpc-external.domain
     swagger: swagger.domain
     sentry: sentry.domain
-    demo: demo.domain
-    area51:
-      - area51.domain
     website:
       - website.domain
     docs: docs.domain
     blog: blog.domain
-    api: api.domain
     pennywise: pennywise.domain
   docker:
     registry: akscorekaytuacr.azurecr.io

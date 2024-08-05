@@ -41,7 +41,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: KAYTU_HOST
-              value: {{ .Values.kaytu.domain.appv2 }}
+              value: {{ .Values.kaytu.domain.main }}
             - name: METADATA_BASE_URL
               value: "http://metadata-service.%s.svc.cluster.local:6251"
             - name: POSTGRESQL_HOST
@@ -64,7 +64,7 @@ spec:
             - name: GRPC_ADDRESS
               value: "0.0.0.0:50051"
             - name: INVITE_LINK_TEMPLATE
-              value: "https://{{ .Values.kaytu.domain.appv2 }}/invitation?id=%s"
+              value: "https://{{ .Values.kaytu.domain.main }}/invitation?id=%s"
             - name: AUTH0_INVITE_TTL
               value: "21600"
             - name: AUTH0_MANAGE_DOMAIN

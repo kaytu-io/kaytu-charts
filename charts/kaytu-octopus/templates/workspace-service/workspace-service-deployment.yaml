@@ -61,9 +61,9 @@ spec:
             - name: WORKSPACE_HTTP__ADDRESS
               value: "0.0.0.0:8351"
             - name: WORKSPACE_DOMAIN_SUFFIX
-              value: "{{ .Values.kaytu.domain.appv2 }}"
+              value: "{{ .Values.kaytu.domain.main }}"
             - name: WORKSPACE_APP_DOMAIN
-              value: "{{ .Values.kaytu.domain.appv2 }}"
+              value: "{{ .Values.kaytu.domain.main }}"
             - name: WORKSPACE_GRPC_DOMAIN
               value: "{{ .Values.kaytu.domain.grpc }}"
             - name: WORKSPACE_GRPC_EXTERNAL_DOMAIN
