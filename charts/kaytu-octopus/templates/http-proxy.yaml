@@ -41,7 +41,7 @@ spec:
       namespace: {{ .Release.Namespace }}
   routes:
     - conditions:
-        - prefix: /api/kaytu/auth
+        - prefix: /kaytu/auth
       timeoutPolicy:
         response: 60s
       services:
@@ -49,10 +49,10 @@ spec:
           port: 8251
       pathRewritePolicy:
         replacePrefix:
-          - prefix: /api/kaytu/auth
+          - prefix: /kaytu/auth
             replacement: /
     - conditions:
-        - prefix: /api/kaytu/workspace
+        - prefix: /kaytu/workspace
       timeoutPolicy:
         response: 60s
       services:
@@ -60,10 +60,10 @@ spec:
           port: 8351
       pathRewritePolicy:
         replacePrefix:
-          - prefix: /api/kaytu/workspace
+          - prefix: /kaytu/workspace
             replacement: /
     - conditions:
-        - prefix: /api/kaytu/subscription
+        - prefix: /kaytu/subscription
       timeoutPolicy:
         response: 60s
       services:
@@ -71,7 +71,7 @@ spec:
           port: 8000
       pathRewritePolicy:
         replacePrefix:
-          - prefix: /api/kaytu/subscription
+          - prefix: /kaytu/subscription
             replacement: /
       authPolicy:
         disabled: true
