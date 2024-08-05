@@ -76,7 +76,7 @@ spec:
             - name: DEX_AUTH_PUBLIC_CLIENT_ID
               value: {{ .Values.kaytu.dex.publicClientId }}
             - name: KAYTU_KEY_ENABLED
-              value: {{ .Values.kaytu.apikey.enabled }}
+              value: "{{ .Values.kaytu.apikey.enabled }}"
             - name: KAYTU_PUBLIC_KEY
               # openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048
               # openssl rsa -pubout -in private_key.pem -out public_key.pem
