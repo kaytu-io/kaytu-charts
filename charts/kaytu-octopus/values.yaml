@@ -28,7 +28,7 @@ kaytu:
         dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-subscription-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-subscription-service-prod:tag"}
       frontendv2:
-        dev: v0.39.8-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
+        dev: v0.39.11-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
         prod: v0.37.6-prod # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service-prod:tag"}
       website:
         dev: v0.8.24-prod # {"$imagepolicy": "flux-system:kaytu-website-v2-prod:tag"}
