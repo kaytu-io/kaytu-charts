@@ -96,7 +96,7 @@ spec:
           - prefix: /docs/api/1.0
             replacement: /
     - conditions:
-        - prefix: /
+        - prefix: /ws
       timeoutPolicy:
         response: 60s
       services:
