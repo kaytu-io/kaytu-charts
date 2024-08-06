@@ -96,7 +96,10 @@ spec:
           - prefix: /docs/api/1.0
             replacement: /
     - conditions:
-        - prefix: /ws
+        - prefix: /
+        - header:
+            name: "X-Kaytu-Demo"
+            notpresent: true
       timeoutPolicy:
         response: 60s
       services:
