@@ -40,7 +40,7 @@ spec:
           name: 'Public Client'
           redirectURIs:
             - 'https://{{ .Values.kaytu.domain.main }}/callback'
-            - 'http://localhost:3000'
+            - 'http://localhost:3000/callback'
           public: true
         - id: {{ .Values.kaytu.dex.privateClientId}}
           name: 'Private Client'
