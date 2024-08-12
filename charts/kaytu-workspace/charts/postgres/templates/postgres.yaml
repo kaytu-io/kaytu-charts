@@ -29,7 +29,7 @@ spec:
     image:
       registry: docker.io
       repository: bitnami/postgresql
-      tag: 16.4.0
+      tag: {{ .Values.image.tag }}
       pullPolicy: Always
       debug: false
     primary:

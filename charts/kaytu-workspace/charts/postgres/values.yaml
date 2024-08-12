@@ -1,6 +1,7 @@
 readReplicas:
   replicaCount: 1
-image: 16.4.0
+image:
+  tag: 16.4.0
 primary:
   resources:
     limits:
