@@ -34,7 +34,7 @@ spec:
       debug: false
     primary:
       persistence:
-        size: 10Gi
+        size: {{ .Values.primary.size }}
       existingConfigmap: postgres-config
       initdb:
         scriptsConfigMap: postgres-init-script
