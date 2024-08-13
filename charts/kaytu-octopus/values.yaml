@@ -151,6 +151,151 @@ postgres:
     tag: 14
     repo: postgres
   sslMode: disable
+postgresql:
+  architecture: replication
+  readReplicas:
+    replicaCount: 1
+  image:
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 14
+    pullPolicy: Always
+    debug: false
+  primary:
+    persistence:
+      size: 10Gi
+    initdb:
+      scripts:
+        primary_init_script.sh: |
+          #!/bin/bash
+          set -e
+
+          dt=$(date '+%d/%m/%Y %H:%M:%S');
+          echo "$dt - Running init script the 1st time Primary PostgreSql container is created...";
+
+          pennywiseDatabaseName="pennywise"
+          pennywiseUserName="pennywise_service"
+
+          workspaceDatabaseName="workspace"
+          workspaceUserName="workspace_service"
+
+          costEstimatorDatabaseName="cost_estimator"
+          costEstimatorUserName="cost_estimator_job"
+
+          authDatabaseName="auth"
+          authUserName="auth_service"
+
+          subscriptionDatabaseName="subscription"
+          subscriptionUserName="subscription_service"
+
+          informationDatabaseName="information"
+          informationUserName="information_service"
+
+          dexDatabaseName="dex"
+          dexUserName="dex_service"
+
+          echo "$dt - Running: psql -v ON_ERROR_STOP=1 --username $POSTGRES_USER --dbname $POSTGRES_DB ...";
+
+          psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+
+          CREATE DATABASE $workspaceDatabaseName;
+          CREATE USER $workspaceUserName WITH PASSWORD '$POSTGRES_WORKSPACE_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$workspaceDatabaseName" to $workspaceUserName;
+
+          \c "$workspaceDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+          CREATE DATABASE $costEstimatorDatabaseName;
+          CREATE USER $costEstimatorUserName WITH PASSWORD '$POSTGRES_COST_ESTIMATOR_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$costEstimatorDatabaseName" to $costEstimatorUserName;
+          GRANT ALL PRIVILEGES ON DATABASE "$costEstimatorDatabaseName" to $workspaceUserName;
+
+          \c "$costEstimatorDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+          CREATE DATABASE $authDatabaseName;
+          CREATE USER $authUserName WITH PASSWORD '$POSTGRES_AUTH_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$authDatabaseName" to $authUserName;
+
+          \c "$authDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+          CREATE DATABASE $subscriptionDatabaseName;
+          CREATE USER $subscriptionUserName WITH PASSWORD '$POSTGRES_SUBSCRIPTION_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$subscriptionDatabaseName" to $subscriptionUserName;
+
+          \c "$subscriptionDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          
+          CREATE DATABASE $pennywiseDatabaseName;
+          CREATE USER $pennywiseUserName WITH PASSWORD '$POSTGRES_PENNYWISE_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$pennywiseDatabaseName" to $pennywiseUserName;
+            
+          \c "$pennywiseDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+          CREATE DATABASE $informationDatabaseName;
+          CREATE USER $informationUserName WITH PASSWORD '$POSTGRES_INFORMATION_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$informationDatabaseName" to $informationUserName;
+
+          \c "$informationDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+          CREATE DATABASE $dexDatabaseName;
+          CREATE USER $dexUserName WITH PASSWORD '$DEX_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$dexDatabaseName" to $dexUserName;
+
+          \c "$dexDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          
+          EOSQL
+
+          echo "$dt - Init script is completed";
+    resources:
+      limits:
+        memory: '1Gi'
+        cpu: '1'
+      requests:
+        memory: '1Gi'
+        cpu: '100m'
+    auth:
+      existingSecret: postgres-secret
+      secretKeys:
+        userPasswordKey: superUserPassword
+        replicationPasswordKey: replicationUserPassword
+    extraEnvVars:
+      - name: POSTGRES_WORKSPACE_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: workspaceServiceUserPassword
+      - name: POSTGRES_AUTH_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: authServiceUserPassword
+      - name: POSTGRES_SUBSCRIPTION_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: subscriptionUserPassword
+      - name: POSTGRES_COST_ESTIMATOR_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: costEstimatorJobUserPassword
+      - name: POSTGRES_PENNYWISE_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: pennywiseUserPassword
+      - name: POSTGRES_INFORMATION_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: informationUserPassword
+      - name: DEX_DB_PASSWORD
+        value: "password" # should be same as dex.storage.config.password
 redis:
   replicaCount: 1
   name: redis

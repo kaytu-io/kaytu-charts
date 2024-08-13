@@ -719,7 +719,6 @@ opensearch-dashboards:
       memory: "500Mi"
       cpu: "200m"
 nats:
-
   global:
     labels:
       app: job-queue
