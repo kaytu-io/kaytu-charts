@@ -1,8 +1,0 @@
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
-metadata:
-  name: auth0-manage-oauth
-  namespace: {{ .Release.Namespace }}
-spec:
-  encryptedData:
-    clientSecret: {{ .Values.kaytu.auth0.manageSealedClientSecret }}
