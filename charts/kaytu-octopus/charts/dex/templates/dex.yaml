@@ -28,7 +28,7 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: {{ .Values.kaytu.dex.serviceName }}
+  name: {{ .Values.serviceName }}
   namespace: flux-system
 spec:
   targetNamespace: {{ .Release.Namespace }}
@@ -43,18 +43,18 @@ spec:
       version: 0.18.0
   values:
     config:
-      issuer: "https://{{ .Values.kaytu.domain.main }}/dex"
+      issuer: "https://{{ .Values.domain.main }}/dex"
       staticClients:
-        - id: {{ .Values.kaytu.dex.publicClientId}}
+        - id: {{ .Values.publicClientId}}
           name: 'Public Client'
           redirectURIs:
-            - 'https://{{ .Values.kaytu.domain.main }}/callback'
+            - 'https://{{ .Values.domain.main }}/callback'
             - 'http://localhost:3000/callback'
           public: true
-        - id: {{ .Values.kaytu.dex.privateClientId}}
+        - id: {{ .Values.privateClientId}}
           name: 'Private Client'
           redirectURIs:
-            - 'https://{{ .Values.kaytu.domain.main }}/callback'
+            - 'https://{{ .Values.domain.main }}/callback'
           secret: {{ $privateClientSecret}}
       staticPasswords:
         - email: "admin@example.com"
@@ -67,9 +67,9 @@ spec:
           id: github
           name: GitHub
           config:
-            clientID: {{ .Values.kaytu.dex.connectors.github.clientID }}
-            clientSecret: {{ .Values.kaytu.dex.connectors.github.clientSecret }}
-            redirectURI: 'https://{{ .Values.kaytu.domain.main }}/dex/callback'
+            clientID: {{ .Values.connectors.github.clientID }}
+            clientSecret: {{ .Values.connectors.github.clientSecret }}
+            redirectURI: 'https://{{ .Values.domain.main }}/dex/callback'
             loadAllGroups: false
             useLoginAsID: false
       expiry:

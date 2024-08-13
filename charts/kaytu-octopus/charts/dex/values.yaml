@@ -1,0 +1,11 @@
+serviceName: dex
+domain:
+  main: kaytu.app.domain
+privateClientId: private-client
+publicClientId: public-client
+connectors:
+  github:
+    clientID: xxx
+    clientSecret: xxx
+postgres:
+  name: postgres-cluster
