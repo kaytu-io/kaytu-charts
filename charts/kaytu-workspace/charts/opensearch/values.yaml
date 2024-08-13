@@ -1,0 +1,7 @@
+name: opensearch-cluster
+adminPassword: xxx
+jvm: "-XX:-HeapDumpOnOutOfMemoryError -Xmx5120M -Xms5120M"
+resources:
+  requests:
+    memory: 6Gi
+    cpu: 500m

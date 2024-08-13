@@ -81,16 +81,16 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   general:
-    serviceName: {{ .Values.opensearch.name }}
-    version: 2.11.1
-    setVMMaxMapCount: true
-    pluginsList: ["repository-s3"]
+    serviceName: {{ .Values.opensearch.name }} # clusterName
+    version: 2.11.1 # majorVersion
+    setVMMaxMapCount: true # sysctl
+    pluginsList: ["repository-s3"] # plugins
     additionalConfig:
-      http.compression: "true"
+      http.compression: "true" # ?
     keystore:
       - secret:
           name: {{ .Values.opensearch.name }}-s3-access
-        keyMappings:
+        keyMappings: # ? we don't have keyMapping !
           s3AccessKey: s3.client.default.access_key
           s3SecretKey: s3.client.default.secret_key
   security:
@@ -110,13 +110,13 @@ spec:
       adminSecret:
         name: {{.Values.opensearch.name}}-admin-certs
       securityConfigSecret:
-        name: opensearch-securityconfig-secret
+        name: opensearch-securityconfig-secret # securityConfig.config.data
       adminCredentialsSecret:
-        name: opensearch-admin-credentials-secret
+        name: opensearch-admin-credentials-secret # extraEnvs
   dashboards:
     enable: true
     version: 2.11.1
-    opensearchCredentialsSecret:
+    opensearchCredentialsSecret: # ?
       name: opensearch-admin-credentials-secret
     tls:
       enable: true
@@ -132,23 +132,23 @@ spec:
         memory: "500Mi"
         cpu: "200m"
   confMgmt:
-    smartScaler: true
+    smartScaler: true # ?
   nodePools:
     - component: nodes
-      replicas: 3
-      diskSize: "50Gi"
+      replicas: 3 # replicas
+      diskSize: "50Gi" # persistence.size
       nodeSelector: {}
       persistence:
         pvc:
           storageClass: {{ .Values.storage.className }}
           accessModes:
-            - ReadWriteOnce
+            - ReadWriteOnce # persistence.accessModes
       env:
-        - name: AWS_REGION
+        - name: AWS_REGION # extraEnvs
           value: "us-east-2"
   {{- if eq (.Values.kaytu.workspace.size | toString) "xs" }}
-      jvm: -XX:-HeapDumpOnOutOfMemoryError -Xmx3072M -Xms3072M
-      resources:
+      jvm: -XX:-HeapDumpOnOutOfMemoryError -Xmx3072M -Xms3072M # opensearchJavaOpts
+      resources: # resources
         requests:
           memory: "4Gi"
           cpu: "500m"
@@ -183,7 +183,7 @@ spec:
           memory: "16Gi"
           cpu: "4000m"
     {{- end }}
-      roles:
+      roles: # roles
         - "cluster_manager"
         - "data"
 ---
