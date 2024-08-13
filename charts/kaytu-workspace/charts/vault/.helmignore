@@ -5,6 +5,7 @@
 # Common VCS dirs
 .git/
 .gitignore
+.terraform/
 .bzr/
 .bzrignore
 .hg/
@@ -14,10 +15,14 @@
 *.swp
 *.bak
 *.tmp
-*.orig
 *~
 # Various IDEs
 .project
 .idea/
 *.tmproj
-.vscode/
+
+# CI and test
+.circleci/
+.github/
+.gitlab-ci.yml
+test/
