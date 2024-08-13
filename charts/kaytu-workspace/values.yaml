@@ -718,6 +718,34 @@ opensearch-dashboards:
     limits:
       memory: "500Mi"
       cpu: "200m"
+nats:
+
+  global:
+    labels:
+      app: job-queue
+  natsBox:
+    enabled: false
+  config:
+    cluster:
+      noAdvertise: true
+      enabled: false
+      replicas: 1
+    gateway:
+      enabled: false
+    jetstream:
+      enabled: true
+      memoryStore:
+        enabled: true
+        maxSize: 4Gi
+      # we are using jetstream as our job queue, because of that
+      # there is no need to have a persistent storage.
+      fileStore:
+        enabled: true
+        storageDirectory: /data
+        pvc:
+          enabled: true
+          storageClassName: "managed-csi-premium"
+          size: 25Gi
 elasticsearch:
   name: elasticsearch-cluster
   version: 7.15.1
