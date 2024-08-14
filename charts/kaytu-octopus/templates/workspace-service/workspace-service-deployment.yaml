@@ -44,7 +44,7 @@ spec:
             - name: WORKSPACE_ENV_TYPE
               value: {{ .Values.kaytu.envType }}
             - name: WORKSPACE_POSTGRES__HOST
-              value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
+              value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
             - name: WORKSPACE_POSTGRES__PORT
               value: "5432"
             - name: WORKSPACE_POSTGRES__DB

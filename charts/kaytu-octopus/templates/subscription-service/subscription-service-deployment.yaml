@@ -41,7 +41,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: SUBSCRIPTION_POSTGRES__HOST
-              value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
+              value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
             - name: SUBSCRIPTION_POSTGRES__PORT
               value: "5432"
             - name: SUBSCRIPTION_POSTGRES__DB
