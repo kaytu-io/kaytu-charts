@@ -135,7 +135,7 @@ dex:
     storage:
       type: postgres
       config:
-        host: postgres-cluster.{{ .Release.Namespace }}.svc.cluster.local
+        host: kaytu-octopus-postgresql-primary.kaytu-octopus.svc.cluster.local # TODO: Fix namespace name
         port: 5432
         database: dex
         user: dex_service
@@ -161,10 +161,16 @@ postgresql:
     tag: 14
     pullPolicy: Always
     debug: false
+  global:
+    postgresql:
+      auth:
+        postgresPassword: "postgres"
   primary:
     persistence:
       size: 10Gi
     initdb:
+      user: "postgres"
+      password: "postgres"
       scripts:
         primary_init_script.sh: |
           #!/bin/bash
@@ -172,9 +178,6 @@ postgresql:
 
           dt=$(date '+%d/%m/%Y %H:%M:%S');
           echo "$dt - Running init script the 1st time Primary PostgreSql container is created...";
-
-          pennywiseDatabaseName="pennywise"
-          pennywiseUserName="pennywise_service"
 
           workspaceDatabaseName="workspace"
           workspaceUserName="workspace_service"
@@ -194,9 +197,9 @@ postgresql:
           dexDatabaseName="dex"
           dexUserName="dex_service"
 
-          echo "$dt - Running: psql -v ON_ERROR_STOP=1 --username $POSTGRES_USER --dbname $POSTGRES_DB ...";
+          echo "$dt - Running: psql -v ON_ERROR_STOP=1 --username postgres --dbname postgres ...";
 
-          psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+          PGPASSWORD="postgres" psql -v ON_ERROR_STOP=1 --username "postgres" --dbname "postgres" <<-EOSQL
 
           CREATE DATABASE $workspaceDatabaseName;
           CREATE USER $workspaceUserName WITH PASSWORD '$POSTGRES_WORKSPACE_DB_PASSWORD';
@@ -226,13 +229,6 @@ postgresql:
 
           \c "$subscriptionDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
-          
-          CREATE DATABASE $pennywiseDatabaseName;
-          CREATE USER $pennywiseUserName WITH PASSWORD '$POSTGRES_PENNYWISE_DB_PASSWORD';
-          GRANT ALL PRIVILEGES ON DATABASE "$pennywiseDatabaseName" to $pennywiseUserName;
-            
-          \c "$pennywiseDatabaseName"
-          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
 
           CREATE DATABASE $informationDatabaseName;
           CREATE USER $informationUserName WITH PASSWORD '$POSTGRES_INFORMATION_DB_PASSWORD';
@@ -258,11 +254,6 @@ postgresql:
       requests:
         memory: '1Gi'
         cpu: '100m'
-    auth:
-      existingSecret: postgres-secret
-      secretKeys:
-        userPasswordKey: superUserPassword
-        replicationPasswordKey: replicationUserPassword
     extraEnvVars:
       - name: POSTGRES_WORKSPACE_DB_PASSWORD
         valueFrom:

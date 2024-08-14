@@ -11,13 +11,13 @@ spec:
   selector:
     matchLabels:
       app: analytics-worker
+  strategy:
+        type: Recreate
   template:
     metadata:
       labels:
         app: analytics-worker
     spec:
-      strategy:
-        type: Recreate
       serviceAccountName: analytics-worker
 #      tolerations:
 #        - key: "kaytu.io/worker"
