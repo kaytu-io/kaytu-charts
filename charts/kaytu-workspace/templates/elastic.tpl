@@ -3,15 +3,9 @@
 - name: ELASTICSEARCH_ADDRESS
   value: "https://opensearch-cluster.{{ .Release.Namespace }}.svc.cluster.local:9200"
 - name: ELASTICSEARCH_USERNAME
-  valueFrom:
-    secretKeyRef:
-      name: opensearch-admin-credentials-secret
-      key: username
+  value: "admin"
 - name: ELASTICSEARCH_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: opensearch-admin-credentials-secret
-      key: password
+  value: "admin-password"
 - name: ELASTICSEARCH_INGESTION_ENDPOINT
   value: "https://{{ .Values.kaytu.opensearch.ingestionPipelineEndpoint }}/resource-sink"
 - name: ELASTICSEARCH_ISONAKS

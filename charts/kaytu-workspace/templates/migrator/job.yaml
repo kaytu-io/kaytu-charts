@@ -54,13 +54,6 @@ spec:
               value: "abcd"
             - name: STEAMPIPE_SSLMODE
               value: "disable"
-            - name: SUPERSET_BASE_URL
-              value: "http://{{ .Release.Namespace }}-superset.{{ .Release.Namespace }}.svc.cluster.local:8088"
-            - name: SUPERSET_ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: superset-postgres-secret
-                  key: dashboard-admin-password
             - name: HTTP_ADDRESS
               value: "0.0.0.0:6251"
             - name: ANALYTICS_GIT_URL

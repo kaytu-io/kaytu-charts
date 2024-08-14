@@ -62,21 +62,6 @@ spec:
           value: "http://inventory-service.{{ .Release.Namespace }}.svc.cluster.local:7251"
         - name: METADATA_BASEURL
           value: "http://metadata-service.{{ .Release.Namespace }}.svc.cluster.local:6251"
-        - name: SUPERSET_BASEURL
-          value: "http://{{ .Release.Namespace }}-superset.{{ .Release.Namespace }}.svc.cluster.local:8088"
-        - name: SUPERSET_USERNAME
-          value: "admin"
-        - name: SUPERSET_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: superset-postgres-secret
-              key: dashboard-admin-password
-        - name: SUPERSET_GUESTUSERNAME
-          value: "dashboard-user"
-        - name: SUPERSET_GUESTFIRSTNAME
-          value: "Kaytu"
-        - name: SUPERSET_GUESTLASTNAME
-          value: "User"
         - name: JAEGER_AGENT_HOST
           valueFrom:
             fieldRef:
