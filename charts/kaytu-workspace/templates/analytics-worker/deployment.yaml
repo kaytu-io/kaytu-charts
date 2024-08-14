@@ -57,7 +57,7 @@ spec:
             - name: STEAMPIPE_UPDATE_CHECK
               value: "false"
             - name: POSTGRESQL_HOST
-              value: "{{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local"
+              value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
             - name: POSTGRESQL_PORT
               value: "5432"
             - name: POSTGRESQL_USERNAME

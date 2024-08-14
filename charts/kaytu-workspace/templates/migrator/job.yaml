@@ -28,7 +28,7 @@ spec:
           env:
 {{- include "elastic.envs" . | indent 12 }}
             - name: POSTGRESQL_HOST
-              value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
+              value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
             - name: POSTGRESQL_PORT
               value: "5432"
             - name: POSTGRESQL_DB

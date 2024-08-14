@@ -42,7 +42,7 @@ spec:
           value: "steampipe"
 
         - name: ONBOARD_POSTGRES__HOST
-          value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
+          value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
         - name: ONBOARD_POSTGRES__PORT
           value: "5432"
         - name: ONBOARD_POSTGRES__DB

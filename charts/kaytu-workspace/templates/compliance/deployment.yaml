@@ -34,7 +34,7 @@ spec:
         - name: CURRENT_NAMESPACE
           value: "{{ .Release.Namespace }}"
         - name: POSTGRESQL_HOST
-          value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
+          value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
 
         - name: MIGRATOR_JOB_QUEUE_NAME
           value: "migrator-jobs-queue"

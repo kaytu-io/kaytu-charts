@@ -44,7 +44,7 @@ spec:
             value: "steampipe"
 
           - name: DATABASE_HOST
-            value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
+            value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
           - name: DATABASE_PORT
             value: "5432"
           - name: DATABASE_USERNAME
