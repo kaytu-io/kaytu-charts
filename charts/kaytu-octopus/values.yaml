@@ -66,6 +66,11 @@ kaytu:
     chart:
       version: 0.1.16
     kaytuChartLocation: "./kaytu"
+    aws:
+      master-secret: "" # TODO: need comment
+      keyMap:
+        access-key: "" # TODO: need comment
+        secret-key: "" # TODO: need comment
   frontend:
     muiLicense: xxx
   master:
@@ -145,11 +150,6 @@ dex:
     oauth2:
       passwordConnector: local
 postgres:
-  name: postgres-cluster
-  replicaCount: 1
-  image:
-    tag: 14
-    repo: postgres
   sslMode: disable
 postgresql:
   architecture: replication
@@ -185,9 +185,6 @@ postgresql:
           workspaceDatabaseName="workspace"
           workspaceUserName="workspace_service"
 
-          costEstimatorDatabaseName="cost_estimator"
-          costEstimatorUserName="cost_estimator_job"
-
           authDatabaseName="auth"
           authUserName="auth_service"
 
@@ -209,14 +206,6 @@ postgresql:
           GRANT ALL PRIVILEGES ON DATABASE "$workspaceDatabaseName" to $workspaceUserName;
 
           \c "$workspaceDatabaseName"
-          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
-
-          CREATE DATABASE $costEstimatorDatabaseName;
-          CREATE USER $costEstimatorUserName WITH PASSWORD '$POSTGRES_COST_ESTIMATOR_DB_PASSWORD';
-          GRANT ALL PRIVILEGES ON DATABASE "$costEstimatorDatabaseName" to $costEstimatorUserName;
-          GRANT ALL PRIVILEGES ON DATABASE "$costEstimatorDatabaseName" to $workspaceUserName;
-
-          \c "$costEstimatorDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
 
           CREATE DATABASE $authDatabaseName;
@@ -264,6 +253,10 @@ postgresql:
       requests:
         memory: '1Gi'
         cpu: '100m'
+    # These passwords are random generated
+    # Do not change them
+    # You can get the passwords running:
+    #`kubectl get secret postgres-secret -n <namespace-name> -o json | jq -r '.data.<key>' | base64 --decode`
     extraEnvVars:
       - name: POSTGRES_WORKSPACE_DB_PASSWORD
         valueFrom:
@@ -296,7 +289,7 @@ postgresql:
             name: postgres-secret
             key: informationUserPassword
       - name: DEX_DB_PASSWORD
-        value: "password" # should be same as dex.storage.config.password
+        value: "password" # TODO: should be random generated. should be same as dex.storage.config.password
 redis:
   replicaCount: 1
   name: redis
@@ -318,7 +311,6 @@ azure:
   serviceBusConnection: ""
 github:
   token: ""
-lambda: "https://xxx.execute-api.us-east-2.amazonaws.com/dev/describer"
 storage:
   className: ""
 vault-helm: {}
