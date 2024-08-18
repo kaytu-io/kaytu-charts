@@ -19,16 +19,16 @@ kaytu:
     privateRegistry: akscorekaytuprivateacr.azurecr.io
     tags:
       auth:
-        dev: v0.409.3-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
+        dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-auth-service-prod:tag"}
       workspace:
-        dev: v0.411.0-dev # {"$imagepolicy": "flux-system:kaytu-workspace-service:tag"}
-        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-workspace-service-prod:tag"}
+        dev: v0.407.13-dev
+        prod: v0.345.2-prod
       subscription:
         dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-subscription-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-subscription-service-prod:tag"}
       frontendv2:
-        dev: v0.39.11-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
+        dev: v0.39.23-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
         prod: v0.37.6-prod # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service-prod:tag"}
       website:
         dev: v0.8.24-prod # {"$imagepolicy": "flux-system:kaytu-website-v2-prod:tag"}
@@ -37,10 +37,10 @@ kaytu:
         dev: v0.8.23-dev # {"$imagepolicy": "flux-system:kaytu-website-v2:tag"}
         prod: v0.8.23-dev # {"$imagepolicy": "flux-system:kaytu-website-v2:tag"}
       swagger:
-        dev: v0.408.0-dev # {"$imagepolicy": "flux-system:kaytu-swagger-service:tag"}
+        dev: v0.413.10-dev # {"$imagepolicy": "flux-system:kaytu-swagger-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-swagger-service-prod:tag"}
       redoc:
-        dev: v0.408.0-dev # {"$imagepolicy": "flux-system:kaytu-redoc-service:tag"}
+        dev: v0.413.10-dev # {"$imagepolicy": "flux-system:kaytu-redoc-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-redoc-service-prod:tag"}
       docs:
         dev: v0.6.30-dev # {"$imagepolicy": "flux-system:kaytu-docs:tag"}
@@ -273,11 +273,6 @@ postgresql:
           secretKeyRef:
             name: postgres-secret
             key: subscriptionUserPassword
-      - name: POSTGRES_COST_ESTIMATOR_DB_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: postgres-secret
-            key: costEstimatorJobUserPassword
       - name: POSTGRES_PENNYWISE_DB_PASSWORD
         valueFrom:
           secretKeyRef:

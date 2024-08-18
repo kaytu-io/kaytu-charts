@@ -27,121 +27,101 @@ kaytu:
     masterSecretKey: ""
     name: dev-cluster
     size: lg
-  insight:
-    worker:
-      image:
-        repo: akscorekaytuacr.azurecr.io/insight-worker
-        tag:
-          dev: v0.409.2-dev # {"$imagepolicy": "flux-system:kaytu-insight-worker:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-insight-worker-prod:tag"}
-  reporter:
-    image:
-      repo: akscorekaytuacr.azurecr.io/reporter
-      tag:
-        dev: v0.408.0-dev # {"$imagepolicy": "flux-system:kaytu-reporter:tag"}
-        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-reporter-prod:tag"}
   checkup:
     worker:
       image:
         repo: akscorekaytuacr.azurecr.io/checkup-worker
         tag:
-          dev: v0.408.0-dev # {"$imagepolicy": "flux-system:kaytu-checkup-worker:tag"}
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-checkup-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-checkup-worker-prod:tag"}
   migrator:
     worker:
       image:
         repo: akscorekaytuacr.azurecr.io/migrator
         tag:
-          dev: v0.410.1-dev # {"$imagepolicy": "flux-system:kaytu-migrator-worker:tag"}
+          dev: v0.413.11-dev # {"$imagepolicy": "flux-system:kaytu-migrator-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-migrator-worker-prod:tag"}
   analytics:
     worker:
       image:
         repo: akscorekaytuacr.azurecr.io/analytics-worker
         tag:
-          dev: v0.409.2-dev # {"$imagepolicy": "flux-system:kaytu-analytics-worker:tag"}
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-analytics-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-analytics-worker-prod:tag"}
   describe:
     scheduler:
       image:
         repo: akscorekaytuacr.azurecr.io/describe-scheduler
         tag:
-          dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-describe-scheduler:tag"}
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-describe-scheduler:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-describe-scheduler-prod:tag"}
     worker:
       aws:
         image:
           repo: akscorekaytuacr.azurecr.io/kaytu-aws-describer
           tag:
-            dev: local-v0.56.4 # {"$imagepolicy": "flux-system:kaytu-aws-describer:tag"}
+            dev: local-v0.57.3 # {"$imagepolicy": "flux-system:kaytu-aws-describer:tag"}
             prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-aws-describer-prod:tag"}
       azure:
         image:
           repo: akscorekaytuacr.azurecr.io/kaytu-azure-describer
           tag:
-            dev: local-v0.35.15 # {"$imagepolicy": "flux-system:kaytu-azure-describer:tag"}
+            dev: local-v0.35.22 # {"$imagepolicy": "flux-system:kaytu-azure-describer:tag"}
             prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-azure-describer-prod:tag"}
   onboard:
     service:
       image:
         repo: akscorekaytuacr.azurecr.io/onboard-service
         tag:
-          dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-onboard-service:tag"}
+          dev: v0.413.11-dev # {"$imagepolicy": "flux-system:kaytu-onboard-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-onboard-service-prod:tag"}
   integration:
     service:
       image:
         repo: akscorekaytuacr.azurecr.io/integration
         tag:
-          dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-integration-service:tag"}
+          dev: v0.413.11-dev # {"$imagepolicy": "flux-system:kaytu-integration-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-integration-service-prod:tag"}
-  assistant:
-    service:
-      image:
-        repo: akscorekaytuacr.azurecr.io/assistant
-        tag:
-          dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-assistant-service:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-assistant-service-prod:tag"}
   metadata:
     service:
       image:
         repo: akscorekaytuacr.azurecr.io/metadata-service
         tag:
-          dev: v0.408.0-dev # {"$imagepolicy": "flux-system:kaytu-metadata-service:tag"}
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-metadata-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-metadata-service-prod:tag"}
   inventory:
     service:
       image:
         repo: akscorekaytuacr.azurecr.io/inventory-service
         tag:
-          dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-inventory-service:tag"}
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-inventory-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-inventory-service-prod:tag"}
   compliance:
     service:
       image:
         repo: akscorekaytuacr.azurecr.io/compliance-service
         tag:
-          dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-service-prod:tag"}
     summarizer:
       image:
         repo: akscorekaytuacr.azurecr.io/compliance-summarizer
         tag:
-          dev: v0.408.0-dev # {"$imagepolicy": "flux-system:kaytu-compliance-summarizer:tag"}
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-compliance-summarizer:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-summarizer-prod:tag"}
   complianceReport:
     worker:
       image:
         repo: akscorekaytuacr.azurecr.io/compliance-report-worker
         tag:
-          dev: v0.409.2-dev # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker:tag"}
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker-prod:tag"}
   steampipe:
     service:
       image:
         repo: akscorekaytuacr.azurecr.io/steampipe-service
         tag:
-          dev: v0.409.2-dev # {"$imagepolicy": "flux-system:kaytu-steampipe-service:tag"}
+          dev: v0.413.11-dev # {"$imagepolicy": "flux-system:kaytu-steampipe-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-steampipe-service-prod:tag"}
   alerting:
     service:
@@ -155,7 +135,7 @@ kaytu:
       image:
         repo: akscorekaytuacr.azurecr.io/es-sink
         tag:
-          dev: v0.408.0-dev # {"$imagepolicy": "flux-system:es-sink-service:tag"}
+          dev: v0.413.8-dev # {"$imagepolicy": "flux-system:es-sink-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:es-sink-service-prod:tag"}
 postgres:
   name: postgres-cluster
@@ -490,8 +470,25 @@ nats:
         storageDirectory: /data
         pvc:
           enabled: true
-          storageClassName: "managed-csi-premium"
           size: 25Gi
+  container:
+    merge:
+      resources:
+        requests:
+          cpu: 200m
+          memory: 200Mi
+        limits:
+          cpu: 2500m
+          memory: 5Gi
+  statefulSet:
+    merge:
+      metadata:
+        annotations:
+          "karpenter.sh/do-not-disrupt": "true"
+  promExporter:
+    enabled: true
+    podMonitor:
+      enabled: false
 elasticsearch:
   name: elasticsearch-cluster
   version: 7.15.1

@@ -5,7 +5,7 @@
 - name: ELASTICSEARCH_USERNAME
   value: "admin"
 - name: ELASTICSEARCH_PASSWORD
-  value: "STRONGpassword@123"
+  value: "myStrongPassword@123!"
 - name: ELASTICSEARCH_INGESTION_ENDPOINT
   value: "https://{{ .Values.kaytu.opensearch.ingestionPipelineEndpoint }}/resource-sink"
 - name: ELASTICSEARCH_ISONAKS
