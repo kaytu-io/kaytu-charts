@@ -87,7 +87,7 @@ spec:
               value: "onboard"
 
             - name: NATS_URL
-              value: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}.{{ .Release.Namespace }}.svc.cluster.local:4222"
+              value: "{{ .Release.Namespace }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"
 
             - name: WORKER_ID
               valueFrom:

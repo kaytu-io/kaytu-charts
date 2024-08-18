@@ -1,11 +1,11 @@
 {{- define "elastic.envs"}}
 {{- if eq (.Values.kaytu.aksOpensearch.enabled | toString) "true" }}
 - name: ELASTICSEARCH_ADDRESS
-  value: "https://opensearch-cluster.{{ .Release.Namespace }}.svc.cluster.local:9200"
+  value: "https://opensearch-cluster-master.{{ .Release.Namespace }}.svc.cluster.local:9200"
 - name: ELASTICSEARCH_USERNAME
   value: "admin"
 - name: ELASTICSEARCH_PASSWORD
-  value: "admin-password"
+  value: "STRONGpassword@123"
 - name: ELASTICSEARCH_INGESTION_ENDPOINT
   value: "https://{{ .Values.kaytu.opensearch.ingestionPipelineEndpoint }}/resource-sink"
 - name: ELASTICSEARCH_ISONAKS

@@ -66,4 +66,4 @@ spec:
               memory: 300Mi
           env:
             - name: AZURE_DESCRIBER_NATS__URL
-              value: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}.{{ .Release.Namespace }}.svc.cluster.local:4222"
+              value: "{{ .Release.Namespace }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"

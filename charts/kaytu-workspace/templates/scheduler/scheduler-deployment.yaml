@@ -34,7 +34,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: NATS_URL
-          value: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}.{{ .Release.Namespace }}.svc.cluster.local:4222"
+          value: "{{ .Release.Namespace }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"
         - name: HTTP_ADDRESS
           value: "0.0.0.0:5251"
         - name: GRPC_ADDRESS
