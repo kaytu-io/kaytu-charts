@@ -10,12 +10,107 @@ data:
       server {
         listen 80;
 
-        location / {
-          proxy_pass https://contour-envoy.contour-system.svc.cluster.local:443;
+        location /integration {
+          rewrite ^/{{ .Values.kaytu.workspace.name }}/integration(.*) /integration$1 break;
+
+          proxy_pass http://integration-service.{{ .Release.Namespace }}.svc.cluster.local:8000;
           proxy_ssl_verify off;
-          proxy_ssl_server_name on;
-          proxy_ssl_name {{ .Values.kaytu.domain.main }};
-          proxy_set_header Host {{ .Values.kaytu.domain.main }};
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Host $host;
+          proxy_set_header X-Forwarded-Port $server_port;
+        }
+
+        location /onboard {
+          rewrite ^/{{ .Values.kaytu.workspace.name }}/onboard(.*) /onboard$1 break;
+
+          proxy_pass http://onboard-service.{{ .Release.Namespace }}.svc.cluster.local:6251;
+          proxy_ssl_verify off;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Host $host;
+          proxy_set_header X-Forwarded-Port $server_port;
+        }
+
+        location /inventory {
+          rewrite ^/{{ .Values.kaytu.workspace.name }}/inventory(.*) /inventory$1 break;
+
+          proxy_pass http://inventory-service.{{ .Release.Namespace }}.svc.cluster.local:7251;
+          proxy_ssl_verify off;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Host $host;
+          proxy_set_header X-Forwarded-Port $server_port;
+        }
+
+        location /metadata {
+          rewrite ^/{{ .Values.kaytu.workspace.name }}/metadata(.*) /metadata$1 break;
+
+          proxy_pass http://metadata-service.{{ .Release.Namespace }}.svc.cluster.local:6251;
+          proxy_ssl_verify off;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Host $host;
+          proxy_set_header X-Forwarded-Port $server_port;
+        }
+
+        location /compliance {
+          rewrite ^/{{ .Values.kaytu.workspace.name }}/compliance(.*) /compliance$1 break;
+
+          proxy_pass http://compliance-service.{{ .Release.Namespace }}.svc.cluster.local:7251;
+          proxy_ssl_verify off;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Host $host;
+          proxy_set_header X-Forwarded-Port $server_port;
+        }
+
+        location /schedule {
+          rewrite ^/{{ .Values.kaytu.workspace.name }}/schedule(.*) /schedule$1 break;
+
+          proxy_pass http://describe-scheduler.{{ .Release.Namespace }}.svc.cluster.local:5251;
+          proxy_ssl_verify off;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Host $host;
+          proxy_set_header X-Forwarded-Port $server_port;
+        }
+
+        location /auth {
+          rewrite ^/{{ .Values.kaytu.workspace.name }}/auth(.*) /auth$1 break;
+
+          proxy_pass http://auth-service.{{ .Release.Namespace }}.svc.cluster.local:8251;
+          proxy_ssl_verify off;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Host $host;
+          proxy_set_header X-Forwarded-Port $server_port;
+        }
+
+        location /workspace {
+          rewrite ^/{{ .Values.kaytu.workspace.name }}/workspace(.*) /workspace$1 break;
+
+          proxy_pass http://workspace-service.{{ .Release.Namespace }}.svc.cluster.local:8351;
+          proxy_ssl_verify off;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Host $host;
+          proxy_set_header X-Forwarded-Port $server_port;
+        }
+
+        location /workspace {
+          rewrite ^/{{ .Values.kaytu.workspace.name }}/workspace(.*) /workspace$1 break;
+
+          proxy_pass http://workspace-service.{{ .Release.Namespace }}.svc.cluster.local:8351;
+          proxy_ssl_verify off;
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto $scheme;
