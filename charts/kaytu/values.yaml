@@ -1,3 +1,208 @@
+kaytu:
+  ssl:
+    enabled: false
+  envType: dev
+  opensearch:
+    enabled: "false"
+    endpoint: ""
+    ingestionPipelineEndpoint: ""
+  aksOpensearch:
+    enabled: "true"
+  domain:
+    app: example.kaytu.io
+    main: kaytu.app.domain
+    grafana: grafana.domain
+    grpc: grpc.domain
+    grpc_external: grpc-external.domain
+    swagger: swagger.domain
+    sentry: sentry.domain
+    website:
+      - website.domain
+    docs: docs.domain
+    blog: blog.domain
+    pennywise: pennywise.domain
+  docker:
+    registry: akscorekaytuacr.azurecr.io
+    privateRegistry: akscorekaytuprivateacr.azurecr.io
+    tags:
+      auth:
+        dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
+        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-auth-service-prod:tag"}
+      workspace:
+        dev: v0.407.13-dev
+        prod: v0.345.2-prod
+      subscription:
+        dev: v0.409.0-dev # {"$imagepolicy": "flux-system:kaytu-subscription-service:tag"}
+        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-subscription-service-prod:tag"}
+      frontendv2:
+        dev: v0.39.23-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
+        prod: v0.37.6-prod # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service-prod:tag"}
+      website:
+        dev: v0.8.24-prod # {"$imagepolicy": "flux-system:kaytu-website-v2-prod:tag"}
+        prod: v0.8.24-prod # {"$imagepolicy": "flux-system:kaytu-website-v2-prod:tag"}
+      area51:
+        dev: v0.8.23-dev # {"$imagepolicy": "flux-system:kaytu-website-v2:tag"}
+        prod: v0.8.23-dev # {"$imagepolicy": "flux-system:kaytu-website-v2:tag"}
+      swagger:
+        dev: v0.413.10-dev # {"$imagepolicy": "flux-system:kaytu-swagger-service:tag"}
+        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-swagger-service-prod:tag"}
+      redoc:
+        dev: v0.413.10-dev # {"$imagepolicy": "flux-system:kaytu-redoc-service:tag"}
+        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-redoc-service-prod:tag"}
+      docs:
+        dev: v0.6.30-dev # {"$imagepolicy": "flux-system:kaytu-docs:tag"}
+        prod: v0.6.27-prod # {"$imagepolicy": "flux-system:kaytu-docs-prod:tag"}
+      pennywise:
+        dev: v0.4.19-dev # {"$imagepolicy": "flux-system:pennywise-server:tag"}
+        prod: v0.3.17-prod # {"$imagepolicy": "flux-system:pennywise-server-prod:tag"}
+  auth0:
+    domain: kaytu.us.auth0.com
+    clientId: xxx
+    nativeClientId: xxx
+    nativePennywiseClientId: xxx
+    manageClientId: xxx
+    manageSealedClientSecret: XXX
+    audience: https://app.kaytu.io
+    connection: 'Username-Password-Authentication'
+    connectionID: 'xxx'
+  apikey:
+    public: ""
+    private: ""
+    enabled: false
+  workspace:
+    name: dev-cluster
+    size: lg
+    masterAccessKey: ""
+    masterSecretKey: ""
+    chart:
+      version: 0.1.16
+    kaytuChartLocation: "./kaytu"
+    aws:
+      master-secret: "" # TODO: need comment
+      keyMap:
+        access-key: "" # TODO: need comment
+        secret-key: "" # TODO: need comment
+  frontend:
+    muiLicense: xxx
+  master:
+    accessKey: "" # echo "xxx" | base64
+    secretKey: "" # echo "xxx" | base64
+    policyARN: "xxx"
+    accountID: "xxx"
+    oidcProvider: "oidc.eks.us-east-2.amazonaws.com/id/xxx"
+    masterRoleARN: "arn:aws:iam::xxx:role/KaytuOpenSearchAdmin"
+    securityGroupID: "sg-xxx"
+    subnetID: "subnet-xxx"
+  checkup:
+    worker:
+      image:
+        repo: akscorekaytuacr.azurecr.io/checkup-worker
+        tag:
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-checkup-worker:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-checkup-worker-prod:tag"}
+  migrator:
+    worker:
+      image:
+        repo: akscorekaytuacr.azurecr.io/migrator
+        tag:
+          dev: v0.413.11-dev # {"$imagepolicy": "flux-system:kaytu-migrator-worker:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-migrator-worker-prod:tag"}
+  analytics:
+    worker:
+      image:
+        repo: akscorekaytuacr.azurecr.io/analytics-worker
+        tag:
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-analytics-worker:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-analytics-worker-prod:tag"}
+  describe:
+    scheduler:
+      image:
+        repo: akscorekaytuacr.azurecr.io/describe-scheduler
+        tag:
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-describe-scheduler:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-describe-scheduler-prod:tag"}
+    worker:
+      aws:
+        image:
+          repo: akscorekaytuacr.azurecr.io/kaytu-aws-describer
+          tag:
+            dev: local-v0.57.3 # {"$imagepolicy": "flux-system:kaytu-aws-describer:tag"}
+            prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-aws-describer-prod:tag"}
+      azure:
+        image:
+          repo: akscorekaytuacr.azurecr.io/kaytu-azure-describer
+          tag:
+            dev: local-v0.35.22 # {"$imagepolicy": "flux-system:kaytu-azure-describer:tag"}
+            prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-azure-describer-prod:tag"}
+  onboard:
+    service:
+      image:
+        repo: akscorekaytuacr.azurecr.io/onboard-service
+        tag:
+          dev: v0.413.11-dev # {"$imagepolicy": "flux-system:kaytu-onboard-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-onboard-service-prod:tag"}
+  integration:
+    service:
+      image:
+        repo: akscorekaytuacr.azurecr.io/integration
+        tag:
+          dev: v0.413.11-dev # {"$imagepolicy": "flux-system:kaytu-integration-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-integration-service-prod:tag"}
+  metadata:
+    service:
+      image:
+        repo: akscorekaytuacr.azurecr.io/metadata-service
+        tag:
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-metadata-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-metadata-service-prod:tag"}
+  inventory:
+    service:
+      image:
+        repo: akscorekaytuacr.azurecr.io/inventory-service
+        tag:
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-inventory-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-inventory-service-prod:tag"}
+  compliance:
+    service:
+      image:
+        repo: akscorekaytuacr.azurecr.io/compliance-service
+        tag:
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-service-prod:tag"}
+    summarizer:
+      image:
+        repo: akscorekaytuacr.azurecr.io/compliance-summarizer
+        tag:
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-compliance-summarizer:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-summarizer-prod:tag"}
+  complianceReport:
+    worker:
+      image:
+        repo: akscorekaytuacr.azurecr.io/compliance-report-worker
+        tag:
+          dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker-prod:tag"}
+  steampipe:
+    service:
+      image:
+        repo: akscorekaytuacr.azurecr.io/steampipe-service
+        tag:
+          dev: v0.413.11-dev # {"$imagepolicy": "flux-system:kaytu-steampipe-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-steampipe-service-prod:tag"}
+  alerting:
+    service:
+      image:
+        repo: akscorekaytuacr.azurecr.io/alerting-service
+        tag:
+          dev: v0.408.0-dev # {"$imagepolicy": "flux-system:kaytu-alerting-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-alerting-service-prod:tag"}
+  esSink:
+    service:
+      image:
+        repo: akscorekaytuacr.azurecr.io/es-sink
+        tag:
+          dev: v0.413.8-dev # {"$imagepolicy": "flux-system:es-sink-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:es-sink-service-prod:tag"}
 dex:
   config:
     issuer: "https://kaytu.app.domain/dex"
@@ -473,3 +678,24 @@ vault:
     clientSecret: ""
   keyID: "workspace-key"
 vault-helm: {}
+postgres:
+  sslMode: disable
+aws:
+  accountID: "xxx"
+  iam:
+    subscriptionServiceRoleArn: "arn:aws:iam::xxx:role/xxx"
+  firehose:
+    region: us-east-2
+    usageMetersStreamName: "xxx"
+  describer:
+    accessRoleArn: "arn:aws:iam::xxx:role/xxx"
+azure:
+  eventhubConnection: ""
+  serviceBusConnection: ""
+github:
+  token: ""
+lambda: "https://xxx.execute-api.us-east-2.amazonaws.com/dev/describer"
+storage:
+  className: ""
+flux:
+  namespace: flux-system

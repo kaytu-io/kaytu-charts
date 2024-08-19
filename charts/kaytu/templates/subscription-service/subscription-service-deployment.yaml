@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: subscription-service
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    eks.amazonaws.com/role-arn: {{ .Values.aws.iam.subscriptionServiceRoleArn }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: subscription-service-secret
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    kubernetes.io/service-account.name: subscription-service
+type: kubernetes.io/service-account-token
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscription-service
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: subscription-service
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subscription-service
+  template:
+    metadata:
+      labels:
+        app: subscription-service
+    spec:
+      serviceAccountName: subscription-service
+      containers:
+        - name: subscription-service
+          image: "{{ .Values.kaytu.docker.registry }}/subscription-service:{{- dig .Values.kaytu.envType .Values.kaytu.docker.tags.subscription.dev .Values.kaytu.docker.tags.subscription }}"
+          command: [ "/subscription-service" ]
+          imagePullPolicy: Always
+          env:
+            - name: SUBSCRIPTION_POSTGRES__HOST
+              value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
+            - name: SUBSCRIPTION_POSTGRES__PORT
+              value: "5432"
+            - name: SUBSCRIPTION_POSTGRES__DB
+              value: "subscription"
+            - name: SUBSCRIPTION_POSTGRES__USERNAME
+              value: "subscription_service"
+            - name: SUBSCRIPTION_POSTGRES__PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: subscriptionUserPassword
+            - name: SUBSCRIPTION_POSTGRES__SSLMODE
+              value: {{ .Values.postgres.sslMode }}
+            - name: SUBSCRIPTION_HTTP__ADDRESS
+              value: "0.0.0.0:8000"
+            - name: SUBSCRIPTION_WORKSPACE__BASE_URL
+              value: "http://workspace-service.{{ .Release.Namespace }}.svc.cluster.local:8351"
+            - name: SUBSCRIPTION_AUTH__BASE_URL
+              value: "http://auth-service.{{ .Release.Namespace }}.svc.cluster.local:8251"
+            - name: SUBSCRIPTION_SCHEDULER__BASE_URL
+              value: "http://describe-scheduler.%NAMESPACE%.svc.cluster.local:5251"
+            - name: SUBSCRIPTION_COMPLIANCE__BASE_URL
+              value: "http://compliance-service.%NAMESPACE%.svc.cluster.local:7251"
+            - name: SUBSCRIPTION_INVENTORY__BASE_URL
+              value: "http://inventory-service.%NAMESPACE%.svc.cluster.local:7251"
+            - name: SUBSCRIPTION_ALERTING__BASE_URL
+              value: "http://alerting-service.%NAMESPACE%.svc.cluster.local:8000"
+            - name: SUBSCRIPTION_USAGE_METERS_FIREHOSE_STREAM_NAME
+              value: {{ .Values.aws.firehose.usageMetersStreamName }}
+            - name: SUBSCRIPTION_USAGE_METERS_FIREHOSE_REGION
+              value: {{ .Values.aws.firehose.region }}

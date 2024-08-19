@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: reporter-service
+  name: compliance-service
   namespace: {{ .Release.Namespace }}
   labels:
-    app: reporter-service
+    app: compliance-service
     monitoring: kaytu
 spec:
   selector:
-    app: reporter-service
+    app: compliance-service
   ports:
-    - name: http
-      port: 9251
-      targetPort: 9251
+  - name: http
+    port: 7251
+    targetPort: 7251
   clusterIP: "None"

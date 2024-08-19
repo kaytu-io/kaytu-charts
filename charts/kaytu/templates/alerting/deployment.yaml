@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alerting-service
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: alerting-service
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alerting-service
+  template:
+    metadata:
+      labels:
+        app: alerting-service
+    spec:
+      serviceAccountName: alerting
+      containers:
+        - name: alerting-service
+          image: {{ .Values.kaytu.alerting.service.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.alerting.service.image.tag.dev .Values.kaytu.alerting.service.image.tag }}
+          command: ["/alerting-service"]
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 100m
+              memory: 500Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          env:
+            - name: POSTGRESQL_HOST
+              value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
+            - name: POSTGRESQL_PORT
+              value: "5432"
+            - name: POSTGRESQL_USERNAME
+              value: "alerting_service"
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: alertingServiceUserPassword
+            - name: POSTGRESQL_DB
+              value: "alerting"
+            - name: POSTGRESQL_SSLMODE
+              value: {{ .Values.postgres.sslMode }}
+            - name: PROMETHEUS_PUSH_ADDRESS
+              value: "prom-system-prometheus-pushgateway.prom-system.svc.cluster.local:9091"
+            - name: ONBOARD_BASE_URL
+              value: "http://onboard-service.{{ .Release.Namespace }}.svc.cluster.local:6251"
+            - name: COMPLIANCE_BASE_URL
+              value: "http://compliance-service.{{ .Release.Namespace }}.svc.cluster.local:7251"
+            - name: JAEGER_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+
+            - name: HTTP_ADDRESS
+              value: "0.0.0.0:8000"
+            - name: JAEGER_SERVICE_NAME
+              value: "alerting-service"
