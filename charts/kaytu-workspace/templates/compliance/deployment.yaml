@@ -66,11 +66,11 @@ spec:
           value: "http://{{ .Release.Namespace }}-superset.{{ .Release.Namespace }}.svc.cluster.local:8088"
         - name: SUPERSET_USERNAME
           value: "admin"
-        - name: SUPERSET_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: superset-postgres-secret
-              key: dashboard-admin-password
+        #- name: SUPERSET_PASSWORD
+        #  valueFrom:
+        #    secretKeyRef:
+        #      name: superset-postgres-secret
+        #      key: dashboard-admin-password
         - name: SUPERSET_GUESTUSERNAME
           value: "dashboard-user"
         - name: SUPERSET_GUESTFIRSTNAME

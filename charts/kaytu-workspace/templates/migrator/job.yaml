@@ -56,11 +56,11 @@ spec:
               value: "disable"
             - name: SUPERSET_BASE_URL
               value: "http://{{ .Release.Namespace }}-superset.{{ .Release.Namespace }}.svc.cluster.local:8088"
-            - name: SUPERSET_ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: superset-postgres-secret
-                  key: dashboard-admin-password
+            #- name: SUPERSET_ADMIN_PASSWORD
+            #  valueFrom:
+            #    secretKeyRef:
+            #      name: superset-postgres-secret
+            #      key: dashboard-admin-password
             - name: HTTP_ADDRESS
               value: "0.0.0.0:6251"
             - name: ANALYTICS_GIT_URL
@@ -145,15 +145,91 @@ data:
         "name": "AWS", 
         "label": "AWS Account", 
         "short_description": "AWS Account", 
-        "description": "AWS Account",
-        "auto_onboard_support": "false"
+        "description": "Get visibility into 500+ cloud assets across regions and accounts.",
+        "auto_onboard_support": false,
+        "tier": "Community",
+        "logo": "https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/aws.svg"
       },
       {
         "name": "Azure", 
         "label": "Azure Subscription", 
         "short_description": "Azure Subscription", 
-        "description": "Azure Subscription",
-        "auto_onboard_support": "true"
+        "description": "Inventory 300+ Cloud Assets across assets and Subscriptions",
+        "auto_onboard_support": true,
+        "tier": "Community",
+        "logo": "https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/azure.svg"
+      },
+      {
+        "name": "AzureAD", 
+        "label": "Microsoft EntraID (previously AzureAD)", 
+        "short_description": "Microsoft EntraID (previously AzureAD)", 
+        "description": "Discover Users, Identities, Apps, Service Accounts and 20+ others.",
+        "auto_onboard_support": false,
+        "tier": "Community",
+        "logo": "https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/entraid.svg"
+      },
+      {
+        "name": "GitHubCloud", 
+        "label": "GitHub Cloud", 
+        "short_description": "GitHub Cloud", 
+        "description": "Gain visibility into Repositories, Deployments, Repositories.",
+        "auto_onboard_support": false,
+        "tier": "Enterprise",
+        "logo": "https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/github.svg"
+      },
+      {
+        "name": "ServiceNow", 
+        "label": "ServiceNow", 
+        "short_description": "ServiceNow", 
+        "description": "With ServiceNow, connect CMDBs, Incidents, Tickets, and changes.",
+        "auto_onboard_support": false,
+        "tier": "Enterprise",
+        "logo": "https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/servicenow.svg"
+      },
+      {
+        "name": "Gitguardian", 
+        "label": "Gitguardian", 
+        "short_description": "Gitguardian", 
+        "description": "With Gitguardian, you can gain visibility to incidents and repos with secret leaks.",
+        "auto_onboard_support": false,
+        "tier": "Enterprise",
+        "logo": "https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/gitguardian.png"
+      },
+      {
+        "name": "JIRACloud", 
+        "label": "JIRA Cloud", 
+        "short_description": "JIRA Cloud", 
+        "description": "Connect to JIRA and gain visibility to tickets, projects, and 10+ more.",
+        "auto_onboard_support": false,
+        "tier": "Enterprise",
+        "logo": "https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/jira.svg"
+      },
+      {
+        "name": "GitlabCloud", 
+        "label": "Gitlab Cloud", 
+        "short_description": "Gitlab Cloud", 
+        "description": "Gain visibility into Projects, MRs, Issues, repositories and 50+ more.",
+        "auto_onboard_support": false,
+        "tier": "Enterprise",
+        "logo": "https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/gitlab.svg"
+      },
+      {
+        "name": "Cloudflare", 
+        "label": "Cloudflare", 
+        "short_description": "Cloudflare", 
+        "description": "Gain visibility in to Domains, DNS, WAFs, Firewall Rules, Workers and more.",
+        "auto_onboard_support": false,
+        "tier": "Enterprise",
+        "logo": "https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/cloudflare.svg"
+      },
+      {
+        "name": "Custom Webhook", 
+        "label": "Custom Webhook", 
+        "short_description": "Custom Webhook", 
+        "description": "Trigger events, flows, based on compliance policies & events.",
+        "auto_onboard_support": false,
+        "tier": "Enterprise",
+        "logo": "https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/webhook.svg"
       }
     ]
 

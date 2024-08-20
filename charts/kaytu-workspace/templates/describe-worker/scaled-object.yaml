@@ -12,9 +12,9 @@ spec:
   cooldownPeriod:  300
   minReplicaCount: 0
 {{- if eq (.Values.kaytu.workspace.size | toString) "lg" }}
-  maxReplicaCount: 10
+  maxReplicaCount: 20
 {{- else }}
-  maxReplicaCount: 3
+  maxReplicaCount: 20
 {{- end }}
   fallback:
     failureThreshold: 1
@@ -26,7 +26,7 @@ spec:
         account: "$G"
         stream: "kaytu_aws_describer"
         consumer: "aws-describer-service"
-        lagThreshold: "200"
+        lagThreshold: "20"
         useHttps: "false"
 ---
 apiVersion: keda.sh/v1alpha1
@@ -43,9 +43,9 @@ spec:
   cooldownPeriod:  300
   minReplicaCount: 0
 {{- if eq (.Values.kaytu.workspace.size | toString) "lg" }}
-  maxReplicaCount: 10
+  maxReplicaCount: 20
 {{- else }}
-  maxReplicaCount: 3
+  maxReplicaCount: 20
 {{- end }}
   fallback:
     failureThreshold: 1
@@ -57,5 +57,5 @@ spec:
         account: "$G"
         stream: "kaytu_azure_describer"
         consumer: "azure-describer-service"
-        lagThreshold: "200"
+        lagThreshold: "20"
         useHttps: "false"

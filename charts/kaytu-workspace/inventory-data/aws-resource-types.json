@@ -2302,6 +2302,20 @@
     "Model": "KMSKey"
   },
   {
+    "ResourceName": "AWS::KMS::KeyRotation",
+    "ResourceLabel": "Cryptographic Key Rotations",
+    "ServiceName": "KMS",
+    "ListDescriber": "ParallelDescribeRegional(describer.KMSKeyRotation)",
+    "GetDescriber": "nil",
+    "TerraformName": [
+      "aws_kms_key"
+    ],
+    "TerraformServiceName": "kms",
+    "Discovery": "FAST",
+    "SteampipeTable": "aws_kms_key_rotation",
+    "Model": "KMSKeyRotation"
+  },
+  {
     "ResourceName": "AWS::EC2::Ipam",
     "ResourceLabel": "IPAM",
     "ServiceName": "EC2.Network",
@@ -2328,6 +2342,20 @@
     "Discovery": "COMPLETE",
     "SteampipeTable": "aws_elastic_beanstalk_environment",
     "Model": "ElasticBeanstalkEnvironment"
+  },
+  {
+    "ResourceName": "AWS::ElasticBeanstalk::ApplicationVersion",
+    "ResourceLabel": "Application Version",
+    "ServiceName": "ElasticBeanstalk",
+    "ListDescriber": "ParallelDescribeRegional(describer.ElasticBeanstalkApplicationVersion)",
+    "GetDescriber": "nil",
+    "TerraformName": [
+      "aws_elastic_beanstalk_application_version"
+    ],
+    "TerraformServiceName": "elasticbeanstalk",
+    "Discovery": "COMPLETE",
+    "SteampipeTable": "aws_elastic_beanstalk_application_version",
+    "Model": "ElasticBeanstalkApplicationVersion"
   },
   {
     "ResourceName": "AWS::Lambda::FunctionVersion",
@@ -2761,6 +2789,20 @@
     "Discovery": "COMPLETE",
     "SteampipeTable": "aws_rds_db_event_subscription",
     "Model": "RDSDBEventSubscription"
+  },
+  {
+    "ResourceName": "AWS::RDS::DBEngineVersion",
+    "ResourceLabel": "Engine Version",
+    "ServiceName": "RDS",
+    "ListDescriber": "ParallelDescribeRegional(describer.RDSDBEngineVersion)",
+    "GetDescriber": "nil",
+    "TerraformName": [
+      "aws_rds_db_engine_version"
+    ],
+    "TerraformServiceName": "rds",
+    "Discovery": "COMPLETE",
+    "SteampipeTable": "aws_rds_db_engine_version",
+    "Model": "RDSDBEngineVersion"
   },
   {
     "ResourceName": "AWS::EC2::RegionalSettings",
@@ -3299,6 +3341,27 @@
     "Model": "ECRRegistry"
   },
   {
+    "ResourceName": "AWS::ECR::RegistryScanningConfiguration",
+    "ResourceLabel": "Container Registry Scanning Configuration",
+    "Tags": {
+      "category": [
+        "Containers"
+      ],
+      "logo_uri": [
+      ]
+    },
+    "ServiceName": "ECR",
+    "ListDescriber": "ParallelDescribeRegional(describer.ECRRegistryScanningConfiguration)",
+    "GetDescriber": "nil",
+    "TerraformName": [
+      "aws_ecr_registry_scanning_configuration"
+    ],
+    "TerraformServiceName": "ecr",
+    "Discovery": "FAST",
+    "SteampipeTable": "aws_ecr_registry_scanning_configuration",
+    "Model": "ECRRegistryScanningConfiguration"
+  },
+  {
     "ResourceName": "AWS::ElasticLoadBalancingV2::Listener",
     "ResourceLabel": "Load Balancer Listener",
     "ServiceName": "ElasticLoadBalancing",
@@ -3630,6 +3693,28 @@
     "Model": "DocDBCluster"
   },
   {
+    "ResourceName": "AWS::DocDB::ClusterSnapshot",
+    "ResourceLabel": "Document DB Cluster Snapshots",
+    "Tags": {
+      "category": [
+        "Database"
+      ],
+      "logo_uri": [
+        "https://raw.githubusercontent.com/kaytu-io/awsicons/master/svg-export/icons/DocumentDb.svg"
+      ]
+    },
+    "ServiceName": "DocDB",
+    "ListDescriber": "ParallelDescribeRegional(describer.DocDBClusterSnapshot)",
+    "GetDescriber": "nil",
+    "TerraformName": [
+      "aws_docdb_cluster_snapshot"
+    ],
+    "TerraformServiceName": "docdb",
+    "Discovery": "COMPLETE",
+    "SteampipeTable": "aws_docdb_cluster_snapshot",
+    "Model": "DocDBClusterSnapshot"
+  },
+  {
     "ResourceName": "AWS::DocDB::ClusterInstance",
     "ResourceLabel": "Document DB Cluster Instance",
     "ServiceName": "DocDB",
@@ -3840,6 +3925,20 @@
     "Model": "NeptuneDatabaseCluster"
   },
   {
+    "ResourceName": "AWS::Neptune::DBClusterSnapshot",
+    "ResourceLabel": "Neptune Cluster Snapshot",
+    "ServiceName": "Neptune",
+    "ListDescriber": "ParallelDescribeRegional(describer.NeptuneDatabaseClusterSnapshot)",
+    "GetDescriber": "nil",
+    "TerraformName": [
+      "aws_neptune_cluster_snapshot"
+    ],
+    "TerraformServiceName": "",
+    "Discovery": "COMPLETE",
+    "SteampipeTable": "aws_neptune_db_cluster_snapshot",
+    "Model": "NeptuneDatabaseClusterSnapshot"
+  },
+  {
     "ResourceName": "AWS::NetworkFirewall::FirewallPolicy",
     "ResourceLabel": "Network Firewall Policy",
     "ServiceName": "network-firewall",
@@ -3982,6 +4081,18 @@
     "Discovery": "COMPLETE",
     "SteampipeTable": "aws_rds_db_subnet_group",
     "Model": "RDSDBSubnetGroup"
+  },
+  {
+    "ResourceName": "AWS::RDS::DBRecommendation",
+    "ResourceLabel": "RDS DB Recommendation",
+    "ServiceName": "RDS",
+    "ListDescriber": "ParallelDescribeRegional(describer.RDSDBRecommendation)",
+    "GetDescriber": "nil",
+    "TerraformName": null,
+    "TerraformServiceName": "",
+    "Discovery": "COMPLETE",
+    "SteampipeTable": "aws_rds_db_recommendation",
+    "Model": "RDSDBRecommendation"
   },
   {
     "ResourceName": "AWS::Redshift::EventSubscription",
@@ -5040,6 +5151,34 @@
     "Model": "DMSReplicationInstance"
   },
   {
+    "ResourceName": "AWS::DMS::Endpoint",
+    "ResourceLabel": "DMS Endpoint",
+    "ServiceName": "DMS",
+    "ListDescriber": "ParallelDescribeRegional(describer.DMSEndpoint)",
+    "GetDescriber": "nil",
+    "TerraformName": [
+      "aws_dms_endpoint"
+    ],
+    "TerraformServiceName": "dms",
+    "Discovery": "COMPLETE",
+    "SteampipeTable": "aws_dms_endpoint",
+    "Model": "DMSEndpoint"
+  },
+  {
+    "ResourceName": "AWS::DMS::ReplicationTask",
+    "ResourceLabel": "Replication Task",
+    "ServiceName": "DMS",
+    "ListDescriber": "ParallelDescribeRegional(describer.DMSReplicationTask)",
+    "GetDescriber": "nil",
+    "TerraformName": [
+      "aws_dms_replication_task"
+    ],
+    "TerraformServiceName": "dms",
+    "Discovery": "COMPLETE",
+    "SteampipeTable": "aws_dms_replication_task",
+    "Model": "DMSReplicationTask"
+  },
+  {
     "ResourceName": "AWS::DynamoDb::Table",
     "ResourceLabel": "DynamoDB Tables",
     "Tags": {
@@ -5650,6 +5789,18 @@
     "Discovery": "COMPLETE",
     "SteampipeTable": "aws_servicequotas_service_quota_change_request",
     "Model": "ServiceQuotasServiceQuotaChangeRequest"
+  },
+  {
+    "ResourceName": "AWS::ServiceQuotas::Service",
+    "ResourceLabel": "Service Quota Service",
+    "ServiceName": "ServiceQuotas",
+    "ListDescriber": "ParallelDescribeRegional(describer.ServiceQuotasService)",
+    "GetDescriber": null,
+    "TerraformName": null,
+    "TerraformServiceName": "",
+    "Discovery": "COMPLETE",
+    "SteampipeTable": "aws_servicequotas_service",
+    "Model": "ServiceQuotasService"
   },
   {
     "ResourceName": "AWS::EC2::VPCEndpointService",
