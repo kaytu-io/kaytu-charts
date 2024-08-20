@@ -31,6 +31,7 @@ spec:
         - data
         - sentry-trace
         - baggage
+        - prefer
         - x-kaytu-demo
       exposeHeaders:
         - Content-Length
@@ -41,9 +42,16 @@ spec:
       namespace: {{ .Release.Namespace }}
   routes:
     - conditions:
-        - prefix: /kaytu/auth
+        - prefix: /dex
       timeoutPolicy:
         response: 60s
+      services:
+        - name: {{ .Release.Namespace }}-dex
+          port: 5556
+      authPolicy:
+        disabled: true
+    - conditions:
+        - prefix: /kaytu/auth
       services:
         - name: auth-service
           port: 8251
@@ -62,26 +70,6 @@ spec:
         replacePrefix:
           - prefix: /kaytu/workspace
             replacement: /
-    - conditions:
-        - prefix: /kaytu/subscription
-      timeoutPolicy:
-        response: 60s
-      services:
-        - name: subscription-service
-          port: 8000
-      pathRewritePolicy:
-        replacePrefix:
-          - prefix: /kaytu/subscription
-            replacement: /
-      authPolicy:
-        disabled: true
-    - conditions:
-        - prefix: /dex
-      timeoutPolicy:
-        response: 60s
-      services:
-        - name: {{ .Release.Namespace }}-dex
-          port: 5556
       authPolicy:
         disabled: true
     - conditions:
@@ -97,9 +85,6 @@ spec:
             replacement: /
     - conditions:
         - prefix: /
-        - header:
-            name: "X-Kaytu-Demo"
-            notpresent: true
       timeoutPolicy:
         response: 60s
       services:
