@@ -7,7 +7,7 @@ metadata:
     app: describe-scheduler
 spec:
   minReadySeconds: 10
-  replicas: {{ .Values.kaytu.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
       app: describe-scheduler
@@ -91,7 +91,7 @@ spec:
         - name: MUST_SUMMARIZE_INTERVAL_HOURS
           value: "4"
         - name: WORKSPACE_BASE_URL
-          value: "http://workspace-service.{{ .Values.kaytu.octopus.namespace }}.svc.cluster.local:8351"
+          value: "http://workspace-service.{{ .Release.Namespace }}.svc.cluster.local:8351"
         - name: INVENTORY_BASE_URL
           value: "http://inventory-service.{{ .Release.Namespace }}.svc.cluster.local:7251"
         - name: METADATA_BASE_URL
@@ -103,7 +103,7 @@ spec:
         - name: ESSINK_BASEURL
           value: "http://es-sink-service.{{ .Release.Namespace }}.svc.cluster.local:8000"
         - name: AUTH_GRPC_URI
-          value: "auth-service.{{ .Values.kaytu.octopus.namespace }}.svc.cluster.local:50051"
+          value: "auth-service.{{ .Release.Namespace }}.svc.cluster.local:50051"
 {{- include "elastic.envs" . | indent 8 }}
         - name: LAMBDA_FUNCS_BASE_URL
           value: "{{ .Values.lambda }}"

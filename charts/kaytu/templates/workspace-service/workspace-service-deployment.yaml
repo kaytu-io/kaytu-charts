@@ -105,7 +105,7 @@ spec:
             - name: WORKSPACE_VAULT__AZURE__CLIENT_SECRET
               value: {{ .Values.kaytu.vault.azure.clientSecret }}
             - name: WORKSPACE_VAULT__HASHICORP__ADDRESS
-              value: "http://kaytu-workspace-vault-internal.kaytu-workspace.svc.cluster.local:8200"
+              value: "http://{{ .Release.Namespace }}-vault-internal.{{ .Release.Namespace }}.svc.cluster.local:8200"
             - name: WORKSPACE_VAULT__KEY_ID
               value: {{ .Values.kaytu.vault.keyID }}
 

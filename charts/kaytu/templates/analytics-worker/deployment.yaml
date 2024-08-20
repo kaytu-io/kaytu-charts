@@ -107,4 +107,4 @@ spec:
             - name: ESSINK_BASEURL
               value: "http://es-sink-service.{{ .Release.Namespace }}.svc.cluster.local:8000"
             - name: PENNYWISE_BASE_URL
-              value: "http://pennywise-server-service.kaytu-octopus.svc.cluster.local:8080"
+              value: "http://pennywise-server-service.{{ .Release.Namespace }}.svc.cluster.local:8080"

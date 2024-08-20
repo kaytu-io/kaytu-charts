@@ -35,7 +35,7 @@ spec:
             - name: ESSINK_GRPC__ADDRESS
               value: "0.0.0.0:5252"
             - name: ESSINK_GRPC__AUTH_URI
-              value: "auth-service.{{ .Values.kaytu.octopus.namespace }}.svc.cluster.local:50051"
+              value: "auth-service.{{ .Release.Namespace }}.svc.cluster.local:50051"
 
             - name: ESSINK_ELASTICSEARCH__ADDRESS
               value: "https://opensearch-cluster-master.{{ .Release.Namespace }}.svc.cluster.local:9200"

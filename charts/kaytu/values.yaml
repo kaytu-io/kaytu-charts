@@ -1,4 +1,5 @@
 kaytu:
+  replicaCount: 1
   ssl:
     enabled: false
   envType: dev
@@ -93,6 +94,19 @@ kaytu:
     masterRoleARN: "arn:aws:iam::xxx:role/KaytuOpenSearchAdmin"
     securityGroupID: "sg-xxx"
     subnetID: "subnet-xxx"
+  vault:
+    provider: hashicorp-vault
+    aws:
+      region: us-east-2
+      roleArn: "arn:aws:iam::xxx:role/xxx"
+      accessKey: ""
+      secretKey: ""
+    azure:
+      baseUrl: "https://xxx.vault.azure.net"
+      tenantId: "xxx"
+      clientId: "xxx"
+      clientSecret: "xxx"
+    keyID: "workspace-creds"
   checkup:
     worker:
       image:
@@ -248,7 +262,7 @@ dex:
     storage:
       type: postgres
       config:
-        host: kaytu-octopus-postgresql-primary.kaytu-octopus.svc.cluster.local # TODO: Fix namespace name
+        host: kaytu-postgresql-primary.kaytu.svc.cluster.local # TODO: Fix namespace name
         port: 5432
         database: dex
         user: dex_service

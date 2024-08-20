@@ -82,7 +82,212 @@ kaytu:
     masterRoleARN: "arn:aws:iam::xxx:role/KaytuOpenSearchAdmin"
     securityGroupID: "sg-xxx"
     subnetID: "subnet-xxx"
+  vault:
+    provider: hashicorp-vault
+    aws:
+      region: us-east-2
+      roleArn: "arn:aws:iam::xxx:role/xxx"
+      accessKey: ""
+      secretKey: ""
+    azure:
+      baseUrl: "https://xxx.vault.azure.net"
+      tenantId: "xxx"
+      clientId: "xxx"
+      clientSecret: "xxx"
+    keyID: "workspace-creds"
+dex:
+  config:
+    issuer: "https://kaytu.app.domain/dex"
+    staticClients:
+      - id: public-client
+        name: 'Public Client'
+        redirectURIs:
+          - 'https://kaytu.app.domain/callback'
+          - 'http://localhost:3000/callback'
+        public: true
+      - id: private-client
+        name: 'Private Client'
+        redirectURIs:
+          - 'https://kaytu.app.domain/callback'
+        secret: "secret" # client secret
+    staticPasswords:
+      - email: "admin@example.com"
+        hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
+        username: "admin"
+        userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
+    enablePasswordDB: true
+    connectors:
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: "clientID" # client ID from github
+          clientSecret: "clientSecret" # client Secret from github
+          redirectURI: 'https://kaytu.app.domain/dex/callback'
+          loadAllGroups: false
+          useLoginAsID: false
+    expiry:
+      deviceRequests: "5m"
+      signingKeys: "6h"
+      idTokens: "24h"
+      refreshTokens:
+        reuseInterval: "3s"
+        validIfNotUsedFor: "2160h" # 90 days
+        absoluteLifetime: "3960h" # 165 days
+    logger:
+      level: "debug"
+      format: "text" # can also be "json"
+    storage:
+      type: postgres
+      config:
+        host: kaytu-octopus-postgresql-primary.kaytu-octopus.svc.cluster.local # TODO: Fix namespace name
+        port: 5432
+        database: dex
+        user: dex_service
+        password: "password"
+        ssl:
+          mode: "disable"
+    oauth2:
+      passwordConnector: local
+postgres:
+  sslMode: disable
+postgresql:
+  architecture: replication
+  readReplicas:
+    replicaCount: 1
+  image:
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 14
+    pullPolicy: Always
+    debug: false
+  global:
+    postgresql:
+      auth:
+        postgresPassword: "postgres"
+  primary:
+    persistence:
+      size: 10Gi
+    initdb:
+      user: "postgres"
+      password: "postgres"
+      scripts:
+        primary_init_script.sh: |
+          #!/bin/bash
+          set -e
 
+          dt=$(date '+%d/%m/%Y %H:%M:%S');
+          echo "$dt - Running init script the 1st time Primary PostgreSql container is created...";
+
+          pennywiseDatabaseName="pennywise"
+          pennywiseUserName="pennywise_service"
+
+          workspaceDatabaseName="workspace"
+          workspaceUserName="workspace_service"
+
+          authDatabaseName="auth"
+          authUserName="auth_service"
+
+          subscriptionDatabaseName="subscription"
+          subscriptionUserName="subscription_service"
+
+          informationDatabaseName="information"
+          informationUserName="information_service"
+
+          dexDatabaseName="dex"
+          dexUserName="dex_service"
+
+          echo "$dt - Running: psql -v ON_ERROR_STOP=1 --username postgres --dbname postgres ...";
+
+          PGPASSWORD="postgres" psql -v ON_ERROR_STOP=1 --username "postgres" --dbname "postgres" <<-EOSQL
+
+          CREATE DATABASE $workspaceDatabaseName;
+          CREATE USER $workspaceUserName WITH PASSWORD '$POSTGRES_WORKSPACE_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$workspaceDatabaseName" to $workspaceUserName;
+
+          \c "$workspaceDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+          CREATE DATABASE $authDatabaseName;
+          CREATE USER $authUserName WITH PASSWORD '$POSTGRES_AUTH_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$authDatabaseName" to $authUserName;
+
+          \c "$authDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+          CREATE DATABASE $subscriptionDatabaseName;
+          CREATE USER $subscriptionUserName WITH PASSWORD '$POSTGRES_SUBSCRIPTION_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$subscriptionDatabaseName" to $subscriptionUserName;
+
+          \c "$subscriptionDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          
+          CREATE DATABASE $pennywiseDatabaseName;
+          CREATE USER $pennywiseUserName WITH PASSWORD '$POSTGRES_PENNYWISE_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$pennywiseDatabaseName" to $pennywiseUserName;
+            
+          \c "$pennywiseDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+          CREATE DATABASE $informationDatabaseName;
+          CREATE USER $informationUserName WITH PASSWORD '$POSTGRES_INFORMATION_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$informationDatabaseName" to $informationUserName;
+
+          \c "$informationDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+          CREATE DATABASE $dexDatabaseName;
+          CREATE USER $dexUserName WITH PASSWORD '$DEX_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$dexDatabaseName" to $dexUserName;
+
+          \c "$dexDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          
+          EOSQL
+
+          echo "$dt - Init script is completed";
+    resources:
+      limits:
+        memory: '1Gi'
+        cpu: '1'
+      requests:
+        memory: '1Gi'
+        cpu: '100m'
+    # These passwords are random generated
+    # Do not change them
+    # You can get the passwords running:
+    #`kubectl get secret postgres-secret -n <namespace-name> -o json | jq -r '.data.<key>' | base64 --decode`
+    extraEnvVars:
+      - name: POSTGRES_WORKSPACE_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: workspaceServiceUserPassword
+      - name: POSTGRES_AUTH_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: authServiceUserPassword
+      - name: POSTGRES_SUBSCRIPTION_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: subscriptionUserPassword
+      - name: POSTGRES_PENNYWISE_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: pennywiseUserPassword
+      - name: POSTGRES_INFORMATION_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: informationUserPassword
+      - name: DEX_DB_PASSWORD
+        value: "password" # TODO: should be random generated. should be same as dex.storage.config.password
+redis:
+  replicaCount: 1
+  name: redis
 flux:
   namespace: flux-system
 aws:
@@ -91,3 +296,16 @@ aws:
   firehose:
     region: us-east-2
     usageMetersStreamName: "xxx"
+tls:
+  sealedTlsCrt: XXX
+  sealedTlsKey: XXX
+azure:
+  aks:
+    premiumStorageClassName: "managed-csi-premium"
+  eventhubConnection: ""
+  serviceBusConnection: ""
+github:
+  token: ""
+storage:
+  className: ""
+vault-helm: {}

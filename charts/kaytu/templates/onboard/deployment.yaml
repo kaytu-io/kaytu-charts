@@ -7,7 +7,7 @@ metadata:
     app: onboard-service
 spec:
   minReadySeconds: 10
-  replicas: {{ .Values.kaytu.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
       app: onboard-service
