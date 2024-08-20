@@ -192,7 +192,7 @@ data:
       {"key": "azure_discovery_required_only", "type": "bool", "value": "true"},
       {"key": "asset_discovery_enabled", "type": "bool", "value": "true"},
       {"key": "spend_discovery_enabled", "type": "bool", "value": "true"},
-      {"key": "customization_enabled", "type": "bool", "value": "false"}
+      {"key": "customization_enabled", "type": "bool", "value": "true"}
     ]
 
   chat_prompt.txt: |
