@@ -729,4 +729,4 @@ flux:
   namespace: flux-system
 
 keda:
-  enabled: false
+  enabled: true
