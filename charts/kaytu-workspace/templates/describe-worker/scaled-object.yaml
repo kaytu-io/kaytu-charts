@@ -4,6 +4,8 @@ kind: ScaledObject
 metadata:
   name: kaytu-aws-describer-scaled-object
   namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -31,6 +33,8 @@ kind: ScaledObject
 metadata:
   name: kaytu-azure-describer-scaled-object
   namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
