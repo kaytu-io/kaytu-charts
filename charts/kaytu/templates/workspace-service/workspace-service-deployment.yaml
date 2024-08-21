@@ -112,7 +112,16 @@ spec:
 
             - name: WORKSPACE_AWS_MASTER_POLICY_ARN
               value: "{{ .Values.kaytu.master.policyARN }}"
-
+            - name: WORKSPACE_AWS_MASTER_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.kaytu.workspace.aws.master-secret }}
+                  key: {{ .Values.kaytu.workspace.aws.keyMap.access-key }}
+            - name: WORKSPACE_AWS_MASTER_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.kaytu.workspace.aws.master-secret }}
+                  key: {{ .Values.kaytu.workspace.aws.keyMap.secret-key }}
             - name: WORKSPACE_OPEN_SEARCH_REGION
               value: "us-east-2"
             - name: WORKSPACE_AWS_ACCOUNT_ID
