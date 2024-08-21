@@ -7,7 +7,11 @@ metadata:
     app: checkup-worker
 spec:
   minReadySeconds: 10
+  {{- if eq .Values.keda.enabled }}
   replicas: 0
+  {{- else }}
+  replicas: 1
+  {{- end }}
   selector:
     matchLabels:
       app: checkup-worker
@@ -17,19 +21,6 @@ spec:
         app: checkup-worker
     spec:
       serviceAccountName: checkup-worker
-#      tolerations:
-#        - key: "kaytu.io/worker"
-#          operator: "Exists"
-#          effect: "NoSchedule"
-#      affinity:
-#        nodeAffinity:
-#          requiredDuringSchedulingIgnoredDuringExecution:
-#            nodeSelectorTerms:
-#              - matchExpressions:
-#                  - key: kaytu.io/node-type
-#                    operator: In
-#                    values:
-#                      - worker
       containers:
         - name: checkup-worker
           image: "{{ .Values.kaytu.checkup.worker.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.checkup.worker.image.tag.dev .Values.kaytu.checkup.worker.image.tag }}"

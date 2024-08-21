@@ -724,3 +724,5 @@ storage:
   className: ""
 flux:
   namespace: flux-system
+keda:
+  enabled: true

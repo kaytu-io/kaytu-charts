@@ -7,7 +7,11 @@ metadata:
     app: analytics-worker
 spec:
   minReadySeconds: 10
+  {{- if eq .Values.keda.enabled }}
   replicas: 0
+  {{- else }}
+  replicas: 1
+  {{- end }}
   selector:
     matchLabels:
       app: analytics-worker
@@ -19,19 +23,6 @@ spec:
         app: analytics-worker
     spec:
       serviceAccountName: analytics-worker
-#      tolerations:
-#        - key: "kaytu.io/worker"
-#          operator: "Exists"
-#          effect: "NoSchedule"
-#      affinity:
-#        nodeAffinity:
-#          requiredDuringSchedulingIgnoredDuringExecution:
-#            nodeSelectorTerms:
-#              - matchExpressions:
-#                  - key: kaytu.io/node-type
-#                    operator: In
-#                    values:
-#                      - worker
       containers:
         - name: analytics-worker
           image: "{{ .Values.kaytu.analytics.worker.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.analytics.worker.image.tag.dev .Values.kaytu.analytics.worker.image.tag }}"
