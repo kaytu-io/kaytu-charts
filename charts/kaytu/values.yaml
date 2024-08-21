@@ -272,6 +272,7 @@ dex:
     oauth2:
       passwordConnector: local
 postgresql:
+  enable: false
   architecture: replication
   readReplicas:
     replicaCount: 1
@@ -622,6 +623,7 @@ postgresql:
             name: postgres-secret
             key: alertingServiceUserPassword
 opensearch:
+  enable: false
   clusterName: opensearch-cluster
   persistence:
     size: 50Gi
@@ -637,6 +639,7 @@ opensearch:
     - name: AWS_REGION
       value: "us-east-2"
 opensearch-dashboards:
+  enable: false
   replicaCount: 1
   resources:
     requests:
@@ -724,5 +727,7 @@ storage:
   className: ""
 flux:
   namespace: flux-system
+
 keda:
-  enabled: true
+  enabled: false
+
