@@ -1,0 +1,56 @@
+{{- if eq .Values.keda.enabled }}
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: kaytu-aws-describer-scaled-object
+  namespace: {{ .Release.Namespace }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kaytu-aws-describer
+  pollingInterval: 30
+  cooldownPeriod:  300
+  minReplicaCount: 0
+  maxReplicaCount: 20
+  fallback:
+    failureThreshold: 1
+    replicas: 1
+  triggers:
+    - type: nats-jetstream
+      metadata:
+        natsServerMonitoringEndpoint: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}-headless.{{ .Release.Namespace }}.svc.cluster.local:8222"
+        account: "$G"
+        stream: "kaytu_aws_describer"
+        consumer: "aws-describer-service"
+        lagThreshold: "20"
+        useHttps: "false"
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: kaytu-azure-describer-scaled-object
+  namespace: {{ .Release.Namespace }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kaytu-azure-describer
+  pollingInterval: 30
+  cooldownPeriod:  300
+  minReplicaCount: 0
+  maxReplicaCount: 20
+  fallback:
+    failureThreshold: 1
+    replicas: 1
+  triggers:
+    - type: nats-jetstream
+      metadata:
+        natsServerMonitoringEndpoint: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}-headless.{{ .Release.Namespace }}.svc.cluster.local:8222"
+        account: "$G"
+        stream: "kaytu_azure_describer"
+        consumer: "azure-describer-service"
+        lagThreshold: "20"
+        useHttps: "false"
+---
+{{- end }}

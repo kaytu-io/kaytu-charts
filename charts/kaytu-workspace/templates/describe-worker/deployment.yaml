@@ -7,7 +7,11 @@ metadata:
     app: kaytu-aws-describer
 spec:
   minReadySeconds: 10
+  {{- if eq .Values.keda.enabled }}
   replicas: 0
+  {{- else }}
+  replicas: 10
+  {{- end }}
   selector:
     matchLabels:
       app: kaytu-aws-describer
@@ -42,7 +46,11 @@ metadata:
     app: kaytu-azure-describer
 spec:
   minReadySeconds: 10
+  {{- if eq .Values.keda.enabled }}
   replicas: 0
+  {{- else }}
+  replicas: 10
+  {{- end }}
   selector:
     matchLabels:
       app: kaytu-azure-describer
