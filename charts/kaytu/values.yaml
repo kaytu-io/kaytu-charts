@@ -730,4 +730,3 @@ flux:
 
 keda:
   enabled: false
-
