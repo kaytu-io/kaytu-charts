@@ -27,7 +27,7 @@ kaytu:
     privateRegistry: akscorekaytuprivateacr.azurecr.io
     tags:
       auth:
-        dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
+        dev: v0.413.14-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-auth-service-prod:tag"}
       workspace:
         dev: v0.407.13-dev
@@ -414,6 +414,7 @@ postgresql:
 
           \c $describeDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
 
           CREATE DATABASE $onboardDatabaseName;
           CREATE USER $onboardUserName WITH PASSWORD '$POSTGRES_ONBOARD_DB_PASSWORD';
@@ -421,6 +422,7 @@ postgresql:
 
           \c $onboardDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
 
           CREATE DATABASE $policyDatabaseName;
           CREATE USER $policyUserName WITH PASSWORD '$POSTGRES_POLICY_DB_PASSWORD';
@@ -428,6 +430,7 @@ postgresql:
 
           \c $policyDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
 
           CREATE DATABASE $inventoryDatabaseName ;
           CREATE USER $inventoryUserName WITH PASSWORD '$POSTGRES_INVENTORY_DB_PASSWORD';
@@ -435,6 +438,7 @@ postgresql:
 
           \c $inventoryDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
 
           CREATE DATABASE $assistantDatabaseName ;
           CREATE USER $assistantUserName WITH PASSWORD '$POSTGRES_ASSISTANT_DB_PASSWORD';
@@ -442,6 +446,7 @@ postgresql:
 
           \c $assistantDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
 
           CREATE DATABASE $complianceDatabaseName ;
           CREATE USER $complianceUserName WITH PASSWORD '$POSTGRES_COMPLIANCE_DB_PASSWORD';
@@ -449,6 +454,7 @@ postgresql:
 
           \c $complianceDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
 
           CREATE DATABASE $authDatabaseName;
           CREATE USER $authUserName WITH PASSWORD '$POSTGRES_AUTH_DB_PASSWORD';
@@ -456,6 +462,7 @@ postgresql:
 
           \c "$authDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
 
           CREATE DATABASE $metadataDatabaseName;
           CREATE USER $metadataUserName WITH PASSWORD '$POSTGRES_METADATA_DB_PASSWORD';
@@ -463,6 +470,7 @@ postgresql:
 
           \c "$metadataDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
 
           CREATE DATABASE $reporterDatabaseName;
           CREATE USER $reporterUserName WITH PASSWORD '$POSTGRES_REPORTER_DB_PASSWORD';
@@ -470,6 +478,7 @@ postgresql:
 
           \c "$reporterDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
 
           CREATE DATABASE $alertingDatabaseName;
           CREATE USER $alertingUserName WITH PASSWORD '$POSTGRES_ALERTING_DB_PASSWORD';
@@ -477,6 +486,7 @@ postgresql:
 
           \c "$alertingDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
 
           CREATE DATABASE $migratorDatabaseName;
           CREATE USER $migratorUserName WITH PASSWORD '$POSTGRES_MIGRATOR_DB_PASSWORD';
@@ -484,6 +494,7 @@ postgresql:
 
           \c "$migratorDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
 
           CREATE USER $steampipeUserName WITH PASSWORD '$POSTGRES_STEAMPIPE_USER_PASSWORD';
 

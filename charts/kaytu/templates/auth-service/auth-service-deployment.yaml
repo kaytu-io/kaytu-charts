@@ -78,17 +78,9 @@ spec:
             - name: KAYTU_KEY_ENABLED
               value: "{{ .Values.kaytu.apikey.enabled }}"
             - name: KAYTU_PUBLIC_KEY
-              # openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048
-              # openssl rsa -pubout -in private_key.pem -out public_key.pem
-              valueFrom:
-                secretKeyRef:
-                  key: public
-                  name: kaytu-private
+              value: "{{ .Values.kaytu.apikey.public }}"
             - name: KAYTU_PRIVATE_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: private
-                  name: kaytu-private
+              value: "{{ .Values.kaytu.apikey.private }}"
             - name: GRPC_TLS_CERT_PATH
               value: /etc/certs/tls.crt
             - name: GRPC_TLS_KEY_PATH
@@ -97,12 +89,3 @@ spec:
               value: /etc/certs/ca.crt
             - name: WORKSPACE_BASE_URL
               value: "http://workspace-service.{{ .Release.Namespace }}.svc.cluster.local:8351"
-          volumeMounts:
-            - mountPath: /etc/certs
-              name: tls-certs
-              readOnly: true
-      volumes:
-        - name: tls-certs
-          secret:
-            secretName: auth-service-tls
-            optional: false
