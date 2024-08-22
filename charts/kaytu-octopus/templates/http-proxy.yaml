@@ -73,17 +73,6 @@ spec:
       authPolicy:
         disabled: true
     - conditions:
-        - prefix: /docs/api/1.0
-      services:
-        - name: redoc
-          port: 8080
-      authPolicy:
-        disabled: true
-      pathRewritePolicy:
-        replacePrefix:
-          - prefix: /docs/api/1.0
-            replacement: /
-    - conditions:
         - prefix: /
       timeoutPolicy:
         response: 60s
