@@ -70,8 +70,6 @@ spec:
         replacePrefix:
           - prefix: /kaytu/workspace
             replacement: /
-      authPolicy:
-        disabled: true
     - conditions:
         - prefix: /
       timeoutPolicy:
