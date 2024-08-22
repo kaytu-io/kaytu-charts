@@ -15,35 +15,20 @@ kaytu:
     blog: blog.domain
     pennywise: pennywise.domain
   docker:
-    registry: akscorekaytuacr.azurecr.io
+    registry: ghcr.io/kaytu-io
     privateRegistry: akscorekaytuprivateacr.azurecr.io
     tags:
       auth:
-        dev: v0.413.7-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
+        dev: v0.413.22-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-auth-service-prod:tag"}
       workspace:
-        dev: v0.407.13-dev
+        dev: v0.413.22-dev
         prod: v0.345.2-prod
       frontendv2:
-        dev: v0.39.27-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
+        dev: v0.39.32-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
         prod: v0.37.6-prod # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service-prod:tag"}
-      website:
-        dev: v0.8.24-prod # {"$imagepolicy": "flux-system:kaytu-website-v2-prod:tag"}
-        prod: v0.8.24-prod # {"$imagepolicy": "flux-system:kaytu-website-v2-prod:tag"}
-      area51:
-        dev: v0.8.23-dev # {"$imagepolicy": "flux-system:kaytu-website-v2:tag"}
-        prod: v0.8.23-dev # {"$imagepolicy": "flux-system:kaytu-website-v2:tag"}
-      swagger:
-        dev: v0.413.10-dev # {"$imagepolicy": "flux-system:kaytu-swagger-service:tag"}
-        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-swagger-service-prod:tag"}
-      redoc:
-        dev: v0.413.10-dev # {"$imagepolicy": "flux-system:kaytu-redoc-service:tag"}
-        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-redoc-service-prod:tag"}
-      docs:
-        dev: v0.6.30-dev # {"$imagepolicy": "flux-system:kaytu-docs:tag"}
-        prod: v0.6.27-prod # {"$imagepolicy": "flux-system:kaytu-docs-prod:tag"}
       pennywise:
-        dev: v0.4.19-dev # {"$imagepolicy": "flux-system:pennywise-server:tag"}
+        dev: v0.4.20-dev # {"$imagepolicy": "flux-system:pennywise-server:tag"}
         prod: v0.3.17-prod # {"$imagepolicy": "flux-system:pennywise-server-prod:tag"}
   auth0:
     domain: kaytu.us.auth0.com
