@@ -1,5 +1,5 @@
 {{- $privateClientSecret := (randAlpha 16) | b64enc | quote }}
-{{- $storageSecretPassword := (randAlpha 16) }}
+{{- $storageSecretPassword := (randAlpha 16) | b64enc | quote }}
 
 {{- $secret := (lookup "v1" "Secret" .Release.Namespace "dex-secret") }}
 {{- if $secret }}
@@ -14,7 +14,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
 data:
   privateClientSecret: {{ $privateClientSecret }}
-  dexStorageUserPassword: {{ $storageSecretPassword | b64enc }}
+  dexStorageUserPassword: {{ $storageSecretPassword }}
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -82,7 +82,7 @@ spec:
           port: 5432
           database: dex
           user: dex_service
-          password: {{ $storageSecretPassword }}
+          password: {{ $storageSecretPassword | b64dec }}
           ssl:
             mode: "disable"
       oauth2:
