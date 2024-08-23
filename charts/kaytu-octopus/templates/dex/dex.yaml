@@ -1,5 +1,5 @@
 {{- $privateClientSecret := (randAlpha 16) | b64enc | quote }}
-{{- $storageSecretPassword := (randAlpha 16) | b64enc | quote }}
+{{- $storageSecretPassword := (randAlpha 16) | b64enc }}
 
 {{- $secret := (lookup "v1" "Secret" .Release.Namespace "dex-secret") }}
 {{- if $secret }}
