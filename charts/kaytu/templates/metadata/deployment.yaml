@@ -31,9 +31,9 @@ spec:
             memory: 100Mi
         env:
         - name: POSTGRESQL_HOST
-          value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
+          value: "{{ include "postgres.endpoint" . }}"
         - name: POSTGRESQL_PORT
-          value: "5432"
+          value: "{{ include "postgres.port" . }}"
         - name: POSTGRESQL_DB
           value: "metadata"
         - name: POSTGRESQL_USERNAME
@@ -44,7 +44,7 @@ spec:
               name: postgres-secret
               key: metadataServiceUserPassword
         - name: POSTGRESQL_SSLMODE
-          value: {{ .Values.postgres.sslMode }}
+          value: "{{ include "postgres.sslMode" . }}"
         - name: HTTP_ADDRESS
           value: "0.0.0.0:6251"
 

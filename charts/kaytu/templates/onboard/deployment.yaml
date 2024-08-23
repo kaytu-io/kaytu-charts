@@ -42,9 +42,9 @@ spec:
           value: "steampipe"
 
         - name: ONBOARD_POSTGRES__HOST
-          value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
+          value: "{{ include "postgres.endpoint" . }}"
         - name: ONBOARD_POSTGRES__PORT
-          value: "5432"
+          value: "{{ include "postgres.port" . }}"
         - name: ONBOARD_POSTGRES__DB
           value: "onboard"
         - name: ONBOARD_POSTGRES__USERNAME
@@ -55,7 +55,7 @@ spec:
               name: postgres-secret
               key: onboardServiceUserPassword
         - name: ONBOARD_POSTGRES__SSLMODE
-          value: {{ .Values.postgres.sslMode }}
+          value: "{{ include "postgres.sslMode" . }}"
         - name: ONBOARD_HTTP__ADDRESS
           value: "0.0.0.0:6251"
         - name: ONBOARD_INVENTORY__BASE_URL

@@ -34,12 +34,12 @@ data:
       addresses = []
       username = ""
       password = ""
-      pg_host = "{{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local"
-      pg_port = "5432"
+      pg_host = "{{ include "postgres.endpoint" . }}"
+      pg_port = "{{ include "postgres.port" . }}"
       pg_user = "steampipe_user"
       pg_password = ""
       pg_database = "onboard"
-      pg_ssl_mode = "{{ .Values.postgres.sslMode }}"
+      pg_ssl_mode = "{{ include "postgres.sslMode" . }}"
       pennywise_baseurl = "http://pennywise-server-service.{{ .Release.Namespace }}.svc.cluster.local:8080"
       compliance_service_baseurl = "http://compliance-service.{{ .Release.Namespace }}.svc.cluster.local:7251"
     }

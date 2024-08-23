@@ -44,9 +44,9 @@ spec:
             - name: WORKSPACE_ENV_TYPE
               value: {{ .Values.kaytu.envType }}
             - name: WORKSPACE_POSTGRES__HOST
-              value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
+              value: "{{ include "postgres.endpoint" . }}"
             - name: WORKSPACE_POSTGRES__PORT
-              value: "5432"
+              value: "{{ include "postgres.port" . }}"
             - name: WORKSPACE_POSTGRES__DB
               value: "workspace"
             - name: WORKSPACE_POSTGRES__USERNAME
@@ -57,7 +57,7 @@ spec:
                   name: postgres-secret
                   key: workspaceServiceUserPassword
             - name: WORKSPACE_POSTGRES_SSL_MODE
-              value: {{ .Values.postgres.sslMode }}
+              value: "{{ include "postgres.sslMode" . }}"
             - name: WORKSPACE_HTTP__ADDRESS
               value: "0.0.0.0:8351"
             - name: WORKSPACE_DOMAIN_SUFFIX

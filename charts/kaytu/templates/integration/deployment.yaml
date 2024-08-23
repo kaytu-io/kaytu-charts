@@ -31,9 +31,9 @@ spec:
             memory: 100Mi
         env:
         - name: INTEGRATION_POSTGRES__HOST
-          value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
+          value: "{{ include "postgres.endpoint" . }}"
         - name: INTEGRATION_POSTGRES__PORT
-          value: "5432"
+          value: "{{ include "postgres.port" . }}"
         - name: INTEGRATION_POSTGRES__DB
           value: "onboard"
         - name: INTEGRATION_POSTGRES__USERNAME
@@ -44,7 +44,7 @@ spec:
               name: postgres-secret
               key: onboardServiceUserPassword
         - name: INTEGRATION_POSTGRES__SSLMODE
-          value: {{ .Values.postgres.sslMode }}
+          value: "{{ include "postgres.sslMode" . }}"
         - name: INTEGRATION_HTTP__ADDRESS
           value: "0.0.0.0:8000"
         - name: INTEGRATION_INVENTORY__BASE_URL

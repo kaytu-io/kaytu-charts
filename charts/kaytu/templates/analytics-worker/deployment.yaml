@@ -48,9 +48,9 @@ spec:
             - name: STEAMPIPE_UPDATE_CHECK
               value: "false"
             - name: POSTGRESQL_HOST
-              value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
+              value: "{{ include "postgres.endpoint" . }}"
             - name: POSTGRESQL_PORT
-              value: "5432"
+              value: "{{ include "postgres.port" . }}"
             - name: POSTGRESQL_USERNAME
               value: "inventory_service"
             - name: POSTGRESQL_PASSWORD
@@ -61,12 +61,12 @@ spec:
             - name: POSTGRESQL_DB
               value: "inventory"
             - name: POSTGRESQL_SSLMODE
-              value: "{{ .Values.postgres.sslMode }}"
+              value: "{{ include "postgres.sslMode" . }}"
 
             - name: STEAMPIPE_HOST
-              value: "{{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local"
+              value: "{{ include "postgres.endpoint" . }}"
             - name: STEAMPIPE_PORT
-              value: "5432"
+              value: "{{ include "postgres.port" . }}"
             - name: STEAMPIPE_USERNAME
               value: "steampipe_user"
             - name: STEAMPIPE_PASSWORD

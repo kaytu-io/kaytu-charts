@@ -28,9 +28,9 @@ spec:
           env:
 {{- include "elastic.envs" . | indent 12 }}
             - name: POSTGRESQL_HOST
-              value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
+              value: "{{ include "postgres.endpoint" . }}"
             - name: POSTGRESQL_PORT
-              value: "5432"
+              value: "{{ include "postgres.port" . }}"
             - name: POSTGRESQL_DB
               value: "migrator"
             - name: POSTGRESQL_USERNAME
@@ -41,7 +41,7 @@ spec:
                   name: postgres-secret
                   key: migratorServiceUserPassword
             - name: POSTGRESQL_SSLMODE
-              value: {{ .Values.postgres.sslMode }}
+              value: "{{ include "postgres.sslMode" . }}"
             - name: STEAMPIPE_HOST
               value: steampipe-service.{{ .Release.Namespace }}.svc.cluster.local
             - name: STEAMPIPE_PORT

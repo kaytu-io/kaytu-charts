@@ -29,9 +29,9 @@ spec:
               memory: 100Mi
           env:
             - name: POSTGRES_HOST
-              value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
+              value: "{{ include "postgres.endpoint" . }}"
             - name: POSTGRES_PORT
-              value: "5432"
+              value: "{{ include "postgres.port" . }}"
             - name: POSTGRES_DB
               value: "pennywise"
             - name: POSTGRES_USERNAME

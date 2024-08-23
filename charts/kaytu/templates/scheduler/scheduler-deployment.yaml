@@ -40,9 +40,9 @@ spec:
         - name: GRPC_ADDRESS
           value: "0.0.0.0:5252"
         - name: POSTGRESQL_HOST
-          value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
+          value: "{{ include "postgres.endpoint" . }}"
         - name: POSTGRESQL_PORT
-          value: "5432"
+          value: "{{ include "postgres.port" . }}"
         - name: POSTGRESQL_DB
           value: "describe"
         - name: POSTGRESQL_USERNAME
@@ -53,7 +53,7 @@ spec:
               name: postgres-secret
               key: describeSchedulerUserPassword
         - name: POSTGRESQL_SSLMODE
-          value: {{ .Values.postgres.sslMode }}
+          value: "{{ include "postgres.sslMode" . }}"
         - name: SCHEDULER_ID
           valueFrom:
             fieldRef:
