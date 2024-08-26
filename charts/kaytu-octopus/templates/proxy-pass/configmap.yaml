@@ -6,7 +6,11 @@ metadata:
 data:
   nginx.conf: |
     events {}
+    error_log  /var/log/nginx/error.log  error;
+    error_log  /dev/stderr  error;
     http {
+      access_log  /var/log/nginx/access.log  main;
+      access_log  /dev/stdout  main;
       server {
         listen 80;
 
