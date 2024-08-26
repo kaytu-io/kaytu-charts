@@ -9,7 +9,6 @@ data:
     http {
       server {
         listen 80;
-
         location / {
           proxy_pass https://contour-envoy.contour-system.svc.cluster.local:443;
           proxy_ssl_verify off;
