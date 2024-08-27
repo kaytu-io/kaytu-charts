@@ -146,9 +146,7 @@ data:
       "name":"AWS",
       "label":"Amazon Web Services (AWS)",
       "tier":"Community",
-      "tags":[
-         "Public Cloud"
-      ],
+      "tags": { "usage": ["Public Cloud"] },
       "auto_onboard_support":true,
       "short_description":"Get visibility into 500+ cloud assets across regions and accounts.",
       "description":"Get visibility into 500+ cloud assets across regions and accounts.",
@@ -159,9 +157,7 @@ data:
       "name":"Azure",
       "label":"Microsoft Azure",
       "tier":"Community",
-      "tags":[
-         "Public Cloud"
-      ],
+      "tags": { "usage": ["Public Cloud"] },
       "auto_onboard_support":true,
       "short_description":"Inventory 300+ Cloud Assets across assets and Subscriptions",
       "description":"Inventory 300+ Cloud Assets across assets and Subscriptions",
@@ -172,9 +168,7 @@ data:
       "name":"EntraID",
       "label":"Microsoft EntraID (previously AzureAD)",
       "tier":"Community",
-      "tags":[
-         "Identity Providers"
-      ],
+      "tags": { "usage": ["Identity Providers"] },
       "auto_onboard_support":true,
       "short_description":"Discover Users, Identities, Apps, Service Accounts and 20+ others.",
       "description":"Discover Users, Identities, Apps, Service Accounts and 20+ others.",
@@ -185,9 +179,7 @@ data:
       "name":"GCP",
       "label":"Google Cloud (GCP)",
       "tier":"Enterprise",
-      "tags":[
-         "Public Cloud"
-      ],
+      "tags": { "usage": ["Public Cloud"] },
       "auto_onboard_support":true,
       "short_description":"Get visibility into 100+ cloud assets across projects.",
       "description":"Get visibility into 100+ cloud assets across projects.",
@@ -198,9 +190,7 @@ data:
       "name":"GitHubCloud",
       "label":"GitHub Cloud",
       "tier":"Enterprise",
-      "tags":[
-         "DevOps", "Code Security"
-      ],
+      "tags": { "usage": ["DevOps", "Code Security"] },
       "auto_onboard_support":true,
       "short_description":"Gain visibility into Repositories, Deployments, PRs and more.",
       "description":"Gain visibility into Repositories, Deployments, PRs and more.",
@@ -211,9 +201,7 @@ data:
       "name":"GitLabCloud",
       "label":"Gitlab Cloud",
       "tier":"Enterprise",
-      "tags":[
-         "DevOps", "Code Security"
-      ],
+      "tags": { "usage": ["DevOps", "Code Security"] },
       "auto_onboard_support":true,
       "short_description":"Gain visibility into Projects, MRs, Issues, repositories and 50+ more",
       "description":"Gain visibility into Projects, MRs, Issues, repositories and 50+ more",
@@ -224,9 +212,7 @@ data:
       "name":"Gitguardian",
       "label":"Gitguardian",
       "tier":"Enterprise",
-      "tags":[
-         "Code Security"
-      ],
+      "tags": { "usage": ["Code Security"] },
       "auto_onboard_support":false,
       "short_description":"With Gitguardian, you can gain visibility to incidents and repos with secret leaks",
       "description":"With Gitguardian, you can gain visibility to incidents and repos with secret leaks",
@@ -237,9 +223,7 @@ data:
       "name":"JIRACloud",
       "label":"JIRA Cloud",
       "tier":"Enterprise",
-      "tags":[
-         "General"
-      ],
+      "tags": { "usage": ["General"] },
       "auto_onboard_support":false,
       "short_description":"Connect to JIRA and gain visibility to tickets, projects, and 10+ more",
       "description":"Connect to JIRA and gain visibility to tickets, projects, and 10+ more",
@@ -250,9 +234,7 @@ data:
       "name":"ServiceNow",
       "label":"ServiceNow",
       "tier":"Enterprise",
-      "tags":[
-         "General"
-      ],
+      "tags": { "usage": ["General"] },
       "auto_onboard_support":true,
       "short_description":"With ServiceNow, connect CMDBs, Incidents, Tickets, and changes",
       "description":"With ServiceNow, connect CMDBs, Incidents, Tickets, and changes",
@@ -263,9 +245,7 @@ data:
       "name":"Cloudflare",
       "label":"Cloudflare",
       "tier":"Enterprise",
-      "tags":[
-         "Web Security"
-      ],
+      "tags": { "usage": ["Web Security"] },
       "auto_onboard_support":true,
       "short_description":"Gain visibility in to Domains, DNS, WAFs, Firewall Rules, Workers and more.",
       "description":"Gain visibility in to Domains, DNS, WAFs, Firewall Rules, Workers and more.",
@@ -276,9 +256,7 @@ data:
       "name":"DatadogInfraMonitoring",
       "label":"Datadog Infrastructure Monitoring",
       "tier":"Enterprise",
-      "tags":[
-         "Monitoring"
-      ],
+      "tags": { "usage": ["Monitoring"] },
       "auto_onboard_support":false,
       "short_description":"Discover Hosts, VMs, Networks, Tanzu Kubernetes Grid and More",
       "description":"Discover Hosts, VMs, Networks, Tanzu Kubernetes Grid and More",
@@ -289,9 +267,7 @@ data:
       "name":"PrismaCloud",
       "label":"Palo Alto (Prisma) Cloud Security",
       "tier":"Enterprise",
-      "tags":[
-         "Cloud Security"
-      ],
+      "tags": { "usage": ["Cloud Security"] },
       "auto_onboard_support":false,
       "short_description":"Track Cloud security issues.",
       "description":"Track Cloud security issues.",
@@ -302,9 +278,7 @@ data:
       "name":"AnsibleTower",
       "label":"Ansible Tower",
       "tier":"Enterprise",
-      "tags":[
-         "General"
-      ],
+      "tags": { "usage": ["General"] },
       "auto_onboard_support":false,
       "short_description":"Discover Inventory, Playbooks, Jobs and more.",
       "description":"Discover Inventory, Playbooks, Jobs and more.",
@@ -315,9 +289,7 @@ data:
       "name":"ChainguardDev",
       "label":"chainguard.dev",
       "tier":"Enterprise",
-      "tags":[
-         "Containers"
-      ],
+      "tags": { "usage": ["Containers"] },
       "auto_onboard_support":false,
       "short_description":"Inventory Registries, Vulnerabilities, and reports.",
       "description":"Inventory Registries, Vulnerabilities, and reports.",
@@ -328,9 +300,7 @@ data:
       "name":"Snyk",
       "label":"Snyk",
       "tier":"Enterprise",
-      "tags":[
-         "Code Security", "Application Security", "Containers"
-      ],
+      "tags": { "usage": ["Code Security", "Application Security", "Containers"] },
       "auto_onboard_support":true,
       "short_description":"Gain visibility into Snyk's SAST & SCA capabilities.",
       "description":"Gain visibility into Snyk's SAST & SCA capabilities.",
@@ -341,9 +311,7 @@ data:
       "name":"Okta",
       "label":"Okta",
       "tier":"Enterprise",
-      "tags":[
-         "Identity Providers", "Identity Security"
-      ],
+      "tags": { "usage": ["Identity Providers", "Identity Security"] },
       "auto_onboard_support":true,
       "short_description":"Discover Okta Users & Identities.",
       "description":"Discover Okta Users & Identities.",
@@ -354,9 +322,7 @@ data:
       "name":"SonatypeNexus",
       "label":"Sonatype Nexus Repository",
       "tier":"Enterprise",
-      "tags":[
-         "Code Security"
-      ],
+      "tags": { "usage": ["Code Security"] },
       "auto_onboard_support":false,
       "short_description":"Discover binaries and build artifacts across your software supply chain.",
       "description":"Discover binaries and build artifacts across your software supply chain.",
@@ -367,9 +333,7 @@ data:
       "name":"CustomWebhook",
       "label":"Custom Webhook",
       "tier":"Enterprise",
-      "tags":[
-         "General"
-      ],
+      "tags": { "usage": ["General"] },
       "auto_onboard_support":false,
       "short_description":"Trigger events, flows, based on compliance policies & events.",
       "description":"Trigger events, flows, based on compliance policies & events.",
@@ -380,9 +344,7 @@ data:
       "name":"Checkmarx",
       "label":"Checkmarx",
       "tier":"Enterprise",
-      "tags":[
-         "Application Security"
-      ],
+      "tags": { "usage": ["Application Security"] },
       "auto_onboard_support":false,
       "short_description":"Track DAST Scan Results, Projects, Risks and more",
       "description":"Track DAST Scan Results, Projects, Risks and more",
@@ -393,9 +355,7 @@ data:
       "name":"AzureDevOps",
       "label":"Azure DevOps Cloud",
       "tier":"Enterprise",
-      "tags":[
-         "DevOps"
-      ],
+      "tags": { "usage": ["DevOps"] },
       "auto_onboard_support":true,
       "short_description":"Discover Projects, Repositories, Issues, Deployment Artifacts, Merge Requests and more",
       "description":"Discover Projects, Repositories, Issues, Deployment Artifacts, Merge Requests and more",
@@ -406,9 +366,7 @@ data:
       "name":"BlackduckSCA",
       "label":"Blackduck SCA",
       "tier":"Enterprise",
-      "tags":[
-         "Code Security"
-      ],
+      "tags": { "usage": ["Code Security"] },
       "auto_onboard_support":false,
       "short_description":"Track security, quality, and license compliance risks from projects.",
       "description":"Track security, quality, and license compliance risks from projects.",
@@ -419,9 +377,7 @@ data:
       "name":"CrowdStrikeFalcon",
       "label":"CrowdStrike Falcon",
       "tier":"Enterprise",
-      "tags":[
-         "Endpoint Security"
-      ],
+      "tags": { "usage": ["Endpoint Security"] },
       "auto_onboard_support":false,
       "short_description":"Tracks Hosts, devices, and associated vulnerabilities",
       "description":"Tracks Hosts, devices, and associated vulnerabilities",
@@ -432,9 +388,7 @@ data:
       "name":"DefenderEndpoints",
       "label":"Microsoft Defender for Endpoints",
       "tier":"Enterprise",
-      "tags":[
-         "Endpoint Security"
-      ],
+      "tags": { "usage": ["Endpoint Security"] },
       "auto_onboard_support":false,
       "short_description":"Inventory devices, alerts, scores, alerts, and more",
       "description":"Inventory devices, alerts, scores, alerts, and more",
@@ -445,9 +399,7 @@ data:
       "name":"MicrosoftIntune",
       "label":"Microsoft Intune (MDM)",
       "tier":"Enterprise",
-      "tags":[
-         "Device Management"
-      ],
+      "tags": { "usage": ["Device Management"] },
       "auto_onboard_support":false,
       "short_description":"Track devices, policies, protection status and more.",
       "description":"Track devices, policies, protection status and more.",
@@ -458,9 +410,7 @@ data:
       "name":"InvictiEnterprise",
       "label":"invicti Enterprise",
       "tier":"Enterprise",
-      "tags":[
-         "Web Security"
-      ],
+      "tags": { "usage": ["Web Security"] },
       "auto_onboard_support":false,
       "short_description":"Invicti Cloud API integration discovers agents, accounts, issues, scans and vulnerabilities.",
       "description":"Invicti Cloud API integration discovers agents, accounts, issues, scans and vulnerabilities.",
@@ -471,9 +421,7 @@ data:
       "name":"VMWarePrivateCloud",
       "label":"VMWare Private Cloud (vSphere)",
       "tier":"Enterprise",
-      "tags":[
-         "General"
-      ],
+      "tags": { "usage": ["General"] },
       "auto_onboard_support":false,
       "short_description":"Discover Hosts, VMs, Networks, Tanzu Kubernetes Grid and More",
       "description":"Discover Hosts, VMs, Networks, Tanzu Kubernetes Grid and More",
@@ -484,9 +432,7 @@ data:
       "name":"Rubrik",
       "label":"Rubrik",
       "tier":"Enterprise",
-      "tags":[
-         "Data Security"
-      ],
+      "tags": { "usage": ["Data Security"] },
       "auto_onboard_support":false,
       "short_description":"Discover protects Hosts, Clusters, and Databases",
       "description":"Discover protects Hosts, Clusters, and Databases",
@@ -618,9 +564,7 @@ data:
          "name":"Wiz",
          "label":"Wiz.io",
          "tier":"Enterprise",
-         "tags":[
-            "Cloud Security"
-         ],
+         "tags": { "usage": ["Cloud Security"] },
          "auto_onboard_support":false,
          "short_description":"Cloud Events, Alerts, and others",
          "description":"Cloud Events, Alerts, and others",
@@ -631,9 +575,7 @@ data:
          "name":"Snowflake",
          "label":"Snowflake",
          "tier":"Enterprise",
-         "tags":[
-            "Data Clouds"
-         ],
+         "tags": { "usage": ["Data Clouds"] },
          "auto_onboard_support":false,
          "short_description":"Discover Databases, Tables, and more",
          "description":"Discover Databases, Tables, and more",
@@ -644,9 +586,7 @@ data:
          "name":"IntruderIO",
          "label":"intruder.io",
          "tier":"Enterprise",
-         "tags":[
-            "Web Security", "Application Security"
-         ],
+         "tags": { "usage": ["Web Security", "Application Security"] },
          "auto_onboard_support":false,
          "short_description":"Discover Vulnerabilities for network",
          "description":"Discover Vulnerabilities for network",
@@ -657,9 +597,7 @@ data:
          "name":"CobaltIO",
          "label":"Cobalt.io",
          "tier":"Enterprise",
-         "tags":[
-            "Web Security"
-         ],
+         "tags": { "usage": ["Web Security"] },
          "auto_onboard_support":false,
          "short_description":"See Assets, Findings, Scans, and Events",
          "description":"See Assets, Findings, Scans, and Events",
@@ -670,9 +608,7 @@ data:
          "name":"AppDynamicsSaaS",
          "label":"Cisco AppDynamics (SaaS)",
          "tier":"Enterprise",
-         "tags":[
-            "Monitoring", "DevOps"
-         ],
+         "tags": { "usage": ["Monitoring", "DevOps"] },
          "auto_onboard_support":false,
          "short_description":"Inventory, Apps, nodes, Tiers, Health Rules and more",
          "description":"Inventory, Apps, nodes, Tiers, Health Rules and more",
@@ -683,9 +619,7 @@ data:
          "name":"CiscoDuo",
          "label":"Cisco Duo",
          "tier":"Enterprise",
-         "tags":[
-            "Identity Providers", "Identity Security"
-         ],
+         "tags": { "usage": ["Identity Providers", "Identity Security"] },
          "auto_onboard_support":false,
          "short_description":"Track MFA, Identities, Policies and more",
          "description":"Track MFA, Identities, Policies and more",
@@ -696,9 +630,7 @@ data:
          "name":"CiscoMeraki",
          "label":"Cisco Meraki",
          "tier":"Enterprise",
-         "tags":[
-            "Network Management"
-         ],
+         "tags": { "usage": ["Network Management"] },
          "auto_onboard_support":false,
          "short_description":"Inventory Networks, Gateways, Radios, and more",
          "description":"Inventory Networks, Gateways, Radios, and more",
@@ -709,9 +641,7 @@ data:
          "name":"Jamf",
          "label":"Jamf",
          "tier":"Enterprise",
-         "tags":[
-            "Device Management"
-         ],
+         "tags": { "usage": ["Device Management"] },
          "auto_onboard_support":false,
          "short_description":"See Devices, Configurations, Policies, and more",
          "description":"See Devices, Configurations, Policies, and more",
@@ -722,9 +652,7 @@ data:
          "name":"CyberArkPAM",
          "label":"CyberArk Privileged Access Manager",
          "tier":"Enterprise",
-         "tags":[
-            "Identity Security"
-         ],
+         "tags": { "usage": ["Identity Security"] },
          "auto_onboard_support":false,
          "short_description":"Inventory accounts, systems, requests, and sessions.",
          "description":"Inventory accounts, systems, requests, and sessions.",
@@ -735,9 +663,7 @@ data:
          "name":"SonarQube",
          "label":"SonarQube",
          "tier":"Enterprise",
-         "tags":[
-            "Code Security"
-         ],
+         "tags": { "usage": ["Code Security"] },
          "auto_onboard_support":false,
          "short_description":"Discover applications, Issuess, code repos",
          "description":"Discover applications, Issuess, code repos",
@@ -748,9 +674,7 @@ data:
          "name":"CarbonBlackXDR",
          "label":"Carbon Black Cloud EDR",
          "tier":"Enterprise",
-         "tags":[
-            "Endpoint Security"
-         ],
+         "tags": { "usage": ["Endpoint Security"] },
          "auto_onboard_support":false,
          "short_description":"Track Threat Reports, Fees, and Alerts",
          "description":"Track Threat Reports, Fees, and Alerts",
