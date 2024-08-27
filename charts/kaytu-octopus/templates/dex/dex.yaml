@@ -55,9 +55,7 @@ spec:
           username: "admin"
           userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
       enablePasswordDB: true
-{{- with .Values.kaytu.dex.connectors }}
-{{- toYaml . | nindent 6 }}
-{{- end }}
+      connectors: {{ .Values.kaytu.dex.connectors | toYaml | nindent 8 }}
       expiry:
         deviceRequests: "5m"
         signingKeys: "6h"
