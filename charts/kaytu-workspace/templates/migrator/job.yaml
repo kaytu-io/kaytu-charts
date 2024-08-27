@@ -444,9 +444,7 @@ data:
       "name": "CommVault",
       "label": "CommVault",
       "tier": "Enterprise",
-      "tags": [
-         "Data Security"
-      ],
+      "tags": { "usage": ["Data Security"] },
       "auto_onboard_support": false,
       "short_description": "Track Protected/goverances Databases, File Shares, and more.",
       "description": "Track Protected/goverances Databases, File Shares, and more.",
@@ -471,9 +469,7 @@ data:
       "name": "Veracode",
       "label": "Veracode",
       "tier": "Enterprise",
-      "tags": [
-         "Code Security"
-      ],
+      "tags": { "usage": ["Code Security"] },
       "auto_onboard_support": false,
       "short_description": "Inventory goverend repos, scans, findings and more.",
       "description": "Inventory goverend repos, scans, findings and more.",
@@ -484,9 +480,7 @@ data:
       "name": "SplunkES",
       "label": "Splunk Enterprise Security",
       "tier": "Enterprise",
-      "tags": [
-         "Cloud Security"
-      ],
+      "tags": { "usage": ["Cloud Security"] },
       "auto_onboard_support": false,
       "short_description": "With Splunk Enterprise API, get insights in to workloads, apps, and threats.",
       "description": "With Splunk Enterprise API, get insights in to workloads, apps, and threats.",
@@ -497,9 +491,7 @@ data:
       "name": "MicrosoftSentinel",
       "label": "Microsoft Sentinel",
       "tier": "Enterprise",
-      "tags": [
-         "SIEM"
-      ],
+      "tags": { "usage": ["SIEM"] },
       "auto_onboard_support": false,
       "short_description": "Discover Alert, Incidents, Entities, and more",
       "description": "Discover Alert, Incidents, Entities, and more",
@@ -510,9 +502,7 @@ data:
       "name": "Godaddy",
       "label": "Godaddy",
       "tier": "Enterprise",
-      "tags": [
-         "General"
-      ],
+      "tags": { "usage": ["General"] },
       "auto_onboard_support": false,
       "short_description": "Discover Certificates, domains, status more",
       "description": "Discover Certificates, domains, status more",
@@ -523,9 +513,7 @@ data:
       "name": "Rapid7InsightIDR",
       "label": "Rapid7 InsightIDR (SIEM)",
       "tier": "Enterprise",
-      "tags": [
-         "SIEM"
-      ],
+      "tags": { "usage": ["SIEM"] },
       "auto_onboard_support": false,
       "short_description": "Discover assets, alerts, assets, configuration",
       "description": "Discover assets, alerts, assets, configuration",
