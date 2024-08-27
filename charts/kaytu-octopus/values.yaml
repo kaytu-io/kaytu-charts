@@ -44,10 +44,16 @@ kaytu:
     serviceName: dex
     publicClientId: public-client
     privateClientId: private-client
-    connectors:
-      github:
-        clientID: xxx
-        clientSecret: xxx
+    connectors: []
+#      - type: github
+#        id: github
+#        name: GitHub
+#        config:
+#          clientID: xxx
+#          clientSecret: xxx
+#          redirectURI: 'https://kaytu.domain/dex/callback'
+#          loadAllGroups: false
+#          useLoginAsID: false
   apikey:
     public: ""
     private: ""

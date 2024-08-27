@@ -55,16 +55,9 @@ spec:
           username: "admin"
           userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
       enablePasswordDB: true
-      connectors:
-        - type: github
-          id: github
-          name: GitHub
-          config:
-            clientID: {{ .Values.kaytu.dex.connectors.github.clientID }}
-            clientSecret: {{ .Values.kaytu.dex.connectors.github.clientSecret }}
-            redirectURI: 'https://{{ .Values.kaytu.domain.main }}/dex/callback'
-            loadAllGroups: false
-            useLoginAsID: false
+{{- with .Values.kaytu.dex.connectors }}
+{{- toYaml . | nindent 6 }}
+{{- end }}
       expiry:
         deviceRequests: "5m"
         signingKeys: "6h"
