@@ -34,7 +34,11 @@ spec:
       version: 0.18.0
   values:
     config:
+{{- if eq .Values.kaytu.dex.issuer "" }}
       issuer: "http://{{ .Release.Namespace }}-{{ .Values.kaytu.dex.serviceName }}.{{ .Release.Namespace }}.svc.cluster.local:5556/dex"
+{{- else }}
+      issuer: "{{ .Values.kaytu.dex.issuer }}"
+{{- end }}
       staticClients:
         - id: {{ .Values.kaytu.dex.publicClientId}}
           name: 'Public Client'

@@ -44,6 +44,7 @@ kaytu:
     serviceName: dex
     publicClientId: public-client
     privateClientId: private-client
+    issuer: ""
     connectors: []
 #      - type: github
 #        id: github
