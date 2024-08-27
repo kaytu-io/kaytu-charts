@@ -80,7 +80,7 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/integration
         tag:
-          dev: v0.416.2-dev # {"$imagepolicy": "flux-system:kaytu-integration-service:tag"}
+          dev: v0.416.3-dev # {"$imagepolicy": "flux-system:kaytu-integration-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-integration-service-prod:tag"}
   metadata:
     service:
