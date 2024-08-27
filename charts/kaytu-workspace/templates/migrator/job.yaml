@@ -455,10 +455,10 @@ data:
       "name": "BitBucketCloud",
       "label": "BitBucket Cloud",
       "tier": "Enterprise",
-      "tags": [
+      "tags": { "usage": [
          "DevOps",
          "Other"
-      ],
+      ]},
       "auto_onboard_support": false,
       "short_description": "Discover Code Repos, Pipelines, Runners, Pull requests and more",
       "description": "Discover Code Repos, Pipelines, Runners, Pull requests and more",
@@ -524,10 +524,10 @@ data:
       "name": "DatadogCloudSIEM",
       "label": "Datadog Cloud SIEM",
       "tier": "Enterprise",
-      "tags": [
+      "tags": {"usage": [
          "Cloud Security",
          "SIEM"
-      ],
+      ]},
       "auto_onboard_support": false,
       "short_description": "Discover security threats in cloud environments.",
       "description": "Discover security threats in cloud environments.",
@@ -538,10 +538,10 @@ data:
       "name": "GoogleWorkspaces",
       "label": "Google Workspaces",
       "tier": "Enterprise",
-      "tags": [
+      "tags": {"usage": [
          "Identity Providers",
          "Identity Security"
-      ],
+      ]},
       "auto_onboard_support": false,
       "short_description": "Inventory and govern Identities, Users, and Groups",
       "description": "Inventory and govern Identities, Users, and Groups",

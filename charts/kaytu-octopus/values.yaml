@@ -54,7 +54,7 @@ kaytu:
     enabled: false
   workspace:
     chart:
-      version: 0.1.23
+      version: 0.1.24
     kaytuChartLocation: "./kaytu"
   frontend:
     muiLicense: xxx
