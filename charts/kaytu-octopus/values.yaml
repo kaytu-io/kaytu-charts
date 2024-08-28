@@ -19,10 +19,10 @@ kaytu:
     privateRegistry: akscorekaytuprivateacr.azurecr.io
     tags:
       auth:
-        dev: v0.416.8-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
+        dev: v0.416.10-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-auth-service-prod:tag"}
       workspace:
-        dev: v0.416.8-dev
+        dev: v0.416.10-dev
         prod: v0.345.2-prod
       frontendv2:
         dev: v0.39.37-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
@@ -61,7 +61,7 @@ kaytu:
     enabled: false
   workspace:
     chart:
-      version: 0.1.30
+      version: 0.1.31
     kaytuChartLocation: "./kaytu"
   frontend:
     muiLicense: xxx
