@@ -1,7 +1,7 @@
 {{- $privateClientSecret := (randAlpha 16) | b64enc | quote }}
 {{- $storageSecretPassword := (randAlpha 16) | b64enc }}
-{{- $staticPasswords := .Values.kaytu.dex.staticPasswords | toYaml | nindent 8 }}
-{{- $connectors := .Values.kaytu.dex.connectors | toYaml | nindent 8 }}
+{{- $staticPasswords := .Values.kaytu.dex.staticPasswords }}
+{{- $connectors := .Values.kaytu.dex.connectors }}
 
 {{- $secret := (lookup "v1" "Secret" .Release.Namespace "dex-secret") }}
 {{- if $secret }}
@@ -11,12 +11,12 @@
 
 {{- $connectorsSecret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.connectorsFromSecret) }}
 {{- if and (ne $connectorsSecret nil) (ne $connectorsSecret.data nil) }}
-{{- $connectors = index $connectorsSecret.data "connectors" | b64dec | fromYaml | toYaml | nindent 8 }}
+{{- $connectors = index $connectorsSecret.data "connectors" | b64dec }}
 {{- end -}}
 
 {{- $staticPassSecret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.staticPasswordsFromSecret) }}
 {{- if and (ne $staticPassSecret nil) (ne $staticPassSecret.data nil) }}
-{{- $staticPasswords = index $staticPassSecret.data "staticPasswords" | b64dec | fromYaml | toYaml | nindent 8 }}
+{{- $staticPasswords = index $staticPassSecret.data "staticPasswords" | b64dec }}
 {{- end -}}
 
 apiVersion: v1
@@ -65,9 +65,9 @@ spec:
           redirectURIs:
             - 'https://{{ .Values.kaytu.domain.main }}/callback'
           secret: {{ $privateClientSecret}}
-      staticPasswords: {{ $staticPasswords }}
+      staticPasswords: {{ $staticPasswords | toYaml | nindent 8 }}
       enablePasswordDB: {{ .Values.kaytu.dex.enablePasswordDB }}
-      connectors: {{ $connectors }}
+      connectors: {{ $connectors | toYaml | nindent 8 }}
       expiry:
         deviceRequests: "5m"
         signingKeys: "6h"
