@@ -39,7 +39,7 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/migrator
         tag:
-          dev: v0.418.0-dev # {"$imagepolicy": "flux-system:kaytu-migrator-worker:tag"}
+          dev: v0.418.5-dev # {"$imagepolicy": "flux-system:kaytu-migrator-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-migrator-worker-prod:tag"}
   analytics:
     worker:
@@ -53,7 +53,7 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/describe-scheduler
         tag:
-          dev: v0.418.0-dev # {"$imagepolicy": "flux-system:kaytu-describe-scheduler:tag"}
+          dev: v0.418.5-dev # {"$imagepolicy": "flux-system:kaytu-describe-scheduler:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-describe-scheduler-prod:tag"}
     worker:
       aws:
@@ -73,14 +73,14 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/onboard-service
         tag:
-          dev: v0.417.1-dev # {"$imagepolicy": "flux-system:kaytu-onboard-service:tag"}
+          dev: v0.418.5-dev # {"$imagepolicy": "flux-system:kaytu-onboard-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-onboard-service-prod:tag"}
   integration:
     service:
       image:
         repo: ghcr.io/kaytu-io/integration
         tag:
-          dev: v0.417.1-dev # {"$imagepolicy": "flux-system:kaytu-integration-service:tag"}
+          dev: v0.418.5-dev # {"$imagepolicy": "flux-system:kaytu-integration-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-integration-service-prod:tag"}
   metadata:
     service:
@@ -94,20 +94,20 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/inventory-service
         tag:
-          dev: v0.418.0-dev # {"$imagepolicy": "flux-system:kaytu-inventory-service:tag"}
+          dev: v0.418.5-dev # {"$imagepolicy": "flux-system:kaytu-inventory-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-inventory-service-prod:tag"}
   compliance:
     service:
       image:
         repo: ghcr.io/kaytu-io/compliance-service
         tag:
-          dev: v0.417.0-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
+          dev: v0.418.5-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-service-prod:tag"}
     summarizer:
       image:
         repo: ghcr.io/kaytu-io/compliance-summarizer
         tag:
-          dev: v0.417.0-dev # {"$imagepolicy": "flux-system:kaytu-compliance-summarizer:tag"}
+          dev: v0.418.5-dev # {"$imagepolicy": "flux-system:kaytu-compliance-summarizer:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-summarizer-prod:tag"}
   complianceReport:
     worker:
@@ -128,7 +128,7 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/es-sink
         tag:
-          dev: v0.413.22-dev # {"$imagepolicy": "flux-system:es-sink-service:tag"}
+          dev: v0.418.6-dev # {"$imagepolicy": "flux-system:es-sink-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:es-sink-service-prod:tag"}
 postgres:
   name: postgres-cluster
