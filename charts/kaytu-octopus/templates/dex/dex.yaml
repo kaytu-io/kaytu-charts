@@ -11,12 +11,14 @@
 
 {{- $connectorsSecret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.connectorsFromSecret) }}
 {{- if and (ne $connectorsSecret nil) (ne $connectorsSecret.data nil) }}
-{{- $connectors = index $connectorsSecret.data "connectors" | b64dec }}
+{{- $connectorsYaml = index $connectorsSecret.data "data" | b64dec | fromYaml }}
+{{- $connectors = $connectorsYaml.connectors }}
 {{- end -}}
 
 {{- $staticPassSecret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.staticPasswordsFromSecret) }}
 {{- if and (ne $staticPassSecret nil) (ne $staticPassSecret.data nil) }}
-{{- $staticPasswords = index $staticPassSecret.data "staticPasswords" | b64dec }}
+{{- $staticPasswordsYaml = index $staticPassSecret.data "data" | b64dec | fromYaml }}
+{{- $staticPasswords = $staticPasswordsYaml.secretPasswords }}
 {{- end -}}
 
 apiVersion: v1
