@@ -10,12 +10,12 @@
 {{- end -}}
 
 {{- $connectorsSecret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.connectorsFromSecret) }}
-{{- if ne $connectorsSecret nil }}
+{{- if and (ne $connectorsSecret nil) (ne $connectorsSecret.data nil) }}
 {{- $connectors = index $connectorsSecret.data "connectors" | toYaml | nindent 8 }}
 {{- end -}}
 
 {{- $staticPassSecret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.staticPasswordsFromSecret) }}
-{{- if ne $staticPassSecret nil }}
+{{- if and (ne $staticPassSecret nil) (ne $staticPassSecret.data nil) }}
 {{- $staticPasswords = index $staticPassSecret.data "staticPasswords" | toYaml | nindent 8 }}
 {{- end -}}
 
