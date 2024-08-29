@@ -19,7 +19,7 @@ kaytu:
     privateRegistry: akscorekaytuprivateacr.azurecr.io
     tags:
       auth:
-        dev: v0.418.1-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
+        dev: v0.418.2-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-auth-service-prod:tag"}
       workspace:
         dev: v0.417.0-dev
