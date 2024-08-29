@@ -1,10 +1,22 @@
 {{- $privateClientSecret := (randAlpha 16) | b64enc | quote }}
 {{- $storageSecretPassword := (randAlpha 16) | b64enc }}
+{{- $staticPasswords := .Values.kaytu.dex.staticPasswords | toYaml | nindent 8 }}
+{{- $connectors := .Values.kaytu.dex.connectors | toYaml | nindent 8 }}
 
 {{- $secret := (lookup "v1" "Secret" .Release.Namespace "dex-secret") }}
 {{- if $secret }}
 {{- $privateClientSecret = index $secret.data "privateClientSecret" | default $privateClientSecret }}
 {{- $storageSecretPassword = index $secret.data "dexStorageUserPassword" | default $storageSecretPassword }}
+{{- end -}}
+
+{{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.connectorsFromSecret }}
+{{- if $secret }}
+{{- $connectors = index $secret.data "connectors" | toYaml | nindent 8 }}
+{{- end -}}
+
+{{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.staticPasswordsFromSecret }}
+{{- if $secret }}
+{{- $staticPasswords = index $secret.data "staticPasswords" | toYaml | nindent 8 }}
 {{- end -}}
 
 apiVersion: v1
@@ -53,13 +65,9 @@ spec:
           redirectURIs:
             - 'https://{{ .Values.kaytu.domain.main }}/callback'
           secret: {{ $privateClientSecret}}
-      staticPasswords:
-        - email: "admin@example.com"
-          hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
-          username: "admin"
-          userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
-      enablePasswordDB: true
-      connectors: {{ .Values.kaytu.dex.connectors | toYaml | nindent 8 }}
+      staticPasswords: {{ $staticPasswords }}
+      enablePasswordDB: {{ .Values.kaytu.dex.enablePasswordDB }}
+      connectors: {{ $connectors }}
       expiry:
         deviceRequests: "5m"
         signingKeys: "6h"
@@ -83,3 +91,5 @@ spec:
             mode: "disable"
       oauth2:
         passwordConnector: local
+        skipApprovalScreen: true
+        alwaysShowLoginScreen: false
