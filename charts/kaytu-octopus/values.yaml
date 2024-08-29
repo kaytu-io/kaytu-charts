@@ -25,7 +25,7 @@ kaytu:
         dev: v0.417.0-dev
         prod: v0.345.2-prod
       frontendv2:
-        dev: v0.39.37-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
+        dev: v0.39.38-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
         prod: v0.37.6-prod # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service-prod:tag"}
       pennywise:
         dev: v0.4.20-dev # {"$imagepolicy": "flux-system:pennywise-server:tag"}
