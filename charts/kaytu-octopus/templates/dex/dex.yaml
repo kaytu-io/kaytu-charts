@@ -9,14 +9,14 @@
 {{- $storageSecretPassword = index $secret.data "dexStorageUserPassword" | default $storageSecretPassword }}
 {{- end -}}
 
-{{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.connectorsFromSecret) }}
-{{- if $secret }}
-{{- $connectors = index $secret.data "connectors" | toYaml | nindent 8 }}
+{{- $connectorsSecret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.connectorsFromSecret) }}
+{{- if $connectorsSecret }}
+{{- $connectors = index $connectorsSecret.data "connectors" | toYaml | nindent 8 }}
 {{- end -}}
 
-{{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.staticPasswordsFromSecret) }}
-{{- if $secret }}
-{{- $staticPasswords = index $secret.data "staticPasswords" | toYaml | nindent 8 }}
+{{- $staticPassSecret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.staticPasswordsFromSecret) }}
+{{- if $staticPassSecret }}
+{{- $staticPasswords = index $staticPassSecret.data "staticPasswords" | toYaml | nindent 8 }}
 {{- end -}}
 
 apiVersion: v1
