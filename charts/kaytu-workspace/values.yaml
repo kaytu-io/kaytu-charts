@@ -46,7 +46,7 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/analytics-worker
         tag:
-          dev: v0.418.12-dev # {"$imagepolicy": "flux-system:kaytu-analytics-worker:tag"}
+          dev: v0.418.13-dev # {"$imagepolicy": "flux-system:kaytu-analytics-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-analytics-worker-prod:tag"}
   describe:
     scheduler:
@@ -114,14 +114,14 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/compliance-report-worker
         tag:
-          dev: v0.418.12-dev # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker:tag"}
+          dev: v0.418.13-dev # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker-prod:tag"}
   steampipe:
     service:
       image:
         repo: ghcr.io/kaytu-io/steampipe-service
         tag:
-          dev: v0.418.12-dev # {"$imagepolicy": "flux-system:kaytu-steampipe-service:tag"}
+          dev: v0.418.13-dev # {"$imagepolicy": "flux-system:kaytu-steampipe-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-steampipe-service-prod:tag"}
   esSink:
     service:
