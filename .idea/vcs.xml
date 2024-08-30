@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../kaytu-aws-describer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../kaytu-deploy" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../kaytu-engine" vcs="Git" />
   </component>
 </project>

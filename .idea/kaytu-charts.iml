@@ -7,5 +7,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="kaytu-aws-describer" />
     <orderEntry type="module" module-name="kaytu-engine" />
+    <orderEntry type="module" module-name="kaytu-deploy" />
   </component>
 </module>
