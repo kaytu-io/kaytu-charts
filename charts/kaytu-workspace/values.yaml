@@ -46,21 +46,21 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/analytics-worker
         tag:
-          dev: v0.418.9-dev # {"$imagepolicy": "flux-system:kaytu-analytics-worker:tag"}
+          dev: v0.417.0-dev # {"$imagepolicy": "flux-system:kaytu-analytics-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-analytics-worker-prod:tag"}
   describe:
     scheduler:
       image:
         repo: ghcr.io/kaytu-io/describe-scheduler
         tag:
-          dev: v0.418.9-dev # {"$imagepolicy": "flux-system:kaytu-describe-scheduler:tag"}
+          dev: v0.418.11-dev # {"$imagepolicy": "flux-system:kaytu-describe-scheduler:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-describe-scheduler-prod:tag"}
     worker:
       aws:
         image:
           repo: ghcr.io/kaytu-io/kaytu-aws-describer
           tag:
-            dev: local-v0.57.7 # {"$imagepolicy": "flux-system:kaytu-aws-describer:tag"}
+            dev: local-v0.57.8 # {"$imagepolicy": "flux-system:kaytu-aws-describer:tag"}
             prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-aws-describer-prod:tag"}
       azure:
         image:
@@ -101,7 +101,7 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/compliance-service
         tag:
-          dev: v0.418.9-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
+          dev: v0.418.11-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-service-prod:tag"}
     summarizer:
       image:
@@ -114,14 +114,14 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/compliance-report-worker
         tag:
-          dev: v0.418.9-dev # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker:tag"}
+          dev: v0.418.11-dev # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker-prod:tag"}
   steampipe:
     service:
       image:
         repo: ghcr.io/kaytu-io/steampipe-service
         tag:
-          dev: v0.418.9-dev # {"$imagepolicy": "flux-system:kaytu-steampipe-service:tag"}
+          dev: v0.418.11-dev # {"$imagepolicy": "flux-system:kaytu-steampipe-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-steampipe-service-prod:tag"}
   esSink:
     service:
