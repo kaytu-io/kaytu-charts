@@ -132,7 +132,7 @@ kaytu:
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:es-sink-service-prod:tag"}
   telemetry:
     enabled: true
-    baseUrl: http://telemetry.kaytu.sh:8080
+    baseUrl: http://telemetry.kaytu.sh
 postgres:
   name: postgres-cluster
   replicaCount: 1
