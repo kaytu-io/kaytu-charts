@@ -88,3 +88,5 @@ spec:
       services:
         - name: swagger-ui
           port: 7255
+      authPolicy:
+        disabled: true
