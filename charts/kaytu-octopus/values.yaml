@@ -30,6 +30,9 @@ kaytu:
       pennywise:
         dev: v0.4.20-dev # {"$imagepolicy": "flux-system:pennywise-server:tag"}
         prod: v0.3.17-prod # {"$imagepolicy": "flux-system:pennywise-server-prod:tag"}
+      swagger:
+        dev: v0.413.10-dev # {"$imagepolicy": "flux-system:kaytu-swagger-service:tag"}
+        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-swagger-service-prod:tag"}
   auth0:
     domain: kaytu.us.auth0.com
     clientId: xxx
