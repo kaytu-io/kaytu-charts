@@ -79,3 +79,12 @@ spec:
           port: 7298
       authPolicy:
         disabled: true
+    - conditions:
+        - prefix: /swagger
+      pathRewritePolicy:
+        replacePrefix:
+          - prefix: /swagger
+            replacement: /
+      services:
+        - name: swagger-ui
+          port: 7255
