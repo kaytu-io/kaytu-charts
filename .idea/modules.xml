@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/../kaytu-flux/.idea/kaytu-flux.iml" filepath="$PROJECT_DIR$/../kaytu-flux/.idea/kaytu-flux.iml" />
       <module fileurl="file://$PROJECT_DIR$/../kaytu-scripts/.idea/kaytu-scripts.iml" filepath="$PROJECT_DIR$/../kaytu-scripts/.idea/kaytu-scripts.iml" />
       <module fileurl="file://$PROJECT_DIR$/../managed-platform-config/.idea/managed-platform-config.iml" filepath="$PROJECT_DIR$/../managed-platform-config/.idea/managed-platform-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../move-tables/.idea/move-tables.iml" filepath="$PROJECT_DIR$/../move-tables/.idea/move-tables.iml" />
       <module fileurl="file://$PROJECT_DIR$/../steampipe-plugin-aws/.idea/steampipe-plugin-aws.iml" filepath="$PROJECT_DIR$/../steampipe-plugin-aws/.idea/steampipe-plugin-aws.iml" />
       <module fileurl="file://$PROJECT_DIR$/../test-describer/.idea/test-describer.iml" filepath="$PROJECT_DIR$/../test-describer/.idea/test-describer.iml" />
     </modules>
