@@ -19,17 +19,20 @@ kaytu:
     privateRegistry: akscorekaytuprivateacr.azurecr.io
     tags:
       auth:
-        dev: v0.418.9-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
+        dev: v0.420.0-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-auth-service-prod:tag"}
       workspace:
-        dev: v0.418.9-dev
+        dev: v0.420.0-dev
         prod: v0.345.2-prod
       frontendv2:
-        dev: v0.39.39-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
+        dev: v0.39.40-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
         prod: v0.37.6-prod # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service-prod:tag"}
       pennywise:
         dev: v0.4.20-dev # {"$imagepolicy": "flux-system:pennywise-server:tag"}
         prod: v0.3.17-prod # {"$imagepolicy": "flux-system:pennywise-server-prod:tag"}
+      swagger:
+        dev: v0.418.9-dev # {"$imagepolicy": "flux-system:kaytu-swagger-service:tag"}
+        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-swagger-service-prod:tag"}
   auth0:
     domain: kaytu.us.auth0.com
     clientId: xxx
@@ -69,7 +72,7 @@ kaytu:
     enabled: false
   workspace:
     chart:
-      version: 0.1.47
+      version: 0.1.50
     kaytuChartLocation: "./kaytu"
   frontend:
     muiLicense: xxx
