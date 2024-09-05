@@ -734,6 +734,162 @@ data:
   query_parameters.json: |
     [
       {
+        "key": "azureAppTierTags",
+        "value": "{}",
+      },
+      {
+        "key": "azureAllowedVmSizes",
+        "value": "",
+      },
+      {
+        "key": "awsIamUserKeyRotateDays",
+        "value": "30",
+      },
+      {
+        "key": "awsTrustedEndpoints",
+        "value": "",
+      },
+      {
+        "key": "awsNetBiosTrustedIpRange",
+        "value": "",
+      },
+      {
+        "key": "azureStorageBlobSoftDeleteSufficientDays",
+        "value": "1",
+      },
+      {
+        "key": "awsRdsBaselineRestorableTimeInHrs",
+        "value": "1",
+      },
+      {
+        "key": "awsRdsInstanceDesiredClasses",
+        "value": "",
+      },
+      {
+        "key": "azureDatabaseTierTags",
+        "value": "{}",
+      },
+      {
+        "key": "awsEbsInstancesBackupPeriod",
+        "value": "24",
+      },
+      {
+        "key": "awsEbsAmiAgeMaxDays",
+        "value": "30",
+      },
+      {
+        "key": "azureSufficientDaysBeforeCertificateExpiry",
+        "value": "30",
+      },
+      {
+        "key": "awsBackupResourceTypeOptInPreference",
+        "value": "{}",
+      },
+      {
+        "key": "azureCmkSecretExpireDays",
+        "value": "30",
+      },
+      {
+        "key": "awsRdsBaselineRetentionPeriodDays",
+        "value": "30",
+      },
+      {
+        "key": "awsEcsContainerInstanceAgentVersion",
+        "value": "1.0.0",
+      },
+      {
+        "key": "awsSmtpTrustedIpRange",
+        "value": "",
+      },
+      {
+        "key": "awsBackupPlanMoveToColdStorageAfterDays",
+        "value": "10",
+      },
+      {
+        "key": "awsEksClusterLatestVersion",
+        "value": "1.29",
+      },
+      {
+        "key": "awsApprovedPermissionSets",
+        "value": "",
+      },
+      {
+        "key": "azureKubernetesLatestVersion",
+        "value": "1.29",
+      },
+      {
+        "key": "azureWebTierTags",
+        "value": "{}",
+      },
+      {
+        "key": "awsSshPublicKeyRotateDays",
+        "value": "30",
+      },
+      {
+        "key": "awsMysqlTrustedIpRange",
+        "value": "",
+      },
+      {
+        "key": "awsAppTierTags",
+        "value": "{}",
+      },
+      {
+        "key": "awsMongodbTrustedIpRange",
+        "value": "",
+      },
+      {
+        "key": "awsOracleTrustedIpRange",
+        "value": "",
+      },
+      {
+        "key": "awsLatestPolicies",
+        "value": "",
+      },
+      {
+        "key": "awsBackupPlanDeleteAfterDays",
+        "value": "30",
+      },
+      {
+        "key": "awsMssqlTrustedIpRange",
+        "value": "",
+      },
+      {
+        "key": "azureadClientSecretExpireDays",
+        "value": "30",
+      },
+      {
+        "key": "awsOpensearchTrustedIpRange",
+        "value": "",
+      },
+      {
+        "key": "awsIamUsersAuthorizedToEditPolicy",
+        "value": "",
+      },
+      {
+        "key": "azureLatestTlsVersion",
+        "value": "1.3",
+      },
+      {
+        "key": "azureAllowedVmExtentions",
+        "value": "",
+      },
+      {
+        "key": "azureSufficientDailyBackupRetention",
+        "value": "1",
+      },
+      {
+        "key": "awsCifsTrustedIpRange",
+        "value": "1.4.0"
+      },
+      {
+        "key": "awsEcsServicePlatformVersion",
+        "value": "1.4.0"
+      },
+      {
+        "key": "awsIamUserPasswordExpirationDays",
+        "value": "30"
+      },
+      {
         "key": "awsEbsSnapshotAgeMaxDays",
         "value": "30"
       },
