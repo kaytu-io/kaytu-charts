@@ -39,7 +39,7 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/migrator
         tag:
-          dev: v0.421.6-dev # {"$imagepolicy": "flux-system:kaytu-migrator-worker:tag"}
+          dev: v0.421.7-dev # {"$imagepolicy": "flux-system:kaytu-migrator-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-migrator-worker-prod:tag"}
   analytics:
     worker:
@@ -101,7 +101,7 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/compliance-service
         tag:
-          dev: v0.421.6-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
+          dev: v0.421.7-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-service-prod:tag"}
     summarizer:
       image:
