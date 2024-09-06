@@ -60,7 +60,7 @@ kaytu:
         image:
           repo: ghcr.io/kaytu-io/kaytu-aws-describer
           tag:
-            dev: local-v0.58.1 # {"$imagepolicy": "flux-system:kaytu-aws-describer:tag"}
+            dev: local-v0.58.2 # {"$imagepolicy": "flux-system:kaytu-aws-describer:tag"}
             prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-aws-describer-prod:tag"}
       azure:
         image:
