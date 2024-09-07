@@ -22,7 +22,7 @@ kaytu:
         dev: v0.421.5-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-auth-service-prod:tag"}
       workspace:
-        dev: v0.420.0-dev
+        dev: v0.422.9-dev
         prod: v0.345.2-prod
       frontendv2:
         dev: v0.39.45-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
@@ -72,7 +72,7 @@ kaytu:
     enabled: false
   workspace:
     chart:
-      version: 0.1.66
+      version: 0.1.67
     kaytuChartLocation: "./kaytu"
   frontend:
     muiLicense: xxx
