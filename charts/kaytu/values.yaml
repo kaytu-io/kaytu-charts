@@ -250,11 +250,11 @@ dex:
     oauth2:
       passwordConnector: local
 externalPostgresql:
-  enabled: true
-  endpoint: "database-2.chm0yysg47ua.us-east-1.rds.amazonaws.com"
+  enabled: false
+  endpoint: "pg.example.com"
   port: "5432"
   masterUser: "postgres"
-  masterPassword: "ramzeGHAVI123"
+  masterPassword: "postgres"
   sslMode: disable
 postgresql:
   enabled: false
@@ -608,9 +608,9 @@ postgresql:
             name: postgres-secret
             key: alertingServiceUserPassword
 externalOpensearch:
-  enabled: true
-  endpoint: "https://vpc-test-helm-bg72hfziba46qeudsbitdiefaq.us-east-1.es.amazonaws.com"
-  roleArn: "arn:aws:iam::061051223057:role/opensearch-fullaccess"
+  enabled: false
+  endpoint: "https://opensearch.example.com"
+  roleArn: "arn:aws:iam::000000000000:role/opensearch-fullaccess"
   awsRegion: "us-east-1"
 opensearch:
   enabled: false
