@@ -695,7 +695,7 @@ data:
       {"key": "data_retention_duration", "type": "int", "value": "366"},
       {"key": "connection_limit", "type": "int", "value": "1000"},
       {"key": "user_limit", "type": "int", "value": "1000"},
-      {"key": "analytics_git_url", "type": "string", "value": "https://github.com/kaytu-io/configz"},
+      {"key": "analytics_git_url", "type": "string", "value": "https://github.com/kaytu-io/managed-platform-config"},
       {"key": "asset_discovery_aws_policy_arns", "type": "string", "value": "arn:aws:iam::aws:policy/SecurityAudit,arn:aws:iam::aws:policy/ReadOnlyAccess"},
       {"key": "spend_discovery_aws_policy_arns", "type": "string", "value": "arn:aws:iam::aws:policy/AWSBillingReadOnlyAccess"},
       {"key": "asset_discovery_azure_role_ids", "type": "string", "value": "/subscriptions/%s/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7"},
