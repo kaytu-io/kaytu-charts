@@ -257,7 +257,7 @@ externalPostgresql:
   masterPassword: "postgres"
   sslMode: disable
 postgresql:
-  enabled: false
+  enabled: true
   architecture: replication
   readReplicas:
     replicaCount: 1
@@ -613,7 +613,7 @@ externalOpensearch:
   roleArn: "arn:aws:iam::000000000000:role/opensearch-fullaccess"
   awsRegion: "us-east-1"
 opensearch:
-  enabled: false
+  enabled: true
   clusterName: opensearch-cluster
   persistence:
     size: 50Gi
