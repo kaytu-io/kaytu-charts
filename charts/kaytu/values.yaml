@@ -628,6 +628,8 @@ opensearch:
       value: myStrongPassword@123!
     - name: AWS_REGION
       value: "us-east-2"
+  sysctlInit:
+    enabled: true
 opensearch-dashboards:
   enabled: false
   replicaCount: 1
