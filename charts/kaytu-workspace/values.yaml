@@ -39,7 +39,7 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/migrator
         tag:
-          dev: v0.422.20-dev # {"$imagepolicy": "flux-system:kaytu-migrator-worker:tag"}
+          dev: v0.422.23-dev # {"$imagepolicy": "flux-system:kaytu-migrator-worker:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-migrator-worker-prod:tag"}
   analytics:
     worker:
