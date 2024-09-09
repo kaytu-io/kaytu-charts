@@ -1,0 +1,68 @@
+---
+apiVersion: fluentbit.fluent.io/v1alpha2
+kind: ClusterFluentBitConfig
+metadata:
+  name: fluent-bit-config
+  labels:
+    app.kubernetes.io/name: fluent-bit
+spec:
+  service:
+    flushSeconds: 5
+    graceSeconds: 30
+    logLevel: error
+    daemon: false
+    httpServer: true
+    storage:
+      path: /var/fluent-bit/state/flb-storage/
+      sync: normal
+      checksum: "off"
+      backlogMemLimit: 5M
+  inputSelector:
+    matchLabels:
+      fluentbit.fluent.io/enabled: "true"
+      fluentbit.fluent.io/mode: "fluentbit-only"
+  filterSelector:
+    matchLabels:
+      fluentbit.fluent.io/enabled: "true"
+      fluentbit.fluent.io/mode: "fluentbit-only"
+  outputSelector:
+    matchLabels:
+      fluentbit.fluent.io/enabled: "true"
+      fluentbit.fluent.io/mode: "fluentbit-only"
+
+---
+apiVersion: fluentbit.fluent.io/v1alpha2
+kind: ClusterInput
+metadata:
+  name: tail
+  labels:
+    fluentbit.fluent.io/enabled: "true"
+    fluentbit.fluent.io/mode: "fluentbit-only"
+spec:
+  tail:
+    tag: application.*
+    path: /var/log/containers/*.log
+    multilineParser: docker
+    db: /var/fluent-bit/state/flb_container.db
+    memBufLimit: 50MB
+    skipLongLines: true
+    refreshIntervalSeconds: 10
+    rotateWaitSeconds: 30
+    storageType: filesystem
+    readFromHead: false
+
+---
+apiVersion: fluentbit.fluent.io/v1alpha2
+kind: ClusterOutput
+metadata:
+  name: cloudwatch
+  labels:
+    fluentbit.fluent.io/enabled: "true"
+    fluentbit.fluent.io/mode: "fluentbit-only"
+spec:
+  match: application.*
+  cloudWatch:
+    region: eu-west-1
+    logGroupName: /kaytu/application
+    logStreamPrefix: kaytu-
+    autoCreateGroup: true
