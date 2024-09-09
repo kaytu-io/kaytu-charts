@@ -617,11 +617,11 @@ opensearch:
   clusterName: opensearch-cluster
   persistence:
     size: 50Gi
-  opensearchJavaOpts: "-XX:-HeapDumpOnOutOfMemoryError -Xmx5120M -Xms5120M"
+  opensearchJavaOpts: "-XX:-HeapDumpOnOutOfMemoryError -Xmx3072M -Xms3072M"
   resources:
   requests:
-    cpu: "1000m"
-    memory: "6Gi"
+    cpu: "500m"
+    memory: "4Gi"
   replicas: 3
   extraEnvs:
     - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
