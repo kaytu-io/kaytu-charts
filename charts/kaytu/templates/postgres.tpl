@@ -3,7 +3,7 @@
 {{- if .Values.externalPostgresql.enabled }}
 {{- printf .Values.externalPostgresql.endpoint }}
 {{- else }}
-{{- printf "{{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local" }}
+{{- printf "%s-postgresql-primary.%s.svc.cluster.local" .Release.Namespace .Release.Namespace }}
 {{- end }}
 {{- end }}
 
