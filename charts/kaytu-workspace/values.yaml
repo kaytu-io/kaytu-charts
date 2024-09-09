@@ -101,7 +101,7 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/compliance-service
         tag:
-          dev: v0.423.4-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
+          dev: v0.423.5-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-service-prod:tag"}
     summarizer:
       image:
