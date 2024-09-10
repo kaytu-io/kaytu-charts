@@ -21,12 +21,6 @@ data:
         auth_request_set $X_Kaytu_UserRole $upstream_http_X_Kaytu_UserRole;
         auth_request_set $X_Kaytu_UserConnectionsScope $upstream_http_X_Kaytu_UserConnectionsScope;
 
-        proxy_set_header X-Kaytu-WorkspaceID $X_Kaytu_WorkspaceID;
-        proxy_set_header X-Kaytu-WorkspaceName $X_Kaytu_WorkspaceName;
-        proxy_set_header X-Kaytu-UserId $X_Kaytu_UserId;
-        proxy_set_header X-Kaytu-UserRole $X_Kaytu_UserRole;
-        proxy_set_header X-Kaytu-UserConnectionsScope $X_Kaytu_UserConnectionsScope;
-
         access_log /var/log/nginx/access.log main;
 
 
