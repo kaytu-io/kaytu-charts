@@ -10,8 +10,22 @@ data:
       server {
         listen 80;
 
-        location /{{ .Release.Namespace }}/integration {
-          rewrite ^/{{ .Release.Namespace }}/integration(.*) /integration$1 break;
+        auth_request /kaytu/auth/api/v1/check;
+        auth_request_set $X_Kaytu_WorkspaceID $upstream_http_X_Kaytu_WorkspaceID;
+        auth_request_set $X_Kaytu_WorkspaceName $upstream_http_X_Kaytu_WorkspaceName;
+        auth_request_set $X_Kaytu_UserId $upstream_http_X_Kaytu_UserId;
+        auth_request_set $X_Kaytu_UserRole $upstream_http_X_Kaytu_UserRole;
+        auth_request_set $X_Kaytu_UserConnectionsScope $upstream_http_X_Kaytu_UserConnectionsScope;
+
+        proxy_set_header X-Kaytu-WorkspaceID $X_Kaytu_WorkspaceID;
+        proxy_set_header X-Kaytu-WorkspaceName $X_Kaytu_WorkspaceName;
+        proxy_set_header X-Kaytu-UserId $X_Kaytu_UserId;
+        proxy_set_header X-Kaytu-UserRole $X_Kaytu_UserRole;
+        proxy_set_header X-Kaytu-UserConnectionsScope $X_Kaytu_UserConnectionsScope;
+
+
+        location /main/integration {
+          rewrite ^/main/integration(.*) /integration$1 break;
 
           proxy_pass http://integration-service.{{ .Release.Namespace }}.svc.cluster.local:8000;
           proxy_ssl_verify off;
@@ -24,8 +38,8 @@ data:
           proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
         }
 
-        location /{{ .Release.Namespace }}/onboard {
-          rewrite ^/{{ .Release.Namespace }}/onboard(.*) /onboard$1 break;
+        location /main/onboard {
+          rewrite ^/main/onboard(.*) /onboard$1 break;
 
           proxy_pass http://onboard-service.{{ .Release.Namespace }}.svc.cluster.local:6251;
           proxy_ssl_verify off;
@@ -38,8 +52,8 @@ data:
           proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
         }
 
-        location /{{ .Release.Namespace }}/inventory {
-          rewrite ^/{{ .Release.Namespace }}/inventory(.*) /inventory$1 break;
+        location /main/inventory {
+          rewrite ^/main/inventory(.*) /inventory$1 break;
 
           proxy_pass http://inventory-service.{{ .Release.Namespace }}.svc.cluster.local:7251;
           proxy_ssl_verify off;
@@ -52,8 +66,8 @@ data:
           proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
         }
 
-        location /{{ .Release.Namespace }}/metadata {
-          rewrite ^/{{ .Release.Namespace }}/metadata(.*) /metadata$1 break;
+        location /main/metadata {
+          rewrite ^/main/metadata(.*) /metadata$1 break;
 
           proxy_pass http://metadata-service.{{ .Release.Namespace }}.svc.cluster.local:6251;
           proxy_ssl_verify off;
@@ -66,8 +80,8 @@ data:
           proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
         }
 
-        location /{{ .Release.Namespace }}/compliance {
-          rewrite ^/{{ .Release.Namespace }}/compliance(.*) /compliance$1 break;
+        location /main/compliance {
+          rewrite ^/main/compliance(.*) /compliance$1 break;
 
           proxy_pass http://compliance-service.{{ .Release.Namespace }}.svc.cluster.local:7251;
           proxy_ssl_verify off;
@@ -80,8 +94,8 @@ data:
           proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
         }
 
-        location /{{ .Release.Namespace }}/schedule {
-          rewrite ^/{{ .Release.Namespace }}/schedule(.*) /schedule$1 break;
+        location /main/schedule {
+          rewrite ^/main/schedule(.*) /schedule$1 break;
 
           proxy_pass http://describe-scheduler.{{ .Release.Namespace }}.svc.cluster.local:5251;
           proxy_ssl_verify off;
@@ -94,8 +108,32 @@ data:
           proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
         }
 
-        location /{{ .Release.Namespace }}/auth {
-          rewrite ^/{{ .Release.Namespace }}/auth(.*) /auth$1 break;
+        location /kaytu/auth/api/v1/check {
+            internal;
+            auth_request off;
+            proxy_set_header X-Kaytu-WorkspaceID "";
+            proxy_set_header X-Kaytu-WorkspaceName "";
+            proxy_set_header X-Kaytu-UserId "";
+            proxy_set_header X-Kaytu-UserRole "";
+            proxy_set_header X-Kaytu-UserConnectionsScope "";
+
+            rewrite ^/kaytu/auth/api/v1/check$ /api/v1/check break;
+
+            proxy_pass http://auth-service.{{ .Release.Namespace }}.svc.cluster.local:8251;
+            proxy_pass_request_body off;
+            proxy_set_header Content-Length "";
+            proxy_set_header X-Original-URI $request_uri;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Forwarded-Host $host;
+            proxy_set_header X-Forwarded-Port $server_port;
+
+            proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+        }
+
+        location /kaytu/auth {
+          rewrite ^/kaytu/auth(.*) /auth$1 break;
 
           proxy_pass http://auth-service.{{ .Release.Namespace }}.svc.cluster.local:8251;
           proxy_ssl_verify off;
@@ -108,8 +146,8 @@ data:
           proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
         }
 
-        location /{{ .Release.Namespace }}/workspace {
-          rewrite ^/{{ .Release.Namespace }}/workspace(.*) /workspace$1 break;
+        location /kaytu/workspace {
+          rewrite ^/kaytu/workspace(.*) /workspace$1 break;
 
           proxy_pass http://workspace-service.{{ .Release.Namespace }}.svc.cluster.local:8351;
           proxy_ssl_verify off;
@@ -123,31 +161,15 @@ data:
         }
 
         location /dex {
-          proxy_pass http://kaytu-octopus-dex.{{ .Release.Namespace }}.svc.cluster.local:5556;
-          proxy_ssl_verify off;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header X-Forwarded-Host $host;
-          proxy_set_header X-Forwarded-Port $server_port;
+          auth_request off;
+          proxy_set_header X-Kaytu-WorkspaceID "";
+          proxy_set_header X-Kaytu-WorkspaceName "";
+          proxy_set_header X-Kaytu-UserId "";
+          proxy_set_header X-Kaytu-UserRole "";
+          proxy_set_header X-Kaytu-UserConnectionsScope "";
 
-          proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
-        }
 
-        location /kaytu/auth {
-          proxy_pass http://auth-service.{{ .Release.Namespace }}.svc.cluster.local:8251;
-          proxy_ssl_verify off;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header X-Forwarded-Host $host;
-          proxy_set_header X-Forwarded-Port $server_port;
-
-          proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
-        }
-
-        location /kaytu/workspace {
-          proxy_pass http://workspace-service.{{ .Release.Namespace }}.svc.cluster.local:8351;
+          proxy_pass http://{{.Release.Name}}-dex.{{ .Release.Namespace }}.svc.cluster.local:5556;
           proxy_ssl_verify off;
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -159,6 +181,13 @@ data:
         }
 
         location / {
+          auth_request off;
+          proxy_set_header X-Kaytu-WorkspaceID "";
+          proxy_set_header X-Kaytu-WorkspaceName "";
+          proxy_set_header X-Kaytu-UserId "";
+          proxy_set_header X-Kaytu-UserRole "";
+          proxy_set_header X-Kaytu-UserConnectionsScope "";
+
           proxy_pass http://frontend-v2-svc.{{ .Release.Namespace }}.svc.cluster.local:7298;
           proxy_ssl_verify off;
           proxy_set_header X-Real-IP $remote_addr;

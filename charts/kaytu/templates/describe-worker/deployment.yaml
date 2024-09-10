@@ -10,7 +10,7 @@ spec:
   {{- if eq .Values.keda.enabled true }}
   replicas: 0
   {{- else }}
-  replicas: 5
+  replicas: 3
   {{- end }}
   selector:
     matchLabels:
@@ -49,7 +49,7 @@ spec:
   {{- if eq .Values.keda.enabled true }}
   replicas: 0
   {{- else }}
-  replicas: 5
+  replicas: 3
   {{- end }}
   selector:
     matchLabels:
