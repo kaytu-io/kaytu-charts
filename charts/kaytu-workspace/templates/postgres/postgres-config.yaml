@@ -1,0 +1,260 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: {{ .Release.Namespace }}
+data:
+  primary_init_script.sh: |
+    #!/bin/bash
+    set -e
+
+    dt=$(date '+%d/%m/%Y %H:%M:%S');
+    echo "$dt - Running init script the 1st time Primary PostgreSql container is created...";
+
+    exporterUserName="postgres_exporter"
+    steampipeUserName="steampipe_user"
+
+    migratorDatabaseName="migrator"
+    migratorUserName="migrator_worker"
+
+    describeDatabaseName="describe"
+    describeUserName="describe_scheduler"
+
+    assistantDatabaseName="assistant"
+    assistantUserName="assistant_service"
+
+    onboardDatabaseName="onboard"
+    onboardUserName="onboard_service"
+
+    policyDatabaseName="policy"
+    policyUserName="policy_service"
+
+    inventoryDatabaseName="inventory"
+    inventoryUserName="inventory_service"
+
+    complianceDatabaseName="compliance"
+    complianceUserName="compliance_service"
+
+    authDatabaseName="auth"
+    authUserName="auth_service"
+
+    metadataDatabaseName="metadata"
+    metadataUserName="metadata_service"
+
+    reporterDatabaseName="reporter"
+    reporterUserName="reporter_service"
+
+    alertingDatabaseName="alerting"
+    alertingUserName="alerting_service"
+
+    echo "$dt - Running: psql -v ON_ERROR_STOP=1 --username $POSTGRES_USER --dbname $POSTGRES_DB ...";
+
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+
+    CREATE DATABASE $describeDatabaseName;
+    CREATE USER $describeUserName WITH PASSWORD '$POSTGRES_DESCRIBE_DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE "$describeDatabaseName" to $describeUserName;
+
+    \c $describeDatabaseName
+    CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+    CREATE EXTENSION citext;
+
+    CREATE DATABASE $onboardDatabaseName;
+    CREATE USER $onboardUserName WITH PASSWORD '$POSTGRES_ONBOARD_DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE "$onboardDatabaseName" to $onboardUserName;
+
+    \c $onboardDatabaseName
+    CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+    CREATE EXTENSION citext;
+
+    CREATE DATABASE $policyDatabaseName;
+    CREATE USER $policyUserName WITH PASSWORD '$POSTGRES_POLICY_DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE "$policyDatabaseName" to $policyUserName;
+
+    \c $policyDatabaseName
+    CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+    CREATE EXTENSION citext;
+
+    CREATE DATABASE $inventoryDatabaseName ;
+    CREATE USER $inventoryUserName WITH PASSWORD '$POSTGRES_INVENTORY_DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE "$inventoryDatabaseName" to $inventoryUserName;
+
+    \c $inventoryDatabaseName
+    CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+    CREATE EXTENSION citext;
+
+    CREATE DATABASE $assistantDatabaseName ;
+    CREATE USER $assistantUserName WITH PASSWORD '$POSTGRES_ASSISTANT_DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE "$assistantDatabaseName" to $assistantUserName;
+
+    \c $assistantDatabaseName
+    CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+    CREATE EXTENSION citext;
+
+    CREATE DATABASE $complianceDatabaseName ;
+    CREATE USER $complianceUserName WITH PASSWORD '$POSTGRES_COMPLIANCE_DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE "$complianceDatabaseName" to $complianceUserName;
+
+    \c $complianceDatabaseName
+    CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+    CREATE EXTENSION citext;
+
+    CREATE DATABASE $authDatabaseName;
+    CREATE USER $authUserName WITH PASSWORD '$POSTGRES_AUTH_DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE "$authDatabaseName" to $authUserName;
+
+    \c "$authDatabaseName"
+    CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+    CREATE EXTENSION citext;
+
+    CREATE DATABASE $metadataDatabaseName;
+    CREATE USER $metadataUserName WITH PASSWORD '$POSTGRES_METADATA_DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE "$metadataDatabaseName" to $metadataUserName;
+
+    \c "$metadataDatabaseName"
+    CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+    CREATE EXTENSION citext;
+
+    CREATE DATABASE $reporterDatabaseName;
+    CREATE USER $reporterUserName WITH PASSWORD '$POSTGRES_REPORTER_DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE "$reporterDatabaseName" to $reporterUserName;
+
+    \c "$reporterDatabaseName"
+    CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+    CREATE EXTENSION citext;
+
+    CREATE DATABASE $alertingDatabaseName;
+    CREATE USER $alertingUserName WITH PASSWORD '$POSTGRES_ALERTING_DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE "$alertingDatabaseName" to $alertingUserName;
+
+    \c "$alertingDatabaseName"
+    CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+    CREATE EXTENSION citext;
+
+    CREATE DATABASE $migratorDatabaseName;
+    CREATE USER $migratorUserName WITH PASSWORD '$POSTGRES_MIGRATOR_DB_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE "$migratorDatabaseName" to $migratorUserName;
+
+    \c "$migratorDatabaseName"
+    CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+    CREATE EXTENSION citext;
+
+    CREATE USER $steampipeUserName WITH PASSWORD '$POSTGRES_STEAMPIPE_USER_PASSWORD';
+
+    \connect "$complianceDatabaseName";
+    GRANT pg_read_all_data TO $migratorUserName;
+    GRANT pg_write_all_data TO $migratorUserName;
+    \connect "$metadataDatabaseName";
+    GRANT pg_read_all_data TO $migratorUserName;
+    GRANT pg_write_all_data TO $migratorUserName;
+    \connect "$onboardDatabaseName";
+    GRANT pg_read_all_data TO $migratorUserName;
+    GRANT pg_write_all_data TO $migratorUserName;
+    GRANT pg_read_all_data TO $steampipeUserName;
+    \connect "$inventoryDatabaseName";
+    GRANT pg_read_all_data TO $migratorUserName;
+    GRANT pg_write_all_data TO $migratorUserName;
+    GRANT pg_read_all_data TO $steampipeUserName;
+
+
+    \connect "postgres";
+    CREATE EXTENSION pg_stat_statements;
+    CREATE USER $exporterUserName WITH PASSWORD '$POSTGRES_EXPORTER_PASSWORD';
+    GRANT pg_monitor TO $exporterUserName;
+
+    EOSQL
+
+    echo "$dt - Init script is completed";
+  postgres.conf: |
+    listen_addresses = '*'
+    max_wal_senders = 10
+    shared_preload_libraries = 'pg_stat_statements'
+    max_connections = 250
+
+{{- if eq (.Values.kaytu.workspace.size | toString) "xs" }}
+    # DB Version: 14
+    # OS Type: linux
+    # DB Type: web
+    # Total Memory (RAM): 1 GB
+    # CPUs num: 1
+    # Connections num: 250
+    # Data Storage: ssd
+
+    shared_buffers = 256MB
+    effective_cache_size = 768MB
+    maintenance_work_mem = 64MB
+    checkpoint_completion_target = 0.9
+    wal_buffers = 7864kB
+    default_statistics_target = 100
+    random_page_cost = 1.1
+    effective_io_concurrency = 200
+    work_mem = 524kB
+    huge_pages = off
+    min_wal_size = 1GB
+    max_wal_size = 4GB
+{{- else if eq (.Values.kaytu.workspace.size | toString) "sm" }}
+    # DB Version: 14
+    # OS Type: linux
+    # DB Type: web
+    # Total Memory (RAM): 2 GB
+    # CPUs num: 1
+    # Connections num: 250
+    # Data Storage: ssd
+
+    shared_buffers = 512MB
+    effective_cache_size = 1536MB
+    maintenance_work_mem = 128MB
+    checkpoint_completion_target = 0.9
+    wal_buffers = 16MB
+    default_statistics_target = 100
+    random_page_cost = 1.1
+    effective_io_concurrency = 200
+    work_mem = 1048kB
+    huge_pages = off
+    min_wal_size = 1GB
+    max_wal_size = 4GB
+{{- else if eq (.Values.kaytu.workspace.size | toString) "md" }}
+    # DB Version: 14
+    # OS Type: linux
+    # DB Type: web
+    # Total Memory (RAM): 3 GB
+    # CPUs num: 3
+    # Connections num: 250
+    # Data Storage: ssd
+    shared_buffers = 768MB
+    effective_cache_size = 2304MB
+    maintenance_work_mem = 192MB
+    checkpoint_completion_target = 0.9
+    wal_buffers = 16MB
+    default_statistics_target = 100
+    random_page_cost = 1.1
+    effective_io_concurrency = 200
+    work_mem = 1572kB
+    huge_pages = off
+    min_wal_size = 1GB
+    max_wal_size = 4GB
+{{- else if eq (.Values.kaytu.workspace.size | toString) "lg" }}
+    # DB Version: 14
+    # OS Type: linux
+    # DB Type: web
+    # Total Memory (RAM): 4 GB
+    # CPUs num: 4
+    # Connections num: 250
+    # Data Storage: ssd
+    shared_buffers = 1GB
+    effective_cache_size = 3GB
+    maintenance_work_mem = 256MB
+    checkpoint_completion_target = 0.9
+    wal_buffers = 16MB
+    default_statistics_target = 100
+    random_page_cost = 1.1
+    effective_io_concurrency = 200
+    work_mem = 2097kB
+    huge_pages = off
+    min_wal_size = 1GB
+    max_wal_size = 4GB
+    max_worker_processes = 4
+    max_parallel_workers_per_gather = 2
+    max_parallel_workers = 4
+    max_parallel_maintenance_workers = 2
+{{- end }}

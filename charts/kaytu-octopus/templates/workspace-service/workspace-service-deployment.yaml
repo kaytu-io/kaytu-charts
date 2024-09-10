@@ -44,7 +44,7 @@ spec:
             - name: WORKSPACE_ENV_TYPE
               value: {{ .Values.kaytu.envType }}
             - name: WORKSPACE_POSTGRES__HOST
-              value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
+              value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
             - name: WORKSPACE_POSTGRES__PORT
               value: "5432"
             - name: WORKSPACE_POSTGRES__DB
@@ -105,7 +105,7 @@ spec:
             - name: WORKSPACE_VAULT__AZURE__CLIENT_SECRET
               value: {{ .Values.kaytu.vault.azure.clientSecret }}
             - name: WORKSPACE_VAULT__HASHICORP__ADDRESS
-              value: "http://kaytu-workspace-vault-internal.kaytu-workspace.svc.cluster.local:8200"
+              value: "http://vault-internal.vault-system.svc.cluster.local:8200"
             - name: WORKSPACE_VAULT__KEY_ID
               value: {{ .Values.kaytu.vault.keyID }}
 
@@ -115,13 +115,13 @@ spec:
             - name: WORKSPACE_AWS_MASTER_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.kaytu.workspace.aws.master-secret }}
-                  key: {{ .Values.kaytu.workspace.aws.keyMap.access-key }}
+                  name: kaytu-master
+                  key: accessKey
             - name: WORKSPACE_AWS_MASTER_SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.kaytu.workspace.aws.master-secret }}
-                  key: {{ .Values.kaytu.workspace.aws.keyMap.secret-key }}
+                  name: kaytu-master
+                  key: secretKey
             - name: WORKSPACE_OPEN_SEARCH_REGION
               value: "us-east-2"
             - name: WORKSPACE_AWS_ACCOUNT_ID

@@ -1,0 +1,94 @@
+{{- $encryptionKey := (randAlphaNum 64) | b64enc }}
+{{- $encryptionKeySecret := (lookup "v1" "Secret" .Release.Namespace "superset-encryption-key-secret") }}
+{{- if $encryptionKeySecret }}
+{{- $encryptionKey = index $encryptionKeySecret.data "raw-secret" | b64dec | default $encryptionKey }}
+{{- end }}
+
+{{- $superUserPassword := (randAlpha 32) | b64enc }}
+{{- $replicationUserPassword := (randAlpha 32) | b64enc }}
+{{- $supersetUserPassword := (randAlpha 32) | b64enc }}
+{{- $dashboardAdminPassword := (randAlpha 32) | b64enc }}
+{{- $postgresSecret := (lookup "v1" "Secret" .Release.Namespace "superset-postgres-secret") }}
+{{- if $postgresSecret }}
+{{- $superUserPassword = index $postgresSecret.data "postgres-password" | default $superUserPassword }}
+{{- $replicationUserPassword = index $postgresSecret.data "replication-password" | default $replicationUserPassword }}
+{{- $supersetUserPassword = index $postgresSecret.data "password" | default $supersetUserPassword }}
+{{- $dashboardAdminPassword = index $postgresSecret.data "dashboard-admin-password" | default $dashboardAdminPassword }}
+{{- end }}
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: superset-encryption-key-secret
+  namespace: {{ .Release.Namespace }}
+type: Opaque
+stringData:
+  raw-secret: "{{ $encryptionKey }}"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: superset-postgres-secret
+  namespace: {{ .Release.Namespace }}
+type: Opaque
+data:
+  postgres-password: "{{ $superUserPassword }}"
+  replication-password: "{{ $replicationUserPassword }}"
+  password: "{{ $supersetUserPassword }}"
+  dashboard-admin-password: "{{ $dashboardAdminPassword }}"
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: superset
+  namespace: {{ .Release.Namespace }}
+spec:
+  chart:
+    spec:
+      chart: superset
+      sourceRef:
+        kind: HelmRepository
+        name: superset
+        namespace: flux-system
+      version: 0.12.6
+  targetNamespace: {{ .Release.Namespace }}
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  interval: 1m0s
+  values:
+    init:
+      adminUser:
+        password: "{{ $dashboardAdminPassword | b64dec }}"
+    postgresql:
+      auth:
+        existingSecret: superset-postgres-secret
+    supersetNode:
+      connections:
+        db_pass: "{{ $supersetUserPassword | b64dec }}"
+    configOverrides:
+      my_override: |
+        SESSION_COOKIE_SECURE = True
+        GUEST_ROLE_NAME = "Gamma"
+        WTF_CSRF_ENABLED = False
+        TALISMAN_ENABLED = False
+        OVERRIDE_HTTP_HEADERS = { 'X-Frame-Options': 'ALLOWALL' }
+        HTTP_HEADERS = { "X-Frame-Options" : "ALLOWALL" }
+        FEATURE_FLAGS = {
+          "EMBEDDED_SUPERSET": True
+        }
+        CORS_OPTIONS = {
+          'supports_credentials': True,
+          'allow_headers': ['*'],
+          'resources':['*'],
+          'origins': ['http://localhost:3000', 'https://app.kaytu.io', 'https://app.kaytu.dev', 'https://ss.kaytu.io']
+        }
+        DASHBOARD_NATIVE_FILTERS = True
+        DASHBOARD_NATIVE_FILTERS_SET = True
+        GUEST_TOKEN_JWT_EXP_SECONDS = 36000
+      secret: |
+        SECRET_KEY = '{{ $encryptionKey }}'
+---

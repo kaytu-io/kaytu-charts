@@ -7,11 +7,7 @@ metadata:
     app: compliance-worker
 spec:
   minReadySeconds: 10
-  {{- if eq .Values.keda.enabled }}
-  replicas: 0
-  {{- else }}
   replicas: 1
-  {{- end }}
   selector:
     matchLabels:
       app: compliance-worker
@@ -21,6 +17,19 @@ spec:
         app: compliance-worker
     spec:
       serviceAccountName: compliance-report-worker
+#      tolerations:
+#        - key: "kaytu.io/worker"
+#          operator: "Exists"
+#          effect: "NoSchedule"
+#      affinity:
+#        nodeAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            nodeSelectorTerms:
+#              - matchExpressions:
+#                  - key: kaytu.io/node-type
+#                    operator: In
+#                    values:
+#                      - worker
       containers:
         - name: compliance-worker
           image: {{ .Values.kaytu.complianceReport.worker.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.complianceReport.worker.image.tag.dev .Values.kaytu.complianceReport.worker.image.tag }}
@@ -55,7 +64,7 @@ spec:
             - name: STEAMPIPE_UPDATE_CHECK
               value: "false"
             - name: NATS_URL
-              value: "{{ .Release.Namespace }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"
+              value: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}.{{ .Release.Namespace }}.svc.cluster.local:4222"
 {{- include "elastic.envs" . | indent 12 }}
             - name: ONBOARD_BASEURL
               value: "http://onboard-service.{{ .Release.Namespace }}.svc.cluster.local:6251"
