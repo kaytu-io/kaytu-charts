@@ -46,7 +46,7 @@ spec:
               memory: 100Mi
           env:
             - name: NATS_URL
-              value: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}.{{ .Release.Namespace }}.svc.cluster.local:4222"
+              value: "{{ .Release.Namespace }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"
 {{- include "elastic.envs" . | indent 12 }}
 
             - name: INVENTORY_BASEURL

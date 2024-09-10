@@ -7,7 +7,11 @@ metadata:
     app: kaytu-aws-describer
 spec:
   minReadySeconds: 10
+  {{- if eq .Values.keda.enabled }}
   replicas: 0
+  {{- else }}
+  replicas: 10
+  {{- end }}
   selector:
     matchLabels:
       app: kaytu-aws-describer
@@ -31,7 +35,7 @@ spec:
               memory: 300Mi
           env:
             - name: AWS_DESCRIBER_NATS__URL
-              value: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}.{{ .Release.Namespace }}.svc.cluster.local:4222"
+              value: "{{ .Release.Namespace }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -42,7 +46,11 @@ metadata:
     app: kaytu-azure-describer
 spec:
   minReadySeconds: 10
+  {{- if eq .Values.keda.enabled }}
   replicas: 0
+  {{- else }}
+  replicas: 10
+  {{- end }}
   selector:
     matchLabels:
       app: kaytu-azure-describer
@@ -66,4 +74,4 @@ spec:
               memory: 300Mi
           env:
             - name: AZURE_DESCRIBER_NATS__URL
-              value: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}.{{ .Release.Namespace }}.svc.cluster.local:4222"
+              value: "{{ .Release.Namespace }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"

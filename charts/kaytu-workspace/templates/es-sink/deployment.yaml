@@ -38,21 +38,14 @@ spec:
               value: "auth-service.{{ .Values.kaytu.octopus.namespace }}.svc.cluster.local:50051"
 
             - name: ESSINK_ELASTICSEARCH__ADDRESS
-              value: "https://opensearch-cluster.{{ .Release.Namespace }}.svc.cluster.local:9200"
+              value: "https://opensearch-cluster-master.{{ .Release.Namespace }}.svc.cluster.local:9200"
             - name: ESSINK_ELASTICSEARCH__IS_OPEN_SEARCH
               value: "true"
             - name: ESSINK_ELASTICSEARCH__IS_ON_AKS
               value: "true"
             - name: ESSINK_ELASTICSEARCH__USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: opensearch-admin-credentials-secret
-                  key: username
+              value: "admin"
             - name: ESSINK_ELASTICSEARCH__PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: opensearch-admin-credentials-secret
-                  key: password
-
+              value: "STRONGpassword@123"
             - name: ESSINK_NATS__URL
-              value: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}.{{ .Release.Namespace }}.svc.cluster.local:4222"
+              value: "{{ .Release.Namespace }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"

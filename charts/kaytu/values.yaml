@@ -1,0 +1,708 @@
+kaytu:
+  replicaCount: 1
+  ssl:
+    enabled: false
+  envType: dev
+  domain:
+    app: example.kaytu.io
+    main: kaytu.app.domain
+    grafana: grafana.domain
+    grpc: grpc.domain
+    grpc_external: grpc-external.domain
+    swagger: swagger.domain
+    sentry: sentry.domain
+    website:
+      - website.domain
+    docs: docs.domain
+    blog: blog.domain
+    pennywise: pennywise.domain
+  docker:
+    registry: ghcr.io/kaytu-io
+    privateRegistry: akscorekaytuprivateacr.azurecr.io
+    tags:
+      auth:
+        dev: v0.423.19-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
+        prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-auth-service-prod:tag"}
+      workspace:
+        dev: v0.423.2-dev
+        prod: v0.345.2-prod
+      frontendv2:
+        dev: v0.39.32-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
+        prod: v0.37.6-prod # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service-prod:tag"}
+      pennywise:
+        dev: v0.4.20-dev # {"$imagepolicy": "flux-system:pennywise-server:tag"}
+        prod: v0.3.17-prod # {"$imagepolicy": "flux-system:pennywise-server-prod:tag"}
+  auth0:
+    domain: kaytu.us.auth0.com
+    clientId: xxx
+    nativeClientId: xxx
+    nativePennywiseClientId: xxx
+    manageClientId: xxx
+    manageSealedClientSecret: XXX
+    audience: https://app.kaytu.io
+    connection: 'Username-Password-Authentication'
+    connectionID: 'xxx'
+  apikey:
+    public: ""
+    private: ""
+    enabled: false
+  workspace:
+    name: dev-cluster
+    size: lg
+    masterAccessKey: ""
+    masterSecretKey: ""
+    chart:
+      version: 0.1.16
+    kaytuChartLocation: "./kaytu"
+    aws:
+      master-secret: "" # TODO: need comment
+      keyMap:
+        access-key: "" # TODO: need comment
+        secret-key: "" # TODO: need comment
+  frontend:
+    muiLicense: xxx
+  master:
+    accessKey: "" # echo "xxx" | base64
+    secretKey: "" # echo "xxx" | base64
+    policyARN: "xxx"
+    accountID: "xxx"
+    oidcProvider: "oidc.eks.us-east-2.amazonaws.com/id/xxx"
+    masterRoleARN: "arn:aws:iam::xxx:role/KaytuOpenSearchAdmin"
+    securityGroupID: "sg-xxx"
+    subnetID: "subnet-xxx"
+  vault:
+    provider: hashicorp-vault
+    aws:
+      region: us-east-2
+      roleArn: "arn:aws:iam::xxx:role/xxx"
+      accessKey: ""
+      secretKey: ""
+    azure:
+      baseUrl: "https://xxx.vault.azure.net"
+      tenantId: "xxx"
+      clientId: "xxx"
+      clientSecret: "xxx"
+    keyID: "workspace-creds"
+  checkup:
+    worker:
+      image:
+        repo: ghcr.io/kaytu-io/checkup-worker
+        tag:
+          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-checkup-worker:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-checkup-worker-prod:tag"}
+  migrator:
+    worker:
+      image:
+        repo: ghcr.io/kaytu-io/migrator
+        tag:
+          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-migrator-worker:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-migrator-worker-prod:tag"}
+  analytics:
+    worker:
+      image:
+        repo: ghcr.io/kaytu-io/analytics-worker
+        tag:
+          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-analytics-worker:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-analytics-worker-prod:tag"}
+  describe:
+    scheduler:
+      image:
+        repo: ghcr.io/kaytu-io/describe-scheduler
+        tag:
+          dev: v0.422.21-dev # {"$imagepolicy": "flux-system:kaytu-describe-scheduler:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-describe-scheduler-prod:tag"}
+    worker:
+      aws:
+        image:
+          repo: ghcr.io/kaytu-io/kaytu-aws-describer
+          tag:
+            dev: local-v0.57.4 # {"$imagepolicy": "flux-system:kaytu-aws-describer:tag"}
+            prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-aws-describer-prod:tag"}
+      azure:
+        image:
+          repo: ghcr.io/kaytu-io/kaytu-azure-describer
+          tag:
+            dev: local-v0.35.23 # {"$imagepolicy": "flux-system:kaytu-azure-describer:tag"}
+            prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-azure-describer-prod:tag"}
+  onboard:
+    service:
+      image:
+        repo: ghcr.io/kaytu-io/onboard-service
+        tag:
+          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-onboard-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-onboard-service-prod:tag"}
+  integration:
+    service:
+      image:
+        repo: ghcr.io/kaytu-io/integration
+        tag:
+          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-integration-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-integration-service-prod:tag"}
+  metadata:
+    service:
+      image:
+        repo: ghcr.io/kaytu-io/metadata-service
+        tag:
+          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-metadata-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-metadata-service-prod:tag"}
+  inventory:
+    service:
+      image:
+        repo: ghcr.io/kaytu-io/inventory-service
+        tag:
+          dev: v0.422.21-dev # {"$imagepolicy": "flux-system:kaytu-inventory-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-inventory-service-prod:tag"}
+  compliance:
+    service:
+      image:
+        repo: ghcr.io/kaytu-io/compliance-service
+        tag:
+          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-service-prod:tag"}
+    summarizer:
+      image:
+        repo: ghcr.io/kaytu-io/compliance-summarizer
+        tag:
+          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-compliance-summarizer:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-summarizer-prod:tag"}
+  complianceReport:
+    worker:
+      image:
+        repo: ghcr.io/kaytu-io/compliance-report-worker
+        tag:
+          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker-prod:tag"}
+  steampipe:
+    service:
+      image:
+        repo: ghcr.io/kaytu-io/steampipe-service
+        tag:
+          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-steampipe-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-steampipe-service-prod:tag"}
+  esSink:
+    service:
+      image:
+        repo: ghcr.io/kaytu-io/es-sink
+        tag:
+          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:es-sink-service:tag"}
+          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:es-sink-service-prod:tag"}
+dex:
+  configSecret:
+    # -- Enable creating a secret from the values passed to `config`.
+    # If set to false, name must point to an existing secret.
+    create: true
+
+    # -- The name of the secret to mount as configuration in the pod.
+    # If not set and create is true, a name is generated using the fullname template.
+    # Must point to secret that contains at least a `config.yaml` key.
+    name: ""
+  config:
+    issuer: "http://kaytu-dex.kaytu.svc.cluster.local:5556/dex"
+    staticClients:
+      - id: public-client
+        name: 'Public Client'
+        redirectURIs:
+          - 'http://localhost:8080/callback'
+        public: true
+      - id: private-client
+        name: 'Private Client'
+        redirectURIs:
+          - 'https://kaytu.app.domain/callback'
+        secret: "secret" # client secret
+    staticPasswords:
+      - email: "admin@example.com"
+        hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
+        username: "admin"
+        userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
+    enablePasswordDB: true
+    connectors:
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: "clientID" # client ID from github
+          clientSecret: "clientSecret" # client Secret from github
+          redirectURI: 'https://kaytu.app.domain/dex/callback'
+          loadAllGroups: false
+          useLoginAsID: false
+    expiry:
+      deviceRequests: "5m"
+      signingKeys: "6h"
+      idTokens: "24h"
+      refreshTokens:
+        reuseInterval: "3s"
+        validIfNotUsedFor: "2160h" # 90 days
+        absoluteLifetime: "3960h" # 165 days
+    logger:
+      level: "debug"
+      format: "text" # can also be "json"
+    storage:
+      type: postgres
+      config:
+        host: "database-2.chm0yysg47ua.us-east-1.rds.amazonaws.com" # how to make this dynamic?
+        port: 5432
+        database: dex
+        user: dex_service
+        password: "password"
+        ssl:
+          mode: "disable"
+    oauth2:
+      passwordConnector: local
+externalPostgresql:
+  enabled: false
+  endpoint: "pg.example.com"
+  port: "5432"
+  masterUser: "postgres"
+  masterPassword: "postgres"
+  sslMode: disable
+postgresql:
+  enabled: true
+  architecture: replication
+  readReplicas:
+    replicaCount: 1
+  image:
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 14
+    pullPolicy: Always
+    debug: false
+  global:
+    postgresql:
+      auth:
+        postgresPassword: "postgres"
+  primary:
+    persistence:
+      size: 20Gi
+    configuration: |
+      listen_addresses = '*'
+      max_wal_senders = 10
+      shared_preload_libraries = 'pg_stat_statements'
+      
+      max_connections = 40
+      shared_buffers = 768MB
+      effective_cache_size = 2304MB
+      maintenance_work_mem = 384MB
+      checkpoint_completion_target = 0.9
+      wal_buffers = 16MB
+      default_statistics_target = 500
+      random_page_cost = 1.1
+      effective_io_concurrency = 200
+      work_mem = 4915kB
+      huge_pages = off
+      min_wal_size = 4GB
+      max_wal_size = 16GB
+    initdb:
+      user: "postgres"
+      password: "postgres"
+      scripts:
+        primary_init_script.sh: |
+          #!/bin/bash
+          set -e
+
+          dt=$(date '+%d/%m/%Y %H:%M:%S');
+          echo "$dt - Running init script the 1st time Primary PostgreSql container is created...";
+
+          pennywiseDatabaseName="pennywise"
+          pennywiseUserName="pennywise_service"
+
+          workspaceDatabaseName="workspace"
+          workspaceUserName="workspace_service"
+
+          authDatabaseName="auth"
+          authUserName="auth_service"
+
+          subscriptionDatabaseName="subscription"
+          subscriptionUserName="subscription_service"
+
+          informationDatabaseName="information"
+          informationUserName="information_service"
+
+          dexDatabaseName="dex"
+          dexUserName="dex_service"
+
+          exporterUserName="postgres_exporter"
+          steampipeUserName="steampipe_user"
+
+          migratorDatabaseName="migrator"
+          migratorUserName="migrator_worker"
+
+          describeDatabaseName="describe"
+          describeUserName="describe_scheduler"
+
+          assistantDatabaseName="assistant"
+          assistantUserName="assistant_service"
+
+          onboardDatabaseName="onboard"
+          onboardUserName="onboard_service"
+
+          policyDatabaseName="policy"
+          policyUserName="policy_service"
+
+          inventoryDatabaseName="inventory"
+          inventoryUserName="inventory_service"
+
+          complianceDatabaseName="compliance"
+          complianceUserName="compliance_service"
+
+          metadataDatabaseName="metadata"
+          metadataUserName="metadata_service"
+
+          reporterDatabaseName="reporter"
+          reporterUserName="reporter_service"
+
+          alertingDatabaseName="alerting"
+          alertingUserName="alerting_service"
+
+          echo "$dt - Running: psql -v ON_ERROR_STOP=1 --username postgres --dbname postgres ...";
+
+          PGPASSWORD="postgres" psql -v ON_ERROR_STOP=1 --username "postgres" --dbname "postgres" <<-EOSQL
+
+          CREATE DATABASE $workspaceDatabaseName;
+          CREATE USER $workspaceUserName WITH PASSWORD '$POSTGRES_WORKSPACE_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$workspaceDatabaseName" to $workspaceUserName;
+
+          \c "$workspaceDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+
+          CREATE DATABASE $subscriptionDatabaseName;
+          CREATE USER $subscriptionUserName WITH PASSWORD '$POSTGRES_SUBSCRIPTION_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$subscriptionDatabaseName" to $subscriptionUserName;
+
+          \c "$subscriptionDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          
+          CREATE DATABASE $pennywiseDatabaseName;
+          CREATE USER $pennywiseUserName WITH PASSWORD '$POSTGRES_PENNYWISE_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$pennywiseDatabaseName" to $pennywiseUserName;
+            
+          \c "$pennywiseDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+          CREATE DATABASE $informationDatabaseName;
+          CREATE USER $informationUserName WITH PASSWORD '$POSTGRES_INFORMATION_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$informationDatabaseName" to $informationUserName;
+
+          \c "$informationDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+          CREATE DATABASE $dexDatabaseName;
+          CREATE USER $dexUserName WITH PASSWORD '$DEX_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$dexDatabaseName" to $dexUserName;
+
+          \c "$dexDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+
+          CREATE DATABASE $describeDatabaseName;
+          CREATE USER $describeUserName WITH PASSWORD '$POSTGRES_DESCRIBE_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$describeDatabaseName" to $describeUserName;
+
+          \c $describeDatabaseName
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
+
+          CREATE DATABASE $onboardDatabaseName;
+          CREATE USER $onboardUserName WITH PASSWORD '$POSTGRES_ONBOARD_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$onboardDatabaseName" to $onboardUserName;
+
+          \c $onboardDatabaseName
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
+
+          CREATE DATABASE $policyDatabaseName;
+          CREATE USER $policyUserName WITH PASSWORD '$POSTGRES_POLICY_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$policyDatabaseName" to $policyUserName;
+
+          \c $policyDatabaseName
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
+
+          CREATE DATABASE $inventoryDatabaseName ;
+          CREATE USER $inventoryUserName WITH PASSWORD '$POSTGRES_INVENTORY_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$inventoryDatabaseName" to $inventoryUserName;
+
+          \c $inventoryDatabaseName
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
+
+          CREATE DATABASE $assistantDatabaseName ;
+          CREATE USER $assistantUserName WITH PASSWORD '$POSTGRES_ASSISTANT_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$assistantDatabaseName" to $assistantUserName;
+
+          \c $assistantDatabaseName
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
+
+          CREATE DATABASE $complianceDatabaseName ;
+          CREATE USER $complianceUserName WITH PASSWORD '$POSTGRES_COMPLIANCE_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$complianceDatabaseName" to $complianceUserName;
+
+          \c $complianceDatabaseName
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
+
+          CREATE DATABASE $authDatabaseName;
+          CREATE USER $authUserName WITH PASSWORD '$POSTGRES_AUTH_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$authDatabaseName" to $authUserName;
+
+          \c "$authDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
+
+          CREATE DATABASE $metadataDatabaseName;
+          CREATE USER $metadataUserName WITH PASSWORD '$POSTGRES_METADATA_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$metadataDatabaseName" to $metadataUserName;
+
+          \c "$metadataDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
+
+          CREATE DATABASE $reporterDatabaseName;
+          CREATE USER $reporterUserName WITH PASSWORD '$POSTGRES_REPORTER_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$reporterDatabaseName" to $reporterUserName;
+
+          \c "$reporterDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
+
+          CREATE DATABASE $alertingDatabaseName;
+          CREATE USER $alertingUserName WITH PASSWORD '$POSTGRES_ALERTING_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$alertingDatabaseName" to $alertingUserName;
+
+          \c "$alertingDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
+
+          CREATE DATABASE $migratorDatabaseName;
+          CREATE USER $migratorUserName WITH PASSWORD '$POSTGRES_MIGRATOR_DB_PASSWORD';
+          GRANT ALL PRIVILEGES ON DATABASE "$migratorDatabaseName" to $migratorUserName;
+
+          \c "$migratorDatabaseName"
+          CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          CREATE EXTENSION citext;
+
+          CREATE USER $steampipeUserName WITH PASSWORD '$POSTGRES_STEAMPIPE_USER_PASSWORD';
+
+          \connect "$complianceDatabaseName";
+          GRANT pg_read_all_data TO $migratorUserName;
+          GRANT pg_write_all_data TO $migratorUserName;
+          \connect "$metadataDatabaseName";
+          GRANT pg_read_all_data TO $migratorUserName;
+          GRANT pg_write_all_data TO $migratorUserName;
+          \connect "$onboardDatabaseName";
+          GRANT pg_read_all_data TO $migratorUserName;
+          GRANT pg_write_all_data TO $migratorUserName;
+          GRANT pg_read_all_data TO $steampipeUserName;
+          \connect "$inventoryDatabaseName";
+          GRANT pg_read_all_data TO $migratorUserName;
+          GRANT pg_write_all_data TO $migratorUserName;
+          GRANT pg_read_all_data TO $steampipeUserName;
+
+
+          \connect "postgres";
+          CREATE EXTENSION pg_stat_statements;
+          CREATE USER $exporterUserName WITH PASSWORD '$POSTGRES_EXPORTER_PASSWORD';
+          GRANT pg_monitor TO $exporterUserName;
+          
+          EOSQL
+
+          echo "$dt - Init script is completed";
+    resources:
+      limits:
+        memory: '3Gi'
+        cpu: '3'
+      requests:
+        memory: "1.5Gi"
+        cpu: "1"
+    # These passwords are random generated
+    # Do not change them
+    # You can get the passwords running:
+    #`kubectl get secret postgres-secret -n <namespace-name> -o json | jq -r '.data.<key>' | base64 --decode`
+    extraEnvVars:
+      - name: POSTGRES_WORKSPACE_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: workspaceServiceUserPassword
+      - name: POSTGRES_AUTH_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: authServiceUserPassword
+      - name: POSTGRES_SUBSCRIPTION_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: subscriptionUserPassword
+      - name: POSTGRES_PENNYWISE_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: pennywiseUserPassword
+      - name: POSTGRES_INFORMATION_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: informationUserPassword
+      - name: DEX_DB_PASSWORD
+        value: "password" # TODO: should be random generated. should be same as dex.storage.config.password
+      - name : POSTGRES_DESCRIBE_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: describeSchedulerUserPassword
+      - name : POSTGRES_ONBOARD_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: onboardServiceUserPassword
+      - name : POSTGRES_POLICY_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: policyServiceUserPassword
+      - name: POSTGRES_INVENTORY_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: inventoryServiceUserPassword
+      - name: POSTGRES_ASSISTANT_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: assistantServiceUserPassword
+      - name: POSTGRES_COMPLIANCE_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: complianceServiceUserPassword
+      - name: POSTGRES_METADATA_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: metadataServiceUserPassword
+      - name: POSTGRES_REPORTER_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: reporterServiceUserPassword
+      - name: POSTGRES_MIGRATOR_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: migratorServiceUserPassword
+      - name: POSTGRES_EXPORTER_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: postgresExporterUserPassword
+      - name: POSTGRES_STEAMPIPE_USER_PASSWORD
+        valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: steampipeUserPassword
+      - name: POSTGRES_ALERTING_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: alertingServiceUserPassword
+externalOpensearch:
+  enabled: false
+  endpoint: "https://opensearch.example.com"
+  roleArn: "arn:aws:iam::000000000000:role/opensearch-fullaccess"
+  awsRegion: "us-east-1"
+opensearch:
+  enabled: true
+  clusterName: opensearch-cluster
+  persistence:
+    size: 50Gi
+  opensearchJavaOpts: "-XX:-HeapDumpOnOutOfMemoryError -Xmx3072M -Xms3072M"
+  resources:
+  requests:
+    cpu: "500m"
+    memory: "4Gi"
+  replicas: 3
+  extraEnvs:
+    - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
+      value: myStrongPassword@123!
+    - name: AWS_REGION
+      value: "us-east-2"
+  sysctlInit:
+    enabled: true
+opensearch-dashboards:
+  enabled: false
+  replicaCount: 1
+  resources:
+    requests:
+      memory: "500Mi"
+      cpu: "200m"
+    limits:
+      memory: "500Mi"
+      cpu: "200m"
+nats:
+  global:
+    labels:
+      app: job-queue
+  natsBox:
+    enabled: false
+  config:
+    cluster:
+      noAdvertise: true
+      enabled: false
+      replicas: 1
+    gateway:
+      enabled: false
+    jetstream:
+      enabled: true
+      memoryStore:
+        enabled: true
+        maxSize: 4Gi
+      # we are using jetstream as our job queue, because of that
+      # there is no need to have a persistent storage.
+      fileStore:
+        enabled: true
+        storageDirectory: /data
+        pvc:
+          enabled: true
+          size: 25Gi
+  container:
+    merge:
+      resources:
+        requests:
+          cpu: 200m
+          memory: 200Mi
+        limits:
+          cpu: 2500m
+          memory: 5Gi
+  statefulSet:
+    merge:
+      metadata:
+        annotations:
+          "karpenter.sh/do-not-disrupt": "true"
+  promExporter:
+    enabled: true
+    podMonitor:
+      enabled: false
+vault-helm: {}
+aws:
+  accountID: "xxx"
+  iam:
+    subscriptionServiceRoleArn: "arn:aws:iam::xxx:role/xxx"
+  firehose:
+    region: us-east-2
+    usageMetersStreamName: "xxx"
+  describer:
+    accessRoleArn: "arn:aws:iam::xxx:role/xxx"
+azure:
+  eventhubConnection: ""
+  serviceBusConnection: ""
+github:
+  token: ""
+lambda: "https://xxx.execute-api.us-east-2.amazonaws.com/dev/describer"
+storage:
+  className: ""
+flux:
+  namespace: flux-system
+
+keda:
+  enabled: false

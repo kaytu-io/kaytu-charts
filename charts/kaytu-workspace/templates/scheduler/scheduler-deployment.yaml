@@ -34,13 +34,13 @@ spec:
         imagePullPolicy: Always
         env:
         - name: NATS_URL
-          value: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}.{{ .Release.Namespace }}.svc.cluster.local:4222"
+          value: "{{ .Release.Namespace }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"
         - name: HTTP_ADDRESS
           value: "0.0.0.0:5251"
         - name: GRPC_ADDRESS
           value: "0.0.0.0:5252"
         - name: POSTGRESQL_HOST
-          value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
+          value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
         - name: POSTGRESQL_PORT
           value: "5432"
         - name: POSTGRESQL_DB
@@ -62,6 +62,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: WORKSPACE_NAME
+          value: "main"
         - name: DESCRIBE_INTERVAL_HOURS
           value: "12"
         - name: FULL_DISCOVERY_INTERVAL_HOURS

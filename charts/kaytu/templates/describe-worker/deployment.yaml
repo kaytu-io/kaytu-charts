@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kaytu-aws-describer
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: kaytu-aws-describer
+spec:
+  minReadySeconds: 10
+  {{- if eq .Values.keda.enabled true }}
+  replicas: 0
+  {{- else }}
+  replicas: 3
+  {{- end }}
+  selector:
+    matchLabels:
+      app: kaytu-aws-describer
+  template:
+    metadata:
+      labels:
+        app: kaytu-aws-describer
+    spec:
+      serviceAccountName: kaytu-aws-describer
+      containers:
+        - name: kaytu-aws-describer
+          image: {{ .Values.kaytu.describe.worker.aws.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.complianceReport.worker.image.tag.dev .Values.kaytu.describe.worker.aws.image.tag }}
+          command: ["/kaytu-aws-describer"]
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 300Mi
+          env:
+            - name: AWS_DESCRIBER_NATS__URL
+              value: "{{ .Release.Namespace }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kaytu-azure-describer
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: kaytu-azure-describer
+spec:
+  minReadySeconds: 10
+  {{- if eq .Values.keda.enabled true }}
+  replicas: 0
+  {{- else }}
+  replicas: 3
+  {{- end }}
+  selector:
+    matchLabels:
+      app: kaytu-azure-describer
+  template:
+    metadata:
+      labels:
+        app: kaytu-azure-describer
+    spec:
+      serviceAccountName: kaytu-azure-describer
+      containers:
+        - name: kaytu-azure-describer
+          image: {{ .Values.kaytu.describe.worker.azure.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.complianceReport.worker.image.tag.dev .Values.kaytu.describe.worker.azure.image.tag }}
+          command: ["/kaytu-azure-describer"]
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 300Mi
+          env:
+            - name: AZURE_DESCRIBER_NATS__URL
+              value: "{{ .Release.Namespace }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"

@@ -45,7 +45,7 @@ spec:
             - name: METADATA_BASE_URL
               value: "http://metadata-service.%s.svc.cluster.local:6251"
             - name: POSTGRESQL_HOST
-              value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
+              value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
             - name: POSTGRESQL_PORT
               value: "5432"
             - name: POSTGRESQL_DB
@@ -72,9 +72,9 @@ spec:
             - name: AUTH0_DOMAIN
               value: "https://kaytu.us.auth0.com/"
             - name: DEX_AUTH_DOMAIN
-              value: "http://{{ .Release.Namespace }}-{{ .Values.kaytu.dex.serviceName }}.{{ .Release.Namespace }}.svc.cluster.local:5556/dex"
+              value: "http://{{ .Release.Namespace }}-dex.{{ .Release.Namespace }}.svc.cluster.local:5556/dex"
             - name: DEX_AUTH_PUBLIC_CLIENT_ID
-              value: {{ .Values.kaytu.dex.publicClientId }}
+              value: public-client
             - name: KAYTU_KEY_ENABLED
               value: "{{ .Values.kaytu.apikey.enabled }}"
             - name: KAYTU_PUBLIC_KEY
