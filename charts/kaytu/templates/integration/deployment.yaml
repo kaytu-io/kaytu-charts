@@ -55,27 +55,27 @@ spec:
           value: "http://metadata-service.{{ .Release.Namespace }}.svc.cluster.local:6251"
 
         - name: INTEGRATION_VAULT__PROVIDER
-          value: {{ .Values.vault.provider }}
+          value: {{ .Values.kaytu.vault.provider }}
         - name: INTEGRATION_VAULT__AWS__REGION
-          value: {{ .Values.vault.aws.region }}
+          value: {{ .Values.kaytu.vault.aws.region }}
         - name: INTEGRATION_VAULT__AWS__ROLE_ARN
-          value: {{ .Values.vault.aws.roleArn }}
+          value: {{ .Values.kaytu.vault.aws.roleArn }}
         - name: INTEGRATION_VAULT__AWS__ACCESS_KEY
-          value: {{ .Values.vault.aws.accessKey }}
+          value: {{ .Values.kaytu.vault.aws.accessKey }}
         - name: INTEGRATION_VAULT__AWS__SECRET_KEY
-          value: {{ .Values.vault.aws.secretKey }}
+          value: {{ .Values.kaytu.vault.aws.secretKey }}
         - name: INTEGRATION_VAULT__AZURE__BASE_URL
-          value: {{ .Values.vault.azure.baseUrl }}
+          value: {{ .Values.kaytu.vault.azure.baseUrl }}
         - name: INTEGRATION_VAULT__AZURE__CLIENT_ID
-          value: {{ .Values.vault.azure.clientId }}
+          value: {{ .Values.kaytu.vault.azure.clientId }}
         - name: INTEGRATION_VAULT__AZURE__TENANT_ID
-          value: {{ .Values.vault.azure.tenantId }}
+          value: {{ .Values.kaytu.vault.azure.tenantId }}
         - name: INTEGRATION_VAULT__AZURE__CLIENT_SECRET
-          value: {{ .Values.vault.azure.clientSecret }}
+          value: {{ .Values.kaytu.vault.azure.clientSecret }}
         - name: INTEGRATION_VAULT__HASHICORP__ADDRESS
-          value: "http://vault-internal.vault-system.svc.cluster.local:8200"
+          value: "http://{{ .Release.Name }}-vault-internal.{{.Release.Namespace}}.svc.cluster.local:8200"
         - name: INTEGRATION_VAULT__KEY_ID
-          value: {{ .Values.vault.keyID }}
+          value: {{ .Values.kaytu.vault.keyID }}
 
         - name: INTEGRATION_MASTER_ACCESS_KEY
           value: {{ .Values.kaytu.workspace.masterAccessKey }}

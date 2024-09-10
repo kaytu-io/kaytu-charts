@@ -113,30 +113,30 @@ spec:
           value: "{{ .Values.kaytu.domain.grpc_external }}:443"
 
         - name: KMS_ACCOUNT_REGION
-          value: {{ .Values.vault.aws.region }}
+          value: {{ .Values.kaytu.vault.aws.region }}
           
         - name: VAULT_PROVIDER
-          value: {{ .Values.vault.provider }}
+          value: {{ .Values.kaytu.vault.provider }}
         - name: VAULT_AWS_REGION
-          value: {{ .Values.vault.aws.region }}
+          value: {{ .Values.kaytu.vault.aws.region }}
         - name: VAULT_AWS_ROLE_ARN
-          value: {{ .Values.vault.aws.roleArn }}
+          value: {{ .Values.kaytu.vault.aws.roleArn }}
         - name: VAULT_AWS_ACCESS_KEY
-          value: {{ .Values.vault.aws.accessKey }}
+          value: {{ .Values.kaytu.vault.aws.accessKey }}
         - name: VAULT_AWS_SECRET_KEY
-          value: {{ .Values.vault.aws.secretKey }}
+          value: {{ .Values.kaytu.vault.aws.secretKey }}
         - name: VAULT_AZURE_BASE_URL
-          value: {{ .Values.vault.azure.baseUrl }}
+          value: {{ .Values.kaytu.vault.azure.baseUrl }}
         - name: VAULT_AZURE_CLIENT_ID
-          value: {{ .Values.vault.azure.clientId }}
+          value: {{ .Values.kaytu.vault.azure.clientId }}
         - name: VAULT_AZURE_TENANT_ID
-          value: {{ .Values.vault.azure.tenantId }}
+          value: {{ .Values.kaytu.vault.azure.tenantId }}
         - name: VAULT_AZURE_CLIENT_SECRET
-          value: {{ .Values.vault.azure.clientSecret }}
+          value: {{ .Values.kaytu.vault.azure.clientSecret }}
         - name: VAULT_HASHICORP_ADDRESS
-          value: "http://vault-internal.vault-system.svc.cluster.local:8200"
+          value: "http://{{ .Release.Name }}-vault-internal.{{.Release.Namespace}}.svc.cluster.local:8200"
         - name: VAULT_KEY_ID
-          value: {{ .Values.vault.keyID }}
+          value: {{ .Values.kaytu.vault.keyID }}
 
         - name: DO_DELETE_OLD_RESOURCES
           value: "true"

@@ -683,19 +683,6 @@ nats:
     enabled: true
     podMonitor:
       enabled: false
-vault:
-  provider: aws-kms
-  aws:
-    region: us-east-2
-    roleArn: "arn:aws:iam::xxx:role/xxx"
-    accessKey: ""
-    secretKey: ""
-  azure:
-    baseUrl: ""
-    tenantId: ""
-    clientId: ""
-    clientSecret: ""
-  keyID: "workspace-key"
 vault-helm: {}
 aws:
   accountID: "xxx"
