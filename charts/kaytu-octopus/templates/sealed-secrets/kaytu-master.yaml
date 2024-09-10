@@ -1,0 +1,21 @@
+{{- if eq .Values.kaytu.master.accessKey "" }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kaytu-master
+  namespace: {{ .Release.Namespace }}
+type: Opaque
+data:
+  accessKey: eHh4
+  secretKey: eHh4
+{{- else }}
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: kaytu-master
+  namespace: {{.Release.Namespace}}
+spec:
+  encryptedData:
+    accessKey: {{ .Values.kaytu.master.accessKey }}
+    secretKey: {{ .Values.kaytu.master.secretKey }}
+{{- end }}

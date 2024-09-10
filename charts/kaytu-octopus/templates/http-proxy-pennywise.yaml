@@ -1,0 +1,50 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: http-proxy-pennywise
+  namespace: {{ .Release.Namespace }}
+spec:
+  virtualhost:
+    fqdn: {{ .Values.kaytu.domain.pennywise }}
+    tls:
+      secretName: web-tls
+    authorization:
+      extensionRef:
+        apiVersion: projectcontour.io/v1alpha1
+        name: auth
+        namespace: {{ .Release.Namespace }}
+      responseTimeout: 60s
+    corsPolicy:
+      allowCredentials: true
+      allowOrigin:
+        - "*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      allowHeaders:
+        - authorization
+        - cache-control
+        - content-type
+        - data
+        - sentry-trace
+        - baggage
+        - prefer
+      exposeHeaders:
+        - Content-Length
+        - Content-Range
+      maxAge: "60m"
+  routes:
+    - conditions:
+        - prefix: /kaytu
+      pathRewritePolicy:
+        replacePrefix:
+          - prefix: /kaytu
+            replacement: /
+      timeoutPolicy:
+        response: 60s
+      services:
+        - name: pennywise-server-service
+          port: 8080

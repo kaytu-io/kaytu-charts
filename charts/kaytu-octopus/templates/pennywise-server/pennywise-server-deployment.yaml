@@ -1,3 +1,4 @@
+{{- if eq (.Values.kaytu.envType | toString) "dev" }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -29,7 +30,7 @@ spec:
               memory: 100Mi
           env:
             - name: POSTGRES_HOST
-              value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
+              value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
             - name: POSTGRES_PORT
               value: "5432"
             - name: POSTGRES_DB
@@ -41,3 +42,4 @@ spec:
                 secretKeyRef:
                   name: postgres-secret
                   key: pennywiseUserPassword
+{{- end }}

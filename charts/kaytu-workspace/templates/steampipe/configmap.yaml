@@ -34,7 +34,7 @@ data:
       addresses = []
       username = ""
       password = ""
-      pg_host = "{{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local"
+      pg_host = "{{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local"
       pg_port = "5432"
       pg_user = "steampipe_user"
       pg_password = ""

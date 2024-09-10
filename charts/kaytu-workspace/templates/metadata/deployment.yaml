@@ -31,7 +31,7 @@ spec:
             memory: 100Mi
         env:
         - name: POSTGRESQL_HOST
-          value: {{ .Release.Namespace }}-postgresql-primary.{{ .Release.Namespace }}.svc.cluster.local
+          value: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
         - name: POSTGRESQL_PORT
           value: "5432"
         - name: POSTGRESQL_DB

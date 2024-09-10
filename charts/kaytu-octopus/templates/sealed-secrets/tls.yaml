@@ -1,0 +1,32 @@
+{{- if eq .Values.kaytu.ssl.enabled true }}
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: web-tls
+  namespace: {{ .Release.Namespace }}
+spec:
+  encryptedData:
+    tls.crt: {{ .Values.tls.sealedTlsCrt }}
+    tls.key: {{ .Values.tls.sealedTlsKey }}
+{{- else }}
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: selfsigned
+  namespace: {{ .Release.Namespace }}
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: web-tls
+  namespace: {{ .Release.Namespace }}
+spec:
+  dnsNames:
+    - {{ .Values.kaytu.domain.main }}
+  secretName: web-tls
+  issuerRef:
+    name: selfsigned
+    kind: ClusterIssuer
+{{- end }}
