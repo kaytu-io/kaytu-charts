@@ -1,0 +1,97 @@
+{{- $privateClientSecret := (randAlpha 16) | b64enc | quote }}
+{{- $storageSecretPassword := (randAlpha 16) | b64enc }}
+{{- $staticPasswords := .Values.kaytu.dex.staticPasswords }}
+{{- $connectors := .Values.kaytu.dex.connectors }}
+
+{{- $secret := (lookup "v1" "Secret" .Release.Namespace "dex-secret") }}
+{{- if $secret }}
+{{- $privateClientSecret = index $secret.data "privateClientSecret" | default $privateClientSecret }}
+{{- $storageSecretPassword = index $secret.data "dexStorageUserPassword" | default $storageSecretPassword }}
+{{- end -}}
+
+{{- $connectorsSecret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.connectorsFromSecret) }}
+{{- if and (ne $connectorsSecret nil) (ne $connectorsSecret.data nil) }}
+{{- $connectorsYaml := index $connectorsSecret.data "data" | b64dec | fromYaml }}
+{{- $connectors = $connectorsYaml.connectors }}
+{{- end -}}
+
+{{- $staticPassSecret := (lookup "v1" "Secret" .Release.Namespace .Values.kaytu.dex.staticPasswordsFromSecret) }}
+{{- if and (ne $staticPassSecret nil) (ne $staticPassSecret.data nil) }}
+{{- $staticPasswordsYaml := index $staticPassSecret.data "data" | b64dec | fromYaml }}
+{{- $staticPasswords = $staticPasswordsYaml.secretPasswords }}
+{{- end -}}
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dex-secret
+  namespace: {{ .Release.Namespace }}
+data:
+  privateClientSecret: {{ $privateClientSecret }}
+  dexStorageUserPassword: {{ $storageSecretPassword }}
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: {{ .Values.kaytu.dex.serviceName }}
+  namespace: flux-system
+spec:
+  targetNamespace: {{ .Release.Namespace }}
+  interval: 1m
+  chart:
+    spec:
+      chart: dex
+      sourceRef:
+        kind: HelmRepository
+        name: dex
+        namespace: flux-system
+      version: 0.18.0
+  values:
+    config:
+{{- if eq .Values.kaytu.dex.issuer "" }}
+      issuer: "http://{{ .Release.Namespace }}-{{ .Values.kaytu.dex.serviceName }}.{{ .Release.Namespace }}.svc.cluster.local:5556/dex"
+{{- else }}
+      issuer: "{{ .Values.kaytu.dex.issuer }}"
+{{- end }}
+      staticClients:
+        - id: {{ .Values.kaytu.dex.publicClientId}}
+          name: 'Public Client'
+          redirectURIs:
+            - 'https://{{ .Values.kaytu.domain.main }}/callback'
+            - 'http://{{ .Values.kaytu.domain.main }}/callback'
+            - 'http://localhost:3000/callback'
+            - 'http://localhost:8080/callback'
+          public: true
+        - id: {{ .Values.kaytu.dex.privateClientId}}
+          name: 'Private Client'
+          redirectURIs:
+            - 'https://{{ .Values.kaytu.domain.main }}/callback'
+          secret: {{ $privateClientSecret}}
+      staticPasswords: {{ $staticPasswords | toYaml | nindent 8 }}
+      enablePasswordDB: {{ .Values.kaytu.dex.enablePasswordDB }}
+      connectors: {{ $connectors | toYaml | nindent 8 }}
+      expiry:
+        deviceRequests: "5m"
+        signingKeys: "6h"
+        idTokens: "24h"
+        refreshTokens:
+          reuseInterval: "3s"
+          validIfNotUsedFor: "2160h" # 90 days
+          absoluteLifetime: "3960h" # 165 days
+      logger:
+        level: "debug"
+        format: "text" # can also be "json"
+      storage:
+        type: postgres
+        config:
+          host: {{ .Values.postgres.name }}.{{ .Release.Namespace }}.svc.cluster.local
+          port: 5432
+          database: dex
+          user: dex_service
+          password: {{ $storageSecretPassword | b64dec }}
+          ssl:
+            mode: "disable"
+      oauth2:
+        passwordConnector: local
+        skipApprovalScreen: true
+        alwaysShowLoginScreen: false

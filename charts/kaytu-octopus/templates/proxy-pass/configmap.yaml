@@ -10,39 +10,12 @@ data:
       server {
         listen 80;
 
-        location /dex {
-          proxy_pass http://kaytu-octopus-dex.kaytu-octopus.svc.cluster.local:5556;
-          proxy_ssl_verify off;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header X-Forwarded-Host $host;
-          proxy_set_header X-Forwarded-Port $server_port;
-        }
-
-        location /kaytu/auth {
-          proxy_pass http://auth-service.kaytu-octopus.svc.cluster.local:8251;
-          proxy_ssl_verify off;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header X-Forwarded-Host $host;
-          proxy_set_header X-Forwarded-Port $server_port;
-        }
-
-        location /kaytu/workspace {
-          proxy_pass http://workspace-service.kaytu-octopus.svc.cluster.local:8351;
-          proxy_ssl_verify off;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header X-Forwarded-Host $host;
-          proxy_set_header X-Forwarded-Port $server_port;
-        }
-
         location / {
-          proxy_pass http://frontend-v2-svc.kaytu-octopus.svc.cluster.local:7298;
+          proxy_pass https://contour-envoy.contour-system.svc.cluster.local:443;
           proxy_ssl_verify off;
+          proxy_ssl_server_name on;
+          proxy_ssl_name {{ .Values.kaytu.domain.main }};
+          proxy_set_header Host {{ .Values.kaytu.domain.main }};
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto $scheme;

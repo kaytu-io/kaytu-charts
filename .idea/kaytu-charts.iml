@@ -5,5 +5,14 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="kaytu-aws-describer" />
+    <orderEntry type="module" module-name="kaytu-engine" />
+    <orderEntry type="module" module-name="kaytu-deploy" />
+    <orderEntry type="module" module-name="managed-platform-config" />
+    <orderEntry type="module" module-name="kaytu-scripts" />
+    <orderEntry type="module" module-name="configz" />
+    <orderEntry type="module" module-name="steampipe-plugin-aws" />
+    <orderEntry type="module" module-name="test-describer" />
+    <orderEntry type="module" module-name="move-tables" />
   </component>
 </module>

@@ -2,5 +2,14 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../configz-deprecated" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../kaytu-aws-describer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../kaytu-deploy" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../kaytu-deploy/kaytu-octopus/charts/vault-helm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../kaytu-engine" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../kaytu-flux" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../kaytu-scripts" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../managed-platform-config" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../steampipe-plugin-aws" vcs="Git" />
   </component>
 </project>

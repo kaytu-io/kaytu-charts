@@ -172,6 +172,23 @@
     "Model": "DataProtectionBackupVaults"
   },
   {
+    "ResourceName": "Microsoft.DataProtection/backupJobs",
+    "ResourceLabel": "Data Protection Backup Jobs",
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+    "ServiceName": "Compute",
+    "ListDescriber": "DescribeBySubscription(describer.DataProtectionBackupJobs)",
+    "GetDescriber": "",
+    "TerraformName": null,
+    "TerraformServiceName": "",
+    "Discovery": "COMPLETE",
+    "IgnoreSummarize": true,
+    "SteampipeTable": "azure_data_protection_backup_job",
+    "Model": "DataProtectionJob"
+  },
+  {
     "ResourceName": "Microsoft.DataProtection/backupVaults/backupPolicies",
     "ResourceLabel": "",
     "Tags": {
@@ -4818,5 +4835,23 @@
     "IgnoreSummarize": true,
     "SteampipeTable": "azure_monitor_log_profile",
     "Model": "MonitorLogProfile"
+  },
+  {
+    "ResourceName": "Microsoft.Resources/subscriptions/resources",
+    "ResourceLabel": "Resources",
+    "Tags": {
+      "logo_uri": [
+      ]
+    },
+    "ServiceName": "Resources",
+    "ListDescriber": "DescribeBySubscription(describer.Resources)",
+    "GetDescriber": "",
+    "TerraformName": [
+    ],
+    "TerraformServiceName": "resource",
+    "Discovery": "FAST",
+    "IgnoreSummarize": true,
+    "SteampipeTable": "azure_resource",
+    "Model": "GenericResource"
   }
 ]

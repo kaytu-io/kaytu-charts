@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../configz-deprecated/.idea/configz.iml" filepath="$PROJECT_DIR$/../configz-deprecated/.idea/configz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../kaytu-aws-describer/.idea/kaytu-aws-describer.iml" filepath="$PROJECT_DIR$/../kaytu-aws-describer/.idea/kaytu-aws-describer.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/kaytu-charts.iml" filepath="$PROJECT_DIR$/.idea/kaytu-charts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../kaytu-deploy/.idea/kaytu-deploy.iml" filepath="$PROJECT_DIR$/../kaytu-deploy/.idea/kaytu-deploy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../kaytu-engine/.idea/kaytu-engine.iml" filepath="$PROJECT_DIR$/../kaytu-engine/.idea/kaytu-engine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../kaytu-flux/.idea/kaytu-flux.iml" filepath="$PROJECT_DIR$/../kaytu-flux/.idea/kaytu-flux.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../kaytu-scripts/.idea/kaytu-scripts.iml" filepath="$PROJECT_DIR$/../kaytu-scripts/.idea/kaytu-scripts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../managed-platform-config/.idea/managed-platform-config.iml" filepath="$PROJECT_DIR$/../managed-platform-config/.idea/managed-platform-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../move-tables/.idea/move-tables.iml" filepath="$PROJECT_DIR$/../move-tables/.idea/move-tables.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../steampipe-plugin-aws/.idea/steampipe-plugin-aws.iml" filepath="$PROJECT_DIR$/../steampipe-plugin-aws/.idea/steampipe-plugin-aws.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../test-describer/.idea/test-describer.iml" filepath="$PROJECT_DIR$/../test-describer/.idea/test-describer.iml" />
     </modules>
   </component>
 </project>
