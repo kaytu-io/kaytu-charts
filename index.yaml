@@ -3,6 +3,33 @@ entries:
   kaytu:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-09-11T15:02:11.312418985Z"
+    dependencies:
+    - condition: keda.enabled
+      name: keda
+      repository: ""
+      version: 2.15.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: ""
+      version: 15.5.21
+    - condition: opensearch.enabled
+      name: opensearch
+      repository: ""
+      version: 2.22.0
+    - condition: opensearch-dashboards.enabled
+      name: opensearch-dashboards
+      repository: ""
+      version: 2.20.0
+    description: A Helm chart for deploying Kaytu to Kubernetes
+    digest: 13303438af86d63b9de454cd2d363f4075641900c192686464cb7b699b66518e
+    name: kaytu
+    type: application
+    urls:
+    - https://github.com/kaytu-io/kaytu-charts/releases/download/kaytu-0.1.10/kaytu-0.1.10.tgz
+    version: 0.1.10
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-09-11T14:58:14.324179731Z"
     dependencies:
     - condition: keda.enabled
@@ -3591,4 +3618,4 @@ entries:
     urls:
     - https://github.com/kaytu-io/kaytu-charts/releases/download/kaytu-workspace-0.1.4/kaytu-workspace-0.1.4.tgz
     version: 0.1.4
-generated: "2024-09-11T14:58:14.324711836Z"
+generated: "2024-09-11T15:02:11.312881994Z"
