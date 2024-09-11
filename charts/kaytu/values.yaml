@@ -13,7 +13,7 @@ kaytu:
       frontendv2: v0.39.49-dev
       pennywise: v0.4.20-dev
       checkupWorker: v0.423.30-dev
-      migrator: v0.423.30-dev
+      migrator: v0.423.31-dev
       analytics: v0.423.30-dev
       describeScheduler: v0.423.30-dev
       describeWorkerAWS: local-v0.58.2
