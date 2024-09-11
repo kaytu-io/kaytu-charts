@@ -237,6 +237,7 @@ postgresql:
 
           \c "$workspaceDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          GRANT ALL ON SCHEMA public TO $workspaceUserName;
 
 
           CREATE DATABASE $subscriptionDatabaseName;
@@ -245,6 +246,7 @@ postgresql:
 
           \c "$subscriptionDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          GRANT ALL ON SCHEMA public TO $subscriptionUserName;
           
           CREATE DATABASE $pennywiseDatabaseName;
           CREATE USER $pennywiseUserName WITH PASSWORD '$POSTGRES_PENNYWISE_DB_PASSWORD';
@@ -252,6 +254,7 @@ postgresql:
             
           \c "$pennywiseDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          GRANT ALL ON SCHEMA public TO $pennywiseUserName;
 
           CREATE DATABASE $informationDatabaseName;
           CREATE USER $informationUserName WITH PASSWORD '$POSTGRES_INFORMATION_DB_PASSWORD';
@@ -259,6 +262,7 @@ postgresql:
 
           \c "$informationDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          GRANT ALL ON SCHEMA public TO $informationUserName;
 
           CREATE DATABASE $dexDatabaseName;
           CREATE USER $dexUserName WITH PASSWORD '$DEX_DB_PASSWORD';
@@ -266,6 +270,7 @@ postgresql:
 
           \c "$dexDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          GRANT ALL ON SCHEMA public TO $dexUserName;
 
           CREATE DATABASE $describeDatabaseName;
           CREATE USER $describeUserName WITH PASSWORD '$POSTGRES_DESCRIBE_DB_PASSWORD';
@@ -274,6 +279,7 @@ postgresql:
           \c $describeDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $describeUserName;
 
           CREATE DATABASE $onboardDatabaseName;
           CREATE USER $onboardUserName WITH PASSWORD '$POSTGRES_ONBOARD_DB_PASSWORD';
@@ -282,6 +288,7 @@ postgresql:
           \c $onboardDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $onboardUserName;
 
           CREATE DATABASE $policyDatabaseName;
           CREATE USER $policyUserName WITH PASSWORD '$POSTGRES_POLICY_DB_PASSWORD';
@@ -290,6 +297,7 @@ postgresql:
           \c $policyDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $policyUserName;
 
           CREATE DATABASE $inventoryDatabaseName ;
           CREATE USER $inventoryUserName WITH PASSWORD '$POSTGRES_INVENTORY_DB_PASSWORD';
@@ -298,6 +306,7 @@ postgresql:
           \c $inventoryDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $inventoryUserName;
 
           CREATE DATABASE $assistantDatabaseName ;
           CREATE USER $assistantUserName WITH PASSWORD '$POSTGRES_ASSISTANT_DB_PASSWORD';
@@ -306,6 +315,7 @@ postgresql:
           \c $assistantDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $assistantUserName;
 
           CREATE DATABASE $complianceDatabaseName ;
           CREATE USER $complianceUserName WITH PASSWORD '$POSTGRES_COMPLIANCE_DB_PASSWORD';
@@ -314,6 +324,7 @@ postgresql:
           \c $complianceDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $complianceUserName;
 
           CREATE DATABASE $authDatabaseName;
           CREATE USER $authUserName WITH PASSWORD '$POSTGRES_AUTH_DB_PASSWORD';
@@ -322,6 +333,7 @@ postgresql:
           \c "$authDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $authUserName;
 
           CREATE DATABASE $metadataDatabaseName;
           CREATE USER $metadataUserName WITH PASSWORD '$POSTGRES_METADATA_DB_PASSWORD';
@@ -330,6 +342,7 @@ postgresql:
           \c "$metadataDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $metadataUserName;
 
           CREATE DATABASE $reporterDatabaseName;
           CREATE USER $reporterUserName WITH PASSWORD '$POSTGRES_REPORTER_DB_PASSWORD';
@@ -338,6 +351,7 @@ postgresql:
           \c "$reporterDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $reporterUserName;
 
           CREATE DATABASE $alertingDatabaseName;
           CREATE USER $alertingUserName WITH PASSWORD '$POSTGRES_ALERTING_DB_PASSWORD';
@@ -346,6 +360,7 @@ postgresql:
           \c "$alertingDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $alertingUserName;
 
           CREATE DATABASE $migratorDatabaseName;
           CREATE USER $migratorUserName WITH PASSWORD '$POSTGRES_MIGRATOR_DB_PASSWORD';
@@ -354,22 +369,27 @@ postgresql:
           \c "$migratorDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+            GRANT ALL ON SCHEMA public TO $migratorUserName;
 
           CREATE USER $steampipeUserName WITH PASSWORD '$POSTGRES_STEAMPIPE_USER_PASSWORD';
 
           \connect "$complianceDatabaseName";
           GRANT pg_read_all_data TO $migratorUserName;
           GRANT pg_write_all_data TO $migratorUserName;
+          GRANT ALL ON SCHEMA public TO $migratorUserName;
           \connect "$metadataDatabaseName";
           GRANT pg_read_all_data TO $migratorUserName;
           GRANT pg_write_all_data TO $migratorUserName;
+          GRANT ALL ON SCHEMA public TO $migratorUserName;
           \connect "$onboardDatabaseName";
           GRANT pg_read_all_data TO $migratorUserName;
           GRANT pg_write_all_data TO $migratorUserName;
+          GRANT ALL ON SCHEMA public TO $migratorUserName;
           GRANT pg_read_all_data TO $steampipeUserName;
           \connect "$inventoryDatabaseName";
           GRANT pg_read_all_data TO $migratorUserName;
           GRANT pg_write_all_data TO $migratorUserName;
+          GRANT ALL ON SCHEMA public TO $migratorUserName;
           GRANT pg_read_all_data TO $steampipeUserName;
 
 
