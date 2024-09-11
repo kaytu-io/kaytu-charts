@@ -14,4 +14,3 @@ spec:
       protocol: TCP
       port: 8351
       targetPort: 8351
-  clusterIP: "None"

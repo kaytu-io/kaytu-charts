@@ -11,4 +11,3 @@ spec:
   ports:
     - port: 9193
       targetPort: 9193
-  clusterIP: "None"
