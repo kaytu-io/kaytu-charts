@@ -197,7 +197,6 @@ dex:
     # Must point to secret that contains at least a `config.yaml` key.
     name: ""
   config:
-    issuer: "http://kaytu-dex.kaytu.svc.cluster.local:5556/dex"
     staticClients:
       - id: public-client
         name: 'Public Client'
