@@ -398,6 +398,8 @@ postgresql:
           CREATE USER $exporterUserName WITH PASSWORD '$POSTGRES_EXPORTER_PASSWORD';
           GRANT pg_monitor TO $exporterUserName;
           
+          ALTER USER $migratorUserName WITH SUPERUSER;
+          
           EOSQL
 
           echo "$dt - Init script is completed";
