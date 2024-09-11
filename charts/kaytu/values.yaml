@@ -187,21 +187,15 @@ kaytu:
           dev: v0.422.13-dev # {"$imagepolicy": "flux-system:es-sink-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:es-sink-service-prod:tag"}
 dex:
-  configSecret:
-    # -- Enable creating a secret from the values passed to `config`.
-    # If set to false, name must point to an existing secret.
-    create: true
-
-    # -- The name of the secret to mount as configuration in the pod.
-    # If not set and create is true, a name is generated using the fullname template.
-    # Must point to secret that contains at least a `config.yaml` key.
-    name: ""
   config:
-    issuer: "http://kaytu-dex.kaytu.svc.cluster.local:5556/dex"
+    issuer: "http://kaytu-dex.kaytu.svc.cluster.local:5556/dex" # "http://{namespace}-{dex-service-name}.{namespace}.svc.cluster.local:5556/dex"
     staticClients:
       - id: public-client
         name: 'Public Client'
         redirectURIs:
+          - 'https://kaytu.app.domain/callback'
+          - 'http://kaytu.app.domain/callback'
+          - 'http://localhost:3000/callback'
           - 'http://localhost:8080/callback'
         public: true
       - id: private-client
@@ -215,16 +209,7 @@ dex:
         username: "admin"
         userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
     enablePasswordDB: true
-    connectors:
-      - type: github
-        id: github
-        name: GitHub
-        config:
-          clientID: "clientID" # client ID from github
-          clientSecret: "clientSecret" # client Secret from github
-          redirectURI: 'https://kaytu.app.domain/dex/callback'
-          loadAllGroups: false
-          useLoginAsID: false
+    connectors: []
     expiry:
       deviceRequests: "5m"
       signingKeys: "6h"
@@ -239,7 +224,7 @@ dex:
     storage:
       type: postgres
       config:
-        host: "database-2.chm0yysg47ua.us-east-1.rds.amazonaws.com" # how to make this dynamic?
+        host: "kaytu-postgresql-primary.kaytu.svc.cluster.local" # postgresql host
         port: 5432
         database: dex
         user: dex_service
@@ -248,6 +233,8 @@ dex:
           mode: "disable"
     oauth2:
       passwordConnector: local
+      skipApprovalScreen: true
+      alwaysShowLoginScreen: false
 externalPostgresql:
   enabled: false
   endpoint: "pg.example.com"
