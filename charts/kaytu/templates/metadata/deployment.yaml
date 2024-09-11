@@ -19,7 +19,7 @@ spec:
       serviceAccountName: metadata
       containers:
       - name: metadata-service
-        image: {{ .Values.kaytu.metadata.service.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.metadata.service.image.tag.dev .Values.kaytu.metadata.service.image.tag }}
+        image: "{{ .Values.kaytu.docker.registry }}/metadata-service:{{ .Values.kaytu.docker.tags.metadata }}"
         command: ["/metadata-service"]
         imagePullPolicy: Always
         resources:

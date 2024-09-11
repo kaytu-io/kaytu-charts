@@ -23,7 +23,7 @@ spec:
       serviceAccountName: compliance-report-worker
       containers:
         - name: compliance-worker
-          image: {{ .Values.kaytu.complianceReport.worker.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.complianceReport.worker.image.tag.dev .Values.kaytu.complianceReport.worker.image.tag }}
+          image: "{{ .Values.kaytu.docker.registry }}/compliance-report-worker:{{ .Values.kaytu.docker.tags.complianceReport }}"
           command: ["/compliance-report-worker"]
           args:
             - --id=$(WORKER_ID)

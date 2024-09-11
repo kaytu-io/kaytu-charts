@@ -19,7 +19,7 @@ spec:
       serviceAccountName: compliance-summarizer
       containers:
         - name: compliance-summarizer
-          image: {{ .Values.kaytu.compliance.summarizer.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.compliance.summarizer.image.tag.dev .Values.kaytu.compliance.summarizer.image.tag }}
+          image: "{{ .Values.kaytu.docker.registry }}/compliance-summarizer:{{ .Values.kaytu.docker.tags.complianceSummarizer }}"
           command: ["/compliance-summarizer"]
           args:
             - --id=$(WORKER_ID)

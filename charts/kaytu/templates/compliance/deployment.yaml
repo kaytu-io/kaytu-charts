@@ -19,7 +19,7 @@ spec:
       serviceAccountName: compliance
       containers:
       - name: compliance-service
-        image: {{ .Values.kaytu.compliance.service.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.compliance.service.image.tag.dev .Values.kaytu.compliance.service.image.tag }}
+        image: "{{ .Values.kaytu.docker.registry }}/compliance-service:{{ .Values.kaytu.docker.tags.compliance }}"
         command: ["/compliance-service"]
         imagePullPolicy: Always
         resources:

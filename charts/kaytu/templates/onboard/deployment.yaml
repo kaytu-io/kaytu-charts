@@ -19,7 +19,7 @@ spec:
       serviceAccountName: onboard
       containers:
       - name: onboard-service
-        image: {{ .Values.kaytu.onboard.service.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.onboard.service.image.tag.dev .Values.kaytu.onboard.service.image.tag }}
+        image: "{{ .Values.kaytu.docker.registry }}/onboard-service:{{ .Values.kaytu.docker.tags.onboard }}"
         command: ["/onboard-service"]
         imagePullPolicy: Always
         resources:

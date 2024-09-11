@@ -18,7 +18,7 @@ spec:
 
       containers:
       - name: frontend-v2
-        image: "{{ .Values.kaytu.docker.registry }}/kaytu-frontend:{{- dig .Values.kaytu.envType .Values.kaytu.docker.tags.frontendv2.dev .Values.kaytu.docker.tags.frontendv2 }}"
+        image: "{{ .Values.kaytu.docker.registry }}/kaytu-frontend:{{ .Values.kaytu.docker.tags.frontendv2 }}"
         imagePullPolicy: Always
         ports:
           - containerPort: 7298

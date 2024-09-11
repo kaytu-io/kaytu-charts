@@ -37,7 +37,7 @@ spec:
 
       containers:
         - name: workspace-service
-          image: "{{ .Values.kaytu.docker.registry }}/workspace-service:{{- dig .Values.kaytu.envType .Values.kaytu.docker.tags.workspace.dev .Values.kaytu.docker.tags.workspace }}"
+          image: "{{ .Values.kaytu.docker.registry }}/workspace-service:{{ .Values.kaytu.docker.tags.workspace }}"
           command: [ "/workspace-service" ]
           imagePullPolicy: Always
           env:

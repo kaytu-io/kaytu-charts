@@ -19,7 +19,7 @@ spec:
       serviceAccountName: steampipe
       containers:
       - name: steampipe-service
-        image: {{ .Values.kaytu.steampipe.service.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.steampipe.service.image.tag.dev .Values.kaytu.steampipe.service.image.tag }}
+        image: "{{ .Values.kaytu.docker.registry }}/steampipe:{{ .Values.kaytu.docker.tags.steampipe }}"
         command: ["steampipe", "service", "start", "--database-listen", "network", "--database-port", "9193", "--database-password", "abcd", "--foreground"]
         imagePullPolicy: Always
         resources:

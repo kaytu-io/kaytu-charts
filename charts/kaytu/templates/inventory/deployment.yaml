@@ -19,7 +19,7 @@ spec:
       serviceAccountName: inventory
       containers:
       - name: inventory-service
-        image: {{ .Values.kaytu.inventory.service.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.inventory.service.image.tag.dev .Values.kaytu.inventory.service.image.tag }}
+        image: "{{ .Values.kaytu.docker.registry }}/inventory-service:{{ .Values.kaytu.docker.tags.inventory }}"
         command: ["/inventory-service"]
         imagePullPolicy: Always
         resources:

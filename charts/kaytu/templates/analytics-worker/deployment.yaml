@@ -25,7 +25,7 @@ spec:
       serviceAccountName: analytics-worker
       containers:
         - name: analytics-worker
-          image: "{{ .Values.kaytu.analytics.worker.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.analytics.worker.image.tag.dev .Values.kaytu.analytics.worker.image.tag }}"
+          image: "{{ .Values.kaytu.docker.registry }}/analytics-worker:{{ .Values.kaytu.docker.tags.analytics }}"
           command: [ "/analytics-worker" ]
           args:
             - --id=$(WORKER_ID)

@@ -15,7 +15,7 @@ spec:
       serviceAccountName: migrator
       containers:
         - name: migrator
-          image: {{ .Values.kaytu.migrator.worker.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.migrator.worker.image.tag.dev .Values.kaytu.migrator.worker.image.tag }}
+          image: "{{ .Values.kaytu.docker.registry }}/migrator:{{ .Values.kaytu.docker.tags.migrator }}"
           command: ["/migrator-worker"]
           imagePullPolicy: Always
           resources:
