@@ -1,24 +1,12 @@
 kaytu:
   replicaCount: 1
-  ssl:
-    enabled: false
   envType: dev
   domain:
-    app: example.kaytu.io
     main: kaytu.app.domain
-    grafana: grafana.domain
     grpc: grpc.domain
     grpc_external: grpc-external.domain
-    swagger: swagger.domain
-    sentry: sentry.domain
-    website:
-      - website.domain
-    docs: docs.domain
-    blog: blog.domain
-    pennywise: pennywise.domain
   docker:
     registry: ghcr.io/kaytu-io
-    privateRegistry: akscorekaytuprivateacr.azurecr.io
     tags:
       auth: v0.423.30-dev
       workspace: v0.423.30-dev
@@ -40,16 +28,6 @@ kaytu:
       complianceReport: v0.423.30-dev
       steampipe: v0.423.30-dev
       esSink: v0.423.30-dev
-  auth0:
-    domain: kaytu.us.auth0.com
-    clientId: xxx
-    nativeClientId: xxx
-    nativePennywiseClientId: xxx
-    manageClientId: xxx
-    manageSealedClientSecret: XXX
-    audience: https://app.kaytu.io
-    connection: 'Username-Password-Authentication'
-    connectionID: 'xxx'
   apikey:
     public: ""
     private: ""
@@ -607,6 +585,5 @@ storage:
   className: ""
 flux:
   namespace: flux-system
-
 keda:
   enabled: false
