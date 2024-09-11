@@ -18,7 +18,7 @@ spec:
 
       containers:
       - name: frontend-v2
-        image: "{{ .Values.kaytu.docker.registry }}/kaytu-frontend:{{- dig .Values.kaytu.envType .Values.kaytu.docker.tags.frontendv2.dev .Values.kaytu.docker.tags.frontendv2 }}"
+        image: "{{ .Values.kaytu.docker.registry }}/kaytu-frontend:{{ .Values.kaytu.docker.tags.frontendv2 }}"
         imagePullPolicy: Always
         ports:
           - containerPort: 7298
@@ -50,22 +50,12 @@ data:
     NODE_ENV=production
     REACT_APP_NODE_ENV=prod
     REACT_APP_MUI_LICENSE={{ .Values.kaytu.frontend.muiLicense }}
-    REACT_APP_AUDIENCE={{ .Values.kaytu.auth0.audience }}
-    REACT_APP_AUTH0_AUDIENCE={{ .Values.kaytu.auth0.audience }}
-    REACT_APP_AUTH0_DOMAIN="https://{{ .Values.kaytu.auth0.domain }}"
-    REACT_APP_AUTH0_CLIENT_ID={{ .Values.kaytu.auth0.clientId }}
-    REACT_APP_DOMAIN="https://{{ .Values.kaytu.auth0.domain }}"
-    REACT_APP_CLIENT_ID={{ .Values.kaytu.auth0.clientId }}
+    REACT_APP_DOMAIN: "https://{{ .Values.kaytu.domain.main }}"
     REACT_APP_BASE_URL="https://{{ .Values.kaytu.domain.main }}"
     REACT_APP_AUTH_BASE_URL="https://{{ .Values.kaytu.domain.main }}"
   NODE_ENV: production
   REACT_APP_NODE_ENV: prod
   REACT_APP_MUI_LICENSE: {{ .Values.kaytu.frontend.muiLicense }}
-  REACT_APP_AUDIENCE: {{ .Values.kaytu.auth0.audience }}
-  REACT_APP_AUTH0_AUDIENCE: {{ .Values.kaytu.auth0.audience }}
-  REACT_APP_AUTH0_DOMAIN: "https://{{ .Values.kaytu.auth0.domain }}"
-  REACT_APP_AUTH0_CLIENT_ID: {{ .Values.kaytu.auth0.clientId }}
-  REACT_APP_DOMAIN: "https://{{ .Values.kaytu.auth0.domain }}"
-  REACT_APP_CLIENT_ID: {{ .Values.kaytu.auth0.clientId }}
+  REACT_APP_DOMAIN: "https://{{ .Values.kaytu.domain.main }}"
   REACT_APP_BASE_URL: "https://{{ .Values.kaytu.domain.main }}"
   REACT_APP_AUTH_BASE_URL: "https://{{ .Values.kaytu.domain.main }}"

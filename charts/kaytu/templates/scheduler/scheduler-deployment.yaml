@@ -19,7 +19,7 @@ spec:
       serviceAccountName: scheduler
       containers:
       - name: describe-scheduler
-        image: {{ .Values.kaytu.describe.scheduler.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.describe.scheduler.image.tag.dev .Values.kaytu.describe.scheduler.image.tag }}
+        image: "{{ .Values.kaytu.docker.registry }}/describe-scheduler:{{ .Values.kaytu.docker.tags.describeScheduler }}"
         command: ["/describe-scheduler"]
         resources:
           limits:

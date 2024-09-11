@@ -18,4 +18,3 @@ spec:
       port: 50051
       protocol: TCP
       targetPort: 50051
-  clusterIP: "None"

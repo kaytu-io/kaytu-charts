@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: es-sink-service
-          image: {{ .Values.kaytu.esSink.service.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.esSink.service.image.tag.dev .Values.kaytu.esSink.service.image.tag }}
+          image: "{{ .Values.kaytu.docker.registry }}/es-sink:{{ .Values.kaytu.docker.tags.esSink }}"
           command: ["/es-sink-service"]
           imagePullPolicy: Always
           resources:

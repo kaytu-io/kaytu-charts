@@ -23,7 +23,7 @@ spec:
       serviceAccountName: kaytu-aws-describer
       containers:
         - name: kaytu-aws-describer
-          image: {{ .Values.kaytu.describe.worker.aws.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.complianceReport.worker.image.tag.dev .Values.kaytu.describe.worker.aws.image.tag }}
+          image: "{{ .Values.kaytu.docker.registry }}/kaytu-aws-describer:{{ .Values.kaytu.docker.tags.describeWorkerAWS }}"
           command: ["/kaytu-aws-describer"]
           imagePullPolicy: Always
           resources:
@@ -62,7 +62,7 @@ spec:
       serviceAccountName: kaytu-azure-describer
       containers:
         - name: kaytu-azure-describer
-          image: {{ .Values.kaytu.describe.worker.azure.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.complianceReport.worker.image.tag.dev .Values.kaytu.describe.worker.azure.image.tag }}
+          image: "{{ .Values.kaytu.docker.registry }}/kaytu-azure-describer:{{ .Values.kaytu.docker.tags.describeWorkerAzure }}"
           command: ["/kaytu-azure-describer"]
           imagePullPolicy: Always
           resources:

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: integration-service
-          image: "{{ .Values.kaytu.docker.registry }}/pennywise-server:{{- dig .Values.kaytu.envType .Values.kaytu.docker.tags.pennywise.dev .Values.kaytu.docker.tags.pennywise }}"
+          image: "{{ .Values.kaytu.docker.registry }}/pennywise-server:{{ .Values.kaytu.docker.tags.pennywise }}"
           command: ["./main"]
           imagePullPolicy: Always
           resources:

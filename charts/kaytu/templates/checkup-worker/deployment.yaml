@@ -23,7 +23,7 @@ spec:
       serviceAccountName: checkup-worker
       containers:
         - name: checkup-worker
-          image: "{{ .Values.kaytu.checkup.worker.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.checkup.worker.image.tag.dev .Values.kaytu.checkup.worker.image.tag }}"
+          image: "{{ .Values.kaytu.docker.registry }}/checkup-worker:{{ .Values.kaytu.docker.tags.checkupWorker }}"
           command: ["/checkup-worker"]
           args:
             - --id=$(WORKER_ID)

@@ -1,47 +1,33 @@
 kaytu:
   replicaCount: 1
-  ssl:
-    enabled: false
   envType: dev
   domain:
-    app: example.kaytu.io
     main: kaytu.app.domain
-    grafana: grafana.domain
     grpc: grpc.domain
     grpc_external: grpc-external.domain
-    swagger: swagger.domain
-    sentry: sentry.domain
-    website:
-      - website.domain
-    docs: docs.domain
-    blog: blog.domain
-    pennywise: pennywise.domain
   docker:
     registry: ghcr.io/kaytu-io
-    privateRegistry: akscorekaytuprivateacr.azurecr.io
     tags:
-      auth:
-        dev: v0.423.19-dev # {"$imagepolicy": "flux-system:kaytu-auth-service:tag"}
-        prod: v0.423.19-dev # {"$imagepolicy": "flux-system:kaytu-auth-service-prod:tag"}
-      workspace:
-        dev: v0.423.23-dev
-        prod: v0.423.23-dev
-      frontendv2:
-        dev: v0.39.49-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service:tag"}
-        prod: v0.39.49-dev # {"$imagepolicy": "flux-system:kaytu-v2-frontend-service-prod:tag"}
-      pennywise:
-        dev: v0.4.20-dev # {"$imagepolicy": "flux-system:pennywise-server:tag"}
-        prod: v0.4.20-dev # {"$imagepolicy": "flux-system:pennywise-server-prod:tag"}
-  auth0:
-    domain: kaytu.us.auth0.com
-    clientId: xxx
-    nativeClientId: xxx
-    nativePennywiseClientId: xxx
-    manageClientId: xxx
-    manageSealedClientSecret: XXX
-    audience: https://app.kaytu.io
-    connection: 'Username-Password-Authentication'
-    connectionID: 'xxx'
+      auth: v0.423.30-dev
+      workspace: v0.423.30-dev
+      frontendv2: v0.39.49-dev
+      pennywise: v0.4.20-dev
+      checkupWorker: v0.423.30-dev
+      migrator: v0.423.33-dev
+      analytics: v0.423.30-dev
+      describeScheduler: v0.423.30-dev
+      describeWorkerAWS: local-v0.58.2
+      describeWorkerAzure: local-v0.36.1
+      onboard: v0.423.30-dev
+      integration: v0.423.30-dev
+      metadata: v0.423.30-dev
+      inventory: v0.423.30-dev
+      compliance: v0.423.30-dev
+      complianceSummarizer: v0.423.30-dev
+      complianceWorker: v0.423.30-dev
+      complianceReport: v0.423.30-dev
+      steampipe: v0.423.30-dev
+      esSink: v0.423.30-dev
   apikey:
     public: ""
     private: ""
@@ -83,112 +69,8 @@ kaytu:
       clientId: "xxx"
       clientSecret: "xxx"
     keyID: "workspace-creds"
-  checkup:
-    worker:
-      image:
-        repo: ghcr.io/kaytu-io/checkup-worker
-        tag:
-          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-checkup-worker:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-checkup-worker-prod:tag"}
-  migrator:
-    worker:
-      image:
-        repo: ghcr.io/kaytu-io/migrator
-        tag:
-          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-migrator-worker:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-migrator-worker-prod:tag"}
-  analytics:
-    worker:
-      image:
-        repo: ghcr.io/kaytu-io/analytics-worker
-        tag:
-          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-analytics-worker:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-analytics-worker-prod:tag"}
-  describe:
-    scheduler:
-      image:
-        repo: ghcr.io/kaytu-io/describe-scheduler
-        tag:
-          dev: v0.422.21-dev # {"$imagepolicy": "flux-system:kaytu-describe-scheduler:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-describe-scheduler-prod:tag"}
-    worker:
-      aws:
-        image:
-          repo: ghcr.io/kaytu-io/kaytu-aws-describer
-          tag:
-            dev: local-v0.57.4 # {"$imagepolicy": "flux-system:kaytu-aws-describer:tag"}
-            prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-aws-describer-prod:tag"}
-      azure:
-        image:
-          repo: ghcr.io/kaytu-io/kaytu-azure-describer
-          tag:
-            dev: local-v0.35.23 # {"$imagepolicy": "flux-system:kaytu-azure-describer:tag"}
-            prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-azure-describer-prod:tag"}
-  onboard:
-    service:
-      image:
-        repo: ghcr.io/kaytu-io/onboard-service
-        tag:
-          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-onboard-service:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-onboard-service-prod:tag"}
-  integration:
-    service:
-      image:
-        repo: ghcr.io/kaytu-io/integration
-        tag:
-          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-integration-service:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-integration-service-prod:tag"}
-  metadata:
-    service:
-      image:
-        repo: ghcr.io/kaytu-io/metadata-service
-        tag:
-          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-metadata-service:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-metadata-service-prod:tag"}
-  inventory:
-    service:
-      image:
-        repo: ghcr.io/kaytu-io/inventory-service
-        tag:
-          dev: v0.422.21-dev # {"$imagepolicy": "flux-system:kaytu-inventory-service:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-inventory-service-prod:tag"}
-  compliance:
-    service:
-      image:
-        repo: ghcr.io/kaytu-io/compliance-service
-        tag:
-          dev: v0.423.24-dev # {"$imagepolicy": "flux-system:kaytu-compliance-service:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-service-prod:tag"}
-    summarizer:
-      image:
-        repo: ghcr.io/kaytu-io/compliance-summarizer
-        tag:
-          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-compliance-summarizer:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-summarizer-prod:tag"}
-  complianceReport:
-    worker:
-      image:
-        repo: ghcr.io/kaytu-io/compliance-report-worker
-        tag:
-          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-compliance-report-worker-prod:tag"}
-  steampipe:
-    service:
-      image:
-        repo: ghcr.io/kaytu-io/steampipe-service
-        tag:
-          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:kaytu-steampipe-service:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-steampipe-service-prod:tag"}
-  esSink:
-    service:
-      image:
-        repo: ghcr.io/kaytu-io/es-sink
-        tag:
-          dev: v0.422.13-dev # {"$imagepolicy": "flux-system:es-sink-service:tag"}
-          prod: v0.345.2-prod # {"$imagepolicy": "flux-system:es-sink-service-prod:tag"}
 dex:
   config:
-    issuer: "http://kaytu-dex.kaytu.svc.cluster.local:5556/dex" # "http://{namespace}-{dex-service-name}.{namespace}.svc.cluster.local:5556/dex"
     staticClients:
       - id: public-client
         name: 'Public Client'
@@ -350,6 +232,7 @@ postgresql:
 
           \c "$workspaceDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          GRANT ALL ON SCHEMA public TO $workspaceUserName;
 
 
           CREATE DATABASE $subscriptionDatabaseName;
@@ -358,6 +241,7 @@ postgresql:
 
           \c "$subscriptionDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          GRANT ALL ON SCHEMA public TO $subscriptionUserName;
           
           CREATE DATABASE $pennywiseDatabaseName;
           CREATE USER $pennywiseUserName WITH PASSWORD '$POSTGRES_PENNYWISE_DB_PASSWORD';
@@ -365,6 +249,7 @@ postgresql:
             
           \c "$pennywiseDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          GRANT ALL ON SCHEMA public TO $pennywiseUserName;
 
           CREATE DATABASE $informationDatabaseName;
           CREATE USER $informationUserName WITH PASSWORD '$POSTGRES_INFORMATION_DB_PASSWORD';
@@ -372,6 +257,7 @@ postgresql:
 
           \c "$informationDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          GRANT ALL ON SCHEMA public TO $informationUserName;
 
           CREATE DATABASE $dexDatabaseName;
           CREATE USER $dexUserName WITH PASSWORD '$DEX_DB_PASSWORD';
@@ -379,6 +265,7 @@ postgresql:
 
           \c "$dexDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
+          GRANT ALL ON SCHEMA public TO $dexUserName;
 
           CREATE DATABASE $describeDatabaseName;
           CREATE USER $describeUserName WITH PASSWORD '$POSTGRES_DESCRIBE_DB_PASSWORD';
@@ -387,6 +274,7 @@ postgresql:
           \c $describeDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $describeUserName;
 
           CREATE DATABASE $onboardDatabaseName;
           CREATE USER $onboardUserName WITH PASSWORD '$POSTGRES_ONBOARD_DB_PASSWORD';
@@ -395,6 +283,7 @@ postgresql:
           \c $onboardDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $onboardUserName;
 
           CREATE DATABASE $policyDatabaseName;
           CREATE USER $policyUserName WITH PASSWORD '$POSTGRES_POLICY_DB_PASSWORD';
@@ -403,6 +292,7 @@ postgresql:
           \c $policyDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $policyUserName;
 
           CREATE DATABASE $inventoryDatabaseName ;
           CREATE USER $inventoryUserName WITH PASSWORD '$POSTGRES_INVENTORY_DB_PASSWORD';
@@ -411,6 +301,7 @@ postgresql:
           \c $inventoryDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $inventoryUserName;
 
           CREATE DATABASE $assistantDatabaseName ;
           CREATE USER $assistantUserName WITH PASSWORD '$POSTGRES_ASSISTANT_DB_PASSWORD';
@@ -419,6 +310,7 @@ postgresql:
           \c $assistantDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $assistantUserName;
 
           CREATE DATABASE $complianceDatabaseName ;
           CREATE USER $complianceUserName WITH PASSWORD '$POSTGRES_COMPLIANCE_DB_PASSWORD';
@@ -427,6 +319,7 @@ postgresql:
           \c $complianceDatabaseName
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $complianceUserName;
 
           CREATE DATABASE $authDatabaseName;
           CREATE USER $authUserName WITH PASSWORD '$POSTGRES_AUTH_DB_PASSWORD';
@@ -435,6 +328,7 @@ postgresql:
           \c "$authDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $authUserName;
 
           CREATE DATABASE $metadataDatabaseName;
           CREATE USER $metadataUserName WITH PASSWORD '$POSTGRES_METADATA_DB_PASSWORD';
@@ -443,6 +337,7 @@ postgresql:
           \c "$metadataDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $metadataUserName;
 
           CREATE DATABASE $reporterDatabaseName;
           CREATE USER $reporterUserName WITH PASSWORD '$POSTGRES_REPORTER_DB_PASSWORD';
@@ -451,6 +346,7 @@ postgresql:
           \c "$reporterDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $reporterUserName;
 
           CREATE DATABASE $alertingDatabaseName;
           CREATE USER $alertingUserName WITH PASSWORD '$POSTGRES_ALERTING_DB_PASSWORD';
@@ -459,6 +355,7 @@ postgresql:
           \c "$alertingDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $alertingUserName;
 
           CREATE DATABASE $migratorDatabaseName;
           CREATE USER $migratorUserName WITH PASSWORD '$POSTGRES_MIGRATOR_DB_PASSWORD';
@@ -467,22 +364,27 @@ postgresql:
           \c "$migratorDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
+          GRANT ALL ON SCHEMA public TO $migratorUserName;
 
           CREATE USER $steampipeUserName WITH PASSWORD '$POSTGRES_STEAMPIPE_USER_PASSWORD';
 
           \connect "$complianceDatabaseName";
           GRANT pg_read_all_data TO $migratorUserName;
           GRANT pg_write_all_data TO $migratorUserName;
+          GRANT ALL ON SCHEMA public TO $migratorUserName;
           \connect "$metadataDatabaseName";
           GRANT pg_read_all_data TO $migratorUserName;
           GRANT pg_write_all_data TO $migratorUserName;
+          GRANT ALL ON SCHEMA public TO $migratorUserName;
           \connect "$onboardDatabaseName";
           GRANT pg_read_all_data TO $migratorUserName;
           GRANT pg_write_all_data TO $migratorUserName;
+          GRANT ALL ON SCHEMA public TO $migratorUserName;
           GRANT pg_read_all_data TO $steampipeUserName;
           \connect "$inventoryDatabaseName";
           GRANT pg_read_all_data TO $migratorUserName;
           GRANT pg_write_all_data TO $migratorUserName;
+          GRANT ALL ON SCHEMA public TO $migratorUserName;
           GRANT pg_read_all_data TO $steampipeUserName;
 
 
@@ -490,6 +392,8 @@ postgresql:
           CREATE EXTENSION pg_stat_statements;
           CREATE USER $exporterUserName WITH PASSWORD '$POSTGRES_EXPORTER_PASSWORD';
           GRANT pg_monitor TO $exporterUserName;
+          
+          ALTER USER $migratorUserName WITH SUPERUSER;
           
           EOSQL
 
@@ -532,7 +436,10 @@ postgresql:
             name: postgres-secret
             key: informationUserPassword
       - name: DEX_DB_PASSWORD
-        value: "password" # TODO: should be random generated. should be same as dex.storage.config.password
+        valueFrom:
+          secretKeyRef:
+            name: postgres-secret
+            key: dexServiceUserPassword
       - name : POSTGRES_DESCRIBE_DB_PASSWORD
         valueFrom:
           secretKeyRef:
@@ -690,6 +597,5 @@ storage:
   className: ""
 flux:
   namespace: flux-system
-
 keda:
   enabled: false

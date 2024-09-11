@@ -11,4 +11,3 @@ spec:
   ports:
   - port: 7298
     targetPort: 7298
-  clusterIP: "None"

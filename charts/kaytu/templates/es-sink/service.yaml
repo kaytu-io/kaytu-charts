@@ -16,4 +16,3 @@ spec:
     - name: grpc
       port: 5252
       targetPort: 5252
-  clusterIP: "None"

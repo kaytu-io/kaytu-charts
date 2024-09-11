@@ -13,4 +13,3 @@ spec:
   - name: http
     port: 7251
     targetPort: 7251
-  clusterIP: "None"
