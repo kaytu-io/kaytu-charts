@@ -28,3 +28,34 @@ spec:
         consumer: "compliance-runner-service"
         lagThreshold: "200"
         useHttps: "false"
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: compliance-worker-manuals-scaled-object
+  namespace: {{ .Release.Namespace }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: compliance-worker-manuals
+  pollingInterval: 30
+  cooldownPeriod:  300
+  minReplicaCount: 0
+{{- if eq (.Values.kaytu.workspace.size | toString) "lg" }}
+  maxReplicaCount: 1
+{{- else }}
+  maxReplicaCount: 1
+{{- end }}
+  fallback:
+    failureThreshold: 1
+    replicas: 1
+  triggers:
+    - type: nats-jetstream
+      metadata:
+        natsServerMonitoringEndpoint: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}-headless.{{ .Release.Namespace }}.svc.cluster.local:8222"
+        account: "$G"
+        stream: "compliance-runner"
+        consumer: "compliance-runner-manuals-service"
+        lagThreshold: "200"
+        useHttps: "false"

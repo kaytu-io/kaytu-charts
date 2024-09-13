@@ -59,3 +59,65 @@ spec:
         consumer: "azure-describer-service"
         lagThreshold: "20"
         useHttps: "false"
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: kaytu-aws-describer-manuals-scaled-object
+  namespace: {{ .Release.Namespace }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kaytu-aws-describer-manuals
+  pollingInterval: 30
+  cooldownPeriod:  300
+  minReplicaCount: 0
+{{- if eq (.Values.kaytu.workspace.size | toString) "lg" }}
+  maxReplicaCount: 20
+{{- else }}
+  maxReplicaCount: 20
+{{- end }}
+  fallback:
+    failureThreshold: 1
+    replicas: 1
+  triggers:
+    - type: nats-jetstream
+      metadata:
+        natsServerMonitoringEndpoint: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}-headless.{{ .Release.Namespace }}.svc.cluster.local:8222"
+        account: "$G"
+        stream: "kaytu_aws_describer"
+        consumer: "aws-describer-manuals-service"
+        lagThreshold: "20"
+        useHttps: "false"
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: kaytu-azure-describer-manuals-scaled-object
+  namespace: {{ .Release.Namespace }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kaytu-azure-describer-manuals
+  pollingInterval: 30
+  cooldownPeriod:  300
+  minReplicaCount: 0
+{{- if eq (.Values.kaytu.workspace.size | toString) "lg" }}
+  maxReplicaCount: 20
+{{- else }}
+  maxReplicaCount: 20
+{{- end }}
+  fallback:
+    failureThreshold: 1
+    replicas: 1
+  triggers:
+    - type: nats-jetstream
+      metadata:
+        natsServerMonitoringEndpoint: "{{ .Release.Namespace }}-nats-{{ .Release.Namespace }}-headless.{{ .Release.Namespace }}.svc.cluster.local:8222"
+        account: "$G"
+        stream: "kaytu_azure_describer"
+        consumer: "azure-describer-manuals-service"
+        lagThreshold: "20"
+        useHttps: "false"
