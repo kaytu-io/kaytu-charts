@@ -26,6 +26,7 @@ spec:
   name: compliance-runner
   subjects:
     - compliance-runner-job-queue
+    - compliance-runner-job-queue-manuals
     - compliance-runner-job-result
   storage: memory
   discard: new
@@ -44,6 +45,7 @@ spec:
   name: compliance-summarizer
   subjects:
     - compliance-summarizer-job-queue
+    - compliance-summarizer-job-queue-manuals
     - compliance-summarizer-job-result
   storage: memory
   discard: new
