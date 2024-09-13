@@ -83,6 +83,8 @@ spec:
               value: "compliance-worker"
             - name: JAEGER_SAMPLE_RATE
               value: "0.0005"
+            - name: MANUAL_TRIGGER
+              value: "true"
           volumeMounts:
             - name: compliance-worker-postgres-config
               mountPath: /home/steampipe/.steampipe/db/14.2.0/data/postgresql.conf.d/optimization.conf
