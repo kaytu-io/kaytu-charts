@@ -14,5 +14,6 @@
     <orderEntry type="module" module-name="steampipe-plugin-aws" />
     <orderEntry type="module" module-name="test-describer" />
     <orderEntry type="module" module-name="move-tables" />
+    <orderEntry type="module" module-name="kaytu-util" />
   </component>
 </module>
