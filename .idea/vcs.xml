@@ -4,6 +4,7 @@
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../configz-deprecated" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../kaytu-aws-describer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../kaytu-azure-describer" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../kaytu-deploy" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../kaytu-deploy/kaytu-octopus/charts/vault-helm" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../kaytu-engine" vcs="Git" />

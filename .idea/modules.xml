@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../configz-deprecated/.idea/configz.iml" filepath="$PROJECT_DIR$/../configz-deprecated/.idea/configz.iml" />
       <module fileurl="file://$PROJECT_DIR$/../kaytu-aws-describer/.idea/kaytu-aws-describer.iml" filepath="$PROJECT_DIR$/../kaytu-aws-describer/.idea/kaytu-aws-describer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../kaytu-azure-describer/.idea/kaytu-azure-describer.iml" filepath="$PROJECT_DIR$/../kaytu-azure-describer/.idea/kaytu-azure-describer.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/kaytu-charts.iml" filepath="$PROJECT_DIR$/.idea/kaytu-charts.iml" />
       <module fileurl="file://$PROJECT_DIR$/../kaytu-deploy/.idea/kaytu-deploy.iml" filepath="$PROJECT_DIR$/../kaytu-deploy/.idea/kaytu-deploy.iml" />
       <module fileurl="file://$PROJECT_DIR$/../kaytu-engine/.idea/kaytu-engine.iml" filepath="$PROJECT_DIR$/../kaytu-engine/.idea/kaytu-engine.iml" />

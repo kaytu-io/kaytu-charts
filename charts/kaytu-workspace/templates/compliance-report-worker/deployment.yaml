@@ -195,7 +195,7 @@ spec:
               value: "compliance-worker"
             - name: JAEGER_SAMPLE_RATE
               value: "0.0005"
-            - name: MANUAL_TRIGGERS
+            - name: MANUAL_TRIGGER
               value: "true"
           volumeMounts:
             - name: compliance-worker-postgres-config
