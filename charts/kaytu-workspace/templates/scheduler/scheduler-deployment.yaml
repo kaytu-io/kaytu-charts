@@ -58,7 +58,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        - name: CURRENT_NAMESPACE
+        - name: WORKSPACE_NAME
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
