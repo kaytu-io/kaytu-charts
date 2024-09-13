@@ -60,13 +60,13 @@ kaytu:
         image:
           repo: ghcr.io/kaytu-io/kaytu-aws-describer
           tag:
-            dev: local-v0.58.2 # {"$imagepolicy": "flux-system:kaytu-aws-describer:tag"}
+            dev: local-v0.58.3 # {"$imagepolicy": "flux-system:kaytu-aws-describer:tag"}
             prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-aws-describer-prod:tag"}
       azure:
         image:
           repo: ghcr.io/kaytu-io/kaytu-azure-describer
           tag:
-            dev: local-v0.36.1 # {"$imagepolicy": "flux-system:kaytu-azure-describer:tag"}
+            dev: local-v0.36.2 # {"$imagepolicy": "flux-system:kaytu-azure-describer:tag"}
             prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-azure-describer-prod:tag"}
   onboard:
     service:

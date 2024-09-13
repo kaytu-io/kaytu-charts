@@ -16,8 +16,8 @@ kaytu:
       migrator: v0.423.45-dev
       analytics: v0.423.30-dev
       describeScheduler: v0.423.30-dev
-      describeWorkerAWS: local-v0.58.2
-      describeWorkerAzure: local-v0.36.1
+      describeWorkerAWS: local-v0.58.3
+      describeWorkerAzure: local-v0.36.2
       onboard: v0.423.30-dev
       integration: v0.423.30-dev
       metadata: v0.423.30-dev
