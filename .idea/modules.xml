@@ -13,6 +13,7 @@
       <module fileurl="file://$PROJECT_DIR$/../kaytu-util/.idea/kaytu-util.iml" filepath="$PROJECT_DIR$/../kaytu-util/.idea/kaytu-util.iml" />
       <module fileurl="file://$PROJECT_DIR$/../managed-platform-config/.idea/managed-platform-config.iml" filepath="$PROJECT_DIR$/../managed-platform-config/.idea/managed-platform-config.iml" />
       <module fileurl="file://$PROJECT_DIR$/../move-tables/.idea/move-tables.iml" filepath="$PROJECT_DIR$/../move-tables/.idea/move-tables.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../opengovernance/.idea/opengovernance.iml" filepath="$PROJECT_DIR$/../opengovernance/.idea/opengovernance.iml" />
       <module fileurl="file://$PROJECT_DIR$/../steampipe-plugin-aws/.idea/steampipe-plugin-aws.iml" filepath="$PROJECT_DIR$/../steampipe-plugin-aws/.idea/steampipe-plugin-aws.iml" />
       <module fileurl="file://$PROJECT_DIR$/../test-describer/.idea/test-describer.iml" filepath="$PROJECT_DIR$/../test-describer/.idea/test-describer.iml" />
     </modules>
