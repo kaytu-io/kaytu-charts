@@ -31,7 +31,7 @@ kaytu:
         dev: v0.4.20-dev # {"$imagepolicy": "flux-system:pennywise-server:tag"}
         prod: v0.3.17-prod # {"$imagepolicy": "flux-system:pennywise-server-prod:tag"}
       swagger:
-        dev: v0.423.53-dev # {"$imagepolicy": "flux-system:kaytu-swagger-service:tag"}
+        dev: v0.423.68-dev # {"$imagepolicy": "flux-system:kaytu-swagger-service:tag"}
         prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-swagger-service-prod:tag"}
   auth0:
     domain: kaytu.us.auth0.com
@@ -72,7 +72,7 @@ kaytu:
     enabled: false
   workspace:
     chart:
-      version: 0.1.119
+      version: 0.1.120
     kaytuChartLocation: "./kaytu"
   frontend:
     muiLicense: xxx
