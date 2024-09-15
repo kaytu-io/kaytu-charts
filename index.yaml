@@ -900,6 +900,17 @@ entries:
     version: 0.0.1
   kaytu-octopus:
   - apiVersion: v2
+    appVersion: 0.0.230
+    created: "2024-09-15T23:01:33.21718385Z"
+    description: Helm chart to install Kaytu Octopus. Octopus is the Kaytu workspace
+      provisioning system.
+    digest: 9a822bec48f8c88fe62eba510a441da3a86822c5cf77469be134561c43f4129a
+    name: kaytu-octopus
+    type: application
+    urls:
+    - https://github.com/kaytu-io/kaytu-charts/releases/download/kaytu-octopus-0.0.230/kaytu-octopus-0.0.230.tgz
+    version: 0.0.230
+  - apiVersion: v2
     appVersion: 0.0.229
     created: "2024-09-15T22:10:12.971735455Z"
     description: Helm chart to install Kaytu Octopus. Octopus is the Kaytu workspace
@@ -3355,6 +3366,16 @@ entries:
   kaytu-workspace:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-09-15T23:01:33.365426514Z"
+    description: A Helm chart for deploying Kaytu Workspace to Kubernetes
+    digest: 3cfb60b346d962264985e3bafd44f59e7c5872777fb7c73e85abd32452e951c7
+    name: kaytu-workspace
+    type: application
+    urls:
+    - https://github.com/kaytu-io/kaytu-charts/releases/download/kaytu-workspace-0.1.121/kaytu-workspace-0.1.121.tgz
+    version: 0.1.121
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-09-15T22:10:13.142321686Z"
     description: A Helm chart for deploying Kaytu Workspace to Kubernetes
     digest: 7bc45f048b8b0f6a15eeae5a93d1173c6362708a3d9df7b4163590fa9e44656f
@@ -4473,4 +4494,4 @@ entries:
     urls:
     - https://github.com/kaytu-io/kaytu-charts/releases/download/kaytu-workspace-0.1.4/kaytu-workspace-0.1.4.tgz
     version: 0.1.4
-generated: "2024-09-15T22:10:13.143232852Z"
+generated: "2024-09-15T23:01:33.366275483Z"
