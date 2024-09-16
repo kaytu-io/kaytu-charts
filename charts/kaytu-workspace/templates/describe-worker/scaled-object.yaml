@@ -39,7 +39,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: kaytu-azure-describer
-  pollingInterval: 30
+  pollingInterval: 5
   cooldownPeriod:  300
   minReplicaCount: 0
 {{- if eq (.Values.kaytu.workspace.size | toString) "lg" }}
@@ -70,7 +70,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: kaytu-aws-describer-manuals
-  pollingInterval: 30
+  pollingInterval: 5
   cooldownPeriod:  300
   minReplicaCount: 0
 {{- if eq (.Values.kaytu.workspace.size | toString) "lg" }}
