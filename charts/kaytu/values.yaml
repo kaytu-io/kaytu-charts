@@ -14,17 +14,17 @@ kaytu:
       frontendv2: v0.39.49-dev
       pennywise: v0.4.20-dev
       checkupWorker: v0.424.0-dev
-      migrator: v0.424.0-dev
-      analytics: v0.424.0-dev
-      describeScheduler: v0.424.2-dev
+      migrator: v0.424.3-dev
+      analytics: v0.424.3-dev
+      describeScheduler: v0.424.3-dev
       describeWorkerAWS: local-v0.58.3
       describeWorkerAzure: local-v0.36.2
-      onboard: v0.424.2-dev
-      integration: v0.424.0-dev
+      onboard: v0.424.3-dev
+      integration: v0.424.3-dev
       metadata: v0.424.0-dev
-      inventory: v0.424.2-dev
-      compliance: v0.424.2-dev
-      complianceSummarizer: v0.424.2-dev
+      inventory: v0.424.3-dev
+      compliance: v0.424.3-dev
+      complianceSummarizer: v0.424.3-dev
       complianceWorker: v0.424.0-dev
       complianceReport: v0.424.0-dev
       steampipe: v0.424.0-dev
