@@ -8,27 +8,27 @@ kaytu:
   docker:
     registry: ghcr.io/kaytu-io
     tags:
-      auth: v0.423.30-dev
-      workspace: v0.423.30-dev
-      swagger: v0.423.68-dev
+      auth: v0.424.0-dev
+      workspace: v0.424.0-dev
+      swagger: v0.424.0-dev
       frontendv2: v0.39.49-dev
       pennywise: v0.4.20-dev
-      checkupWorker: v0.423.30-dev
-      migrator: v0.423.66-dev
-      analytics: v0.423.66-dev
+      checkupWorker: v0.424.0-dev
+      migrator: v0.424.0-dev
+      analytics: v0.424.0-dev
       describeScheduler: v0.424.2-dev
       describeWorkerAWS: local-v0.58.3
       describeWorkerAzure: local-v0.36.2
       onboard: v0.424.2-dev
-      integration: v0.423.66-dev
-      metadata: v0.423.47-dev
+      integration: v0.424.0-dev
+      metadata: v0.424.0-dev
       inventory: v0.424.2-dev
       compliance: v0.424.2-dev
       complianceSummarizer: v0.424.2-dev
-      complianceWorker: v0.423.47-dev
-      complianceReport: v0.423.47-dev
-      steampipe: v0.423.47-dev
-      esSink: v0.423.47-dev
+      complianceWorker: v0.424.0-dev
+      complianceReport: v0.424.0-dev
+      steampipe: v0.424.0-dev
+      esSink: v0.424.0-dev
   apikey:
     public: ""
     private: ""
