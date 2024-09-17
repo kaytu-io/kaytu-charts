@@ -1089,6 +1089,17 @@ entries:
     version: 0.0.1
   kaytu-octopus:
   - apiVersion: v2
+    appVersion: 0.0.238
+    created: "2024-09-17T11:35:28.769835995Z"
+    description: Helm chart to install Kaytu Octopus. Octopus is the Kaytu workspace
+      provisioning system.
+    digest: 3dc865a6c38e4f99168e70b1bf8bfc2ba938c004749da89f7d1115a67cc9f0a7
+    name: kaytu-octopus
+    type: application
+    urls:
+    - https://github.com/kaytu-io/kaytu-charts/releases/download/kaytu-octopus-0.0.238/kaytu-octopus-0.0.238.tgz
+    version: 0.0.238
+  - apiVersion: v2
     appVersion: 0.0.237
     created: "2024-09-16T22:51:02.042103415Z"
     description: Helm chart to install Kaytu Octopus. Octopus is the Kaytu workspace
@@ -3632,6 +3643,16 @@ entries:
   kaytu-workspace:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-09-17T11:35:28.968074999Z"
+    description: A Helm chart for deploying Kaytu Workspace to Kubernetes
+    digest: c9ce080f85fc531f597b771d017b3996284910b677aa90acf0bfdcec8027d595
+    name: kaytu-workspace
+    type: application
+    urls:
+    - https://github.com/kaytu-io/kaytu-charts/releases/download/kaytu-workspace-0.1.129/kaytu-workspace-0.1.129.tgz
+    version: 0.1.129
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-09-16T22:51:02.213995673Z"
     description: A Helm chart for deploying Kaytu Workspace to Kubernetes
     digest: 9b00678ba5a63c59f01a2058f6b4e1d14dc104154447218964ab0b97a628a01d
@@ -4833,6 +4854,33 @@ entries:
   open-governance:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-09-17T11:35:29.174755949Z"
+    dependencies:
+    - condition: keda.enabled
+      name: keda
+      repository: ""
+      version: 2.15.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: ""
+      version: 15.5.21
+    - condition: opensearch.enabled
+      name: opensearch
+      repository: ""
+      version: 2.22.0
+    - condition: opensearch-dashboards.enabled
+      name: opensearch-dashboards
+      repository: ""
+      version: 2.20.0
+    description: A Helm chart for deploying open-governance to Kubernetes
+    digest: 54de3d11db272f28abc2c78eaa95139978fee7da04f59e386ef874b63a96743c
+    name: open-governance
+    type: application
+    urls:
+    - https://github.com/kaytu-io/kaytu-charts/releases/download/open-governance-0.1.34/open-governance-0.1.34.tgz
+    version: 0.1.34
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-09-17T02:22:53.234086504Z"
     dependencies:
     - condition: keda.enabled
@@ -4858,4 +4906,4 @@ entries:
     urls:
     - https://github.com/kaytu-io/kaytu-charts/releases/download/open-governance-0.1.33/open-governance-0.1.33.tgz
     version: 0.1.33
-generated: "2024-09-17T02:22:53.234596698Z"
+generated: "2024-09-17T11:35:29.17583583Z"
