@@ -47,7 +47,7 @@ spec:
   pollingInterval: 5
   cooldownPeriod:  300
   minReplicaCount: 0
-{{- if eq (.Values.kaytu.workspace.size | toString) "lg" }}
+{{- if eq (.Values.opengovernance.workspace.size | toString) "lg" }}
   maxReplicaCount: 1
 {{- else }}
   maxReplicaCount: 1
