@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: compliance-worker-postgres-config
+  name: query-runner-worker-postgres-config
   namespace: {{ .Release.Namespace }}
 data:
   optimization.conf: |
