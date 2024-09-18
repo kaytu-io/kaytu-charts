@@ -130,6 +130,13 @@ kaytu:
         tag:
           dev: v0.423.50-dev # {"$imagepolicy": "flux-system:es-sink-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:es-sink-service-prod:tag"}
+  queryRunner:
+    worker:
+      image:
+        repo: ghcr.io/kaytu-io/query-runner-worker
+        tag:
+          dev: v0.425.1-dev
+          prod: v0.425.1-dev
   telemetry:
     enabled: true
     baseUrl: http://telemetry.kaytu.sh
