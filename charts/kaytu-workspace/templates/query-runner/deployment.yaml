@@ -20,6 +20,8 @@ spec:
         - name: query-runner-worker
           image: {{ .Values.kaytu.queryRunner.worker.image.repo }}:{{- dig .Values.kaytu.envType .Values.kaytu.queryRunner.worker.image.tag.dev .Values.kaytu.queryRunner.worker.image.tag }}
           command: ["/query-runner-worker"]
+          args:
+            - --id=$(WORKER_ID)
           imagePullPolicy: Always
           resources:
             limits:
