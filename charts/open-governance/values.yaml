@@ -22,7 +22,7 @@ opengovernance:
       onboard: v0.424.14-dev
       integration: v0.424.14-dev
       metadata: v0.424.0-dev
-      inventory: v0.424.17-dev
+      inventory: v0.424.19-dev
       compliance: v0.424.14-dev
       complianceSummarizer: v0.424.14-dev
       complianceWorker: v0.424.0-dev

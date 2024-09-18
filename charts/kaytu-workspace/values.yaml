@@ -94,7 +94,7 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/inventory-service
         tag:
-          dev: v0.424.17-dev # {"$imagepolicy": "flux-system:kaytu-inventory-service:tag"}
+          dev: v0.424.19-dev # {"$imagepolicy": "flux-system:kaytu-inventory-service:tag"}
           prod: v0.345.2-prod # {"$imagepolicy": "flux-system:kaytu-inventory-service-prod:tag"}
   compliance:
     service:
