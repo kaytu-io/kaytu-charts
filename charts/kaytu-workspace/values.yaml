@@ -135,8 +135,8 @@ kaytu:
       image:
         repo: ghcr.io/kaytu-io/query-runner-worker
         tag:
-          dev: v0.425.1-dev
-          prod: v0.425.1-dev
+          dev: v0.425.9-dev
+          prod: v0.425.9-dev
   telemetry:
     enabled: true
     baseUrl: http://telemetry.kaytu.sh
