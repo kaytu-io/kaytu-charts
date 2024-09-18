@@ -31,18 +31,18 @@ spec:
               cpu: 1000m
               memory: 3Gi
           env:
-{{/*            - name: STEAMPIPE_HOST*/}}
-{{/*              value: steampipe-service.{{ .Release.Namespace }}.svc.cluster.local*/}}
-{{/*            - name: STEAMPIPE_PORT*/}}
-{{/*              value: "9193"*/}}
-{{/*            - name: STEAMPIPE_DB*/}}
-{{/*              value: "steampipe"*/}}
-{{/*            - name: STEAMPIPE_USERNAME*/}}
-{{/*              value: "steampipe"*/}}
-{{/*            - name: STEAMPIPE_PASSWORD*/}}
-{{/*              value: "abcd"*/}}
-{{/*            - name: STEAMPIPE_SSLMODE*/}}
-{{/*              value: "disable"*/}}
+            #- name: STEAMPIPE_HOST
+            #  value: steampipe-service.{{ .Release.Namespace }}.svc.cluster.local
+            #- name: STEAMPIPE_PORT
+            #  value: "9193"
+            #- name: STEAMPIPE_DB
+            #  value: "steampipe"
+            #- name: STEAMPIPE_USERNAME
+            #  value: "steampipe"
+            #- name: STEAMPIPE_PASSWORD
+            #  value: "abcd"
+            #- name: STEAMPIPE_SSLMODE
+            #  value: "disable"
             - name: STEAMPIPE_LOG_LEVEL
               value: "WARN"
             - name: STEAMPIPE_MAX_PARALLEL
@@ -80,11 +80,3 @@ spec:
               value: "query-runner-worker"
             - name: JAEGER_SAMPLE_RATE
               value: "0.0005"
-          volumeMounts:
-            - name: query-runner-worker-postgres-config
-              mountPath: /home/steampipe/.steampipe/db/14.2.0/data/postgresql.conf.d/optimization.conf
-              subPath: optimization.conf
-      volumes:
-        - name: query-runner-worker-postgres-config
-          configMap:
-            name: query-runner-worker-postgres-config
