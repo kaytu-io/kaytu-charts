@@ -65,6 +65,6 @@ spec:
                 fieldRef:
                   fieldPath: status.hostIP
             - name: JAEGER_SERVICE_NAME
-              value: "compliance-worker"
+              value: "query-runner-worker"
             - name: JAEGER_SAMPLE_RATE
               value: "0.0005"
