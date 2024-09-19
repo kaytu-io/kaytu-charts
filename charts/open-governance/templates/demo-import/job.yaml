@@ -1,0 +1,33 @@
+{{- if eq .Values.demo.enabled true }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: import-demo-data
+  namespace: ws-530663329664863214
+spec:
+  template:
+    spec:
+      containers:
+        - name: import-demo-data
+          image: "ghcr.io/kaytu-io/import-data-script:v0.425.34-dev"
+          command: ["/bin/bash", "-c", "/usr/local/bin/import_data.sh"] # The script that will run
+          env:
+{{- include "elastic.envs" . | indent 12 }}
+            - name: POSTGRESQL_USERNAME
+          {{- if eq .Values.externalPostgresql.enabled true }}
+              value: {{ .Values.externalPostgresql.masterUser }}
+          {{- else }}
+              value: {{ .Values.postgresql.primary.initdb.user }}
+          {{- end }}
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: superUserPassword
+            - name: POSTGRESQL_HOST
+              value: "{{ include "postgres.endpoint" . }}"
+            - name: POSTGRESQL_PORT
+              value: "{{ include "postgres.port" . }}"
+      restartPolicy: Never
+  backoffLimit: 4
+{{- end }}
