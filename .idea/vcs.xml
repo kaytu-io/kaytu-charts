@@ -12,7 +12,6 @@
     <mapping directory="$PROJECT_DIR$/../kaytu-scripts" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../kaytu-util" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../managed-platform-config" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../opengovernance" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../steampipe-plugin-aws" vcs="Git" />
   </component>
 </project>
