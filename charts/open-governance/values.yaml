@@ -43,15 +43,15 @@ opengovernance:
       version: 0.1.16
     kaytuChartLocation: "./kaytu"
     aws:
-      master-secret: "" # TODO: need comment
+      master-secret: ""   # TODO: need comment
       keyMap:
-        access-key: "" # TODO: need comment
-        secret-key: "" # TODO: need comment
+        access-key: ""   # TODO: need comment
+        secret-key: ""   # TODO: need comment
   frontend:
     muiLicense: xxx
   master:
-    accessKey: "" # echo "xxx" | base64
-    secretKey: "" # echo "xxx" | base64
+    accessKey: ""   # echo "xxx" | base64
+    secretKey: ""   # echo "xxx" | base64
     policyARN: "xxx"
     accountID: "xxx"
     oidcProvider: "oidc.eks.us-east-2.amazonaws.com/id/xxx"
@@ -88,7 +88,7 @@ dex:
         name: 'Private Client'
         redirectURIs:
           - 'https://kaytu.app.domain/callback'
-        secret: "secret" # client secret
+        secret: "secret"   # client secret
     staticPasswords:
       - email: "admin@example.com"
         hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
@@ -102,15 +102,15 @@ dex:
       idTokens: "24h"
       refreshTokens:
         reuseInterval: "3s"
-        validIfNotUsedFor: "2160h" # 90 days
-        absoluteLifetime: "3960h" # 165 days
+        validIfNotUsedFor: "2160h"   # 90 days
+        absoluteLifetime: "3960h"   # 165 days
     logger:
       level: "debug"
-      format: "text" # can also be "json"
+      format: "text"   # can also be "json"
     storage:
       type: postgres
       config:
-        host: "kaytu-postgresql-primary.kaytu.svc.cluster.local" # postgresql host
+        host: "kaytu-postgresql-primary.kaytu.svc.cluster.local"   # postgresql host
         port: 5432
         database: dex
         user: dex_service
@@ -150,7 +150,7 @@ postgresql:
       listen_addresses = '*'
       max_wal_senders = 10
       shared_preload_libraries = 'pg_stat_statements'
-      
+
       max_connections = 40
       shared_buffers = 768MB
       effective_cache_size = 2304MB
@@ -246,11 +246,11 @@ postgresql:
           \c "$subscriptionDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           GRANT ALL ON SCHEMA public TO $subscriptionUserName;
-          
+
           CREATE DATABASE $pennywiseDatabaseName;
           CREATE USER $pennywiseUserName WITH PASSWORD '$POSTGRES_PENNYWISE_DB_PASSWORD';
           GRANT ALL PRIVILEGES ON DATABASE "$pennywiseDatabaseName" to $pennywiseUserName;
-            
+
           \c "$pennywiseDatabaseName"
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           GRANT ALL ON SCHEMA public TO $pennywiseUserName;
@@ -396,9 +396,9 @@ postgresql:
           CREATE EXTENSION pg_stat_statements;
           CREATE USER $exporterUserName WITH PASSWORD '$POSTGRES_EXPORTER_PASSWORD';
           GRANT pg_monitor TO $exporterUserName;
-          
+
           ALTER USER $migratorUserName WITH SUPERUSER;
-          
+
           EOSQL
 
           echo "$dt - Init script is completed";
@@ -412,7 +412,7 @@ postgresql:
     # These passwords are random generated
     # Do not change them
     # You can get the passwords running:
-    #`kubectl get secret postgres-secret -n <namespace-name> -o json | jq -r '.data.<key>' | base64 --decode`
+    # `kubectl get secret postgres-secret -n <namespace-name> -o json | jq -r '.data.<key>' | base64 --decode`
     extraEnvVars:
       - name: POSTGRES_WORKSPACE_DB_PASSWORD
         valueFrom:
@@ -444,17 +444,17 @@ postgresql:
           secretKeyRef:
             name: postgres-secret
             key: dexServiceUserPassword
-      - name : POSTGRES_DESCRIBE_DB_PASSWORD
+      - name: POSTGRES_DESCRIBE_DB_PASSWORD
         valueFrom:
           secretKeyRef:
             name: postgres-secret
             key: describeSchedulerUserPassword
-      - name : POSTGRES_ONBOARD_DB_PASSWORD
+      - name: POSTGRES_ONBOARD_DB_PASSWORD
         valueFrom:
           secretKeyRef:
             name: postgres-secret
             key: onboardServiceUserPassword
-      - name : POSTGRES_POLICY_DB_PASSWORD
+      - name: POSTGRES_POLICY_DB_PASSWORD
         valueFrom:
           secretKeyRef:
             name: postgres-secret
@@ -496,9 +496,9 @@ postgresql:
             key: postgresExporterUserPassword
       - name: POSTGRES_STEAMPIPE_USER_PASSWORD
         valueFrom:
-            secretKeyRef:
-              name: postgres-secret
-              key: steampipeUserPassword
+          secretKeyRef:
+            name: postgres-secret
+            key: steampipeUserPassword
       - name: POSTGRES_ALERTING_DB_PASSWORD
         valueFrom:
           secretKeyRef:
