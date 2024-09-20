@@ -604,4 +604,4 @@ flux:
 keda:
   enabled: true
 demo:
-  enabled: true
+  enabled: false
