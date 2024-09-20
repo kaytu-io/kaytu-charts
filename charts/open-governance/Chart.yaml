@@ -37,6 +37,6 @@ dependencies:
     version: 2.20.0
     condition: opensearch-dashboards.enabled
 
-maintainers: 
+maintainers:
   - name: Kaytu
     email: dev@kaytu.io
