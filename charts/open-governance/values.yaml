@@ -603,3 +603,5 @@ flux:
   namespace: flux-system
 keda:
   enabled: true
+demo:
+  enabled: true
