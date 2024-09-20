@@ -3,7 +3,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: import-demo-data
-  namespace: ws-530663329664863214
+  namespace: {{ .Release.Namespace }}
 spec:
   template:
     spec:
