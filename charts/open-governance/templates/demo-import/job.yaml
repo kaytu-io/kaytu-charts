@@ -49,9 +49,22 @@ metadata:
   namespace: {{ .Release.Namespace }}
   annotations:
     "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "1"
 spec:
   template:
     spec:
+      initContainers:
+        - name: wait-for-migrator-job
+          image: busybox
+          command:
+            - 'sh'
+            - '-c'
+            - |
+              echo "Waiting for migrator-job job to complete...";
+              while [[ $(kubectl get job migrator-job -n {{ .Release.Namespace }} -o 'jsonpath={.status.succeeded}') -ne 1 ]]; do
+                sleep 5;
+              done;
+              echo "migrator-job job completed, starting import-psql-demo-data...";
       containers:
         - name: import-psql-demo-data
           image: "{{ .Values.opengovernance.docker.registry }}/import-data-script:{{ .Values.opengovernance.docker.tags.psqlImport }}"
