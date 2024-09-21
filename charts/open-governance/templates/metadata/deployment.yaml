@@ -22,13 +22,13 @@ spec:
         image: "{{ .Values.opengovernance.docker.registry }}/metadata-service:{{ .Values.opengovernance.docker.tags.metadata }}"
         command: ["/metadata-service"]
         imagePullPolicy: Always
-        resources:
-          limits:
-            cpu: 100m
-            memory: 500Mi
-          requests:
-            cpu: 100m
-            memory: 100Mi
+        #resources:
+        #  limits:
+        #    cpu: 100m
+        #    memory: 500Mi
+        #  requests:
+        #    cpu: 100m
+        #    memory: 100Mi
         env:
         - name: POSTGRESQL_HOST
           value: "{{ include "postgres.endpoint" . }}"
