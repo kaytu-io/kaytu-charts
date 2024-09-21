@@ -28,13 +28,13 @@ spec:
           args:
             - --id=$(WORKER_ID)
           imagePullPolicy: Always
-          resources:
-            limits:
-              cpu: 2000m
-              memory: 3Gi
-            requests:
-              cpu: 1000m
-              memory: 3Gi
+          #resources:
+          #  limits:
+          #    cpu: 2000m
+          #    memory: 3Gi
+          #  requests:
+          #    cpu: 1000m
+          #    memory: 3Gi
           env:
 #            - name: STEAMPIPE_HOST
 #              value: "compliance-worker-steampipe"
@@ -122,13 +122,13 @@ spec:
           args:
             - --id=$(WORKER_ID)
           imagePullPolicy: Always
-          resources:
-            limits:
-              cpu: 2000m
-              memory: 3Gi
-            requests:
-              cpu: 1000m
-              memory: 3Gi
+          #resources:
+          #  limits:
+          #    cpu: 2000m
+          #    memory: 3Gi
+          #  requests:
+          #    cpu: 1000m
+          #    memory: 3Gi
           env:
             #            - name: STEAMPIPE_HOST
             #              value: "compliance-worker-steampipe"

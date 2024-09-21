@@ -30,13 +30,13 @@ spec:
           args:
             - --id=$(WORKER_ID)
           imagePullPolicy: Always
-          resources:
-            limits:
-              cpu: 500m
-              memory: 2Gi
-            requests:
-              cpu: 500m
-              memory: 2Gi
+          #resources:
+          #  limits:
+          #    cpu: 500m
+          #    memory: 2Gi
+          #  requests:
+          #    cpu: 500m
+          #    memory: 2Gi
           env:
             {{- include "elastic.envs" . | indent 12 }}
             - name: STEAMPIPE_LOG_LEVEL
