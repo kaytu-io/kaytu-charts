@@ -26,13 +26,13 @@ spec:
           image: "{{ .Values.opengovernance.docker.registry }}/kaytu-aws-describer:{{ .Values.opengovernance.docker.tags.describeWorkerAWS }}"
           command: ["/kaytu-aws-describer"]
           imagePullPolicy: Always
-          resources:
-            limits:
-              cpu: 500m
-              memory: 1Gi
-            requests:
-              cpu: 100m
-              memory: 300Mi
+          #resources:
+          #  limits:
+          #    cpu: 500m
+          #    memory: 1Gi
+          #  requests:
+          #    cpu: 100m
+          #    memory: 300Mi
           env:
             - name: AWS_DESCRIBER_NATS__URL
               value: "{{ .Release.Name }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"
@@ -65,13 +65,13 @@ spec:
           image: "{{ .Values.opengovernance.docker.registry }}/kaytu-azure-describer:{{ .Values.opengovernance.docker.tags.describeWorkerAzure }}"
           command: ["/kaytu-azure-describer"]
           imagePullPolicy: Always
-          resources:
-            limits:
-              cpu: 500m
-              memory: 1Gi
-            requests:
-              cpu: 100m
-              memory: 300Mi
+          #resources:
+          #  limits:
+          #    cpu: 500m
+          #    memory: 1Gi
+          #  requests:
+          #    cpu: 100m
+          #    memory: 300Mi
           env:
             - name: AZURE_DESCRIBER_NATS__URL
               value: "{{ .Release.Name }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"
@@ -104,13 +104,13 @@ spec:
           image: "{{ .Values.opengovernance.docker.registry }}/kaytu-aws-describer:{{ .Values.opengovernance.docker.tags.describeWorkerAWS }}"
           command: ["/kaytu-aws-describer"]
           imagePullPolicy: Always
-          resources:
-            limits:
-              cpu: 500m
-              memory: 1Gi
-            requests:
-              cpu: 100m
-              memory: 300Mi
+          #resources:
+          #  limits:
+          #    cpu: 500m
+          #    memory: 1Gi
+          #  requests:
+          #    cpu: 100m
+          #    memory: 300Mi
           env:
             - name: AWS_DESCRIBER_NATS__URL
               value: "{{ .Release.Name }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"
@@ -145,13 +145,13 @@ spec:
           image: "{{ .Values.opengovernance.docker.registry }}/kaytu-azure-describer:{{ .Values.opengovernance.docker.tags.describeWorkerAzure }}"
           command: ["/kaytu-azure-describer"]
           imagePullPolicy: Always
-          resources:
-            limits:
-              cpu: 500m
-              memory: 1Gi
-            requests:
-              cpu: 100m
-              memory: 300Mi
+          #resources:
+          #  limits:
+          #    cpu: 500m
+          #    memory: 1Gi
+          #  requests:
+          #    cpu: 100m
+          #    memory: 300Mi
           env:
             - name: AZURE_DESCRIBER_NATS__URL
               value: "{{ .Release.Name }}-nats.{{ .Release.Namespace }}.svc.cluster.local:4222"
