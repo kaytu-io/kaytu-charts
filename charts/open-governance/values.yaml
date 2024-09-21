@@ -605,5 +605,5 @@ flux:
   namespace: flux-system
 keda:
   enabled: true
-demo:
+populateWithSampleData:
   enabled: true

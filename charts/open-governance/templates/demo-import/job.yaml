@@ -1,4 +1,4 @@
-{{- if eq .Values.demo.enabled true }}
+{{- if eq .Values.populateWithSampleData.enabled true }}
 apiVersion: v1
 kind: Secret
 metadata:
