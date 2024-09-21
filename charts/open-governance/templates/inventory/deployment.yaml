@@ -22,13 +22,13 @@ spec:
         image: "{{ .Values.opengovernance.docker.registry }}/inventory-service:{{ .Values.opengovernance.docker.tags.inventory }}"
         command: ["/inventory-service"]
         imagePullPolicy: Always
-        resources:
-          limits:
-            cpu: 1000m
-            memory: 4Gi
-          requests:
-            cpu: 200m
-            memory: 500Mi
+        #resources:
+        #  limits:
+        #    cpu: 1000m
+        #    memory: 4Gi
+        #  requests:
+        #    cpu: 200m
+        #    memory: 500Mi
         env:
 {{- include "elastic.envs" . | indent 8 }}
         - name: POSTGRESQL_HOST
