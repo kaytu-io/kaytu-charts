@@ -50,9 +50,6 @@ spec:
     grpc:
       enabled: true
     config:
-      grpc:
-        addr: 'localhost:5557'
-        reflection: true
 {{- if eq .Values.kaytu.dex.issuer "" }}
       issuer: "http://{{ .Release.Namespace }}-{{ .Values.kaytu.dex.serviceName }}.{{ .Release.Namespace }}.svc.cluster.local:5556/dex"
 {{- else }}

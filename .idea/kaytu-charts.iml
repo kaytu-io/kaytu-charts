@@ -7,7 +7,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="kaytu-aws-describer" />
     <orderEntry type="module" module-name="kaytu-engine" />
-    <orderEntry type="module" module-name="kaytu-deploy" />
     <orderEntry type="module" module-name="managed-platform-config" />
     <orderEntry type="module" module-name="kaytu-scripts" />
     <orderEntry type="module" module-name="configz" />
@@ -18,5 +17,6 @@
     <orderEntry type="module" module-name="kaytu-azure-describer" />
     <orderEntry type="module" module-name="opengovernance" />
     <orderEntry type="module" module-name="kaytu-charts-gitlab" />
+    <orderEntry type="module" module-name="opengovernance-automation" />
   </component>
 </module>
