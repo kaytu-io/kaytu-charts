@@ -78,6 +78,8 @@ spec:
               value: "http://compliance-service.%NAMESPACE%.svc.cluster.local:7251"
             - name: WORKSPACE_INVENTORY__BASE_URL
               value: "http://inventory-service.%NAMESPACE%.svc.cluster.local:7251"
+            - name: WORKSPACE_METADATA__BASE_URL
+              value: "http://metadata-service.%NAMESPACE%.svc.cluster.local:6251"
             - name: WORKSPACE_AUTO_SUSPEND_DURATION_MINUTES
               value: "60"
             - name: WORKSPACE_KAYTU_HELM_CHART_LOCATION

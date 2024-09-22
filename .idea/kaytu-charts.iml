@@ -17,5 +17,6 @@
     <orderEntry type="module" module-name="kaytu-util" />
     <orderEntry type="module" module-name="kaytu-azure-describer" />
     <orderEntry type="module" module-name="opengovernance" />
+    <orderEntry type="module" module-name="kaytu-charts-gitlab" />
   </component>
 </module>
