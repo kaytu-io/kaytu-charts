@@ -1089,6 +1089,17 @@ entries:
     version: 0.0.1
   kaytu-octopus:
   - apiVersion: v2
+    appVersion: 0.0.268
+    created: "2024-09-22T23:43:04.427397388Z"
+    description: Helm chart to install Kaytu Octopus. Octopus is the Kaytu workspace
+      provisioning system.
+    digest: 2df2107befb53fc79ff454d675fdf51ccdeab8db3552bba34e0d9c615c8997df
+    name: kaytu-octopus
+    type: application
+    urls:
+    - https://github.com/kaytu-io/kaytu-charts/releases/download/kaytu-octopus-0.0.268/kaytu-octopus-0.0.268.tgz
+    version: 0.0.268
+  - apiVersion: v2
     appVersion: 0.0.267
     created: "2024-09-22T23:38:45.837865765Z"
     description: Helm chart to install Kaytu Octopus. Octopus is the Kaytu workspace
@@ -6105,4 +6116,4 @@ entries:
     urls:
     - https://github.com/kaytu-io/kaytu-charts/releases/download/open-governance-0.1.33/open-governance-0.1.33.tgz
     version: 0.1.33
-generated: "2024-09-22T23:38:45.839670722Z"
+generated: "2024-09-22T23:43:04.429076511Z"
