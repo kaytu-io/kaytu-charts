@@ -47,7 +47,12 @@ spec:
         namespace: flux-system
       version: 0.18.0
   values:
+    grpc:
+      enabled: true
     config:
+      grpc:
+        addr: 'localhost:5557'
+        reflection: true
 {{- if eq .Values.kaytu.dex.issuer "" }}
       issuer: "http://{{ .Release.Namespace }}-{{ .Values.kaytu.dex.serviceName }}.{{ .Release.Namespace }}.svc.cluster.local:5556/dex"
 {{- else }}

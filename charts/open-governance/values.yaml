@@ -8,23 +8,23 @@ opengovernance:
   docker:
     registry: ghcr.io/kaytu-io
     tags:
-      auth: v0.425.83-dev
-      workspace: v0.424.0-dev
-      swagger: v0.425.13-dev
+      auth: v0.425.88-dev
+      workspace: v0.425.90-dev
+      swagger: v0.425.84-dev
       frontendv2: v0.39.49-dev
       pennywise: v0.4.20-dev
       checkupWorker: v0.424.0-dev
-      migrator: v0.425.13-dev
-      analytics: v0.425.11-dev
-      describeScheduler: v0.425.13-dev
+      migrator: v0.425.90-dev
+      analytics: v0.425.88-dev
+      describeScheduler: v0.425.90-dev
       describeWorkerAWS: local-v0.58.3
       describeWorkerAzure: local-v0.36.2
-      onboard: v0.425.37-dev
-      integration: v0.425.11-dev
-      metadata: v0.424.0-dev
-      inventory: v0.425.13-dev
-      compliance: v0.425.11-dev
-      complianceSummarizer: v0.425.11-dev
+      onboard: v0.425.89-dev
+      integration: v0.425.89-dev
+      metadata: v0.425.88-dev
+      inventory: v0.425.90-dev
+      compliance: v0.425.90-dev
+      complianceSummarizer: v0.425.89-dev
       complianceWorker: v0.425.11-dev
       complianceReport: v0.425.11-dev
       steampipe: v0.424.0-dev
@@ -78,7 +78,7 @@ dex:
     create: false
   config:
     grpc:
-      addr: 'http://localhost:5557'
+      addr: 'localhost:5557'
       reflection: true
     staticClients:
       # WARNING: Do not change the 'id' field for the private client. It is required for proper authentication configuration.
