@@ -59,9 +59,7 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: WORKSPACE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
+          value: "main"
         - name: DESCRIBE_INTERVAL_HOURS
           value: "12"
         - name: FULL_DISCOVERY_INTERVAL_HOURS
