@@ -8,8 +8,8 @@ opengovernance:
   docker:
     registry: ghcr.io/kaytu-io
     tags:
-      auth: v0.425.99-dev
-      workspace: v0.425.95-dev
+      auth: v0.425.101-dev
+      workspace: v0.425.102-dev
       swagger: v0.425.94-dev
       frontendv2: v0.39.49-dev
       pennywise: v0.4.20-dev

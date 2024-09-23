@@ -18,5 +18,6 @@
     <orderEntry type="module" module-name="opengovernance" />
     <orderEntry type="module" module-name="kaytu-charts-gitlab" />
     <orderEntry type="module" module-name="opengovernance-automation" />
+    <orderEntry type="module" module-name="website" />
   </component>
 </module>
