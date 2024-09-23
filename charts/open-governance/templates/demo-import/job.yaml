@@ -14,7 +14,7 @@ metadata:
   name: import-es-demo-data
   namespace: {{ .Release.Namespace }}
   annotations:
-    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook": post-install
     "helm.sh/hook-weight": "1"
 spec:
   template:
@@ -49,7 +49,7 @@ metadata:
   name: import-psql-demo-data
   namespace: {{ .Release.Namespace }}
   annotations:
-    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook": post-install
     "helm.sh/hook-weight": "0"
 spec:
   template:

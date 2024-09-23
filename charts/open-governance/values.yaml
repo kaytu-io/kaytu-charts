@@ -8,22 +8,22 @@ opengovernance:
   docker:
     registry: ghcr.io/kaytu-io
     tags:
-      auth: v0.425.94-dev
+      auth: v0.425.99-dev
       workspace: v0.425.95-dev
       swagger: v0.425.94-dev
       frontendv2: v0.39.49-dev
       pennywise: v0.4.20-dev
       checkupWorker: v0.424.0-dev
-      migrator: v0.425.94-dev
+      migrator: v0.425.99-dev
       analytics: v0.425.94-dev
       describeScheduler: v0.425.94-dev
       describeWorkerAWS: local-v0.58.3
       describeWorkerAzure: local-v0.36.2
-      onboard: v0.425.94-dev
+      onboard: v0.425.97-dev
       integration: v0.425.94-dev
       metadata: v0.425.88-dev
       inventory: v0.425.94-dev
-      compliance: v0.425.94-dev
+      compliance: v0.425.97-dev
       complianceSummarizer: v0.425.94-dev
       complianceWorker: v0.425.11-dev
       complianceReport: v0.425.11-dev
