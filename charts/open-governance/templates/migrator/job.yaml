@@ -352,7 +352,7 @@ data:
         "auto_onboard_support":false,
         "short_description":"Track DAST Scan Results, Projects, Risks and more",
         "description":"Track DAST Scan Results, Projects, Risks and more",
-        "logo":""
+        "logo":"https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/checkmarkx.svg"
       },
       {
         "id":22,
@@ -374,7 +374,7 @@ data:
         "auto_onboard_support":false,
         "short_description":"Track security, quality, and license compliance risks from projects.",
         "description":"Track security, quality, and license compliance risks from projects.",
-        "logo":""
+        "logo":"https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/synopsys.svg"
       },
       {
         "id":24,
@@ -390,7 +390,7 @@ data:
       {
         "id":25,
         "name":"DefenderEndpoints",
-        "label":"Microsoft Defender for Endpoints",
+        "label":"Microsoft Defender - Endpoints",
         "tier":"Enterprise",
         "tags": { "usage": ["Endpoint Security"] },
         "auto_onboard_support":false,
@@ -401,7 +401,7 @@ data:
       {
         "id":26,
         "name":"MicrosoftIntune",
-        "label":"Microsoft Intune (MDM)",
+        "label":"Microsoft Intune",
         "tier":"Enterprise",
         "tags": { "usage": ["Device Management"] },
         "auto_onboard_support":false,
@@ -423,7 +423,7 @@ data:
       {
         "id":28,
         "name":"VMWarePrivateCloud",
-        "label":"VMWare Private Cloud (vSphere)",
+        "label":"VMWare vSphere",
         "tier":"Enterprise",
         "tags": { "usage": ["General"] },
         "auto_onboard_support":false,
@@ -488,7 +488,7 @@ data:
         "auto_onboard_support": false,
         "short_description": "With Splunk Enterprise API, get insights in to workloads, apps, and threats.",
         "description": "With Splunk Enterprise API, get insights in to workloads, apps, and threats.",
-        "logo": ""
+        "logo":"https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/cisco.svg"
       },
       {
         "id": 35,
@@ -510,7 +510,7 @@ data:
         "auto_onboard_support": false,
         "short_description": "Discover Certificates, domains, status more",
         "description": "Discover Certificates, domains, status more",
-        "logo": ""
+        "logo":"https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/godaddy.svg"
       },
       {
         "id": 37,
@@ -549,7 +549,7 @@ data:
         "auto_onboard_support": false,
         "short_description": "Inventory and govern Identities, Users, and Groups",
         "description": "Inventory and govern Identities, Users, and Groups",
-        "logo": ""
+        "logo": "https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/gcp.svg"
       },
       {
         "id":40,
@@ -670,7 +670,7 @@ data:
         "auto_onboard_support":false,
         "short_description":"Track Threat Reports, Fees, and Alerts",
         "description":"Track Threat Reports, Fees, and Alerts",
-        "logo":""
+        "logo":"https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/vmware.svg"
       }
     ]
 
