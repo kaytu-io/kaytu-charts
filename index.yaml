@@ -1089,6 +1089,17 @@ entries:
     version: 0.0.1
   kaytu-octopus:
   - apiVersion: v2
+    appVersion: 0.0.271
+    created: "2024-09-23T16:22:45.521565668Z"
+    description: Helm chart to install Kaytu Octopus. Octopus is the Kaytu workspace
+      provisioning system.
+    digest: bdffcefb2243ef6f1a213df8eddb0605b87990063169c1df59822c0738b25011
+    name: kaytu-octopus
+    type: application
+    urls:
+    - https://github.com/kaytu-io/kaytu-charts/releases/download/kaytu-octopus-0.0.271/kaytu-octopus-0.0.271.tgz
+    version: 0.0.271
+  - apiVersion: v2
     appVersion: 0.0.270
     created: "2024-09-23T00:34:41.716622977Z"
     description: Helm chart to install Kaytu Octopus. Octopus is the Kaytu workspace
@@ -5384,6 +5395,33 @@ entries:
   open-governance:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-09-23T16:22:45.67621071Z"
+    dependencies:
+    - condition: keda.enabled
+      name: keda
+      repository: ""
+      version: 2.15.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: ""
+      version: 15.5.21
+    - condition: opensearch.enabled
+      name: opensearch
+      repository: ""
+      version: 2.22.0
+    - condition: opensearch-dashboards.enabled
+      name: opensearch-dashboards
+      repository: ""
+      version: 2.20.0
+    description: A Helm chart for deploying open-governance to Kubernetes
+    digest: 9f662cc0387c7729bff95d1a41bb48aa713c7ee34f618295dc91059c5679c699
+    name: open-governance
+    type: application
+    urls:
+    - https://github.com/kaytu-io/kaytu-charts/releases/download/open-governance-0.1.64/open-governance-0.1.64.tgz
+    version: 0.1.64
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-09-22T20:44:02.629207697Z"
     dependencies:
     - condition: keda.enabled
@@ -6138,4 +6176,4 @@ entries:
     urls:
     - https://github.com/kaytu-io/kaytu-charts/releases/download/open-governance-0.1.33/open-governance-0.1.33.tgz
     version: 0.1.33
-generated: "2024-09-23T00:34:41.718119815Z"
+generated: "2024-09-23T16:22:45.67722457Z"
