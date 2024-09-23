@@ -17,6 +17,7 @@
       <module fileurl="file://$PROJECT_DIR$/../opengovernance-automation/.idea/opengovernance-automation.iml" filepath="$PROJECT_DIR$/../opengovernance-automation/.idea/opengovernance-automation.iml" />
       <module fileurl="file://$PROJECT_DIR$/../steampipe-plugin-aws/.idea/steampipe-plugin-aws.iml" filepath="$PROJECT_DIR$/../steampipe-plugin-aws/.idea/steampipe-plugin-aws.iml" />
       <module fileurl="file://$PROJECT_DIR$/../test-describer/.idea/test-describer.iml" filepath="$PROJECT_DIR$/../test-describer/.idea/test-describer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../website/.idea/website.iml" filepath="$PROJECT_DIR$/../website/.idea/website.iml" />
     </modules>
   </component>
 </project>
