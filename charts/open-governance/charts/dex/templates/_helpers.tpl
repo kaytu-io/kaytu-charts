@@ -74,14 +74,3 @@ Create the name of the secret containing the config file to use
 {{- default (printf "%s-dex" .Release.Name) .Values.configSecret.name }}
 {{- end }}
 {{- end }}
-
-{{/*
-Update the config file to replcae all occurances of DOMAIN_NAME_PLACEHOLDER_DO_NOT_CHANGE with .Values.global.domain
-*/}}
-{{- define "dex.config" -}}
-{{- $config := .Values.config | toYaml | toString }}
-{{- if .Values.global.domain }}
-{{- $config = $config | replace "DOMAIN_NAME_PLACEHOLDER_DO_NOT_CHANGE" .Values.global.domain }}
-{{- end }}
-{{- default $config "" }}
-{{- end }}
