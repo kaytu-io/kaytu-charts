@@ -61,13 +61,9 @@ spec:
             - name: WORKSPACE_HTTP__ADDRESS
               value: "0.0.0.0:8351"
             - name: WORKSPACE_DOMAIN_SUFFIX
-              value: "{{ .Values.opengovernance.domain.main }}"
+              value: "{{ .Values.global.domain }}"
             - name: WORKSPACE_APP_DOMAIN
-              value: "{{ .Values.opengovernance.domain.main }}"
-            - name: WORKSPACE_GRPC_DOMAIN
-              value: "{{ .Values.opengovernance.domain.grpc }}"
-            - name: WORKSPACE_GRPC_EXTERNAL_DOMAIN
-              value: "{{ .Values.opengovernance.domain.grpc_external }}"
+              value: "{{ .Values.global.domain }}"
             - name: WORKSPACE_AUTH__BASE_URL
               value: "http://auth-service.{{ .Release.Namespace }}.svc.cluster.local:8251"
             - name: WORKSPACE_ONBOARD__BASE_URL

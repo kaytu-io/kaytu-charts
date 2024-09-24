@@ -50,12 +50,12 @@ data:
     NODE_ENV=production
     REACT_APP_NODE_ENV=prod
     REACT_APP_MUI_LICENSE={{ .Values.opengovernance.frontend.muiLicense }}
-    REACT_APP_DOMAIN: "https://{{ .Values.opengovernance.domain.main }}"
-    REACT_APP_BASE_URL="https://{{ .Values.opengovernance.domain.main }}"
-    REACT_APP_AUTH_BASE_URL="https://{{ .Values.opengovernance.domain.main }}"
+    REACT_APP_DOMAIN: "https://{{ .Values.global.domain }}"
+    REACT_APP_BASE_URL="https://{{ .Values.global.domain }}"
+    REACT_APP_AUTH_BASE_URL="https://{{ .Values.global.domain }}"
   NODE_ENV: production
   REACT_APP_NODE_ENV: prod
   REACT_APP_MUI_LICENSE: {{ .Values.opengovernance.frontend.muiLicense }}
-  REACT_APP_DOMAIN: "https://{{ .Values.opengovernance.domain.main }}"
-  REACT_APP_BASE_URL: "https://{{ .Values.opengovernance.domain.main }}"
-  REACT_APP_AUTH_BASE_URL: "https://{{ .Values.opengovernance.domain.main }}"
+  REACT_APP_DOMAIN: "https://{{ .Values.global.domain }}"
+  REACT_APP_BASE_URL: "https://{{ .Values.global.domain }}"
+  REACT_APP_AUTH_BASE_URL: "https://{{ .Values.global.domain }}"

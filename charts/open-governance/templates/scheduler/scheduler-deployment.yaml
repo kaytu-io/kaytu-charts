@@ -108,8 +108,8 @@ spec:
           value: "describe-scheduler.{{ .Release.Namespace }}.svc.cluster.local:5252"
         - name: DESCRIBE_DELIVER_ENDPOINT_LOCAL
           value: "es-sink-service.{{ .Release.Namespace }}.svc.cluster.local:5252"
-        - name: DESCRIBE_DELIVER_ENDPOINT_EXTERNAL
-          value: "{{ .Values.opengovernance.domain.grpc_external }}:443"
+{{/*        - name: DESCRIBE_DELIVER_ENDPOINT_EXTERNAL*/}}
+{{/*          value: "{{ .Values.opengovernance.domain.grpc_external }}:443"*/}}
 
         - name: KMS_ACCOUNT_REGION
           value: {{ .Values.opengovernance.vault.aws.region }}
