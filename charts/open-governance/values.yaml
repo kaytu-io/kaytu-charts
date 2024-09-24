@@ -1,10 +1,9 @@
+global:
+  domain: kaytu.app.domain
+
 opengovernance:
   replicaCount: 1
   envType: dev
-  domain:
-    main: kaytu.app.domain
-    grpc: grpc.domain
-    grpc_external: grpc-external.domain
   docker:
     registry: ghcr.io/kaytu-io
     tags:
@@ -86,8 +85,8 @@ dex:
       - id: public-client
         name: 'Public Client'
         redirectURIs:
-          - 'https://kaytu.app.domain/callback'
-          - 'http://kaytu.app.domain/callback'
+          - 'https://DOMAIN_NAME_PLACEHOLDER_DO_NOT_CHANGE/callback'
+          - 'http://DOMAIN_NAME_PLACEHOLDER_DO_NOT_CHANGE/callback'
           - 'http://localhost:3000/callback'
           - 'http://localhost:8080/callback'
         public: true
@@ -96,7 +95,7 @@ dex:
       - id: private-client
         name: 'Private Client'
         redirectURIs:
-          - 'https://kaytu.app.domain/callback'
+          - 'https://DOMAIN_NAME_PLACEHOLDER_DO_NOT_CHANGE/callback'
         secret: "secret" # private client secret
     staticPasswords:
       - email: "admin@example.com"
