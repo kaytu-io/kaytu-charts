@@ -8,28 +8,27 @@ opengovernance:
     registry: ghcr.io/kaytu-io
     tags:
       auth: v0.425.101-dev
-      workspace: v0.425.102-dev
-      swagger: v0.425.94-dev
+      workspace: v0.425.120-dev
+      swagger: v0.425.105-dev
       frontendv2: v0.39.49-dev
       pennywise: v0.4.20-dev
       checkupWorker: v0.424.0-dev
-      migrator: v0.425.99-dev
-      analytics: v0.425.94-dev
-      describeScheduler: v0.425.94-dev
+      migrator: v0.425.106-dev
+      analytics: v0.425.105-dev
+      describeScheduler: v0.425.105-dev
       describeWorkerAWS: local-v0.58.3
       describeWorkerAzure: local-v0.36.2
-      onboard: v0.425.97-dev
-      integration: v0.425.94-dev
+      onboard: v0.425.105-dev
+      integration: v0.425.105-dev
       metadata: v0.425.88-dev
-      inventory: v0.425.94-dev
-      compliance: v0.425.97-dev
-      complianceSummarizer: v0.425.94-dev
-      complianceWorker: v0.425.11-dev
+      inventory: v0.425.117-dev
+      compliance: v0.425.112-dev
+      complianceSummarizer: v0.425.105-dev
       complianceReport: v0.425.11-dev
       steampipe: v0.424.0-dev
       esSink: v0.424.0-dev
-      queryRunnerWorker: v0.425.94-dev
-      demoImport: v0.425.93-dev
+      queryRunnerWorker: v0.425.105-dev
+      demoImport: v0.425.106-dev
       psqlImport: v0.425.93-dev
   apikey:
     public: ""
@@ -75,6 +74,10 @@ opengovernance:
 dex:
   configSecret:
     create: false
+  image:
+    repository: ghcr.io/kaytu-io/dex-login
+    pullPolicy: Always
+    tag: v0.425.115-dev
   config:
     grpc:
       addr: 'localhost:5557'
@@ -377,6 +380,9 @@ postgresql:
           CREATE EXTENSION "uuid-ossp" WITH SCHEMA public;
           CREATE EXTENSION citext;
           GRANT ALL ON SCHEMA public TO $migratorUserName;
+          GRANT pg_read_all_data TO $workspaceUserName;
+          GRANT pg_write_all_data TO $workspaceUserName;
+          GRANT ALL ON SCHEMA public TO $workspaceUserName;
 
           CREATE USER $steampipeUserName WITH PASSWORD '$POSTGRES_STEAMPIPE_USER_PASSWORD';
 
