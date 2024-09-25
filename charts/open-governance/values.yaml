@@ -8,7 +8,7 @@ opengovernance:
     registry: ghcr.io/kaytu-io
     tags:
       auth: v0.425.101-dev
-      workspace: v0.425.107-dev
+      workspace: v0.425.120-dev
       swagger: v0.425.105-dev
       frontendv2: v0.39.49-dev
       pennywise: v0.4.20-dev
@@ -21,8 +21,8 @@ opengovernance:
       onboard: v0.425.105-dev
       integration: v0.425.105-dev
       metadata: v0.425.88-dev
-      inventory: v0.425.105-dev
-      compliance: v0.425.105-dev
+      inventory: v0.425.117-dev
+      compliance: v0.425.112-dev
       complianceSummarizer: v0.425.105-dev
       complianceReport: v0.425.11-dev
       steampipe: v0.424.0-dev
@@ -74,6 +74,10 @@ opengovernance:
 dex:
   configSecret:
     create: false
+  image:
+    repository: ghcr.io/kaytu-io/dex-login
+    pullPolicy: Always
+    tag: v0.425.115-dev
   config:
     grpc:
       addr: 'localhost:5557'

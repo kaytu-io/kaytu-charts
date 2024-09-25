@@ -4,4 +4,4 @@ metadata:
   name: kaytu-version
   namespace: {{ .Release.Namespace }}
 data:
-  version: "{{ .Values.opengovernance.docker.tags.inventory }}"
+  version: "{{ .Chart.Version }}"
