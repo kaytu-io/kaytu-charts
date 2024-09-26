@@ -7,29 +7,29 @@ opengovernance:
   docker:
     registry: ghcr.io/kaytu-io
     tags:
-      auth: v0.425.101-dev
-      workspace: v0.425.120-dev
+      auth: v0.425.136-dev
+      workspace: v0.425.135-dev
       swagger: v0.425.105-dev
       frontendv2: v0.39.49-dev
       pennywise: v0.4.20-dev
       checkupWorker: v0.424.0-dev
-      migrator: v0.425.106-dev
-      analytics: v0.425.105-dev
-      describeScheduler: v0.425.105-dev
+      migrator: v0.425.129-dev
+      analytics: v0.425.129-dev
+      describeScheduler: v0.425.134-dev
       describeWorkerAWS: local-v0.58.3
       describeWorkerAzure: local-v0.36.2
-      onboard: v0.425.105-dev
-      integration: v0.425.105-dev
+      onboard: v0.425.129-dev
+      integration: v0.425.129-dev
       metadata: v0.425.88-dev
-      inventory: v0.425.117-dev
-      compliance: v0.425.112-dev
+      inventory: v0.425.129-dev
+      compliance: v0.425.135-dev
       complianceSummarizer: v0.425.105-dev
       complianceReport: v0.425.11-dev
       steampipe: v0.424.0-dev
       esSink: v0.424.0-dev
       queryRunnerWorker: v0.425.105-dev
       demoImport: v0.425.106-dev
-      psqlImport: v0.425.93-dev
+      psqlImport: v0.425.132-dev
   apikey:
     public: ""
     private: ""

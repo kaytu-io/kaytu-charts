@@ -13,10 +13,8 @@ kind: Job
 metadata:
   name: import-es-demo-data
   namespace: {{ .Release.Namespace }}
-  annotations:
-    "helm.sh/hook": post-install
-    "helm.sh/hook-weight": "1"
 spec:
+  suspend: true
   template:
     spec:
       containers:
@@ -48,10 +46,8 @@ kind: Job
 metadata:
   name: import-psql-demo-data
   namespace: {{ .Release.Namespace }}
-  annotations:
-    "helm.sh/hook": post-install
-    "helm.sh/hook-weight": "0"
 spec:
+  suspend: true
   template:
     spec:
       containers:
