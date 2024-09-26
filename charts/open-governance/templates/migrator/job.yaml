@@ -5,10 +5,15 @@ kind: Job
 metadata:
   name: migrator-job
   namespace: {{ .Release.Namespace }}
+{{- if eq .Values.migratorJob.enabled true }}
   annotations:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "0"
+{{- end }}
 spec:
+{{- if eq .Values.migratorJob.enabled false }}
+  suspend: true
+{{- end }}
   template:
     spec:
       restartPolicy: OnFailure

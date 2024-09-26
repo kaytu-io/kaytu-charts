@@ -42,8 +42,6 @@ spec:
           env:
             - name: KAYTU_HOST
               value: {{ .Values.global.domain }}
-            - name: METADATA_BASE_URL
-              value: "http://metadata-service.%s.svc.cluster.local:6251"
             - name: POSTGRESQL_HOST
               value: "{{ include "postgres.endpoint" . }}"
             - name: POSTGRESQL_PORT
@@ -89,6 +87,14 @@ spec:
               value: /etc/certs/ca.crt
             - name: WORKSPACE_BASE_URL
               value: "http://workspace-service.{{ .Release.Namespace }}.svc.cluster.local:8351"
+            - name: COMPLIANCE_BASE_URL
+              value: "http://compliance-service.{{ .Release.Namespace }}.svc.cluster.local:7251"
+            - name: INTEGRATION_BASE_URL
+              value: "http://integration-service.{{ .Release.Namespace }}.svc.cluster.local:8000"
+            - name: DESCRIBE_BASE_URL
+              value: "http://describe-scheduler.{{ .Release.Namespace }}.svc.cluster.local:5251"
+            - name: METADATA_BASE_URL
+              value: "http://metadata-service.{{ .Release.Namespace }}.svc.cluster.local:6251"
             - name: DEX_GRPC_ADDR
               value: "opengovernance-dex.{{ .Release.Namespace }}.svc.cluster.local:5557"
             - name: WORKSPACE_NAME
