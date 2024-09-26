@@ -7,11 +7,7 @@ metadata:
     app: compliance-worker
 spec:
   minReadySeconds: 10
-  {{- if eq .Values.keda.enabled true }}
-  replicas: 0
-  {{- else }}
   replicas: 1
-  {{- end }}
   selector:
     matchLabels:
       app: compliance-worker
@@ -101,11 +97,7 @@ metadata:
     app: compliance-worker-manual
 spec:
   minReadySeconds: 10
-  {{- if eq .Values.keda.enabled true }}
-  replicas: 0
-  {{- else }}
   replicas: 1
-  {{- end }}
   selector:
     matchLabels:
       app: compliance-worker-manual

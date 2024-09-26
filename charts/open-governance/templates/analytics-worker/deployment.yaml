@@ -7,11 +7,7 @@ metadata:
     app: analytics-worker
 spec:
   minReadySeconds: 10
-  {{- if eq .Values.keda.enabled true }}
-  replicas: 0
-  {{- else }}
   replicas: 1
-  {{- end }}
   selector:
     matchLabels:
       app: analytics-worker
