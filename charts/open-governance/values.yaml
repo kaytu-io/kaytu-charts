@@ -621,6 +621,6 @@ flux:
 keda:
   enabled: true
 populateWithSampleData:
-  enabled: false
+  enabled: true
 migratorJob:
-  enabled: false
+  enabled: true
