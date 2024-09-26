@@ -619,3 +619,5 @@ keda:
   enabled: true
 populateWithSampleData:
   enabled: true
+migratorJob:
+  enabled: true
