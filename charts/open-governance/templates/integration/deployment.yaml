@@ -19,7 +19,7 @@ spec:
       serviceAccountName: integration
       containers:
       - name: integration-service
-        image: "{{ .Values.opengovernance.docker.registry }}/integration:{{ .Values.opengovernance.docker.tags.integration }}"
+        image: "{{ .Values.opengovernance.docker.registry }}/integration:v0.425.169-dev"
         command: ["/integration-service"]
         imagePullPolicy: Always
         #resources:
