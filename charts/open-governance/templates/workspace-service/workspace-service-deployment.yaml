@@ -41,8 +41,6 @@ spec:
           command: [ "/workspace-service" ]
           imagePullPolicy: Always
           env:
-            - name: WORKSPACE_ENV_TYPE
-              value: {{ .Values.opengovernance.envType }}
             - name: WORKSPACE_POSTGRES__HOST
               value: "{{ include "postgres.endpoint" . }}"
             - name: WORKSPACE_POSTGRES__PORT

@@ -3,7 +3,6 @@ global:
 
 opengovernance:
   replicaCount: 1
-  envType: dev
   docker:
     registry: ghcr.io/kaytu-io
     tags:
