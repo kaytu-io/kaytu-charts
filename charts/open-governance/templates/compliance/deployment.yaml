@@ -19,7 +19,7 @@ spec:
       serviceAccountName: compliance
       containers:
       - name: compliance-service
-        image: "{{ .Values.opengovernance.docker.registry }}/compliance-service:v0.425.172-dev"
+        image: "{{ .Values.opengovernance.docker.registry }}/compliance-service:{{ .Values.opengovernance.docker.tags.compliance }}"
         command: ["/compliance-service"]
         imagePullPolicy: Always
         #resources:

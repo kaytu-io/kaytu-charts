@@ -7,29 +7,29 @@ opengovernance:
   docker:
     registry: ghcr.io/kaytu-io
     tags:
-      auth: v0.425.142-dev
-      workspace: v0.425.145-dev
+      auth: v0.425.177-dev
+      workspace: v0.425.176-dev
       swagger: v0.425.142-dev
       frontendv2: v0.39.49-dev
       pennywise: v0.4.20-dev
       checkupWorker: v0.424.0-dev
       migrator: v0.425.155-dev
       analytics: v0.425.167-dev
-      describeScheduler: v0.425.169-dev
+      describeScheduler: v0.425.176-dev
       describeWorkerAWS: local-v0.58.3
       describeWorkerAzure: local-v0.36.2
-      onboard: v0.425.167-dev
-      integration: v0.425.169-dev
+      onboard: v0.425.176-dev
+      integration: v0.425.176-dev
       metadata: v0.425.88-dev
-      inventory: v0.425.169-dev
-      compliance: v0.425.172-dev
+      inventory: v0.425.176-dev
+      compliance: v0.425.189-dev
       complianceSummarizer: v0.425.105-dev
       complianceReport: v0.425.11-dev
       steampipe: v0.424.0-dev
       esSink: v0.424.0-dev
       queryRunnerWorker: v0.425.105-dev
       demoImport: v0.425.145-dev
-      psqlImport: v0.425.148-dev
+      psqlImport: v0.425.189-dev
   apikey:
     public: ""
     private: ""
@@ -621,6 +621,6 @@ flux:
 keda:
   enabled: true
 populateWithSampleData:
-  enabled: false
+  enabled: true
 migratorJob:
-  enabled: false
+  enabled: true

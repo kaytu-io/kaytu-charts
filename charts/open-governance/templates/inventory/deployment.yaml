@@ -19,7 +19,7 @@ spec:
       serviceAccountName: inventory
       containers:
       - name: inventory-service
-        image: "{{ .Values.opengovernance.docker.registry }}/inventory-service:v0.425.169-dev"
+        image: "{{ .Values.opengovernance.docker.registry }}/inventory-service:{{ .Values.opengovernance.docker.tags.inventory }}"
         command: ["/inventory-service"]
         imagePullPolicy: Always
         #resources:
