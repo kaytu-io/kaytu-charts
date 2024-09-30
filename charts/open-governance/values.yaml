@@ -28,7 +28,7 @@ opengovernance:
       steampipe: v0.424.0-dev
       esSink: v0.424.0-dev
       queryRunnerWorker: v0.425.105-dev
-      demoImport: v0.425.145-dev
+      demoImport: v0.425.189-dev
       psqlImport: v0.425.189-dev
   apikey:
     public: ""
