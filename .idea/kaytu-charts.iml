@@ -20,5 +20,6 @@
     <orderEntry type="module" module-name="opengovernance-automation" />
     <orderEntry type="module" module-name="website" />
     <orderEntry type="module" module-name="opengovernance-frontend" />
+    <orderEntry type="module" module-name="gitdiff" />
   </component>
 </module>
