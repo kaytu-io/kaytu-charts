@@ -3,6 +3,8 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../configz-deprecated" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../gitdiff" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../gitdiff/aa" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../kaytu-aws-describer" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../kaytu-azure-describer" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../kaytu-charts-gitlab/charts" vcs="Git" />
