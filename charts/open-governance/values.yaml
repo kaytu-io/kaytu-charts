@@ -9,7 +9,7 @@ opengovernance:
       auth: v0.426.1
       workspace: v0.426.1
       swagger: v0.426.1
-      frontendv2: v0.0.4-dev
+      frontendv2: v0.0.5-dev
       pennywise: v0.4.20-dev
       checkupWorker: v0.426.1
       migrator: v0.427.14
