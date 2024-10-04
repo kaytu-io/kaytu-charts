@@ -14,14 +14,14 @@ opengovernance:
       checkupWorker: v0.426.1
       migrator: v0.427.23
       analytics: v0.427.22
-      describeScheduler: v0.427.22
+      describeScheduler: v0.427.27
       describeWorkerAWS: local-v0.58.3
       describeWorkerAzure: local-v0.36.2
       onboard: v0.427.22
-      integration: v0.427.9
+      integration: v0.427.25
       metadata: v0.426.1
       inventory: v0.427.22
-      compliance: v0.427.22
+      compliance: v0.427.27
       complianceSummarizer: v0.427.22
       complianceReport: v0.427.22
       steampipe: v0.426.1
