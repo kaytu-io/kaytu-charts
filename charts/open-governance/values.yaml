@@ -12,7 +12,7 @@ opengovernance:
       frontendv2: v0.1.0-dev
       pennywise: v0.4.20-dev
       checkupWorker: v0.426.1
-      migrator: v0.427.29
+      migrator: v0.427.30
       analytics: v0.427.22
       describeScheduler: v0.427.30
       describeWorkerAWS: local-v0.58.3
