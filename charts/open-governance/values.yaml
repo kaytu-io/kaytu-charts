@@ -12,9 +12,9 @@ opengovernance:
       swagger: v0.427.34
       pennywise: v0.4.20-dev
       checkupWorker: v0.427.34
-      migrator: v0.427.34
       analytics: v0.427.34
-      describeScheduler: v0.427.34
+      migrator: v0.427.43
+      describeScheduler: v0.427.35
       describeWorkerAWS: local-v0.58.3
       describeWorkerAzure: local-v0.36.2
       onboard: v0.427.34
