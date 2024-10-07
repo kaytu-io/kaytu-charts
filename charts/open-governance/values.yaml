@@ -9,7 +9,7 @@ opengovernance:
       auth: v0.426.1
       workspace: v0.427.37
       swagger: v0.426.1
-      frontendv2: v0.3.0-dev
+      frontendv2: v0.3.1-dev
       pennywise: v0.4.20-dev
       checkupWorker: v0.426.1
       migrator: v0.427.33
@@ -621,5 +621,6 @@ keda:
   enabled: true
 populateWithSampleData:
   enabled: true
+  fileURL: "https://opengovernance.nyc3.cdn.digitaloceanspaces.com/demo-data/v3.0/demo_data.tar.gz.enc"
 migratorJob:
   enabled: true

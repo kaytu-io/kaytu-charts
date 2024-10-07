@@ -38,7 +38,7 @@ spec:
             - name: POSTGRESQL_PORT
               value: "{{ include "postgres.port" . }}"
             - name: DEMO_DATA_S3_URL
-              value: "https://opengovernance.nyc3.cdn.digitaloceanspaces.com/demo-data/v2.0/demo_data.tar.gz.enc"
+              value: "{{ .Values.populateWithSampleData.fileURL }}"
             - name: OPENSSL_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -80,7 +80,7 @@ spec:
             - name: DEMO_DATA_GIT_URL
               value: "https://github.com/kaytu-io/demo-data"
             - name: DEMO_DATA_S3_URL
-              value: "https://opengovernance.nyc3.cdn.digitaloceanspaces.com/demo-data/v2.0/demo_data.tar.gz.enc"
+              value: "{{ .Values.populateWithSampleData.fileURL }}"
             - name: OPENSSL_PASSWORD
               valueFrom:
                 secretKeyRef:
