@@ -420,11 +420,11 @@ postgresql:
           echo "$dt - Init script is completed";
     resources:
       limits:
-        memory: '3Gi'
-        cpu: '3'
+        memory: '8Gi'
+        cpu: '4'
       requests:
-        memory: "1.5Gi"
-        cpu: "1"
+        memory: "3Gi"
+        cpu: "2"
     # These passwords are random generated
     # Do not change them
     # You can get the passwords running:

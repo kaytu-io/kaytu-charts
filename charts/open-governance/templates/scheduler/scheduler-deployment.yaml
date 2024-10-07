@@ -84,7 +84,7 @@ spec:
         - name: ANALYTICS_INTERVAL_HOURS
           value: "4"
         - name: CHECKUP_INTERVAL_HOURS
-          value: "1"
+          value: "24"
         - name: MUST_SUMMARIZE_INTERVAL_HOURS
           value: "4"
         - name: WORKSPACE_BASE_URL
