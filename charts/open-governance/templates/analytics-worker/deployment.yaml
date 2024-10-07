@@ -59,6 +59,18 @@ spec:
             - name: POSTGRESQL_SSLMODE
               value: "{{ include "postgres.sslMode" . }}"
 
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: steampipeUserPassword
+            - name: METADATA_DB_HOST
+              value: "{{ include "postgres.endpoint" . }}"
+            - name: METADATA_DB_PORT
+              value: "{{ include "postgres.port" . }}"
+            - name: METADATA_DB_SSL_MODE
+              value: "{{ include "postgres.sslMode" . }}"
+
             - name: STEAMPIPE_HOST
               value: "{{ include "postgres.endpoint" . }}"
             - name: STEAMPIPE_PORT

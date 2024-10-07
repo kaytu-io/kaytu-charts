@@ -24,7 +24,7 @@ opengovernance:
       compliance: v0.427.34
       complianceSummarizer: v0.427.34
       complianceReport: v0.427.34
-      steampipe: v0.427.42
+      steampipe: v0.427.44
       esSink: v0.427.34
       queryRunnerWorker: v0.427.34
       demoImport: v0.427.34
