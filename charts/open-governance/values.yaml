@@ -9,19 +9,19 @@ opengovernance:
       auth: v0.426.1
       workspace: v0.427.29
       swagger: v0.426.1
-      frontendv2: v0.1.0-dev
+      frontendv2: v0.3.0-dev
       pennywise: v0.4.20-dev
       checkupWorker: v0.426.1
-      migrator: v0.427.30
+      migrator: v0.427.33
       analytics: v0.427.22
-      describeScheduler: v0.427.30
+      describeScheduler: v0.427.31
       describeWorkerAWS: local-v0.58.3
       describeWorkerAzure: local-v0.36.2
       onboard: v0.427.22
       integration: v0.427.25
       metadata: v0.426.1
       inventory: v0.427.28
-      compliance: v0.427.27
+      compliance: v0.427.32
       complianceSummarizer: v0.427.22
       complianceReport: v0.427.22
       steampipe: v0.426.1
