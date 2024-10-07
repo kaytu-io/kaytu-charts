@@ -170,7 +170,7 @@ data:
         "auto_onboard_support":true,
         "short_description":"Discover Users, Identities, Apps, Service Accounts and 20+ others.",
         "description":"Discover Users, Identities, Apps, Service Accounts and 20+ others.",
-        "logo":"https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/entraid.png"
+        "logo":"https://raw.githubusercontent.com/kaytu-io/website/main/connectors/icons/entraid.svg"
       },
       {
         "id":4,

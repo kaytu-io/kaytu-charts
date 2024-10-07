@@ -6,10 +6,10 @@ opengovernance:
   docker:
     registry: ghcr.io/kaytu-io
     tags:
+      workspace: v0.427.37
+      frontendv2: v0.3.1-dev
       auth: v0.427.34
-      workspace: v0.427.34
       swagger: v0.427.34
-      frontendv2: v0.3.0-dev
       pennywise: v0.4.20-dev
       checkupWorker: v0.427.34
       migrator: v0.427.34
@@ -621,5 +621,6 @@ keda:
   enabled: true
 populateWithSampleData:
   enabled: true
+  fileURL: "https://opengovernance.nyc3.cdn.digitaloceanspaces.com/demo-data/v3.0/demo_data.tar.gz.enc"
 migratorJob:
   enabled: true
