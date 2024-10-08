@@ -7,7 +7,7 @@ opengovernance:
     registry: ghcr.io/kaytu-io
     tags:
       workspace: v0.427.37
-      frontendv2: v0.3.1-dev
+      frontendv2: v0.3.2-dev
       auth: v0.427.34
       swagger: v0.427.34
       pennywise: v0.4.20-dev
