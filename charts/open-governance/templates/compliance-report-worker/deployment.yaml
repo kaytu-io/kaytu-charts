@@ -19,7 +19,7 @@ spec:
       serviceAccountName: compliance-report-worker
       containers:
         - name: compliance-worker
-          image: "{{ .Values.opengovernance.docker.registry }}/compliance-report-worker:{{ .Values.opengovernance.docker.tags.complianceReport }}"
+          image: "{{ .Values.opengovernance.docker.registry }}/compliance-report-worker:v0.427.35"
           command: ["/compliance-report-worker"]
           args:
             - --id=$(WORKER_ID)
