@@ -7,16 +7,21 @@ type: Opaque
 data:
   openSslPassword: MDFaUlBGdU9OMFBNb25P
 ---
+{{- if not (lookup "batch/v1" "Job" .Release.Namespace "import-es-demo-data") -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: import-es-demo-data
   namespace: {{ .Release.Namespace }}
-{{- if eq .Values.populateWithSampleData.enabled true }}
   annotations:
+    "app.kubernetes.io/managed-by": "Helm"
+    "meta.helm.sh/release-name": {{ .Release.Name }}
+    "meta.helm.sh/release-namespace": {{ .Release.Namespace }}
+    helm.sh/resource-policy: keep
+    {{- if eq .Values.populateWithSampleData.enabled true }}
     "helm.sh/hook": post-install
     "helm.sh/hook-weight": "1"
-{{- end }}
+    {{- end }}
 spec:
 {{- if eq .Values.populateWithSampleData.enabled false }}
   suspend: true
@@ -25,7 +30,7 @@ spec:
     spec:
       containers:
         - name: import-es-demo-data
-          image: "{{ .Values.opengovernance.docker.registry }}/demo-importer:{{ .Values.opengovernance.docker.tags.demoImport }}"
+          image: "{{ .Values.opengovernance.docker.registry }}/demo-importer:v0.427.58"
           command: ["/demo-importer-worker"]
           env:
 {{- include "elastic.envs" . | indent 12 }}
@@ -46,17 +51,23 @@ spec:
                   key: openSslPassword
       restartPolicy: Never
   backoffLimit: 4
+{{- end }}
 ---
+{{- if not (lookup "batch/v1" "Job" .Release.Namespace "import-psql-demo-data") -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: import-psql-demo-data
   namespace: {{ .Release.Namespace }}
-{{- if eq .Values.populateWithSampleData.enabled true }}
   annotations:
+    "app.kubernetes.io/managed-by": "Helm"
+    "meta.helm.sh/release-name": {{ .Release.Name }}
+    "meta.helm.sh/release-namespace": {{ .Release.Namespace }}
+    "helm.sh/resource-policy": keep
+    {{- if eq .Values.populateWithSampleData.enabled true }}
     "helm.sh/hook": post-install
     "helm.sh/hook-weight": "0"
-{{- end }}
+    {{- end }}
 spec:
 {{- if eq .Values.populateWithSampleData.enabled false }}
   suspend: true
@@ -65,7 +76,7 @@ spec:
     spec:
       containers:
         - name: import-psql-demo-data
-          image: "{{ .Values.opengovernance.docker.registry }}/import-data-script:{{ .Values.opengovernance.docker.tags.psqlImport }}"
+          image: "{{ .Values.opengovernance.docker.registry }}/import-data-script:v0.427.58"
           command: ["/bin/bash", "-c", "/usr/local/bin/import_psql_data.sh"]
           env:
 {{- include "elastic.envs" . | indent 12 }}
@@ -88,3 +99,4 @@ spec:
                   key: openSslPassword
       restartPolicy: Never
   backoffLimit: 4
+{{- end }}
